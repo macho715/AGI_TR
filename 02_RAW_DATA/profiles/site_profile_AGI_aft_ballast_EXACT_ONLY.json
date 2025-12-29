@@ -1,0 +1,78 @@
+{
+  "site": "AGI",
+  "version": "3.1_EXACT_ONLY",
+  "created": "2025-12-23",
+  "description": "Exact-only tank overrides. AFT-min stages use stage-level SSOT (DISCHARGE_ONLY for FWD tanks).",
+  "gateb_critical_only": true,
+  "critical_stage_list": [
+    "Stage 5_PreBallast",
+    "Stage 6A_Critical (Opt C)"
+  ],
+  "tank_overrides": {
+    "FW2.P": {
+      "mode": "FILL_DISCHARGE",
+      "use_flag": "Y",
+      "Min_t": 0.0,
+      "Max_t": 13.92,
+      "comment": "AFT FW tank: Fr0-6, x=+30.032m"
+    },
+    "FW2.S": {
+      "mode": "FILL_DISCHARGE",
+      "use_flag": "Y",
+      "Min_t": 0.0,
+      "Max_t": 13.92,
+      "comment": "AFT FW tank: Fr0-6, x=+30.032m"
+    },
+    "VOID3.P": {
+      "mode": "FIXED",
+      "use_flag": "Y",
+      "Min_t": 100.0,
+      "Max_t": 100.0,
+      "comment": "Operational constraint: Pre-ballast Storage ONLY, no transfer authorized"
+    },
+    "VOID3.S": {
+      "mode": "FIXED",
+      "use_flag": "Y",
+      "Min_t": 100.0,
+      "Max_t": 100.0,
+      "comment": "Operational constraint: Pre-ballast Storage ONLY, no transfer authorized"
+    },
+    "FWCARGO1.P": {
+      "use_flag": "N",
+      "comment": "FWD tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWCARGO1.S": {
+      "use_flag": "N",
+      "comment": "FWD tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWCARGO2.P": {
+      "use_flag": "N",
+      "comment": "FWD tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWCARGO2.S": {
+      "use_flag": "N",
+      "comment": "FWD tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWB1.P": {
+      "use_flag": "N",
+      "comment": "BOW tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWB1.S": {
+      "use_flag": "N",
+      "comment": "BOW tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWB2.P": {
+      "use_flag": "N",
+      "comment": "FWD tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    },
+    "FWB2.S": {
+      "use_flag": "N",
+      "comment": "FWD tank (normal stages excluded, will be DISCHARGE_ONLY for AFT-min stages via stage-level SSOT)"
+    }
+  },
+  "mws_notes": {
+    "dnv_incomplete_prop_immersion": "If AFT draft < 2.70m: lower RPM/power + limited steering angles + use of tugs.",
+    "ittc_note": "Record shaft centreline immersion (>=1.5D recommended, 2.0D preferred) – do not equate to AFT draft.",
+    "nd_0013_freeboard": "Effective freeboard >= (0.50+0.50*Hmax) with 4-corner monitoring, else (0.80+0.50*Hmax)."
+  }
+}

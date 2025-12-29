@@ -1,0 +1,126 @@
+{
+    "profile_version": "1.3",
+    "site": "AGI",
+    "site_code": "AGI-002",
+    "description": "AGI Site ballast planning profile (gates + UKC + sensor Current_t + tank operability allow-list)",
+    "units": {
+        "draft_m": "m",
+        "trim_m": "m",
+        "pump_rate_tph": "t/h",
+        "ukc_m": "m",
+        "depth_ref_m": "m (Chart Datum)",
+        "forecast_tide_m": "m (above Chart Datum)"
+    },
+    "fwd_max_m": 2.7,
+    "aft_min_m": 2.7,
+    "aft_max_m": 3.5,
+    "trim_abs_limit_m": 2.4,
+    "pump_rate_tph": 10.0,
+    "tank_keywords": "FWB,VOIDDB,FW2",
+    "current_t_csv": "sensors/current_t_sensor.csv",
+    "ukc_min_m": 0.50,
+    "squat_m": 0.15,
+    "safety_allow_m": 0.20,
+    "depth_ref_m": null,
+    "forecast_tide_m": null,
+    "mammoet_gateb_critical_only": true,
+    "mammoet_gateb_fwd_max_m_cd": 2.70,
+    "critical_stages": [
+        "Stage 6A_Critical (Opt C)",
+        "Stage 5_PreBallast"
+    ],
+    "critical_stage_regex": "(CRITICAL|6A|RORO|RAMP|ROLL|LOADOUT)",
+    "tank_overrides": {
+        "FWB1": {
+            "use_flag": "Y",
+            "mode": "FILL_DISCHARGE"
+        },
+        "FWB2": {
+            "use_flag": "Y",
+            "mode": "FILL_DISCHARGE"
+        },
+        "VOIDDB1": {
+            "use_flag": "Y",
+            "mode": "FILL_DISCHARGE"
+        },
+        "VOIDDB2": {
+            "use_flag": "Y",
+            "mode": "FILL_DISCHARGE"
+        },
+        "FW2": {
+            "use_flag": "Y",
+            "mode": "FILL_DISCHARGE"
+        },
+        "FWCARGO1": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "FWCARGO2": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "DO": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "FODB1": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "FOW1": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "LRFO": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "FW1": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "CL": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "SLUDGE": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "SEWAGE": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "VOIDDB4": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        },
+        "VOID3": {
+            "use_flag": "N",
+            "mode": "FIXED"
+        }
+    },
+    "provenance": {
+        "_comment": "AGI-002: Gate values & default pump/trim limits aligned to ops_final_r3 + agi_tr_patched v6.6; tank categories from tank.md.",
+        "fwd_max_m": "ops_final_r3_integrated_defs_split_v4.py:FWD_MAX_DRAFT_M (AGI Port/Ramp gate)",
+        "aft_min_m": "ops_final_r3_integrated_defs_split_v4.py:AFT_MIN_DRAFT_M (Captain gate)",
+        "aft_max_m": "agi_tr_patched_v6_6_defsplit_v1.py:max_fwd_draft_m (structural/nautical)",
+        "trim_abs_limit_m": "agi_tr_patched_v6_6_defsplit_v1.py:trim_limit_abs_cm=240cm",
+        "pump_rate_tph": "agi_tr_patched_v6_6_defsplit_v1.py:pump_rate_tph=10 t/h (ship pump rate)",
+        "tank_keywords": "Ballast Pipeline 운영 가이드.MD recommended default",
+        "tank_overrides": "tank.md tank category separation + safety allow-list",
+        "ukc_min_m": "ops_final_r3_integrated_defs_split_v4.py:UKC_MIN",
+        "squat_m": "ops_final_r3_integrated_defs_split_v4.py:SQUAT_ALLOWANCE_M",
+        "safety_allow_m": "ops_final_r3_integrated_defs_split_v4.py:SAFETY_MARGIN_M",
+        "depth_ref_m": "NOT set (requires charted depth confirmation against CD/Port datum)",
+        "forecast_tide_m": "NOT set (requires official tide table for the specific operation window)",
+        "mammoet_gateb_critical_only": "PPP.MD v2.2: Enable Gate-B (FWD≤2.70m) only for critical RoRo stages",
+        "mammoet_gateb_fwd_max_m_cd": "PPP.MD v2.2: Mammoet Gate-B limit (Chart Datum referenced)",
+        "critical_stages": "PPP.MD v2.2: Explicit list of critical stages for Gate-B applicability",
+        "critical_stage_regex": "PPP.MD v2.2: Regex pattern for critical stage matching (fallback if critical_stages not provided)"
+    },
+    "notes": [
+        "depth_ref_m 및 forecast_tide_m 는 Berth/시간대별 값입니다. UKC Gate 평가를 실행하려면 두 값을 반드시 채우십시오.",
+        "tank_keywords 는 초기 use_flag 자동 분기를 위한 1차 필터이며, 최종 제어 대상은 tank_overrides allow-list로 확정합니다."
+    ]
+}

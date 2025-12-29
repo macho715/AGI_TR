@@ -1,0 +1,38 @@
+{
+  "site": "AGI",
+  "ssot": {
+    "midship_from_ap_m": 30.151,
+    "coord_mode": "FR_M",
+    "frame_spacing_m": 1.0,
+    "ap_offset_m": 0.0,
+    "lpp_m": 60.302
+  },
+  "weights": {
+    "w_tr_t": 217.0,
+    "w_spmt_t": 54.2,
+    "w_beams_t": 11.6,
+    "w_ppu_t": 7.2,
+    "assembly_total_t": 282.8,
+    "dunnage_t": 10.0,
+    "preballast_t": 0.0
+  },
+  "positions": {
+    "tr1_final_frame": 42.0,
+    "tr2_final_frame": 40.0,
+    "ramp_frame": 17.95,
+    "ramp_start_frame": 40.15,
+    "ramp_mid_frame": 37.0,
+    "spmt_park_frame": 10.0,
+    "ppu_park_frame": 46.0,
+    "dunnage_frame": 31.0,
+    "preballast_pos": 3.0
+  },
+  "modes": {
+    "final_spmt_mode": "ONBOARD",
+    "beams_mode": "REMOVED",
+    "ppu_mode": "INCLUDED_IN_SPMT",
+    "ppu_included_in_assembly": true
+  },
+  "include_preballast_in_stage0": false,
+  "include_preballast_in_stage5": false
+}

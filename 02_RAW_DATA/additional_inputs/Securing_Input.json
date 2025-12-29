@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "generated_at": "2025-12-15T11:32:10.973699",
+    "basis": "CSM trace (manual fill required)",
+    "approved_required": true
+  },
+  "items": [
+    {
+      "id": "L01",
+      "type": "chain",
+      "wll_t": 20.0,
+      "qty": 0,
+      "remarks": "TO_BE_FILLED"
+    },
+    {
+      "id": "L02",
+      "type": "wire",
+      "wll_t": 15.0,
+      "qty": 0,
+      "remarks": "TO_BE_FILLED"
+    }
+  ],
+  "cargos": [
+    {
+      "cargo_id": "TR_UNIT_1",
+      "mass_t": null,
+      "cog_m": {
+        "x": null,
+        "y": null,
+        "z": null
+      },
+      "lashing_plan_ref": "TO_BE_FILLED",
+      "accel_assumption": {
+        "ax_g": null,
+        "ay_g": null,
+        "az_g": null
+      },
+      "remarks": "TO_BE_FILLED"
+    }
+  ]
+}

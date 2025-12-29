@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "generated_at": "2025-12-15T11:32:10.964700",
+    "source": "IMO IS Code 2008 / MSC.267(85)",
+    "standard": "Generic baseline - verify with vessel-specific booklet"
+  },
+  "criteria": {
+    "area_0_30_mrad_min": 0.055,
+    "area_0_40_mrad_min": 0.09,
+    "area_30_40_mrad_min": 0.03,
+    "gz_max_m_min": 0.2,
+    "gz_max_angle_deg_min": 25.0,
+    "gz_max_angle_deg_max": 40.0,
+    "gm0_min_m": 0.15
+  }
+}

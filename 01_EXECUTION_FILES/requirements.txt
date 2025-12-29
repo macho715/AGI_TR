@@ -1,0 +1,18 @@
+# Core dependencies for AGI RORO TR Pipeline
+pandas>=1.5.0
+numpy>=1.23.0
+openpyxl>=3.0.0
+scipy>=1.9.0
+
+# Optional dependencies
+pyyaml>=6.0
+loguru>=0.6.0
+
+# I/O Performance (PR-01~05)
+polars>=0.19.0  # Fast CSV/Parquet I/O
+pyarrow>=12.0.0  # Parquet backend
+charset-normalizer>=3.0.0  # Encoding detection
+
+# Data Tidying & Validation (Tidying First Implementation)
+pydantic>=2.0.0  # Type-safe data validation
+tabulate>=0.9.0  # Markdown table generation (for LLM context)

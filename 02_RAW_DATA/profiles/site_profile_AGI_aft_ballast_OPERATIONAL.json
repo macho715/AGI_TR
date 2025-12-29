@@ -1,0 +1,83 @@
+{
+    "site": "AGI",
+    "description": "AGI site profile - OPERATIONAL VERSION with VOID3 constraints and FWD discharge-only for AFT-min stages",
+    "version": "3.0_OPERATIONAL",
+    "created": "2025-12-23",
+    "gateb_critical_only": true,
+    "critical_stage_list": [
+        "Stage 5_PreBallast",
+        "Stage 6A_Critical (Opt C)"
+    ],
+    "corrections": [
+        "VOID3: Pre-ballast Storage ONLY - Transfer NOT AUTHORIZED",
+        "VOID3 Current_t=100t, Max_t=152.08t -> Only +52.08t fill possible (not +152.08t)",
+        "FWD tanks: DISCHARGE_ONLY for AFT-min stages (Option 1)",
+        "Propeller immersion: ITTC shaft CL immersion (not AFT draft) must be recorded"
+    ],
+    "purpose": "Operational ballast plan with VOID3 constraints and FWD discharge-only for AFT-min compliance",
+    "tank_overrides": {
+        "FW2.P": {
+            "mode": "FILL_DISCHARGE",
+            "use_flag": "Y",
+            "Min_t": 0.0,
+            "Max_t": 13.92,
+            "comment": "Primary AFT ballast: Fr0-6, x=+30.032m"
+        },
+        "FW2.S": {
+            "mode": "FILL_DISCHARGE",
+            "use_flag": "Y",
+            "Min_t": 0.0,
+            "Max_t": 13.92,
+            "comment": "Primary AFT ballast: Fr0-6, x=+30.032m"
+        },
+        "VOID3.P": {
+            "mode": "FIXED",
+            "use_flag": "Y",
+            "Min_t": 100.0,
+            "Max_t": 100.0,
+            "comment": "OPERATIONAL CONSTRAINT: Pre-ballast Storage ONLY. Current_t=100t fixed (no transfer authorized). Solver cannot modify."
+        },
+        "VOID3.S": {
+            "mode": "FIXED",
+            "use_flag": "Y",
+            "Min_t": 100.0,
+            "Max_t": 100.0,
+            "comment": "OPERATIONAL CONSTRAINT: Pre-ballast Storage ONLY. Current_t=100t fixed (no transfer authorized). Solver cannot modify."
+        },
+        "FWCARGO1": {
+            "use_flag": "N",
+            "comment": "FWD tank (x=-12.599m) - Will be DISCHARGE_ONLY for AFT-min stages"
+        },
+        "FWCARGO2": {
+            "use_flag": "N",
+            "comment": "FWD tank (x=-5.099m) - Will be DISCHARGE_ONLY for AFT-min stages"
+        },
+        "FWB1": {
+            "use_flag": "N",
+            "comment": "FORWARD tank (x=-27.368m) - Will be DISCHARGE_ONLY for AFT-min stages"
+        },
+        "FWB2": {
+            "use_flag": "N",
+            "comment": "FORWARD tank (x=-19.887m) - Will be DISCHARGE_ONLY for AFT-min stages"
+        }
+    },
+    "operational_constraints": {
+        "VOID3": {
+            "role": "Pre-ballast Storage ONLY",
+            "transfer_authorized": false,
+            "current_t_fixed": 100.0,
+            "note": "Shore-fill before RORO, maintain as static ballast throughout operation"
+        }
+    },
+    "vessel_specs": {
+        "LOA_m": 64.00,
+        "Depth_m": 3.65,
+        "Lightship_t": 770.16,
+        "LCF_m": 0.76,
+        "MTC_tm_per_cm": 34.0,
+        "propeller_diameter_m": 1.38,
+        "propeller_immersion_safe_aft_draft_m": 2.70,
+        "shaft_centreline_immersion_min_ittc": 2.07,
+        "shaft_centreline_immersion_recommended_ittc": 2.76
+    }
+}

@@ -1,0 +1,498 @@
+{
+  "_comment": "Valve Lineup Mapping for LCT Bushra Ballast System",
+  "_version": "v1.1",
+  "_last_updated": "2025-12-28",
+  "tanks": {
+    "FWB1.P": {
+      "name": "Forward Ballast 1 Port",
+      "location": "Fr.56-FE",
+      "fill_valves": [
+        "V-FWB1P-01-FILL",
+        "V-FWB1P-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FWB1P-03-DISCHARGE",
+        "V-FWB1P-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FWB1P-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FWB1P-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "Open V-FWB1P-VENT-01 (vent pressure)",
+        "Open V-MAIN-FILL-FWD (main line)",
+        "Open V-FWB1P-02-INLET (tank inlet)",
+        "Open V-FWB1P-01-FILL (tank fill)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "valve_sequence_discharge": [
+        "Open V-FWB1P-VENT-01 (allow air ingress)",
+        "Open V-MAIN-DISCHARGE-FWD (main line)",
+        "Open V-FWB1P-04-OUTLET (tank outlet)",
+        "Open V-FWB1P-03-DISCHARGE (tank discharge)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "closing_sequence": [
+        "Stop pump",
+        "Close tank valves (reverse order)",
+        "Close main line valve",
+        "Close vent valve (last)"
+      ]
+    },
+    "FWB1.S": {
+      "name": "Forward Ballast 1 Starboard",
+      "location": "Fr.56-FE",
+      "fill_valves": [
+        "V-FWB1S-01-FILL",
+        "V-FWB1S-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FWB1S-03-DISCHARGE",
+        "V-FWB1S-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FWB1S-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FWB1S-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "(Same as FWB1.P fill sequence)"
+      ],
+      "valve_sequence_discharge": [
+        "(Same as FWB1.P discharge sequence)"
+      ]
+    },
+    "FWB2.P": {
+      "name": "Forward Ballast 2 Port",
+      "location": "Fr.48-53",
+      "fill_valves": [
+        "V-FWB2P-01-FILL",
+        "V-FWB2P-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FWB2P-03-DISCHARGE",
+        "V-FWB2P-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FWB2P-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FWB2P-EMERGENCY-CLOSE"
+      ]
+    },
+    "FWB2.S": {
+      "name": "Forward Ballast 2 Starboard",
+      "location": "Fr.48-53",
+      "fill_valves": [
+        "V-FWB2S-01-FILL",
+        "V-FWB2S-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FWB2S-03-DISCHARGE",
+        "V-FWB2S-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FWB2S-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FWB2S-EMERGENCY-CLOSE"
+      ]
+    },
+    "VOID3.P": {
+      "name": "Void 3 Port",
+      "location": "Fr.33-38",
+      "operability": "PRE_BALLAST_ONLY",
+      "fill_valves": [
+        "V-VOID3P-SHORE-FILL (shore connection only)"
+      ],
+      "discharge_valves": [],
+      "vent_valves": [
+        "V-VOID3P-VENT-01"
+      ],
+      "notes": "NOT OPERABLE for transfer operations. Pre-ballast storage only."
+    },
+    "VOID3.S": {
+      "name": "Void 3 Starboard",
+      "location": "Fr.33-38",
+      "operability": "PRE_BALLAST_ONLY",
+      "fill_valves": [
+        "V-VOID3S-SHORE-FILL (shore connection only)"
+      ],
+      "discharge_valves": [],
+      "vent_valves": [
+        "V-VOID3S-VENT-01"
+      ],
+      "notes": "NOT OPERABLE for transfer operations. Pre-ballast storage only."
+    },
+    "VOIDDB2.C": {
+      "name": "Void DB2 Center",
+      "location": "Fr.24-33",
+      "fill_valves": [
+        "V-VOIDDB2C-01-FILL",
+        "V-VOIDDB2C-02-INLET",
+        "V-MAIN-FILL-MID"
+      ],
+      "discharge_valves": [
+        "V-VOIDDB2C-03-DISCHARGE",
+        "V-VOIDDB2C-04-OUTLET",
+        "V-MAIN-DISCHARGE-MID"
+      ],
+      "vent_valves": [
+        "V-VOIDDB2C-VENT-01"
+      ]
+    },
+    "VOIDDB4.P": {
+      "name": "Void DB4 Port",
+      "location": "Fr.19-24",
+      "fill_valves": [
+        "V-VOIDDB4P-01-FILL",
+        "V-VOIDDB4P-02-INLET",
+        "V-MAIN-FILL-AFT"
+      ],
+      "discharge_valves": [
+        "V-VOIDDB4P-03-DISCHARGE",
+        "V-VOIDDB4P-04-OUTLET",
+        "V-MAIN-DISCHARGE-AFT"
+      ],
+      "vent_valves": [
+        "V-VOIDDB4P-VENT-01"
+      ]
+    },
+    "VOIDDB4.S": {
+      "name": "Void DB4 Starboard",
+      "location": "Fr.19-24",
+      "fill_valves": [
+        "V-VOIDDB4S-01-FILL",
+        "V-VOIDDB4S-02-INLET",
+        "V-MAIN-FILL-AFT"
+      ],
+      "discharge_valves": [
+        "V-VOIDDB4S-03-DISCHARGE",
+        "V-VOIDDB4S-04-OUTLET",
+        "V-MAIN-DISCHARGE-AFT"
+      ],
+      "vent_valves": [
+        "V-VOIDDB4S-VENT-01"
+      ]
+    },
+    "FW2.P": {
+      "name": "Fresh Water 2 Port",
+      "location": "Fr.0-6",
+      "fill_valves": [
+        "V-FW2P-01-FILL",
+        "V-FW2P-02-INLET",
+        "V-MAIN-FILL-AFT"
+      ],
+      "discharge_valves": [
+        "V-FW2P-03-DISCHARGE",
+        "V-FW2P-04-OUTLET",
+        "V-MAIN-DISCHARGE-AFT"
+      ],
+      "vent_valves": [
+        "V-FW2P-VENT-01"
+      ]
+    },
+    "FW2.S": {
+      "name": "Fresh Water 2 Starboard",
+      "location": "Fr.0-6",
+      "fill_valves": [
+        "V-FW2S-01-FILL",
+        "V-FW2S-02-INLET",
+        "V-MAIN-FILL-AFT"
+      ],
+      "discharge_valves": [
+        "V-FW2S-03-DISCHARGE",
+        "V-FW2S-04-OUTLET",
+        "V-MAIN-DISCHARGE-AFT"
+      ],
+      "vent_valves": [
+        "V-FW2S-VENT-01"
+      ]
+    },
+    "FODB1.C": {
+      "name": "Forward Double Bottom 1 Center",
+      "location": "Fr.17-18",
+      "fill_valves": [
+        "V-FODB1C-01-FILL",
+        "V-FODB1C-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FODB1C-03-DISCHARGE",
+        "V-FODB1C-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FODB1C-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FODB1C-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "Open V-FODB1C-VENT-01 (vent pressure)",
+        "Open V-MAIN-FILL-FWD (main line)",
+        "Open V-FODB1C-02-INLET (tank inlet)",
+        "Open V-FODB1C-01-FILL (tank fill)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "valve_sequence_discharge": [
+        "Open V-FODB1C-VENT-01 (allow air ingress)",
+        "Open V-MAIN-DISCHARGE-FWD (main line)",
+        "Open V-FODB1C-04-OUTLET (tank outlet)",
+        "Open V-FODB1C-03-DISCHARGE (tank discharge)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "closing_sequence": [
+        "Stop pump",
+        "Close tank valves (reverse order)",
+        "Close main line valve",
+        "Close vent valve (last)"
+      ]
+    },
+    "FODB1.P": {
+      "name": "Forward Double Bottom 1 Port",
+      "location": "Fr.17-18",
+      "fill_valves": [
+        "V-FODB1P-01-FILL",
+        "V-FODB1P-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FODB1P-03-DISCHARGE",
+        "V-FODB1P-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FODB1P-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FODB1P-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "Open V-FODB1P-VENT-01 (vent pressure)",
+        "Open V-MAIN-FILL-FWD (main line)",
+        "Open V-FODB1P-02-INLET (tank inlet)",
+        "Open V-FODB1P-01-FILL (tank fill)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "valve_sequence_discharge": [
+        "Open V-FODB1P-VENT-01 (allow air ingress)",
+        "Open V-MAIN-DISCHARGE-FWD (main line)",
+        "Open V-FODB1P-04-OUTLET (tank outlet)",
+        "Open V-FODB1P-03-DISCHARGE (tank discharge)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "closing_sequence": [
+        "Stop pump",
+        "Close tank valves (reverse order)",
+        "Close main line valve",
+        "Close vent valve (last)"
+      ]
+    },
+    "FODB1.S": {
+      "name": "Forward Double Bottom 1 Starboard",
+      "location": "Fr.17-18",
+      "fill_valves": [
+        "V-FODB1S-01-FILL",
+        "V-FODB1S-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FODB1S-03-DISCHARGE",
+        "V-FODB1S-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FODB1S-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FODB1S-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "Open V-FODB1S-VENT-01 (vent pressure)",
+        "Open V-MAIN-FILL-FWD (main line)",
+        "Open V-FODB1S-02-INLET (tank inlet)",
+        "Open V-FODB1S-01-FILL (tank fill)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "valve_sequence_discharge": [
+        "Open V-FODB1S-VENT-01 (allow air ingress)",
+        "Open V-MAIN-DISCHARGE-FWD (main line)",
+        "Open V-FODB1S-04-OUTLET (tank outlet)",
+        "Open V-FODB1S-03-DISCHARGE (tank discharge)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "closing_sequence": [
+        "Stop pump",
+        "Close tank valves (reverse order)",
+        "Close main line valve",
+        "Close vent valve (last)"
+      ]
+    },
+    "FW1.P": {
+      "name": "Fresh Water 1 Port",
+      "location": "Fr.24",
+      "fill_valves": [
+        "V-FW1P-01-FILL",
+        "V-FW1P-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FW1P-03-DISCHARGE",
+        "V-FW1P-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FW1P-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FW1P-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "Open V-FW1P-VENT-01 (vent pressure)",
+        "Open V-MAIN-FILL-FWD (main line)",
+        "Open V-FW1P-02-INLET (tank inlet)",
+        "Open V-FW1P-01-FILL (tank fill)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "valve_sequence_discharge": [
+        "Open V-FW1P-VENT-01 (allow air ingress)",
+        "Open V-MAIN-DISCHARGE-FWD (main line)",
+        "Open V-FW1P-04-OUTLET (tank outlet)",
+        "Open V-FW1P-03-DISCHARGE (tank discharge)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "closing_sequence": [
+        "Stop pump",
+        "Close tank valves (reverse order)",
+        "Close main line valve",
+        "Close vent valve (last)"
+      ]
+    },
+    "FW1.S": {
+      "name": "Fresh Water 1 Starboard",
+      "location": "Fr.24",
+      "fill_valves": [
+        "V-FW1S-01-FILL",
+        "V-FW1S-02-INLET",
+        "V-MAIN-FILL-FWD"
+      ],
+      "discharge_valves": [
+        "V-FW1S-03-DISCHARGE",
+        "V-FW1S-04-OUTLET",
+        "V-MAIN-DISCHARGE-FWD"
+      ],
+      "vent_valves": [
+        "V-FW1S-VENT-01"
+      ],
+      "emergency_valves": [
+        "V-FW1S-EMERGENCY-CLOSE"
+      ],
+      "valve_sequence_fill": [
+        "Open V-FW1S-VENT-01 (vent pressure)",
+        "Open V-MAIN-FILL-FWD (main line)",
+        "Open V-FW1S-02-INLET (tank inlet)",
+        "Open V-FW1S-01-FILL (tank fill)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "valve_sequence_discharge": [
+        "Open V-FW1S-VENT-01 (allow air ingress)",
+        "Open V-MAIN-DISCHARGE-FWD (main line)",
+        "Open V-FW1S-04-OUTLET (tank outlet)",
+        "Open V-FW1S-03-DISCHARGE (tank discharge)",
+        "Start pump SHIP_PUMP_01",
+        "Monitor tank level"
+      ],
+      "closing_sequence": [
+        "Stop pump",
+        "Close tank valves (reverse order)",
+        "Close main line valve",
+        "Close vent valve (last)"
+      ]
+    }
+  },
+  "main_lines": {
+    "V-MAIN-FILL-FWD": {
+      "serves": [
+        "FWB1.*",
+        "FWB2.*",
+        "FODB1.*",
+        "FW1.*"
+      ],
+      "location": "Forward pump room"
+    },
+    "V-MAIN-FILL-MID": {
+      "serves": [
+        "VOID3.*",
+        "VOIDDB2.*"
+      ],
+      "location": "Midship pump room"
+    },
+    "V-MAIN-FILL-AFT": {
+      "serves": [
+        "FW2.*",
+        "VOIDDB4.*"
+      ],
+      "location": "Aft pump room"
+    }
+  },
+  "pumps": {
+    "SHIP_PUMP_01": {
+      "capacity_tph": 10.0,
+      "location": "Aft pump room",
+      "serves": "All ballast tanks",
+      "notes": "Primary ship pump"
+    },
+    "HIRED_PUMP_01": {
+      "capacity_tph": 100.0,
+      "location": "Portable (deck connection)",
+      "serves": "Via flexible hose connection",
+      "notes": "Hired pump for fast operations"
+    }
+  },
+  "safety_procedures": {
+    "pre_operation": [
+      "Verify all valves in correct position per valve lineup drawing",
+      "Test communication between bridge, pump room, and deck",
+      "Confirm pump operational and tested within 24h",
+      "Verify all tank vents clear and functional",
+      "Confirm BWRB ready for entries"
+    ],
+    "during_operation": [
+      "Monitor pump pressure continuously",
+      "Check tank soundings every 15 minutes",
+      "Verify valve positions remain correct",
+      "Monitor draft changes",
+      "Record all operations in BWRB"
+    ],
+    "emergency_stop": [
+      "Sound alarm (3 short blasts)",
+      "Stop all pumps immediately",
+      "Close all ballast valves",
+      "Notify Master and Chief Officer",
+      "Investigate root cause before resuming"
+    ]
+  }
+}

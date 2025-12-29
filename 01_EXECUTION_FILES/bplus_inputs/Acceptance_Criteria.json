@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "generated_at": "2025-12-15T11:32:10.968700",
+    "owner": "SCT",
+    "tz": "Asia/Dubai"
+  },
+  "criteria": {
+    "fwd_draft_max_m": 2.7,
+    "fwd_draft_min_m": 1.5,
+    "gm_target_m": 1.5,
+    "ramp_angle_max_deg": 6.0,
+    "wind_max_kt": null,
+    "hs_max_m": null,
+    "current_max_kt": null,
+    "visibility_min_m": null,
+    "ukc_min_m": null,
+    "tide_window_rule": "TO_BE_FILLED"
+  },
+  "_sources": {
+    "fwd_draft_max_m": "C:\\Users\\SAMSUNG\\Downloads\\EXCEL_GEN_03_MATHEMATICS_AND_DATA_FLOW\\lcf\\Calc.json",
+    "wind_max_kt": "TO_BE_FILLED (MWS/HM/Client metocean)",
+    "hs_max_m": "TO_BE_FILLED (MWS/HM/Client metocean)",
+    "current_max_kt": "TO_BE_FILLED (MWS/HM/Client metocean)"
+  }
+}

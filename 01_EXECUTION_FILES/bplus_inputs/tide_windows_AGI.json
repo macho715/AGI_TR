@@ -1,0 +1,67 @@
+{
+  "site": "AGI",
+  "tide_datum": "CD",
+  "tide_timezone": "GST",
+  "tide_windows": {
+    "Stage 1": {
+      "start": "2025-12-01T08:00:00",
+      "end": "2025-12-01T10:00:00",
+      "stat": "mean",
+      "note": "Arrival / baseline"
+    },
+    "Stage 2": {
+      "start": "2025-12-01T10:00:00",
+      "end": "2025-12-01T12:00:00",
+      "stat": "min",
+      "note": "TR1 ramp start (holdpoint)"
+    },
+    "Stage 3": {
+      "start": "2025-12-01T12:00:00",
+      "end": "2025-12-01T14:00:00",
+      "stat": "mean",
+      "note": "TR1 mid-ramp"
+    },
+    "Stage 4": {
+      "start": "2025-12-01T14:00:00",
+      "end": "2025-12-01T16:00:00",
+      "stat": "mean",
+      "note": "TR1 on deck"
+    },
+    "Stage 5": {
+      "start": "2025-12-01T16:00:00",
+      "end": "2025-12-01T18:00:00",
+      "stat": "mean",
+      "note": "TR1 final position"
+    },
+    "Stage 5_PreBallast": {
+      "start": "2025-12-01T18:00:00",
+      "end": "2025-12-01T20:00:00",
+      "stat": "min",
+      "note": "Pre-ballast for TR2 (critical)"
+    },
+    "Stage 6A_Critical (Opt C)": {
+      "start": "2025-12-01T20:00:00",
+      "end": "2025-12-01T22:00:00",
+      "stat": "min",
+      "note": "TR2 ramp entry (critical)"
+    },
+    "Stage 6B Tide Window": {
+      "start": "2025-12-01T22:00:00",
+      "end": "2025-12-02T00:00:00",
+      "stat": "mean",
+      "note": "Tide window for UKC optimization (Stage 6A draft unchanged)"
+    },
+    "Stage 6C": {
+      "start": "2025-12-02T00:00:00",
+      "end": "2025-12-02T02:00:00",
+      "stat": "mean",
+      "note": "Final stowage"
+    },
+    "Stage 7": {
+      "start": "2025-12-02T02:00:00",
+      "end": "2025-12-02T04:00:00",
+      "stat": "mean",
+      "note": "Departure"
+    }
+  }
+}

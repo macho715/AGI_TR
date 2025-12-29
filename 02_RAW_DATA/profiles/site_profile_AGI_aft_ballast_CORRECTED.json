@@ -1,0 +1,76 @@
+{
+    "site": "AGI",
+    "description": "AGI site profile with CORRECTED AFT ballast using FW2 (stern tanks) and VOID3 for Stage 5_PreBallast and Stage 6A_Critical",
+    "version": "2.0_CORRECTED_AFT_BALLAST",
+    "created": "2025-12-23",
+    "gateb_critical_only": true,
+    "critical_stage_list": [
+        "Stage 5_PreBallast",
+        "Stage 6A_Critical (Opt C)"
+    ],
+    "corrections": [
+        "FWB1/2 are FORWARD tanks (x=-27.368m) - REMOVED from ballast plan",
+        "Using FW2.P/S (x=+30.032m, Fr0-6) as primary AFT ballast",
+        "VOID3.P can add up to +52t (current 100t, max 152.08t)",
+        "Propeller immersion safe @ AFT 2.70m (confirmed from vessel docs)"
+    ],
+    "purpose": "Fix AFT draft ≥ 2.70m (Captain Gate-A) for critical stages using verified AFT tanks only",
+    "tank_overrides": {
+        "FW2.P": {
+            "mode": "FILL_DISCHARGE",
+            "use_flag": "Y",
+            "Min_t": 0.0,
+            "Max_t": 13.92,
+            "comment": "Primary AFT ballast: Fr0-6, x=+30.032m (allow solver to optimize, current 13.92t)"
+        },
+        "FW2.S": {
+            "mode": "FILL_DISCHARGE",
+            "use_flag": "Y",
+            "Min_t": 0.0,
+            "Max_t": 13.92,
+            "comment": "Primary AFT ballast: Fr0-6, x=+30.032m (allow solver to optimize, current 13.92t)"
+        },
+        "VOID3": {
+            "mode": "FILL_DISCHARGE",
+            "use_flag": "Y",
+            "Min_t": 100.0,
+            "Max_t": 152.08,
+            "comment": "Secondary AFT ballast: Fr33-38, x=+2.401m, can add +52t more (base match for both P/S)"
+        },
+        "FWCARGO1": {
+            "use_flag": "N",
+            "comment": "FWD tank (x=-12.599m) - EXCLUDED from AFT ballast optimization"
+        },
+        "FWCARGO2": {
+            "use_flag": "N",
+            "comment": "FWD tank (x=-5.099m) - EXCLUDED from AFT ballast optimization"
+        },
+        "FWB1": {
+            "use_flag": "N",
+            "comment": "FORWARD tank (x=-27.368m) - EXCLUDED (would decrease AFT draft)"
+        },
+        "FWB2": {
+            "use_flag": "N",
+            "comment": "FORWARD tank (x=-19.887m) - EXCLUDED (would decrease AFT draft)"
+        }
+    },
+    "notes": [
+        "FW2.P/S (27.84t total) provides primary stern ballast at x=+30.032m",
+        "Lever arm from LCF: 30.032 - 0.76 = 29.272m",
+        "Expected moment: 27.84t × 29.272m = 814.9 tm → trim +0.240m",
+        "VOID3.P additional: up to +52t @ x=+1.641m → +85.3 tm → trim +0.025m",
+        "Total ballast effect: +0.265m AFT increase",
+        "Target: Stage 5_PreBallast (2.16→2.70m), Stage 6A_Critical (2.36→2.70m)",
+        "Propeller: 1.38m diameter, immersion safe @ AFT 2.70m (vessel docs confirmed)",
+        "All calculations use verified AFT tanks only (x > 0)",
+        "FWB1/2 (Forward tanks) explicitly excluded"
+    ],
+    "vessel_specs": {
+        "LOA_m": 64.00,
+        "Depth_m": 3.65,
+        "Lightship_t": 770.16,
+        "LCF_m": 0.76,
+        "MTC_tm_per_cm": 34.0,
+        "propeller_immersion_safe_aft_draft_m": 2.70
+    }
+}

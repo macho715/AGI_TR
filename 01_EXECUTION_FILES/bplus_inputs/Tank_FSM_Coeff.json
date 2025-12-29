@@ -1,0 +1,87 @@
+{
+  "unit": "t*m",
+  "g_mps2": 9.80665,
+  "note": "Fill fsm_knm_max from booklet/class data (peak free surface moment). Converter will output fsm_tm_max in t*m.",
+  "tanks": {
+    "LRFO.P": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "LRFO.S": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FW1.P": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FW1.S": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FW2.P": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FW2.S": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FODB1.C": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FWB2.P": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "FWB2.S": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "DO.P": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "DO.S": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "SLUDGE.C": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    },
+    "SEWAGE.P": {
+      "fsm_knm_max": null,
+      "fill_pct_at_max": 50.0,
+      "remark": "TODO",
+      "fsm_tm_max": null
+    }
+  },
+  "_original_g_mps2": 9.80665,
+  "_conversion_applied": true
+}

@@ -1,0 +1,734 @@
+{
+  "meta": {
+    "version": "2025.12.29.1",
+    "normalize": "loose",
+    "compiled_from": "HEADERS_MASTER.xlsx",
+    "compiled_at": "2025-12-29T00:30:00.000000"
+  },
+  "fields": {
+    "stage": {
+      "default_header": "Stage",
+      "aliases": [
+        "Stage",
+        "StageKey",
+        "stage"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Stage identifier"
+    },
+    "stage_id": {
+      "default_header": "Stage_ID",
+      "aliases": [
+        "Stage_ID",
+        "Stage",
+        "StageKey"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Stage identifier (Bryan Pack format)"
+    },
+    "forecast_tide_m": {
+      "default_header": "Forecast_tide_m",
+      "aliases": [
+        "Forecast_Tide_m",
+        "Forecast_tide_m",
+        "forecast_tide_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Forecast tide level"
+    },
+    "ukc_min_m": {
+      "default_header": "UKC_min_m",
+      "aliases": [
+        "UKC_Min_m",
+        "UKC_min_m",
+        "ukc_min_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Minimum UKC"
+    },
+    "ukc_fwd_m": {
+      "default_header": "UKC_fwd_m",
+      "aliases": [
+        "UKC_FWD_m",
+        "UKC_fwd_m",
+        "ukc_fwd_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Forward UKC"
+    },
+    "ukc_aft_m": {
+      "default_header": "UKC_aft_m",
+      "aliases": [
+        "UKC_AFT_m",
+        "UKC_aft_m",
+        "ukc_aft_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Aft UKC"
+    },
+    "tide_required_m": {
+      "default_header": "Tide_required_m",
+      "aliases": [
+        "Tide_required_m",
+        "Required_WL_for_UKC_m",
+        "Required_WL_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Required water level for UKC"
+    },
+    "tide_margin_m": {
+      "default_header": "Tide_margin_m",
+      "aliases": [
+        "Tide_margin_m",
+        "tide_margin_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Tide margin"
+    },
+    "draft_fwd_m": {
+      "default_header": "Draft_FWD_m",
+      "aliases": [
+        "Draft_FWD_m",
+        "Draft_FWD",
+        "FWD_m",
+        "Draft_FWD_m_solver"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Forward draft"
+    },
+    "draft_aft_m": {
+      "default_header": "Draft_AFT_m",
+      "aliases": [
+        "Draft_AFT_m",
+        "Draft_AFT",
+        "AFT_m",
+        "Draft_AFT_m_solver"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Aft draft"
+    },
+    "weight_t": {
+      "default_header": "Weight_t",
+      "aliases": [
+        "Weight_t",
+        "weight_t",
+        "Weight",
+        "Total_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Weight in tonnes"
+    },
+    "tank": {
+      "default_header": "Tank",
+      "aliases": [
+        "Tank",
+        "Tank_ID",
+        "TankName",
+        "tank"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Tank identifier"
+    },
+    "action": {
+      "default_header": "Action",
+      "aliases": [
+        "Action",
+        "action"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Ballast action (Fill/Deballast)"
+    },
+    "delta_t": {
+      "default_header": "Delta_t",
+      "aliases": [
+        "Delta_t",
+        "delta_t",
+        "Transfer_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Ballast delta in tonnes"
+    },
+    "start_t": {
+      "default_header": "Start_t",
+      "aliases": [
+        "Start_t",
+        "start_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Starting tank level"
+    },
+    "target_t": {
+      "default_header": "Target_t",
+      "aliases": [
+        "Target_t",
+        "target_t",
+        "End_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Target tank level"
+    },
+    "time_h": {
+      "default_header": "Time_h",
+      "aliases": [
+        "Time_h",
+        "time_h",
+        "Pump_Time_h",
+        "PumpTime_h"
+      ],
+      "unit": "h",
+      "type": "float",
+      "description": "Pump time in hours"
+    },
+    "step": {
+      "default_header": "Step",
+      "aliases": [
+        "Step",
+        "step",
+        "Step_n"
+      ],
+      "unit": "",
+      "type": "int",
+      "description": "Step number within stage"
+    },
+    "pumprate_tph": {
+      "default_header": "PumpRate_tph",
+      "aliases": [
+        "PumpRate_tph",
+        "pumprate_tph",
+        "Pump_Rate_tph"
+      ],
+      "unit": "t/h",
+      "type": "float",
+      "description": "Pump rate in tonnes per hour"
+    },
+    "priority": {
+      "default_header": "Priority",
+      "aliases": [
+        "Priority",
+        "priority"
+      ],
+      "unit": "",
+      "type": "int",
+      "description": "Operation priority"
+    },
+    "new_fwd_m": {
+      "default_header": "New_FWD_m",
+      "aliases": [
+        "New_FWD_m",
+        "new_fwd_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "New forward draft (solver output)"
+    },
+    "new_aft_m": {
+      "default_header": "New_AFT_m",
+      "aliases": [
+        "New_AFT_m",
+        "new_aft_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "New aft draft (solver output)"
+    },
+    "ukc_m": {
+      "default_header": "UKC_m",
+      "aliases": [
+        "UKC_m",
+        "ukc_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "UKC (generic)"
+    },
+    "ukc_min_actual_m": {
+      "default_header": "UKC_min_actual_m",
+      "aliases": [
+        "UKC_min_actual_m",
+        "ukc_min_actual_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Actual minimum UKC"
+    },
+    "tide_verification": {
+      "default_header": "Tide_verification",
+      "aliases": [
+        "Tide_verification",
+        "tide_verification"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Tide verification status"
+    },
+    "freeboard_min_m": {
+      "default_header": "Freeboard_MIN_m",
+      "aliases": [
+        "Freeboard_MIN_m",
+        "Freeboard_min_m",
+        "freeboard_min_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Minimum freeboard"
+    },
+    "viol_fwd_max_m": {
+      "default_header": "viol_fwd_max_m",
+      "aliases": [
+        "viol_fwd_max_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Forward max violation"
+    },
+    "viol_aft_min_m": {
+      "default_header": "viol_aft_min_m",
+      "aliases": [
+        "viol_aft_min_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Aft min violation"
+    },
+    "viol_fb_min_m": {
+      "default_header": "viol_fb_min_m",
+      "aliases": [
+        "viol_fb_min_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Freeboard min violation"
+    },
+    "viol_ukc_min_m": {
+      "default_header": "viol_ukc_min_m",
+      "aliases": [
+        "viol_ukc_min_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "UKC min violation"
+    },
+    "plan_rows": {
+      "default_header": "Plan_Rows",
+      "aliases": [
+        "Plan_Rows",
+        "plan_rows"
+      ],
+      "unit": "",
+      "type": "int",
+      "description": "Number of plan rows"
+    },
+    "plan_diagnosis": {
+      "default_header": "Plan_Diagnosis",
+      "aliases": [
+        "Plan_Diagnosis",
+        "plan_diagnosis"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Plan diagnosis message"
+    },
+    "holdpoint": {
+      "default_header": "HoldPoint",
+      "aliases": [
+        "HoldPoint",
+        "holdpoint"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Hold point identifier"
+    },
+    "gateb_critical": {
+      "default_header": "GateB_Critical",
+      "aliases": [
+        "GateB_Critical",
+        "gateb_critical"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Gate B critical flag"
+    },
+    "stage_remark": {
+      "default_header": "Stage_Remark",
+      "aliases": [
+        "Stage_Remark",
+        "stage_remark"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Stage remarks"
+    },
+    "progress_pct": {
+      "default_header": "Progress_%",
+      "aliases": [
+        "Progress_%",
+        "progress_%",
+        "Progress_pct"
+      ],
+      "unit": "%",
+      "type": "float",
+      "description": "Progress percentage"
+    },
+    "x_stage_m": {
+      "default_header": "x_stage_m",
+      "aliases": [
+        "x_stage_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Stage X position"
+    },
+    "w_stage_t": {
+      "default_header": "W_stage_t",
+      "aliases": [
+        "W_stage_t",
+        "w_stage_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Stage weight"
+    },
+    "displacement_t": {
+      "default_header": "Displacement_t",
+      "aliases": [
+        "Displacement_t",
+        "displacement_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Displacement"
+    },
+    "tmean_m": {
+      "default_header": "Tmean_m",
+      "aliases": [
+        "Tmean_m",
+        "tmean_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Mean draft"
+    },
+    "trim_cm": {
+      "default_header": "Trim_cm",
+      "aliases": [
+        "Trim_cm",
+        "trim_cm"
+      ],
+      "unit": "cm",
+      "type": "float",
+      "description": "Trim"
+    },
+    "ramp_angle_deg": {
+      "default_header": "Ramp_angle_deg",
+      "aliases": [
+        "Ramp_angle_deg",
+        "ramp_angle_deg"
+      ],
+      "unit": "deg",
+      "type": "float",
+      "description": "Ramp angle"
+    },
+    "gm_m": {
+      "default_header": "GM_m",
+      "aliases": [
+        "GM_m",
+        "gm_m"
+      ],
+      "unit": "m",
+      "type": "float",
+      "description": "Metacentric height"
+    },
+    "gate_fwd": {
+      "default_header": "Gate_FWD",
+      "aliases": [
+        "Gate_FWD",
+        "gate_fwd"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Forward gate status"
+    },
+    "gate_aft": {
+      "default_header": "Gate_AFT",
+      "aliases": [
+        "Gate_AFT",
+        "gate_aft"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Aft gate status"
+    },
+    "gate_trim": {
+      "default_header": "Gate_TRIM",
+      "aliases": [
+        "Gate_TRIM",
+        "gate_trim"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Trim gate status"
+    },
+    "gate_ukc": {
+      "default_header": "Gate_UKC",
+      "aliases": [
+        "Gate_UKC",
+        "gate_ukc"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "UKC gate status"
+    },
+    "gate_ramp": {
+      "default_header": "Gate_RAMP",
+      "aliases": [
+        "Gate_RAMP",
+        "gate_ramp"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Ramp gate status"
+    },
+    "holdpoint_band": {
+      "default_header": "HoldPoint_Band",
+      "aliases": [
+        "HoldPoint_Band",
+        "holdpoint_band"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Hold point band"
+    },
+    "go_no_go": {
+      "default_header": "Go/No-Go",
+      "aliases": [
+        "Go/No-Go",
+        "go_no_go",
+        "Go_No_Go"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Go/No-Go decision"
+    },
+    "ballast_action": {
+      "default_header": "Ballast_Action",
+      "aliases": [
+        "Ballast_Action",
+        "ballast_action"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Ballast action description"
+    },
+    "ballast_time_h": {
+      "default_header": "Ballast_Time_h",
+      "aliases": [
+        "Ballast_Time_h",
+        "ballast_time_h"
+      ],
+      "unit": "h",
+      "type": "float",
+      "description": "Ballast time"
+    },
+    "ballast_net_t": {
+      "default_header": "Ballast_Net_t",
+      "aliases": [
+        "Ballast_Net_t",
+        "ballast_net_t"
+      ],
+      "unit": "t",
+      "type": "float",
+      "description": "Net ballast"
+    },
+    "ballast_alloc": {
+      "default_header": "Ballast_Alloc",
+      "aliases": [
+        "Ballast_Alloc",
+        "ballast_alloc"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Ballast allocation"
+    },
+    "notes": {
+      "default_header": "Notes",
+      "aliases": [
+        "Notes",
+        "notes"
+      ],
+      "unit": "",
+      "type": "string",
+      "description": "Notes"
+    }
+  },
+  "deliverables": {
+    "BRYAN_STAGE_CALC": {
+      "file_pattern": "Bryan_Submission_Data_Pack_Populated.xlsx",
+      "sheet": "07_Stage_Calc",
+      "header_row": 20,
+      "columns": [
+        "stage_id",
+        "forecast_tide_m",
+        "ukc_fwd_m",
+        "ukc_aft_m",
+        "ukc_min_m",
+        "tide_required_m",
+        "tide_margin_m",
+        "draft_fwd_m",
+        "draft_aft_m",
+        "holdpoint",
+        "gateb_critical",
+        "stage_remark",
+        "progress_pct",
+        "x_stage_m",
+        "w_stage_t",
+        "displacement_t",
+        "tmean_m",
+        "trim_cm",
+        "freeboard_min_m",
+        "ramp_angle_deg",
+        "gm_m",
+        "gate_fwd",
+        "gate_aft",
+        "gate_trim",
+        "gate_ukc",
+        "gate_ramp",
+        "holdpoint_band",
+        "go_no_go",
+        "ballast_action",
+        "ballast_time_h",
+        "ballast_net_t",
+        "ballast_alloc",
+        "notes"
+      ],
+      "output_headers": {
+        "forecast_tide_m": "Forecast_tide_m",
+        "ukc_min_m": "UKC_min_m",
+        "ukc_fwd_m": "UKC_fwd_m",
+        "ukc_aft_m": "UKC_aft_m",
+        "tide_required_m": "Tide_required_m",
+        "tide_margin_m": "Tide_margin_m",
+        "draft_fwd_m": "Draft_FWD_m",
+        "draft_aft_m": "Draft_AFT_m",
+        "stage_id": "Stage_ID",
+        "holdpoint": "HoldPoint",
+        "gateb_critical": "GateB_Critical",
+        "stage_remark": "Stage_Remark",
+        "progress_pct": "Progress_%",
+        "freeboard_min_m": "Freeboard_min_m"
+      },
+      "strict": false,
+      "version": "2025.12.29.1"
+    },
+    "PIPELINE_QA_CSV": {
+      "file_pattern": "pipeline_stage_QA.csv",
+      "sheet": null,
+      "header_row": 1,
+      "columns": [
+        "stage",
+        "forecast_tide_m",
+        "ukc_fwd_m",
+        "ukc_aft_m",
+        "ukc_min_m",
+        "tide_required_m",
+        "tide_margin_m"
+      ],
+      "output_headers": {},
+      "strict": true,
+      "version": "2025.12.28.1"
+    },
+    "BALLAST_EXEC_CSV": {
+      "file_pattern": "BALLAST_EXEC.csv",
+      "sheet": null,
+      "header_row": 1,
+      "columns": [
+        "stage",
+        "step",
+        "tank",
+        "action",
+        "start_t",
+        "target_t",
+        "delta_t",
+        "time_h"
+      ],
+      "output_headers": {},
+      "strict": true,
+      "version": "2025.12.28.1"
+    },
+    "BALLAST_OPTION_CSV": {
+      "file_pattern": "BALLAST_OPTION.csv",
+      "sheet": null,
+      "header_row": 1,
+      "columns": [
+        "stage",
+        "tank",
+        "action",
+        "delta_t",
+        "pumprate_tph",
+        "priority"
+      ],
+      "output_headers": {},
+      "strict": true,
+      "version": "2025.12.28.1"
+    },
+    "SOLVER_SUMMARY_CSV": {
+      "file_pattern": "solver_ballast_summary.csv",
+      "sheet": null,
+      "header_row": 1,
+      "columns": [
+        "stage",
+        "new_fwd_m",
+        "new_aft_m",
+        "forecast_tide_m",
+        "ukc_m",
+        "tide_required_m",
+        "tide_margin_m",
+        "ukc_min_m",
+        "ukc_fwd_m",
+        "ukc_aft_m",
+        "ukc_min_actual_m",
+        "tide_verification",
+        "freeboard_min_m",
+        "viol_fwd_max_m",
+        "viol_aft_min_m",
+        "viol_fb_min_m",
+        "viol_ukc_min_m",
+        "plan_rows",
+        "plan_diagnosis"
+      ],
+      "output_headers": {},
+      "strict": false,
+      "version": "2025.12.29.1"
+    },
+    "SOLVER_PLAN_CSV": {
+      "file_pattern": "solver_ballast_stage_plan.csv",
+      "sheet": null,
+      "header_row": 1,
+      "columns": [
+        "stage",
+        "tank",
+        "action",
+        "delta_t",
+        "time_h"
+      ],
+      "output_headers": {},
+      "strict": false,
+      "version": "2025.12.29.1"
+    }
+  }
+}

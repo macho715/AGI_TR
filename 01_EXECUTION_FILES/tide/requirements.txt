@@ -1,0 +1,9 @@
+# Core dependencies for AGI RORO TR Pipeline
+pandas>=1.5.0
+numpy>=1.23.0
+openpyxl>=3.0.0
+scipy>=1.9.0
+
+# Optional dependencies
+pyyaml>=6.0
+loguru>=0.6.0

@@ -1,0 +1,283 @@
+{
+  "meta": {
+    "site": "AGI",
+    "version": "v1.0",
+    "effective_date": "2025-12-25",
+    "last_updated": "2025-12-25T00:00:00Z",
+    "author": "Project Engineering Team",
+    "description": "AGI Site SSOT Configuration - Phase 1 Complete"
+  },
+  "gates": [
+    {
+      "gate_id": "AFT_MIN_2p70_propulsion",
+      "gate_name": "Gate-A: AFT Draft (Propulsion Safety)",
+      "phase": "all_stages",
+      "metric": "Draft_AFT",
+      "comparator": ">=",
+      "limit_value": 2.70,
+      "unit": "m",
+      "reference_frame": "MSL",
+      "basis_doc": "AGENTS.md Section 4, Captain approval requirement",
+      "evidence_required": [
+        "Draft_measurement_FWD_AFT",
+        "Shaft_immersion_calculation",
+        "Propeller_immersion_check"
+      ],
+      "owner": "Captain",
+      "mandatory": true,
+      "notes": "ITTC recommendation: Minimum shaft immersion 1.5D (propeller diameter), Recommended 2.0D"
+    },
+    {
+      "gate_id": "FWD_MAX_2p70_critical_only",
+      "gate_name": "Gate-B: FWD Draft (RoRo Critical Stages)",
+      "phase": "critical_stages",
+      "metric": "Draft_FWD",
+      "comparator": "<=",
+      "limit_value": 2.70,
+      "unit": "m",
+      "reference_frame": "CD",
+      "basis_doc": "AGENTS.md Section 4, Mammoet operations requirement",
+      "evidence_required": [
+        "Draft_measurement_FWD",
+        "Tide_correction_CD",
+        "Linkspan_clearance_verification"
+      ],
+      "owner": "Mammoet / Operations Manager",
+      "mandatory": true,
+      "notes": "Applies ONLY to critical RoRo stages (Stage 6A/B/C, PreBallast). Non-critical stages show N/A."
+    },
+    {
+      "gate_id": "TRIM_ABS_240cm",
+      "gate_name": "Gate-TRIM: Maximum Trim Limit",
+      "phase": "all_stages",
+      "metric": "Trim_abs",
+      "comparator": "<=",
+      "limit_value": 240.0,
+      "unit": "cm",
+      "reference_frame": "N/A",
+      "basis_doc": "AGENTS.md Section 1.2, Vessel operational stability limits",
+      "evidence_required": [
+        "Trim_calculation",
+        "Stability_assessment"
+      ],
+      "owner": "Marine Superintendent",
+      "mandatory": true,
+      "notes": "Absolute trim (bow up or bow down). Excessive trim affects propulsion efficiency and deck operations."
+    },
+    {
+      "gate_id": "UKC_MIN_50cm",
+      "gate_name": "Gate-UKC: Under Keel Clearance",
+      "phase": "all_stages",
+      "metric": "UKC",
+      "comparator": ">=",
+      "limit_value": 0.50,
+      "unit": "m",
+      "reference_frame": "Chart Datum + Tide",
+      "basis_doc": "DNV ST-N001 Section 5.2, Port Authority requirement",
+      "evidence_required": [
+        "Chart_depth_verification",
+        "Tide_forecast_official",
+        "Draft_calculation_certified"
+      ],
+      "owner": "Port Captain",
+      "mandatory": true,
+      "notes": "UKC = Chart Depth + Tide - Draft. Critical for grounding prevention."
+    },
+    {
+      "gate_id": "GM_MIN_150cm",
+      "gate_name": "Gate-GM: Metacentric Height (Stability)",
+      "phase": "all_stages",
+      "metric": "GM",
+      "comparator": ">=",
+      "limit_value": 1.50,
+      "unit": "m",
+      "reference_frame": "N/A",
+      "basis_doc": "IMO Intact Stability Code (IS Code), Class requirements",
+      "evidence_required": [
+        "GM_calculation_certified",
+        "Stability_booklet_reference",
+        "Loading_computer_verification"
+      ],
+      "owner": "Chief Officer",
+      "mandatory": true,
+      "notes": "Minimum GM for intact stability. Ensures adequate righting moment against heeling forces."
+    }
+  ],
+  "draft_calc": {
+    "method": "B",
+    "method_description": "AGENTS.md v0.2: Lpp/LCF-based physically consistent draft calculation",
+    "LCF_m_from_midship": 0.76,
+    "Lpp_m": 60.302,
+    "MTC_t_m_per_cm": 34.00,
+    "TPC_t_per_cm": 8.00,
+    "frame_slope": -1.0,
+    "frame_offset_midship": 30.151,
+    "coordinate_convention": "x = -1.0 * (Frame - 30.151); AFT(stern)=x>0, FWD(bow)=x<0",
+    "formulas": {
+      "trim_moment_LCF": "TM_LCF = Σ(w_i * (x_i - LCF))",
+      "trim_cm": "Trim_cm = TM_LCF / MTC",
+      "slope": "slope = Trim_m / Lpp_m",
+      "draft_fwd": "Dfwd = Tmean + slope * (x_fp - LCF)",
+      "draft_aft": "Daft = Tmean + slope * (x_ap - LCF)"
+    }
+  },
+  "hydro": {
+    "D_vessel_m": 3.65,
+    "Beam_m": 24.0,
+    "lightship_t": 2800.00,
+    "lightship_vcg_m": 2.20,
+    "tr_vcg_m": 5.00,
+    "void3_vcg_m": 2.49,
+    "void3_x_m": 2.40,
+    "prop_x_m": null,
+    "prop_shaft_z_m": null,
+    "prop_diameter_m": null
+  },
+  "ballast": {
+    "pump_rate_tph": 10.0,
+    "pump_rate_tph_hired": 100.0,
+    "default_scenario": "A",
+    "contingency": {
+      "A": {
+        "description": "Normal Operations - Full capacity",
+        "pump_rate_tph": 10.0,
+        "reliability": 0.95,
+        "notes": "Standard ship pump operation"
+      },
+      "B": {
+        "description": "Degraded Mode - 50% capacity (backup pump failure)",
+        "pump_rate_tph": 5.0,
+        "reliability": 0.90,
+        "notes": "Single pump operation, extended timeline"
+      },
+      "C": {
+        "description": "Partial Degradation - 80% power",
+        "pump_rate_tph": 8.0,
+        "reliability": 0.92,
+        "notes": "Reduced pump efficiency due to partial failure"
+      }
+    }
+  },
+  "hold_point": {
+    "tolerance_cm": 3.0,
+    "critical_threshold_cm": 5.0,
+    "auto_insert_every_n_steps": 3,
+    "mandatory_stages": [
+      "Stage_6A",
+      "Stage_6B",
+      "Stage_6C",
+      "Stage_5_PreBallast"
+    ],
+    "signoff_required": [
+      "Captain",
+      "Chief_Engineer",
+      "Field_Supervisor"
+    ],
+    "deviation_response": {
+      "level_1_warning": "deviation > 3cm: Document and continue with caution",
+      "level_2_stop": "deviation > 5cm: Stop operation, recalculate, obtain approval",
+      "level_3_abort": "deviation > 10cm: Abort sequence, full system review"
+    }
+  },
+  "bplus_preflight": {
+    "strict": true,
+    "required_files": [
+      "Hydro_Table_Engineering.json",
+      "GM_Min_Curve.json",
+      "ISCODE_Criteria.json",
+      "Structural_Limits.json",
+      "Acceptance_Criteria.json",
+      "Securing_Input.json"
+    ],
+    "placeholder_allowed": false,
+    "validation_rules": {
+      "hydro_table_min_points": 20,
+      "gm_curve_min_points": 10,
+      "structural_limits_required_keys": [
+        "deck_pressure_max",
+        "local_load_limits",
+        "securing_points"
+      ]
+    }
+  },
+  "tank_operability": {
+    "VOID3": {
+      "operability": "PRE_BALLAST_ONLY",
+      "pump_access": false,
+      "transfer_allowed": false,
+      "notes": "Pre-ballast storage ONLY. Transfer NOT OPERABLE during RoRo operations."
+    },
+    "FWB1": {
+      "operability": "NORMAL",
+      "pump_access": true,
+      "transfer_allowed": true,
+      "notes": "Primary forward ballast tank. Full operability."
+    },
+    "FWB2": {
+      "operability": "NORMAL",
+      "pump_access": true,
+      "transfer_allowed": true,
+      "notes": "Secondary forward ballast tank. Full operability."
+    },
+    "FW2": {
+      "operability": "DISCHARGE_ONLY",
+      "pump_access": true,
+      "transfer_allowed": false,
+      "notes": "AFT fresh water. Discharge allowed, filling restricted during operations."
+    }
+  },
+  "approval_workflow": {
+    "stage_gates": {
+      "Stage_6A_Critical": {
+        "required_approvals": [
+          "Captain",
+          "Mammoet_Supervisor",
+          "Port_Captain"
+        ],
+        "evidence_package": [
+          "Draft_survey_report",
+          "Gate_compliance_report",
+          "Weather_forecast_24h",
+          "Emergency_response_plan"
+        ]
+      },
+      "Stage_5_PreBallast": {
+        "required_approvals": [
+          "Captain",
+          "Chief_Engineer"
+        ],
+        "evidence_package": [
+          "Draft_calculation_report",
+          "Ballast_sequence_timeline",
+          "Hold_point_checklist"
+        ]
+      }
+    }
+  },
+  "emergency_response": {
+    "trigger_conditions": {
+      "gate_failure": "Any mandatory gate FAIL",
+      "excessive_deviation": "Hold point deviation > 10cm",
+      "equipment_failure": "Pump failure during critical stage",
+      "weather_deterioration": "Wave height > 1.0m or wind > 25 knots"
+    },
+    "response_actions": {
+      "immediate": [
+        "Stop all ballast operations",
+        "Notify Captain and Port Control",
+        "Activate tug standby"
+      ],
+      "assessment": [
+        "Re-measure drafts (FWD/AFT)",
+        "Verify tide and weather conditions",
+        "Recalculate gate compliance"
+      ],
+      "recovery": [
+        "Update ballast plan if needed",
+        "Obtain approval for revised sequence",
+        "Resume with enhanced monitoring"
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "generated_at": "2025-12-15T11:32:10.971699",
+    "basis": "Calc.json + certificate refs"
+  },
+  "limits": {
+    "limit_reaction_t": 201.6,
+    "limit_share_load_t": 118.8,
+    "ramp_angle_max_deg": 6.0,
+    "ramp_plate_t_per_m2": null,
+    "max_deck_pressure_t_per_m2": null,
+    "max_point_load_t": null,
+    "max_axle_load_t": null
+  },
+  "_certificate_refs": {
+    "limit_reaction_t": "C:\\Users\\SAMSUNG\\Downloads\\EXCEL_GEN_03_MATHEMATICS_AND_DATA_FLOW\\lcf\\Calc.json",
+    "ramp_plate_t_per_m2": "TO_BE_FILLED (Ramp Plate Cert No./Rev)",
+    "max_deck_pressure_t_per_m2": "TO_BE_FILLED (Deck strength calc/doc ref)"
+  }
+}
