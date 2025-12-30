@@ -1,110 +1,116 @@
-# 제4장: LP Solver 로직
 
-**작성일:** 2025-12-20
-**버전:** v3.3 (Updated: 2025-12-28)
-**목적:** Linear Programming 기반 Ballast 최적화의 수학적 모델 및 알고리즘 이해
+Chapter 4: LP Solver Logic
 
-**최신 업데이트 (v3.3 - 2025-12-28):**
-- Option 2 구현: Trim/Freeboard Gate 강제 로직 (Option B 패치)
-  - `trim_abs_limit`, `trim_limit_enforced` 파라미터 추가
-  - `freeboard_min_m`, `freeboard_min_enforced` 파라미터 추가
-  - LP 제약 조건에 Trim/Freeboard hard constraint 추가
+*Date:** 2025-12-20
+**Version:** v3.3 (Updated: 2025-12-28)
+**Purpose:** Understanding the mathematical model and algorithms for Linear Programming-based Ballast optimization
 
-**최신 업데이트 (v3.2 - 2025-12-27):**
-- AGENTS.md SSOT 통합 (좌표계 변환, Gate 정의)
-- 좌표계 변환 공식 명확화 (x = 30.151 - Fr)
-- Gate 정의 명확화 (Gate-A: AFT_MIN_2p70, Gate-B: FWD_MAX_2p70_critical_only)
+**Latest Update (v3.3 - 2025-12-28):**
 
-**최신 업데이트 (v3.1 - 2025-12-27):**
-- 문서 버전 업데이트 (다른 문서들과 일관성 유지)
+- Option 2 implementation: Trim/Freeboard Gate enforcement logic (Option B patch)
+  - Added `trim_abs_limit`, `trim_limit_enforced` parameters
+  - Added `freeboard_min_m`, `freeboard_min_enforced` parameters
+  - Added Trim/Freeboard hard constraints to LP constraints
+
+**Latest Update (v3.2 - 2025-12-27):**
+
+- AGENTS.md SSOT integration (coordinate system conversion, Gate definitions)
+- Clarified coordinate system conversion formula (x = 30.151 - Fr)
+- Clarified Gate definitions (Gate-A: AFT_MIN_2p70, Gate-B: FWD_MAX_2p70_critical_only)
+
+**Latest Update (v3.1 - 2025-12-27):**
+
+- Document version update (maintaining consistency with other documents)
 
 ---
 
-## 4.1 LP 모델 개요
+## 4.1 LP Model Overview
 
-### 4.1.1 문제 정의
+### 4.1.1 Problem Definition
 
-Ballast Gate Solver는 **선형 프로그래밍(Linear Programming)**을 사용하여 다음 문제를 해결합니다:
+The Ballast Gate Solver uses **Linear Programming (LP)** to solve the following problem:
 
-- **목표**: 게이트 제약 조건을 만족하면서 최소 비용(중량 또는 시간)의 Ballast 계획 수립
-- **결정 변수**: 각 탱크별 Fill/Discharge 양
-- **제약 조건**: FWD_MAX, AFT_MIN, Freeboard, UKC 게이트
-- **목적 함수**: 총 중량 변화 최소화 또는 총 펌핑 시간 최소화
+- **Objective**: Establish a Ballast plan that satisfies gate constraints while minimizing cost (weight or time)
+- **Decision Variables**: Fill/Discharge amount for each tank
+- **Constraints**: FWD_MAX, AFT_MIN, Freeboard, UKC gates
+- **Objective Function**: Minimize total weight change or minimize total pumping time
 
-### 4.1.2 솔버 구조
+### 4.1.2 Solver Structure
 
-```
 ┌─────────────────────────────────────────────────────────┐
 │  Input: Initial Drafts, Tanks, Hydro Table, Gates      │
 └──────────────────────┬──────────────────────────────────┘
                        │
                        ▼
 ┌─────────────────────────────────────────────────────────┐
-│  Iterative Hydro Refinement Loop (기본 2회)            │
+│  Iterative Hydro Refinement Loop (default 2 iterations)│
 │  ┌───────────────────────────────────────────────────┐ │
-│  │ 1. Hydrostatic Table 보간 (현재 Tmean 기준)      │ │
-│  │ 2. LP 문제 구성                                    │ │
+│  │ 1. Hydrostatic Table interpolation (based on current Tmean)│ │
+│  │ 2. LP problem formulation                          │ │
 │  │    - Decision Variables: p_i, n_i                 │ │
 │  │    - Objective Function                           │ │
 │  │    - Constraints (Gates)                          │ │
-│  │ 3. scipy.optimize.linprog 실행                    │ │
-│  │ 4. 결과로 새로운 Tmean 계산                       │ │
+│  │ 3. Execute scipy.optimize.linprog                 │ │
+│  │ 4. Calculate new Tmean from results               │ │
 │  └──────────────────────┬────────────────────────────┘ │
 │                         │                               │
 │                         ▼                               │
-│              수렴 또는 반복 횟수 도달?                   │
+│              Convergence or iteration limit reached?    │
 └──────────────────────┬──────────────────────────────────┘
                        │
                        ▼
 ┌─────────────────────────────────────────────────────────┐
-│  Output: Ballast Plan, Predicted Drafts, Violations    │
+│  Output: Ballast Plan, Predicted Drafts, Violations   │
 └─────────────────────────────────────────────────────────┘
+
 ```
 
 ---
 
-## 4.2 결정 변수 (Decision Variables)
+## 4.2 Decision Variables
 
-### 4.2.1 변수 정의
+### 4.2.1 Variable Definition
 
-각 탱크 `i`에 대해 **두 개의 비음수 변수**를 정의합니다:
+For each tank `i`, we define **two non-negative variables**:
 
-- `p_i ≥ 0`: 탱크 `i`의 Fill 양 (tons)
-- `n_i ≥ 0`: 탱크 `i`의 Discharge 양 (tons)
+- `p_i ≥ 0`: Fill amount for tank `i` (tons)
+- `n_i ≥ 0`: Discharge amount for tank `i` (tons)
 
-**순 중량 변화:**
+**Net weight change:**
 ```
+
 Δw_i = p_i - n_i
+
 ```
-- `Δw_i > 0`: Fill (중량 증가)
-- `Δw_i < 0`: Discharge (중량 감소)
-- `Δw_i = 0`: 변화 없음
+- `Δw_i > 0`: Fill (weight increase)
+- `Δw_i < 0`: Discharge (weight decrease)
+- `Δw_i = 0`: No change
 
-### 4.2.2 변수 경계 (Bounds)
+### 4.2.2 Variable Bounds
 
-각 탱크의 `bounds_pos_neg()` 메서드가 다음을 반환합니다:
+Each tank's `bounds_pos_neg()` method returns:
 
 ```python
 def bounds_pos_neg(self) -> Tuple[float, float, float, float]:
     # Returns: (p_lo, p_hi, n_lo, n_hi)
-    # p_lo, n_lo: 항상 0.0 (비음수)
+    # p_lo, n_lo: always 0.0 (non-negative)
     # p_hi: max_fill = max(0, Max_t - Current_t)
     # n_hi: max_dis = max(0, Current_t - Min_t)
 ```
 
-**탱크 모드별 제한:**
+**Tank mode-specific limits:**
 
-| Mode | p_hi | n_hi | 설명 |
-|------|------|------|------|
-| `FILL_DISCHARGE` | `max(0, Max_t - Current_t)` | `max(0, Current_t - Min_t)` | 양방향 |
-| `FILL_ONLY` | `max(0, Max_t - Current_t)` | `0.0` | Fill만 |
-| `DISCHARGE_ONLY` | `0.0` | `max(0, Current_t - Min_t)` | Discharge만 |
-| `BLOCKED` / `FIXED` | `0.0` | `0.0` | 사용 불가 |
-| `use_flag = "N"` | `0.0` | `0.0` | 사용 불가 |
+| Mode                    | p_hi                          | n_hi                          | Description    |
+| ----------------------- | ----------------------------- | ----------------------------- | -------------- |
+| `FILL_DISCHARGE`      | `max(0, Max_t - Current_t)` | `max(0, Current_t - Min_t)` | Bidirectional  |
+| `FILL_ONLY`           | `max(0, Max_t - Current_t)` | `0.0`                       | Fill only      |
+| `DISCHARGE_ONLY`      | `0.0`                       | `max(0, Current_t - Min_t)` | Discharge only |
+| `BLOCKED` / `FIXED` | `0.0`                       | `0.0`                       | Not available  |
+| `use_flag = "N"`      | `0.0`                       | `0.0`                       | Not available  |
 
-### 4.2.3 변수 배열 구조
+### 4.2.3 Variable Array Structure
 
-LP 문제에서 변수는 다음과 같이 배열됩니다:
+In the LP problem, variables are arranged as follows:
 
 ```python
 variables = [
@@ -112,56 +118,64 @@ variables = [
     p_1, n_1,  # Tank 1: Fill, Discharge
     ...
     p_{n-1}, n_{n-1},  # Tank n-1
-    slack_vars...  # Slack variables (나중에 추가)
+    slack_vars...  # Slack variables (added later)
 ]
 ```
 
-총 변수 개수: `2 * n_tanks + n_slacks`
+Total number of variables: `2 * n_tanks + n_slacks`
 
 ---
 
-## 4.3 Draft 예측 모델
+## 4.3 Draft Prediction Model
 
-### 4.3.1 Hydrostatic 관계식
+### 4.3.1 Hydrostatic Relationship
 
-**평균 흘수 변화 (ΔTmean):**
+**Mean draft change (ΔTmean):**
+
 ```
 ΔTmean = ΣΔw / (TPC × 100)
 ```
-- `TPC` (Tons Per Centimeter): 흘수 1cm당 중량 변화
-- `100`: cm → m 변환 계수
 
-**트림 변화 (ΔTrim):**
+- `TPC` (Tons Per Centimeter): Weight change per 1cm draft change
+- `100`: cm → m conversion factor
+
+**Trim change (ΔTrim):**
+
 ```
 ΔTrim = Σ(Δw × (x - LCF)) / (MTC × 100)
 ```
-- `x`: 탱크 LCG (Midship 기준, `x_from_mid_m`)
-  - `x > 0`: AFT (선미 방향)
-  - `x < 0`: FWD (선수 방향)
-- `LCF` (Longitudinal Center of Flotation): 부력 중심 (Midship 기준, +AFT/-FWD)
-- `MTC` (Moment to Change Trim): 트림 1cm 변화에 필요한 모멘트
 
-**좌표계 변환 (SSOT - AGENTS.md 기준)**:
-- Frame → x: `x = 30.151 - Fr` (재해석 금지)
-- LCG (AP 기준) → x (Midship 기준): `x_from_mid_m = 30.151 - lcg_from_ap_m`
+- `x`: Tank LCG (relative to Midship, `x_from_mid_m`)
+  - `x > 0`: AFT (stern direction)
+  - `x < 0`: FWD (bow direction)
+- `LCF` (Longitudinal Center of Flotation): Center of buoyancy (relative to Midship, +AFT/-FWD)
+- `MTC` (Moment to Change Trim): Moment required for 1cm trim change
 
-**Forward/Aft Draft 변화:**
+**Coordinate system conversion (SSOT - AGENTS.md standard)**:
+
+- Frame → x: `x = 30.151 - Fr` (no reinterpretation)
+- LCG (AP reference) → x (Midship reference): `x_from_mid_m = 30.151 - lcg_from_ap_m`
+
+**Forward/Aft Draft change:**
+
 ```
 ΔDfwd = ΔTmean - 0.5 × ΔTrim
 ΔDaft = ΔTmean + 0.5 × ΔTrim
 ```
 
-**최종 Draft:**
+**Final Draft:**
+
 ```
 Dfwd_new = Dfwd0 + ΔDfwd
 Daft_new = Daft0 + ΔDaft
 ```
 
-### 4.3.2 `predict_drafts` 함수
+### 4.3.2 `predict_drafts` Function
 
-**위치:** `ballast_gate_solver_v4.py` (lines 308-342)
+**Location:** `ballast_gate_solver_v4.py` (lines 308-342)
 
-**구현:**
+**Implementation:**
+
 ```python
 def predict_drafts(
     dfwd0: float,
@@ -193,24 +207,26 @@ def predict_drafts(
     }
 ```
 
-### 4.3.3 LP 계수 행렬 구성
+### 4.3.3 LP Coefficient Matrix Construction
 
-**`build_rows` 함수:**
+**`build_rows` function:**
+
 ```python
 def build_rows(hydro: HydroPoint, tanks: List[Tank]) -> Tuple[np.ndarray, np.ndarray]:
     n = len(tanks)
-    rowW = np.zeros(2 * n, dtype=float)  # ΣΔw 계수
-    rowM = np.zeros(2 * n, dtype=float)  # Σ(Δw × (x-LCF)) 계수
+    rowW = np.zeros(2 * n, dtype=float)  # ΣΔw coefficients
+    rowM = np.zeros(2 * n, dtype=float)  # Σ(Δw × (x-LCF)) coefficients
     for i, t in enumerate(tanks):
         arm = t.x_from_mid_m - hydro.lcf_m
-        rowW[2 * i] = 1.0      # p_i 계수 (+1)
-        rowW[2 * i + 1] = -1.0 # n_i 계수 (-1)
-        rowM[2 * i] = arm      # p_i 모멘트 계수
-        rowM[2 * i + 1] = -arm # n_i 모멘트 계수
+        rowW[2 * i] = 1.0      # p_i coefficient (+1)
+        rowW[2 * i + 1] = -1.0 # n_i coefficient (-1)
+        rowM[2 * i] = arm      # p_i moment coefficient
+        rowM[2 * i + 1] = -arm # n_i moment coefficient
     return rowW, rowM
 ```
 
-**Draft 변화 계수:**
+**Draft change coefficients:**
+
 ```python
 coef_tmean = rowW / (hydro.tpc_t_per_cm * 100.0)
 coef_trim = rowM / (hydro.mtc_t_m_per_cm * 100.0)
@@ -220,27 +236,30 @@ coef_daft = coef_tmean + 0.5 * coef_trim
 
 ---
 
-## 4.4 목적 함수 (Objective Function)
+## 4.4 Objective Function
 
-### 4.4.1 목적 함수 선택
+### 4.4.1 Objective Function Selection
 
-두 가지 모드를 지원합니다:
+Two modes are supported:
 
 1. **Weight Minimization** (`prefer_time=False`)
+
    ```python
    c_i = priority_weight_i
    ```
-   - 목표: 총 중량 변화 최소화
-   - 우선순위가 낮은 탱크 우선 사용
 
+   - Objective: Minimize total weight change
+   - Prefer tanks with lower priority
 2. **Time Minimization** (`prefer_time=True`)
+
    ```python
    c_i = priority_weight_i / pump_rate_tph_i
    ```
-   - 목표: 총 펌핑 시간 최소화
-   - 펌프 속도가 빠른 탱크 우선 사용
 
-### 4.4.2 목적 함수 구성
+   - Objective: Minimize total pumping time
+   - Prefer tanks with faster pump rates
+
+### 4.4.2 Objective Function Construction
 
 ```python
 c = []  # Objective function coefficients
@@ -251,7 +270,7 @@ for t in tanks:
     else:
         c += [w, w]  # [p_i, n_i]
 
-# Slack variables에 대한 penalty 추가
+# Add penalty for slack variables
 if mode == "limit":
     c += [violation_penalty] * 4  # viol_fwd, viol_aft, viol_fb, viol_ukc
 else:  # target mode
@@ -259,39 +278,44 @@ else:  # target mode
           slack_moment_penalty, slack_moment_penalty]  # slackW_pos, slackW_neg, slackM_pos, slackM_neg
 ```
 
-**최소화 문제:**
+**Minimization problem:**
+
 ```
 minimize: c^T · x
 ```
 
 ---
 
-## 4.5 제약 조건 (Constraints)
+## 4.5 Constraints
 
-### 4.5.1 Limit Mode 제약 조건
+### 4.5.1 Limit Mode Constraints
 
-**Limit Mode**에서는 **불등식 제약** (`A_ub · x ≤ b_ub`)을 사용합니다.
+**Limit Mode** uses **inequality constraints** (`A_ub · x ≤ b_ub`).
 
 #### 1) FWD_MAX Gate (Gate-B: Mammoet / Critical RoRo only)
 
-**제약:**
+**Constraint:**
+
 ```
 Dfwd_new ≤ FWD_MAX
 ```
 
-**LP 형식:**
+**LP format:**
+
 ```
 Dfwd0 + coef_dfwd^T · x ≤ FWD_MAX
 coef_dfwd^T · x ≤ FWD_MAX - Dfwd0
 ```
 
-**Slack 변수 포함 (Soft Constraint):**
+**With slack variable (Soft Constraint):**
+
 ```
 coef_dfwd^T · x - viol_fwd ≤ FWD_MAX - Dfwd0
 viol_fwd ≥ 0
 ```
 
-**구현:**
+**Implementation:**
+
 ```python
 row = np.zeros(len(var_names), dtype=float)
 row[:2*n] = coef_dfwd  # Tank variables
@@ -300,35 +324,40 @@ A_ub.append(row)
 b_ub.append(float(fwd_max - dfwd0))
 ```
 
-**Gate-B 정의 (SSOT - AGENTS.md 기준)**:
-- `MAMMOET_FWD_MAX_DRAFT_M_CD = 2.70`: Mammoet FWD 최대 Draft (Chart Datum 기준, m)
-- `GATE_B_LABEL = "FWD_MAX_2p70_critical_only"`: Gate-B 라벨 (모호한 "2.70m" 방지)
-- **정의**: FWD draft (Chart Datum) ≤ 2.70m, **Critical RoRo stages만** 적용
-- **적용 범위**: Critical stages만 (`Gate_B_Applies=True`)
-- **Critical Stage 정의**: `DEFAULT_CRITICAL_STAGE_REGEX = r"(preballast.*critical|6a.*critical|stage\s*5.*preballast|stage\s*6a)"`
-- **Non-critical stages**: `Gate_FWD_MAX_2p70_critical_only = "N/A"` (false failure 방지)
+**Gate-B definition (SSOT - AGENTS.md standard)**:
+
+- `MAMMOET_FWD_MAX_DRAFT_M_CD = 2.70`: Mammoet FWD maximum Draft (Chart Datum reference, m)
+- `GATE_B_LABEL = "FWD_MAX_2p70_critical_only"`: Gate-B label (prevents ambiguous "2.70m")
+- **Definition**: FWD draft (Chart Datum) ≤ 2.70m, **Critical RoRo stages only**
+- **Application scope**: Critical stages only (`Gate_B_Applies=True`)
+- **Critical Stage definition**: `DEFAULT_CRITICAL_STAGE_REGEX = r"(preballast.*critical|6a.*critical|stage\s*5.*preballast|stage\s*6a)"`
+- **Non-critical stages**: `Gate_FWD_MAX_2p70_critical_only = "N/A"` (prevents false failures)
 
 #### 2) AFT_MIN Gate (Gate-A: Captain / Propulsion)
 
-**제약:**
+**Constraint:**
+
 ```
 Daft_new ≥ AFT_MIN
 ```
 
-**LP 형식 (≥를 ≤로 변환):**
+**LP format (converting ≥ to ≤):**
+
 ```
 -Daft_new ≤ -AFT_MIN
 -Daft0 - coef_daft^T · x ≤ -AFT_MIN
 -coef_daft^T · x ≤ -AFT_MIN + Daft0
 ```
 
-**Slack 변수 포함:**
+**With slack variable:**
+
 ```
 -coef_daft^T · x - viol_aft ≤ -AFT_MIN + Daft0
 viol_aft ≥ 0
 ```
 
-**구현:**
+**Implementation:**
+
 ```python
 row = np.zeros(len(var_names), dtype=float)
 row[:2*n] = -coef_daft  # Negative coefficient
@@ -337,29 +366,33 @@ A_ub.append(row)
 b_ub.append(float(-(aft_min - daft0)))
 ```
 
-**Gate-A 정의 (SSOT - AGENTS.md 기준)**:
-- `CAPTAIN_AFT_MIN_DRAFT_M = 2.70`: Captain AFT 최소 Draft (m)
-- `GATE_A_LABEL = "AFT_MIN_2p70"`: Gate-A 라벨 (모호한 "2.70m" 방지)
-- **정의**: AFT draft ≥ 2.70m (비상 시 프로펠러 효율/추진 확보)
-- **적용 범위**: 모든 Stage (universal gate)
-- **ITTC 참고**: 승인 문서에는 **shaft centreline immersion** (프로펠러 직경 기준)을 보고해야 함
+**Gate-A definition (SSOT - AGENTS.md standard)**:
+
+- `CAPTAIN_AFT_MIN_DRAFT_M = 2.70`: Captain AFT minimum Draft (m)
+- `GATE_A_LABEL = "AFT_MIN_2p70"`: Gate-A label (prevents ambiguous "2.70m")
+- **Definition**: AFT draft ≥ 2.70m (ensures propeller efficiency/thrust in emergencies)
+- **Application scope**: All stages (universal gate)
+- **ITTC reference**: Approval documents should report **shaft centreline immersion** (based on propeller diameter)
 
 #### 3) Freeboard Gate
 
-**제약:**
+**Constraint:**
+
 ```
 Freeboard ≥ FB_MIN
 D_vessel - Draft ≥ FB_MIN
 Draft ≤ D_vessel - FB_MIN
 ```
 
-**LP 형식 (FWD와 AFT 모두에 적용):**
+**LP format (applied to both FWD and AFT):**
+
 ```
 Dfwd_new ≤ D_vessel - FB_MIN
 Daft_new ≤ D_vessel - FB_MIN
 ```
 
-**구현:**
+**Implementation:**
+
 ```python
 draft_max = float(d_vessel - fb_min)
 
@@ -380,18 +413,21 @@ b_ub.append(float(draft_max - daft0))
 
 #### 5) Trim Gate (Option B - Hard Constraint)
 
-**제약:**
+**Constraint:**
+
 ```
 |Trim_new| ≤ Trim_Abs_Limit
 ```
 
-**LP 형식:**
+**LP format:**
+
 ```
 Trim_new = Draft_AFT_new - Draft_FWD_new
 -Trim_Abs_Limit ≤ Trim_new ≤ Trim_Abs_Limit
 ```
 
-**구현:**
+**Implementation:**
+
 ```python
 if trim_limit_enforced and trim_abs_limit is not None:
     # Trim = AFT - FWD
@@ -413,35 +449,40 @@ if trim_limit_enforced and trim_abs_limit is not None:
 
 #### 6) Freeboard Gate (Option B - Hard Constraint)
 
-**제약:**
+**Constraint:**
+
 ```
 Freeboard_Min ≥ Freeboard_Min_m
 ```
 
-**구현:**
+**Implementation:**
+
 ```python
 if freeboard_min_enforced and d_vessel is not None and freeboard_min_m is not None:
     draft_max = float(d_vessel - freeboard_min_m)
-    # FWD와 AFT 모두에 제약 적용
-    # (기존 Freeboard Gate와 동일하지만 enforced 플래그로 강제)
+    # Apply constraint to both FWD and AFT
+    # (Same as existing Freeboard Gate but enforced with flag)
 ```
 
 #### 4) UKC Gate
 
-**제약:**
+**Constraint:**
+
 ```
 UKC ≥ UKC_MIN
 (DepthRef + Forecast_Tide) - (Draft_ref + Squat + Safety) ≥ UKC_MIN
 Draft_ref ≤ DepthRef + Forecast_Tide - Squat - Safety - UKC_MIN
 ```
 
-**Draft_ref 선택:**
-- `UKC_Ref = "FWD"`: FWD Draft 사용
-- `UKC_Ref = "AFT"`: AFT Draft 사용
-- `UKC_Ref = "MEAN"`: 평균 Draft 사용
-- `UKC_Ref = "MAX"` (기본값): FWD와 AFT 모두에 제약 (더 엄격)
+**Draft_ref selection:**
 
-**구현:**
+- `UKC_Ref = "FWD"`: Use FWD Draft
+- `UKC_Ref = "AFT"`: Use AFT Draft
+- `UKC_Ref = "MEAN"`: Use mean Draft
+- `UKC_Ref = "MAX"` (default): Apply constraint to both FWD and AFT (stricter)
+
+**Implementation:**
+
 ```python
 draft_max = float(
     depth_ref + forecast_tide - squat - safety_allow - ukc_min
@@ -459,15 +500,17 @@ else:  # MAX
     add_ukc_row(coef_daft, daft0)
 ```
 
-### 4.5.2 Target Mode 제약 조건
+### 4.5.2 Target Mode Constraints
 
-**Target Mode**에서는 **등식 제약** (`A_eq · x = b_eq`)을 사용합니다.
+**Target Mode** uses **equality constraints** (`A_eq · x = b_eq`).
 
-**목표:**
+**Objective:**
+
 - `Dfwd_new = Target_FWD`
 - `Daft_new = Target_AFT`
 
-**등식 변환:**
+**Equality conversion:**
+
 ```
 Target_Tmean = 0.5 × (Target_FWD + Target_AFT)
 Target_Trim = Target_AFT - Target_FWD
@@ -479,13 +522,15 @@ Required_ΔW = ΔTmean × TPC × 100
 Required_ΔM = ΔTrim × MTC × 100
 ```
 
-**등식 제약 (Slack 포함):**
+**Equality constraints (with slack):**
+
 ```
 ΣΔw + slackW_pos - slackW_neg = Required_ΔW
 Σ(Δw × (x-LCF)) + slackM_pos - slackM_neg = Required_ΔM
 ```
 
-**구현:**
+**Implementation:**
+
 ```python
 eqW = np.zeros(len(var_names), dtype=float)
 eqW[:2*n] = rowW  # ΣΔw coefficients
@@ -503,43 +548,43 @@ b_eq = [reqW, reqM]
 
 ---
 
-## 4.6 반복 Hydrostatic Table 보간
+## 4.6 Iterative Hydrostatic Table Interpolation
 
-### 4.6.1 반복의 필요성
+### 4.6.1 Need for Iteration
 
-Hydrostatic Table의 `TPC`, `MTC`, `LCF` 값은 **현재 Draft (Tmean)**에 따라 변합니다. 그러나 초기 Draft로 계산한 LP 결과는 새로운 Draft를 예측하므로, 이를 반영하여 다시 보간해야 정확도가 향상됩니다.
+The `TPC`, `MTC`, and `LCF` values in the Hydrostatic Table vary with **current Draft (Tmean)**. However, the LP result calculated from the initial Draft predicts a new Draft, so re-interpolating with this value improves accuracy.
 
-### 4.6.2 반복 알고리즘
+### 4.6.2 Iteration Algorithm
 
 ```python
 tmean = 0.5 * (dfwd0 + daft0)  # Initial Tmean
 hydro_used = interp_hydro(hdf, tmean)
 
 for iteration in range(max(1, iterate_hydro)):
-    # 1. 현재 Tmean으로 Hydro Point 보간
+    # 1. Interpolate Hydro Point with current Tmean
     hydro_used = interp_hydro(hdf, tmean)
 
-    # 2. LP 문제 구성 및 해결
-    # ... (위의 LP 구성 코드)
+    # 2. Formulate and solve LP problem
+    # ... (LP formulation code above)
     res = linprog(...)
 
-    # 3. 결과에서 새로운 Tmean 계산
+    # 3. Calculate new Tmean from results
     delta = extract_delta_from_solution(res.x)
     pred = predict_drafts(dfwd0, daft0, hydro_used, tanks, delta)
-    tmean = pred["Tmean_new_m"]  # 다음 반복을 위한 Tmean 업데이트
+    tmean = pred["Tmean_new_m"]  # Update Tmean for next iteration
 ```
 
-**기본 반복 횟수:** `iterate_hydro = 2` (명령줄 인자로 조정 가능)
+**Default iteration count:** `iterate_hydro = 2` (adjustable via command-line argument)
 
-### 4.6.3 수렴
+### 4.6.3 Convergence
 
-일반적으로 2~3회 반복으로 충분히 수렴합니다. 더 많은 반복이 필요한 경우는 드뭅니다.
+Generally, 2-3 iterations are sufficient for convergence. Cases requiring more iterations are rare.
 
 ---
 
-## 4.7 scipy.optimize.linprog 호출
+## 4.7 scipy.optimize.linprog Call
 
-### 4.7.1 함수 시그니처
+### 4.7.1 Function Signature
 
 ```python
 from scipy.optimize import linprog
@@ -558,11 +603,11 @@ res = linprog(
 ### 4.7.2 Solver Method: "highs"
 
 - **HiGHS**: High-performance optimization software
-- Interior point method 기반
-- 대규모 LP 문제에 효율적
+- Based on interior point method
+- Efficient for large-scale LP problems
 - Open-source, MIT license
 
-### 4.7.3 결과 검증
+### 4.7.3 Result Validation
 
 ```python
 if not res.success:
@@ -571,9 +616,9 @@ if not res.success:
 
 ---
 
-## 4.8 해 해석 (Solution Interpretation)
+## 4.8 Solution Interpretation
 
-### 4.8.1 변수 추출
+### 4.8.1 Variable Extraction
 
 ```python
 x = res.x  # Solution vector
@@ -598,7 +643,7 @@ for i, t in enumerate(tanks):
     })
 ```
 
-### 4.8.2 Violation 추출 (Limit Mode)
+### 4.8.2 Violation Extraction (Limit Mode)
 
 ```python
 if mode == "limit":
@@ -608,15 +653,16 @@ if mode == "limit":
     pred["viol_ukc_min_m"] = float(x[var_names.index("viol_ukc")])
 ```
 
-**Violation 의미:**
-- `viol_fwd_max_m > 0`: FWD_MAX 게이트 위반 (m 단위)
-- `viol_aft_min_m > 0`: AFT_MIN 게이트 위반 (m 단위)
-- `viol_fb_min_m > 0`: Freeboard 게이트 위반 (m 단위)
-- `viol_ukc_min_m > 0`: UKC 게이트 위반 (m 단위)
+**Violation meaning:**
 
-**주의:** Violation이 있어도 LP는 해를 반환합니다 (Soft Constraint). Violation 값으로 위반 정도를 측정할 수 있습니다.
+- `viol_fwd_max_m > 0`: FWD_MAX gate violation (in m)
+- `viol_aft_min_m > 0`: AFT_MIN gate violation (in m)
+- `viol_fb_min_m > 0`: Freeboard gate violation (in m)
+- `viol_ukc_min_m > 0`: UKC gate violation (in m)
 
-### 4.8.3 최종 Draft 예측
+**Note:** Even with violations, LP returns a solution (Soft Constraint). Violation values can be used to measure the degree of violation.
+
+### 4.8.3 Final Draft Prediction
 
 ```python
 pred = predict_drafts(dfwd0, daft0, hydro_used, tanks, delta)
@@ -632,22 +678,23 @@ pred = predict_drafts(dfwd0, daft0, hydro_used, tanks, delta)
 
 ---
 
-## 4.9 출력 형식
+## 4.9 Output Format
 
 ### 4.9.1 Ballast Plan CSV
 
-| Column | Description | Example |
-|--------|-------------|---------|
-| `Tank` | 탱크 식별자 | "FWB2" |
-| `Action` | "Fill" 또는 "Discharge" | "Discharge" |
-| `Delta_t` | 순 중량 변화 (tons) | -25.50 |
-| `PumpTime_h` | 펌핑 시간 (hours) | 0.26 |
+| Column         | Description              | Example     |
+| -------------- | ------------------------ | ----------- |
+| `Tank`       | Tank identifier          | "FWB2"      |
+| `Action`     | "Fill" or "Discharge"    | "Discharge" |
+| `Delta_t`    | Net weight change (tons) | -25.50      |
+| `PumpTime_h` | Pumping time (hours)     | 0.26        |
 
-**정렬:** `PumpTime_h` 내림차순, 그 다음 `Tank` 오름차순
+**Sorting:** Descending by `PumpTime_h`, then ascending by `Tank`
 
-### 4.9.2 Summary 출력
+### 4.9.2 Summary Output
 
 **Limit Mode:**
+
 ```python
 {
     "FWD_new_m": 2.65,
@@ -663,6 +710,7 @@ pred = predict_drafts(dfwd0, daft0, hydro_used, tanks, delta)
 ```
 
 **Target Mode:**
+
 ```python
 {
     "FWD_new_m": 2.70,  # Target achieved (within slack)
@@ -675,52 +723,68 @@ pred = predict_drafts(dfwd0, daft0, hydro_used, tanks, delta)
 
 ---
 
-## 4.10 수학적 정리
+## 4.10 Mathematical Summary
 
-### 4.10.1 표준 LP 형식
+### 4.10.1 Standard LP Format
 
-**목적:**
+**Objective:**
+
 ```
 minimize: c^T · x
 ```
 
-**제약:**
+**Constraints:**
+
 ```
-A_eq · x = b_eq        (등식 제약, Target Mode)
-A_ub · x ≤ b_ub        (불등식 제약, Limit Mode)
-l ≤ x ≤ u              (변수 경계)
+A_eq · x = b_eq        (equality constraints, Target Mode)
+A_ub · x ≤ b_ub        (inequality constraints, Limit Mode)
+l ≤ x ≤ u              (variable bounds)
 ```
 
-**변수:**
+**Variables:**
+
 ```
 x = [p_0, n_0, p_1, n_1, ..., p_{n-1}, n_{n-1}, slacks...]^T
 ```
 
-### 4.10.2 문제 크기
+### 4.10.2 Problem Size
 
-- **변수 개수**: `2 × n_tanks + n_slacks`
+- **Number of variables**: `2 × n_tanks + n_slacks`
   - `n_slacks = 4` (Limit Mode: viol_fwd, viol_aft, viol_fb, viol_ukc)
   - `n_slacks = 4` (Target Mode: slackW_pos, slackW_neg, slackM_pos, slackM_neg)
-- **제약 개수**:
-  - Limit Mode: `0 ~ 6` (게이트 개수에 따라)
-  - Target Mode: `2` (등식 제약: Weight, Moment)
+- **Number of constraints**:
+  - Limit Mode: `0 ~ 6` (depending on number of gates)
+  - Target Mode: `2` (equality constraints: Weight, Moment)
 
 ---
 
-## 4.11 다음 장 안내
+## 4.11 Next Chapter Guide
 
-- **제5장**: Definition-Split과 Gates - 게이트 시스템의 개념적 배경 및 구현 상세
-- **제6장**: 스크립트 인터페이스 및 API - Solver의 명령줄 인자 및 사용법
+- **Chapter 5**: Definition-Split and Gates - Conceptual background and implementation details of the gate system
+- **Chapter 6**: Script Interface and API - Command-line arguments and usage of the Solver
 
 ---
 
-**참고:**
-- 제1장: 파이프라인 아키텍처 개요
-- 제2장: 데이터 흐름과 SSOT
-- 제3장: 파이프라인 실행 흐름
-- `ballast_gate_solver_v4.py`: LP Solver 구현
-- `03_DOCUMENTATION/AGENTS.md`: 좌표계, Gate 정의, Tank Direction SSOT
-- scipy.optimize.linprog 문서: [SciPy Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html)
+**References:**
 
-**문서 버전:** v3.2 (AGENTS.md SSOT 통합)
-**최종 업데이트:** 2025-12-27
+- Chapter 1: Pipeline Architecture Overview
+- Chapter 2: Data Flow and SSOT
+- Chapter 3: Pipeline Execution Flow
+- `ballast_gate_solver_v4.py`: LP Solver implementation
+- `03_DOCUMENTATION/AGENTS.md`: Coordinate system, Gate definitions, Tank Direction SSOT
+- scipy.optimize.linprog documentation: [SciPy Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html)
+
+**Document Version:** v3.2 (AGENTS.md SSOT integration)
+**Last Updated:** 2025-12-27
+
+```
+
+This translation maintains:
+- Technical terms and code blocks unchanged
+- Mathematical formulas and structure
+- Code examples and implementations
+- Version numbers and dates
+- References and cross-references
+
+The document is ready for use in English.
+```

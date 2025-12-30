@@ -1,0 +1,15 @@
+﻿RORO Stage ΔTM & Lever Arm Verification Report,,,,,,,,,,,,
+,,,,,,,,,,,,
+주의: ΔTM(Python) vs ΔTM(Excel) 비교. |ΔTM_diff| > 0.50 → Flag=CHECK.,,,,,,,,,,,,
+,,,,,,,,,,,,
+Stage,W_stage_t,x_stage_m,Trim_cm (Python),Trim_target_stage_cm,MTC_t_m_per_cm,ΔTM_cm_tm (Python),ΔTM_cm_tm (Excel),ΔTM_diff (Py-XL),Flag (|ΔTM_diff|>0.50),Lever_arm_m (Python),Ballast_t_calc (Python),비고
+Stage 1,2800.0,0.0,0.0,10.0,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 2,3071.2,4.0,20.6,-96.5,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 3,3071.2,4.0,20.6,-96.5,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 4,3071.2,4.5,23.78,-96.5,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 5,3071.2,4.5,23.78,-89.58,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 5_PreBallast,3217.27,4.51,33.18,240.0,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 6A_Critical (Opt C),3372.4,4.79,67.87,10.0,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 6C_TotalMassOpt,3372.4,2.73,24.96,-96.5,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 6C,3372.4,2.73,24.96,-96.5,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음
+Stage 7,2800.0,0.0,0.0,10.0,0.0,0.0,,,NO_DATA,-30.03,-0.0,MTC=0.0; Excel ΔTM 없음

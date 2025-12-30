@@ -1,15 +1,10 @@
-영문 변환 버전 작성 중입니다.
+# Ballast Pipeline - Core Functions Reference
 
+**Purpose**: Core functions used in HVDC LCT BUSHRA RORO / Ballast Pipeline
 
-[1 tool called]
-
-
-영문 버전입니다:
-
-```markdown
-**Date:** 2025-12-26
-**Version:** v1.0
-**Purpose:** Core functions used in HVDC LCT BUSHRA RORO / Ballast Pipeline
+**Version**: v1.1
+**Last Updated**: 2025-12-30
+**Target Audience**: Developers, system architects, technical users
 
 ---
 
@@ -25,20 +20,21 @@
 8. [Sequence Generator Functions](#8-sequence-generator-functions)
 9. [Utility Functions](#9-utility-functions)
 
----
-
 ## 1. Orchestrator (Main Pipeline) Functions
 
 ### 1.1 `main()` - Pipeline Entry Point
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:3506`
 
 **Functionality:**
+
 - Controls overall pipeline execution order
 - Parses command-line arguments and resolves paths
 - Executes Steps 1~4 sequentially
 - Automatically generates Gate FAIL report
 
 **Call Sequence:**
+
 ```python
 main()
   → resolve_site_profile_path() / load_site_profile_json()
@@ -56,12 +52,13 @@ main()
   → step_run_script(5, "OPTIMIZER", ...)
 ```
 
----
 
 ### 1.2 `step_run_script()` - Script Execution Wrapper
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:2830`
 
 **Signature:**
+
 ```python
 def step_run_script(
     step_id: int,
@@ -75,6 +72,7 @@ def step_run_script(
 ```
 
 **Functionality:**
+
 - Validates script existence
 - Generates log file path (`{step_id:02d}_{name}.log`)
 - Executes subprocess via `run_cmd()` call
@@ -83,9 +81,11 @@ def step_run_script(
 ---
 
 ### 1.3 `run_cmd()` - Subprocess Execution and Logging
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:153`
 
 **Signature:**
+
 ```python
 def run_cmd(
     cmd: List[str],
@@ -96,6 +96,7 @@ def run_cmd(
 ```
 
 **Functionality:**
+
 - Executes subprocess (UTF-8 encoding)
 - Simultaneously outputs stdout/stderr to log file and console (tee)
 - Returns exit code
@@ -105,9 +106,11 @@ def run_cmd(
 ## 2. SSOT Conversion Functions
 
 ### 2.1 `convert_tank_catalog_json_to_solver_csv()` - Tank Catalog Conversion
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:1671`
 
 **Signature:**
+
 ```python
 def convert_tank_catalog_json_to_solver_csv(
     tank_catalog_json: Path,
@@ -118,6 +121,7 @@ def convert_tank_catalog_json_to_solver_csv(
 ```
 
 **Functionality:**
+
 - Converts JSON tank catalog to SSOT CSV
 - Coordinate system conversion: `x_from_mid_m = MIDSHIP_FROM_AP_M - lcg_m`
 - Tank filtering and `use_flag` marking
@@ -125,15 +129,18 @@ def convert_tank_catalog_json_to_solver_csv(
 - Output: `tank_ssot_for_solver.csv`
 
 **Output CSV Columns:**
+
 - `Tank`, `Capacity_t`, `x_from_mid_m`, `Current_t`, `Min_t`, `Max_t`
 - `mode`, `use_flag`, `pump_rate_tph`, `priority_weight`
 
 ---
 
 ### 2.2 `convert_hydro_engineering_json_to_solver_csv()` - Hydro Table Conversion
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:1915`
 
 **Signature:**
+
 ```python
 def convert_hydro_engineering_json_to_solver_csv(
     hydro_json: Path,
@@ -143,6 +150,7 @@ def convert_hydro_engineering_json_to_solver_csv(
 ```
 
 **Functionality:**
+
 - Converts Hydrostatic Table JSON to SSOT CSV
 - Supports flexible JSON structures (list, dict with "rows", single dict)
 - Column name normalization (`MCTC` → `MTC`, `LCF_m_from_midship` → `LCF_m`)
@@ -150,14 +158,17 @@ def convert_hydro_engineering_json_to_solver_csv(
 - Output: `hydro_table_for_solver.csv`
 
 **Output CSV Columns:**
+
 - `Tmean_m`, `TPC_t_per_cm`, `MTC_t_m_per_cm`, `LCF_m`, `LBP_m`
 
 ---
 
 ### 2.3 `build_stage_table_from_stage_results()` - Stage Table Construction
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:2063`
 
 **Signature:**
+
 ```python
 def build_stage_table_from_stage_results(
     stage_results_csv: Path,
@@ -176,6 +187,7 @@ def build_stage_table_from_stage_results(
 ```
 
 **Functionality:**
+
 - Reads `stage_results.csv` to generate Stage Table SSOT
 - Flexible column recognition (`Stage`/`stage_name`, `Dfwd_m`/`FWD_m`, `Daft_m`/`AFT_m`)
 - Draft clipping (automatically clips when exceeding `D_vessel_m`)
@@ -184,6 +196,7 @@ def build_stage_table_from_stage_results(
 - Output: `stage_table_unified.csv`
 
 **Core Logic:**
+
 ```python
 # Draft clipping
 if dfwd > d_vessel_m:
@@ -195,9 +208,11 @@ if daft > d_vessel_m:
 ---
 
 ### 2.4 `generate_stage_QA_csv()` - Stage QA CSV Generation
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:2383`
 
 **Signature:**
+
 ```python
 def generate_stage_QA_csv(
     stage_table_csv: Path,
@@ -219,6 +234,7 @@ def generate_stage_QA_csv(
 ```
 
 **Functionality:**
+
 - Implements Definition-Split concept (Forecast_Tide vs Required_WL_for_UKC)
 - Freeboard calculation (tide-independent)
 - UKC calculation (tide-dependent)
@@ -226,6 +242,7 @@ def generate_stage_QA_csv(
 - Output: `pipeline_stage_QA.csv`
 
 **Key Calculations:**
+
 ```python
 # Freeboard (tide-independent)
 freeboard_fwd = d_vessel_m - dfwd
@@ -251,9 +268,11 @@ if ukc_min_m:
 ---
 
 ### 2.5 `inject_current_t_from_sensor_csv()` - Sensor Data Injection
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:367`
 
 **Signature:**
+
 ```python
 def inject_current_t_from_sensor_csv(
     tank_ssot_csv: Path,
@@ -264,6 +283,7 @@ def inject_current_t_from_sensor_csv(
 ```
 
 **Functionality:**
+
 - Injects `Current_t` values from PLC/IoT sensor CSV into Tank SSOT
 - Strategy: `override` (overwrites all values) or `fill_missing` (only when 0.0)
 - Supports base name matching (`FWB1` → `FWB1.P`, `FWB1.S`)
@@ -271,9 +291,11 @@ def inject_current_t_from_sensor_csv(
 ---
 
 ### 2.6 `apply_tank_overrides_from_profile()` - Tank Overrides Application
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:567`
 
 **Signature:**
+
 ```python
 def apply_tank_overrides_from_profile(
     tank_ssot_csv: Path,
@@ -283,6 +305,7 @@ def apply_tank_overrides_from_profile(
 ```
 
 **Functionality:**
+
 - Applies `tank_overrides` section from Site profile to Tank SSOT
 - Supported overrides: `mode`, `use_flag`, `pump_rate_tph`, `Min_t`, `Max_t`, `priority_weight`
 - Supports base name matching
@@ -292,9 +315,11 @@ def apply_tank_overrides_from_profile(
 ## 3. LP Solver Core Functions
 
 ### 3.1 `solve_lp()` - LP Problem Solving
+
 **Location:** `ballast_gate_solver_v4.py:381`
 
 **Signature:**
+
 ```python
 def solve_lp(
     dfwd0: float,
@@ -320,6 +345,7 @@ def solve_lp(
 ```
 
 **Functionality:**
+
 - Linear Programming-based Ballast optimization
 - Iterative Hydrostatic Table interpolation (default 2 iterations)
 - Limit Mode (constraints) or Target Mode (target values)
@@ -327,6 +353,7 @@ def solve_lp(
 - Calls `scipy.optimize.linprog(method='highs')`
 
 **Return Value:**
+
 ```python
 {
     "ballast_plan": List[Dict],  # Tank-wise Fill/Discharge plan
@@ -350,9 +377,11 @@ def solve_lp(
 ---
 
 ### 3.2 `predict_drafts()` - Draft Prediction
+
 **Location:** `ballast_gate_solver_v4.py:313`
 
 **Signature:**
+
 ```python
 def predict_drafts(
     dfwd0: float,
@@ -364,10 +393,12 @@ def predict_drafts(
 ```
 
 **Functionality:**
+
 - Calculates final Draft from ballast changes
 - Uses Method B (LCF-based)
 
 **Calculation Formula:**
+
 ```python
 # Total weight change
 total_w = Σ(Δw_i)
@@ -391,9 +422,11 @@ Daft_new = Daft0 + ΔDaft
 ---
 
 ### 3.3 `build_rows()` - LP Coefficient Matrix Construction
+
 **Location:** `ballast_gate_solver_v4.py:362`
 
 **Signature:**
+
 ```python
 def build_rows(
     hydro: HydroPoint,
@@ -402,20 +435,24 @@ def build_rows(
 ```
 
 **Functionality:**
+
 - Generates coefficient matrix for LP constraint construction
 - `rowW`: Weight change coefficients (`ΣΔw`)
 - `rowM`: Moment change coefficients (`Σ(Δw × (x-LCF))`)
 
 **Return Value:**
+
 - `rowW`: `[1.0, -1.0, 1.0, -1.0, ...]` (p_i=+1, n_i=-1)
 - `rowM`: `[arm_0, -arm_0, arm_1, -arm_1, ...]` (arm_i = x_i - LCF)
 
 ---
 
 ### 3.4 `interp_hydro()` - Hydrostatic Table Interpolation
+
 **Location:** `ballast_gate_solver_v4.py:123`
 
 **Signature:**
+
 ```python
 def interp_hydro(
     hdf: pd.DataFrame,
@@ -424,11 +461,13 @@ def interp_hydro(
 ```
 
 **Functionality:**
+
 - Interpolates Hydrostatic values for current Tmean
 - Linear interpolation
 - Uses nearest value when Tmean is out of range
 
 **Return Value:**
+
 ```python
 @dataclass
 class HydroPoint:
@@ -444,9 +483,11 @@ class HydroPoint:
 ## 4. Draft Calculation Functions
 
 ### 4.1 `calc_drafts()` - Draft Calculation (Method B)
+
 **Location:** `ssot/draft_calc.py:257`
 
 **Signature:**
+
 ```python
 def calc_drafts(
     tmean_m: float,
@@ -457,10 +498,12 @@ def calc_drafts(
 ```
 
 **Functionality:**
+
 - Method B (LCF-based) Draft calculation
 - `Draft(x) = Tmean + slope × (x - LCF)`
 
 **Formula:**
+
 ```python
 slope = trim_cm / 100.0 / lbp_m  # m/m
 fwd = tmean_m - slope * (lbp_m / 2.0 + lcf_m)
@@ -470,9 +513,11 @@ aft = tmean_m + slope * (lbp_m / 2.0 - lcf_m)
 ---
 
 ### 4.2 `calc_draft_with_lcf()` - LCF-based Draft Calculation
+
 **Location:** `ssot/draft_calc.py` (Helper)
 
 **Signature:**
+
 ```python
 def calc_draft_with_lcf(
     tmean_m: float,
@@ -483,6 +528,7 @@ def calc_draft_with_lcf(
 ```
 
 **Functionality:**
+
 - Method B Draft calculation (simplified version)
 - Returns FWD/AFT Draft
 
@@ -491,9 +537,11 @@ def calc_draft_with_lcf(
 ## 5. Gate-related Functions
 
 ### 5.1 `pick_draft_ref_for_ukc()` - Draft Reference Selection for UKC Calculation
+
 **Location:** `ballast_gate_solver_v4.py:269`
 
 **Signature:**
+
 ```python
 def pick_draft_ref_for_ukc(
     ref: str,
@@ -503,15 +551,18 @@ def pick_draft_ref_for_ukc(
 ```
 
 **Functionality:**
+
 - Selects Draft reference value for UKC calculation
 - Options: `"FWD"`, `"AFT"`, `"MEAN"`, `"MAX"` (default)
 
 ---
 
 ### 5.2 `ukc_value()` - UKC Value Calculation
+
 **Location:** `ballast_gate_solver_v4.py:280`
 
 **Signature:**
+
 ```python
 def ukc_value(
     depth_ref_m: Optional[float],
@@ -523,9 +574,11 @@ def ukc_value(
 ```
 
 **Functionality:**
+
 - Calculates UKC (Under Keel Clearance)
 
 **Formula:**
+
 ```python
 UKC = (depth_ref_m + wl_forecast_m) - (draft_ref_m + squat_m + safety_allow_m)
 ```
@@ -533,9 +586,11 @@ UKC = (depth_ref_m + wl_forecast_m) - (draft_ref_m + squat_m + safety_allow_m)
 ---
 
 ### 5.3 `required_wl_for_ukc()` - Required Water Level Inverse Calculation
+
 **Location:** `ballast_gate_solver_v4.py:292`
 
 **Signature:**
+
 ```python
 def required_wl_for_ukc(
     depth_ref_m: Optional[float],
@@ -547,9 +602,11 @@ def required_wl_for_ukc(
 ```
 
 **Functionality:**
+
 - Inverse calculation of required water level to satisfy UKC_MIN
 
 **Formula:**
+
 ```python
 Required_WL = (ukc_min_m + draft_ref_m + squat_m + safety_allow_m) - depth_ref_m
 ```
@@ -557,9 +614,11 @@ Required_WL = (ukc_min_m + draft_ref_m + squat_m + safety_allow_m) - depth_ref_m
 ---
 
 ### 5.4 `freeboard_min()` - Minimum Freeboard Calculation
+
 **Location:** `ballast_gate_solver_v4.py:304`
 
 **Signature:**
+
 ```python
 def freeboard_min(
     d_vessel_m: Optional[float],
@@ -569,9 +628,11 @@ def freeboard_min(
 ```
 
 **Functionality:**
+
 - Calculates minimum Freeboard (tide-independent)
 
 **Formula:**
+
 ```python
 Freeboard_min = min(d_vessel_m - dfwd, d_vessel_m - daft)
 ```
@@ -579,9 +640,11 @@ Freeboard_min = min(d_vessel_m - dfwd, d_vessel_m - daft)
 ---
 
 ### 5.5 `add_split_270_gates()` - 2.70m Split Gates Addition
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:832`
 
 **Signature:**
+
 ```python
 def add_split_270_gates(
     df: pd.DataFrame,
@@ -594,6 +657,7 @@ def add_split_270_gates(
 ```
 
 **Functionality:**
+
 - Gate-A (Captain): AFT ≥ 2.70m (all Stages)
 - Gate-B (Mammoet): FWD ≤ 2.70m (Critical stages only)
 - Applies Guard-Band (operational margin)
@@ -601,9 +665,11 @@ def add_split_270_gates(
 ---
 
 ### 5.6 `generate_gate_fail_report_md()` - Gate FAIL Report Generation
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:942`
 
 **Signature:**
+
 ```python
 def generate_gate_fail_report_md(
     out_md: Path,
@@ -617,6 +683,7 @@ def generate_gate_fail_report_md(
 ```
 
 **Functionality:**
+
 - Automatically generates Gate violation analysis report
 - Includes Current_t status, sensor synchronization results, UKC input status
 - Analyzes 2.70m Split Gates (Gate-A, Gate-B)
@@ -626,9 +693,11 @@ def generate_gate_fail_report_md(
 ## 6. Stage-wise/RoRo Functions
 
 ### 6.1 `build_roro_stage_loads()` - RoRo Stage Load Construction
+
 **Location:** `Untitled-2_patched_defsplit_v1_1.py:3787` (or `stage_wise_load_transfer.py`)
 
 **Signature:**
+
 ```python
 def build_roro_stage_loads(
     stage_name: str,
@@ -644,11 +713,13 @@ def build_roro_stage_loads(
 ```
 
 **Functionality:**
+
 - Calculates RoRo load distribution per stage
 - Load distribution by SPMT position (Jetty/Linkspan/Vessel)
 - Output: Load list (each load includes `weight_t`, `x_from_mid_m`)
 
 **Stage Structure:**
+
 - Stage 1~5: TR1 loading phase
 - Stage 5_PreBallast: Pre-ballast state
 - Stage 6A_Critical (Opt C): TR2 50% (Critical)
@@ -658,9 +729,11 @@ def build_roro_stage_loads(
 ---
 
 ### 6.2 `calculate_roro_stage_drafts()` - RoRo Stage Draft Calculation
+
 **Location:** `Untitled-2_patched_defsplit_v1_1.py:3958`
 
 **Signature:**
+
 ```python
 def calculate_roro_stage_drafts(
     stage_name: str,
@@ -673,6 +746,7 @@ def calculate_roro_stage_drafts(
 ```
 
 **Functionality:**
+
 - Calculates Draft/Trim for RoRo Stage
 - Includes Hydrostatic Table interpolation
 - Output: `FWD_m`, `AFT_m`, `Trim_cm`, `Tmean_m`, `ΔW_t`, `TM_LCF_tm`
@@ -680,9 +754,11 @@ def calculate_roro_stage_drafts(
 ---
 
 ### 6.3 `solve_stage()` - Stage Analysis (AGI TR Engine)
+
 **Location:** `agi_tr_patched_v6_6_defsplit_v1.py:2253`
 
 **Signature:**
+
 ```python
 def solve_stage(
     base_disp_t: float,
@@ -693,12 +769,14 @@ def solve_stage(
 ```
 
 **Functionality:**
+
 - Executes stage-wise analysis (Hydro table interpolation, GM calculation)
 - GM 2D bilinear interpolation
 - Frame-based coordinate system
 - Hydro table passed via `params["hydro_table"]` (optional)
 
 **Parameters:**
+
 - `base_disp_t`: Base displacement (t)
 - `base_tmean_m`: Base mean draft (m)
 - `loads`: List of LoadItem objects
@@ -711,6 +789,7 @@ def solve_stage(
   - `D_vessel` or `D_vessel_m`: Molded depth (m)
 
 **Return Value:**
+
 ```python
 {
     "Dfwd_m": float,      # Forward draft (m)
@@ -726,9 +805,11 @@ def solve_stage(
 ---
 
 ### 6.4 `optimize_early_stages_for_freeboard()` - Early Stage Freeboard Optimization
+
 **Location:** `stage_wise_load_transfer.py:1215`
 
 **Signature:**
+
 ```python
 def optimize_early_stages_for_freeboard(
     base_disp_t: float,
@@ -747,6 +828,7 @@ def optimize_early_stages_for_freeboard(
 ```
 
 **Functionality:**
+
 - SSOT-compliant early-stage freeboard optimization
 - Uses tank catalog for AFT zone tank selection (AGENTS.md compliant)
 - Respects tank capacity constraints
@@ -754,6 +836,7 @@ def optimize_early_stages_for_freeboard(
 - Returns tank-wise ballast distribution
 
 **SSOT Integration:**
+
 - **Tank Catalog**: Loads `tank_catalog_from_tankmd.json` if provided
 - **AFT Zone Filtering**: Only uses tanks with Frame < 30.151 (AGENTS.md rule)
 - **Tank Categories**: Filters for `fresh_water` or `fresh_water_ballast` category
@@ -761,6 +844,7 @@ def optimize_early_stages_for_freeboard(
 - **Fallback Mode**: If SSOT unavailable, uses legacy single-frame position logic
 
 **Return Value:**
+
 ```python
 {
     "FW2.P": 13.92,  # Tank ID -> ballast amount (t)
@@ -771,11 +855,13 @@ def optimize_early_stages_for_freeboard(
 ```
 
 **Tank Selection Priority:**
+
 1. Most AFT tanks first (smallest LCG_m, i.e., closest to AP)
 2. Capacity constraints respected (cannot exceed `cap_t`)
 3. Stops when freeboard constraint satisfied
 
 **Example Usage:**
+
 ```python
 # With SSOT (recommended)
 result = optimize_early_stages_for_freeboard(
@@ -801,9 +887,11 @@ result = optimize_early_stages_for_freeboard(
 ---
 
 ### 6.5 `build_stage_loads_explicit()` - Explicit Stage Load Construction
+
 **Location:** `stage_wise_load_transfer.py:701`
 
 **Signature:**
+
 ```python
 def build_stage_loads_explicit(
     stage_name: str,
@@ -816,12 +904,14 @@ def build_stage_loads_explicit(
 ```
 
 **Functionality:**
+
 - Builds stage loads using document-defined Stage 1~7 mapping
 - Explicitly defines loads for each stage (Stage 1 to Stage 7)
 - Handles forward inventory discharge for critical stages
 - Returns List[LoadItem] for use with `solve_stage()`
 
 **Stage Definitions:**
+
 - **Stage 1**: Arrival (no variable loads)
 - **Stage 2**: TR1 ramp start
 - **Stage 3**: TR1 mid-ramp
@@ -833,12 +923,14 @@ def build_stage_loads_explicit(
 - **Stage 7**: Post-deballast (same as Stage 6C)
 
 **Forward Inventory Discharge:**
+
 - Applied to critical stages (Stage 5_PreBallast, Stage 6A_Critical)
 - Discharges FWB1.P/S and FWB2.P/S tanks
 - Default values: FWB1 = -21.45t each, FWB2 = -21.45t each
 - Controlled by `apply_forward_inventory` parameter
 
 **Parameters:**
+
 - `stage_name`: Stage identifier (e.g., "Stage 5_PreBallast")
 - `preballast_t`: Pre-ballast weight (t)
 - `params`: Dictionary containing frame positions and other parameters:
@@ -854,6 +946,7 @@ def build_stage_loads_explicit(
 - `apply_forward_inventory`: Whether to apply forward inventory discharge
 
 **Example Usage:**
+
 ```python
 loads = build_stage_loads_explicit(
     stage_name="Stage 5_PreBallast",
@@ -874,9 +967,11 @@ loads = build_stage_loads_explicit(
 ---
 
 ### 6.6 `calculate_stage_wise_reaction()` - Stage-wise Load Transfer Calculation
+
 **Location:** `stage_wise_load_transfer.py:1508`
 
 **Signature:**
+
 ```python
 def calculate_stage_wise_reaction(
     base_disp_t: float = DEFAULT_BASE_DISP_T,
@@ -906,6 +1001,7 @@ def calculate_stage_wise_reaction(
 ```
 
 **Functionality:**
+
 - Main orchestrator for stage-wise load transfer calculations
 - Calculates draft/trim/tilt for all stages (Stage 1 to Stage 7)
 - Performs gate compliance checks (Gate-A, Gate-B, Freeboard, UKC, Trim, etc.)
@@ -913,6 +1009,7 @@ def calculate_stage_wise_reaction(
 - Returns List[StageResult] with comprehensive stage data
 
 **Key Features:**
+
 - **Stage Load Construction**: Uses `build_stage_loads_explicit()` for stage-specific loads
 - **Early-Stage Optimization**: Optional SSOT-compliant freeboard optimization via `optimize_early_stages_for_freeboard()`
 - **Pre-ballast Optimization**: Optional Gate-A compliance optimization via `optimize_preballast_for_gate_a()`
@@ -921,11 +1018,13 @@ def calculate_stage_wise_reaction(
 - **Iterative Correction**: Applies `iterative_ballast_correction()` for Gate-B critical stages when FWD draft exceeds limit
 
 **Return Value:**
+
 ```python
 List[StageResult]  # One StageResult per stage
 ```
 
 **StageResult Fields:**
+
 - `stage_name`: Stage identifier
 - `fwd_draft_m`, `aft_draft_m`: Draft values (m)
 - `trim_cm`, `tilt_deg`: Trim and tilt values
@@ -939,6 +1038,7 @@ List[StageResult]  # One StageResult per stage
 - And many more fields for comprehensive stage analysis
 
 **Example Usage:**
+
 ```python
 results = calculate_stage_wise_reaction(
     base_disp_t=2800.0,
@@ -957,9 +1057,11 @@ results = calculate_stage_wise_reaction(
 ## 7. Hold Point Functions
 
 ### 7.1 `process_hold_point()` - Hold Point Decision Making
+
 **Location:** `hold_point_manager.py:29`
 
 **Signature:**
+
 ```python
 def process_hold_point(
     step_data: Dict,
@@ -970,10 +1072,12 @@ def process_hold_point(
 ```
 
 **Functionality:**
+
 - Compares measured values with predicted values
 - Calculates deviation and makes decision (GO/RECALCULATE/NO-GO)
 
 **Decision Rules:**
+
 ```python
 if |Delta| <= 2.00cm:
     decision = "GO"
@@ -984,6 +1088,7 @@ elif |Delta| > 4.00cm:
 ```
 
 **Return Value:**
+
 ```python
 @dataclass
 class HoldPointDecision:
@@ -1002,9 +1107,11 @@ class HoldPointDecision:
 ---
 
 ### 7.2 `log_hold_point()` - Hold Point Logging
+
 **Location:** `hold_point_manager.py:111`
 
 **Signature:**
+
 ```python
 def log_hold_point(
     decision: HoldPointDecision,
@@ -1013,15 +1120,18 @@ def log_hold_point(
 ```
 
 **Functionality:**
+
 - Records Hold Point decision to log file
 - Saves in CSV format
 
 ---
 
 ### 7.3 `recalculate_at_hold()` - Hold Point Recalculation
+
 **Location:** `hold_point_recalculator.py` (or similar function)
 
 **Functionality:**
+
 - Recalculates remaining sequence based on measured values at Hold Point
 - Updates SSOT and re-executes Solver
 
@@ -1030,9 +1140,11 @@ def log_hold_point(
 ## 8. Sequence Generator Functions
 
 ### 8.1 `generate_sequence()` - Ballast Sequence Generation
+
 **Location:** `ballast_sequence_generator.py`
 
 **Signature:**
+
 ```python
 def generate_sequence(
     ballast_plan: Dict[str, float],  # Tank-wise Delta_t
@@ -1043,6 +1155,7 @@ def generate_sequence(
 ```
 
 **Functionality:**
+
 - Converts Ballast plan to step-wise Sequence
 - Time calculation based on pump rate
 - Automatically inserts Hold Points
@@ -1051,9 +1164,11 @@ def generate_sequence(
 ---
 
 ### 8.2 `generate_checklist()` - Checklist Generation
+
 **Location:** `checklist_generator.py:12`
 
 **Signature:**
+
 ```python
 def generate_checklist(
     sequence: List,
@@ -1063,6 +1178,7 @@ def generate_checklist(
 ```
 
 **Functionality:**
+
 - Automatically generates Ballast operations checklist
 - Includes Hold Point decision logic
 - Output in Markdown format
@@ -1070,9 +1186,11 @@ def generate_checklist(
 ---
 
 ### 8.3 `generate_valve_lineup()` - Valve Lineup Generation
+
 **Location:** `valve_lineup_generator.py`
 
 **Functionality:**
+
 - Adds valve operation information to Ballast Sequence
 - Mapping based on Valve Map JSON
 - Output: `BALLAST_SEQUENCE_WITH_VALVES.md`
@@ -1082,55 +1200,70 @@ def generate_checklist(
 ## 9. Utility Functions
 
 ### 9.1 `resolve_site_profile_path()` - Site Profile Path Resolution
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:281`
 
 **Functionality:**
+
 - Automatically searches for Site Profile JSON path
 - Priority: CLI flag → `inputs_dir/profiles/{site}.json` → default
 
 ---
 
 ### 9.2 `load_site_profile_json()` - Site Profile Loading
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:308`
 
+**⚠️ Pre-Execution Configuration**
+The site profile JSON file is loaded at pipeline startup. To adjust profile parameters (gates, pump rates, tank operability, etc.), **edit the profile file before executing the pipeline**. Profile values can be overridden by CLI arguments, but the profile file itself must be modified **prior to execution**.
+
 **Functionality:**
+
 - Parses and validates Site Profile JSON
 - Returns: Profile dictionary
 
 ---
 
 ### 9.3 `resolve_current_t_sensor_csv()` - Sensor CSV Path Resolution
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py:343`
 
 **Functionality:**
+
 - Automatically searches for Current_t sensor CSV path
 - Priority: CLI flag → `inputs_dir/sensors/current_t_sensor.csv` → other standard paths
 
 ---
 
 ### 9.4 `fr_to_x()` - Frame → X Coordinate Conversion
+
 **Location:** `agi_tr_patched_v6_6_defsplit_v1.py` (Helper)
 
 **Signature:**
+
 ```python
 def fr_to_x(fr: float) -> float
 ```
 
 **Functionality:**
+
 - Converts Frame number to Midship-referenced X coordinate
 - `x = MIDSHIP_FROM_AP_M - fr`
 
 ---
 
 ### 9.5 `x_to_fr()` - X Coordinate → Frame Conversion
+
 **Location:** `integrated_pipeline_defsplit_v2_gate270_split_v3.py` (Helper)
 
 **Signature:**
+
 ```python
 def x_to_fr(x_m: float) -> float
 ```
 
 **Functionality:**
+
 - Converts Midship-referenced X coordinate to Frame number
 - `fr = MIDSHIP_FROM_AP_M - x_m`
 
@@ -1139,6 +1272,7 @@ def x_to_fr(x_m: float) -> float
 ## 10. Function Call Chain (Execution Flow)
 
 ### 10.1 Full Pipeline Execution
+
 ```
 main()
   ├─ resolve_site_profile_path()
@@ -1178,6 +1312,7 @@ main()
 ```
 
 ### 10.2 LP Solver Internal Execution
+
 ```
 solve_lp()
   ├─ interp_hydro()  # Interpolate with initial Tmean
@@ -1193,6 +1328,7 @@ solve_lp()
 ```
 
 ### 10.3 Hold Point Processing Flow
+
 ```
 process_hold_point()
   ├─ Deviation calculation (measured - predicted)
@@ -1205,6 +1341,7 @@ process_hold_point()
 ```
 
 ### 10.4 Stage-wise Load Transfer with Early-Stage Optimization
+
 ```
 calculate_stage_wise_reaction()
   ├─ build_stage_loads_explicit()  # Stage-specific loads
@@ -1224,6 +1361,7 @@ calculate_stage_wise_reaction()
 ## 11. Key Constants
 
 ### 11.1 Vessel Constants
+
 ```python
 LPP_M = 60.302  # m (Length Between Perpendiculars)
 MIDSHIP_FROM_AP_M = 30.151  # m
@@ -1231,6 +1369,7 @@ D_VESSEL_M = 3.65  # m (molded depth)
 ```
 
 ### 11.2 Gate Thresholds
+
 ```python
 FWD_MAX_m = 2.70  # Gate-B (Critical stages)
 AFT_MIN_m = 2.70  # Gate-A (all Stages)
@@ -1239,6 +1378,7 @@ UKC_MIN_m = 0.50  # Project default
 ```
 
 ### 11.3 Hold Point Thresholds
+
 ```python
 GO_TOLERANCE_CM = 2.00      # GO allowable deviation
 RECALC_TOLERANCE_CM = 4.00  # RECALCULATE upper limit
@@ -1247,6 +1387,7 @@ GUARD_BAND_CM = 2.00        # Gate operational margin
 ```
 
 ### 11.4 Defaults
+
 ```python
 DEFAULT_PUMP_RATE_TPH = 100.0
 DEFAULT_ITERATE_HYDRO = 2
@@ -1259,109 +1400,118 @@ DEFAULT_SAFETY_ALLOW_M = 0.0
 ## 12. Function Classification Summary
 
 ### 12.1 Orchestrator (Entry Point)
+
 - `main()`, `step_run_script()`, `run_cmd()`
 
 ### 12.2 SSOT Conversion
+
 - `convert_tank_catalog_json_to_solver_csv()`
 - `convert_hydro_engineering_json_to_solver_csv()`
 - `build_stage_table_from_stage_results()`
 - `generate_stage_QA_csv()`
 
 ### 12.3 LP Solver
+
 - `solve_lp()`, `predict_drafts()`, `build_rows()`, `interp_hydro()`
 
 ### 12.4 Draft Calculation
+
 - `calc_drafts()`, `calc_draft_with_lcf()`
 
 ### 12.5 Gate
+
 - `pick_draft_ref_for_ukc()`, `ukc_value()`, `required_wl_for_ukc()`, `freeboard_min()`
 - `add_split_270_gates()`, `generate_gate_fail_report_md()`
 
 ### 12.6 Stage-wise/RoRo
+
 - `build_roro_stage_loads()`, `calculate_roro_stage_drafts()`, `solve_stage()`
 - `build_stage_loads_explicit()` (Explicit Stage 1~7 load construction)
 - `calculate_stage_wise_reaction()` (Main stage-wise orchestrator)
 - `optimize_early_stages_for_freeboard()` (SSOT-compliant early-stage optimization)
 
 ### 12.7 Hold Point
+
 - `process_hold_point()`, `log_hold_point()`, `recalculate_at_hold()`
 
 ### 12.8 Sequence Generator
+
 - `generate_sequence()`, `generate_checklist()`, `generate_valve_lineup()`
 
 ---
 
 ## 13. Pipeline Execution Files Reference
 
-**Last Updated**: 2025-12-29
-**Total Files**: 21 (excluding duplicates, including modules)
+**Last Updated**: 2025-12-30
+**Total Files**: 22 (excluding duplicates, including modules)
 
 ### 13.1 Main Pipeline Steps
 
-| Step | Script File | Execution Method | Description |
-|------|-------------|------------------|-------------|
-| Step 0 | `agi_spmt_unified.py` | `subprocess` | SPMT cargo input generation (optional) |
-| Step 1 | `agi_tr_patched_v6_6_defsplit_v1.py` | `subprocess` | TR Excel generation (optional) |
-| Step 1b | `agi_tr_patched_v6_6_defsplit_v1.py` | `subprocess` | `stage_results.csv` generation (required, csv mode) |
-| Step 2 | `ops_final_r3_integrated_defs_split_v4_patched_TIDE_v1.py` | `subprocess` | OPS Integrated Report (Excel + MD) |
-| Step 3 | `ballast_gate_solver_v4_TIDE_v1.py` | `subprocess` | Ballast Gate Solver (LP) |
-| Step 4 | `Untitled-2_patched_defsplit_v1_1.py` | `subprocess` | Ballast Optimizer (optional) |
-| Step 5 | `bryan_template_unified_TIDE_v1.py` | `subprocess` | Bryan Template generation and population |
+| Step    | Script File                                                  | Execution Method | Description                                           | Dependencies |
+| ------- | ------------------------------------------------------------ | ---------------- | ----------------------------------------------------- | ------------- |
+| Step 0  | `agi_spmt_unified.py`                                      | `subprocess`   | SPMT cargo input generation (optional)                | `agi_ssot.py` (same directory) |
+| Step 1  | `agi_tr_patched_v6_6_defsplit_v1.py`                       | `subprocess`   | TR Excel generation (optional)                        | - |
+| Step 1b | `agi_tr_patched_v6_6_defsplit_v1.py`                       | `subprocess`   | `stage_results.csv` generation (required, csv mode) | - |
+| Step 2  | `ops_final_r3_integrated_defs_split_v4_patched_TIDE_v1.py` | `subprocess`   | OPS Integrated Report (Excel + MD)                    | - |
+| Step 3  | `ballast_gate_solver_v4_TIDE_v1.py`                        | `subprocess`   | Ballast Gate Solver (LP)                              | - |
+| Step 4  | `Untitled-2_patched_defsplit_v1_1.py`                      | `subprocess`   | Ballast Optimizer (optional)                          | - |
+| Step 5  | `bryan_template_unified_TIDE_v1.py`                        | `subprocess`   | Bryan Template generation and population              | - |
 
 ### 13.2 Optional Steps
 
-| Step | Script File | Execution Method | Activation Condition |
-|------|-------------|------------------|---------------------|
-| Step 4b | `ballast_sequence_generator.py` | `import` (module) | `--enable-sequence` |
-| Step 4b | `checklist_generator.py` | `import` (module) | `--enable-sequence` |
-| Step 4c | `valve_lineup_generator.py` | `import` (module) | `--enable-valve-lineup` |
+| Step    | Script File                       | Execution Method    | Activation Condition      |
+| ------- | --------------------------------- | ------------------- | ------------------------- |
+| Step 4b | `ballast_sequence_generator.py` | `import` (module) | `--enable-sequence`     |
+| Step 4b | `checklist_generator.py`        | `import` (module) | `--enable-sequence`     |
+| Step 4c | `valve_lineup_generator.py`     | `import` (module) | `--enable-valve-lineup` |
 
 ### 13.3 Dependencies
 
-| Parent Script | Dependent Script | Execution Method | Description |
-|--------------|------------------|------------------|-------------|
-| `bryan_template_unified_TIDE_v1.py` | `create_bryan_excel_template_NEW.py` | `subprocess` | Bryan Template creation (Step 5 internal) |
-| `bryan_template_unified_TIDE_v1.py` | `populate_template.py` | `import` (embedded) | Template population logic (Step 5 internal) |
+| Parent Script                         | Dependent Script                       | Execution Method      | Description                                 |
+| ------------------------------------- | -------------------------------------- | --------------------- | ------------------------------------------- |
+| `bryan_template_unified_TIDE_v1.py` | `create_bryan_excel_template_NEW.py` | `subprocess`        | Bryan Template creation (Step 5 internal)   |
+| `bryan_template_unified_TIDE_v1.py` | `populate_template.py`               | `import` (embedded) | Template population logic (Step 5 internal) |
 
 ### 13.4 Post-Processing and Utilities
 
-| Category | Script File | Base Path | Activation Condition |
-|----------|-------------|-----------|---------------------|
-| Post-Processing | `ballast_excel_finalize.py` | `tide/ballast_excel_finalize.py` | Auto-execute if file exists |
-| Post-Processing | `excel_com_recalc_save.py` | `tide/excel_com_recalc_save.py` | `EXCEL_COM_RECALC_OUT` environment variable |
-| Utility | `compile_headers_registry.py` | `compile_headers_registry.py` | Auto-execute if `HEADERS_MASTER.xlsx` exists |
-| Utility | `debug_report.py` | `debug_report.py` | `--debug_report` or `--auto_debug_report` |
+| Category        | Script File                     | Base Path                          | Activation Condition                           |
+| --------------- | ------------------------------- | ---------------------------------- | ---------------------------------------------- |
+| Post-Processing | `ballast_excel_finalize.py`   | `tide/ballast_excel_finalize.py` | Auto-execute if file exists                    |
+| Post-Processing | `excel_com_recalc_save.py`    | `tide/excel_com_recalc_save.py`  | `EXCEL_COM_RECALC_OUT` environment variable  |
+| Utility         | `compile_headers_registry.py` | `compile_headers_registry.py`    | Auto-execute if `HEADERS_MASTER.xlsx` exists |
+| Utility         | `debug_report.py`             | `debug_report.py`                | `--debug_report` or `--auto_debug_report`  |
 
 ### 13.5 Module Dependencies
 
-| Module Path | Usage Location | Execution Method | Description |
-|-------------|----------------|------------------|-------------|
-| `ssot.gates_loader` | Step 4b | `import` | `SiteProfile`, `load_agi_profile` (profile loading) |
-| `ssot.data_quality_validator` | Step 3, Step 4b | `import` | `DataQualityValidator` (Tidying First Implementation) |
-| `tide.tide_ukc_engine` | Multiple Steps | `import` | Tide/UKC calculation SSOT engine |
-| `tide.tide_constants` | Multiple Steps | `import` | Tide/UKC constants |
+| Module Path                     | Usage Location  | Execution Method | Description                                             |
+| ------------------------------- | --------------- | ---------------- | ------------------------------------------------------- |
+| `ssot.gates_loader`           | Step 4b         | `import`       | `SiteProfile`, `load_agi_profile` (profile loading) |
+| `ssot.data_quality_validator` | Step 3, Step 4b | `import`       | `DataQualityValidator` (Tidying First Implementation) |
+| `tide.tide_ukc_engine`        | Multiple Steps  | `import`       | Tide/UKC calculation SSOT engine                        |
+| `tide.tide_constants`         | Multiple Steps  | `import`       | Tide/UKC constants                                      |
 
 ### 13.6 Pre-Step Execution Files (Optional)
 
-| Script File | Base Path | Execution Method | Activation Condition | Description |
-|-------------|-----------|------------------|---------------------|-------------|
+| Script File              | Base Path                | Execution Method            | Activation Condition             | Description                        |
+| ------------------------ | ------------------------ | --------------------------- | -------------------------------- | ---------------------------------- |
 | `tide_stage_mapper.py` | `tide_stage_mapper.py` | Manual execution (Pre-Step) | When `--tide_windows` provided | Stage-wise tide mapping (AGI-only) |
 
 ### 13.7 Execution File Statistics
 
-| Category | Count | Notes |
-|----------|-------|-------|
-| **Required (subprocess)** | 4 | Step 1b, Step 2, Step 3 (always executed) |
-| **Optional (subprocess)** | 3 | Step 0, Step 1, Step 4, Step 5 |
-| **Optional (import module)** | 3 | Step 4b, Step 4c |
-| **Dependencies** | 2 | Bryan Template internal calls |
-| **Post-Processing** | 2 | Excel finalization |
-| **Utilities** | 2 | Headers registry compilation, Debug report |
-| **Module Dependencies** | 4 | SSOT modules (import) |
-| **Pre-Step** | 1 | Tide mapping (manual execution) |
-| **Total** | **21** | (excluding duplicates, including modules) |
+| Category                           | Count        | Notes                                      |
+| ---------------------------------- | ------------ | ------------------------------------------ |
+| **Required (subprocess)**    | 4            | Step 1b, Step 2, Step 3 (always executed)  |
+| **Optional (subprocess)**    | 3            | Step 0, Step 1, Step 4, Step 5             |
+| **Optional (import module)** | 3            | Step 4b, Step 4c                           |
+| **Dependencies**             | 2            | Bryan Template internal calls              |
+| **Post-Processing**          | 2            | Excel finalization                         |
+| **Utilities**                | 2            | Headers registry compilation, Debug report |
+| **Module Dependencies**      | 4            | SSOT modules (import)                      |
+| **Pre-Step**                 | 1            | Tide mapping (manual execution)            |
+| **Total**                    | **21** | (excluding duplicates, including modules)  |
 
 **Note**:
+
 - All execution files are called from `integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py`.
 - Script paths are automatically resolved by `resolve_script_path()` function (scripts in parent folders are automatically recognized even when running from `tide/` directory).
 - For complete list, see `파이프라인 전체 아키텍처, 실행 파일, 로직 상세 설명.MD` Section 2.11.
@@ -1370,19 +1520,19 @@ DEFAULT_SAFETY_ALLOW_M = 0.0
 
 ## Reference Documents
 
-- `03_DOCUMENTATION/00_System_Architecture_Complete.md`: Overall architecture
-- `03_DOCUMENTATION/02_Data_Flow_SSOT.md`: SSOT conversion details
-- `03_DOCUMENTATION/03_Pipeline_Execution_Flow.md`: Execution flow
-- `03_DOCUMENTATION/04_LP_Solver_Logic.md`: LP Solver mathematical model
-- `03_DOCUMENTATION/05_Definition_Split_Gates.md`: Definition-Split and Gates
-- `파이프라인 전체 아키텍처, 실행 파일, 로직 상세 설명.MD`: Complete pipeline architecture and execution files list (Section 2.11)
-- `hvdc_cursor_pack_agents_v1_1/docs/AGENTS.md`: Agent roles and rules
+- `03_DOCUMENTATION/00_CORE_ARCHITECTURE/00_System_Architecture_Complete.md`: Overall architecture
+- `03_DOCUMENTATION/00_CORE_ARCHITECTURE/02_Data_Flow_SSOT.md`: SSOT conversion details
+- `03_DOCUMENTATION/00_CORE_ARCHITECTURE/03_Pipeline_Execution_Flow.md`: Execution flow
+- `03_DOCUMENTATION/00_CORE_ARCHITECTURE/04_LP_Solver_Logic.md`: LP Solver mathematical model
+- `03_DOCUMENTATION/00_CORE_ARCHITECTURE/05_Definition_Split_Gates.md`: Definition-Split and Gates
+- `03_DOCUMENTATION/00_CORE_ARCHITECTURE/Pipeline Complete Architecture and Execution Files Logic Detailed.md`: Complete pipeline architecture and execution files list (Section 2.11)
+- `AGENTS.md`: Agent roles and rules
 
 ---
 
 **Document Version:** v1.1 (Pipeline Execution Files Reference added)
-**Last Updated:** 2025-12-29
-```
+**Last Updated:** 2025-12-30
 
-파일명 제안: `03_DOCUMENTATION/Core_Functions_Ballast_Pipeline.md` 또는 `03_DOCUMENTATION/Ballast_Pipeline_Core_Functions.md`
+**Document File**: `03_DOCUMENTATION/00_CORE_ARCHITECTURE/Ballast_Pipeline_Core_Functions.md`
 
+---

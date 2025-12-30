@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "description": "GZ curve data for ISCODE stability calculations",
+    "format": "angle_deg in degrees, gz_m in meters",
+    "source": "Generated for pipeline execution",
+    "note": "These are placeholder values. Replace with actual GZ curve data from stability calculations."
+  },
+  "Stage 1": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ],
+  "Stage 2": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ],
+  "Stage 3": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ],
+  "Stage 4": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ],
+  "Stage 5": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ],
+  "Stage 5_PreBallast": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.20},
+    {"angle_deg": 10, "gz_m": 0.40},
+    {"angle_deg": 15, "gz_m": 0.60},
+    {"angle_deg": 20, "gz_m": 0.80},
+    {"angle_deg": 25, "gz_m": 1.00},
+    {"angle_deg": 30, "gz_m": 1.20},
+    {"angle_deg": 35, "gz_m": 1.40},
+    {"angle_deg": 40, "gz_m": 1.60}
+  ],
+  "Stage 6A_Critical (Opt C)": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.20},
+    {"angle_deg": 10, "gz_m": 0.40},
+    {"angle_deg": 15, "gz_m": 0.60},
+    {"angle_deg": 20, "gz_m": 0.80},
+    {"angle_deg": 25, "gz_m": 1.00},
+    {"angle_deg": 30, "gz_m": 1.20},
+    {"angle_deg": 35, "gz_m": 1.40},
+    {"angle_deg": 40, "gz_m": 1.60}
+  ],
+  "Stage 6B Tide Window": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.20},
+    {"angle_deg": 10, "gz_m": 0.40},
+    {"angle_deg": 15, "gz_m": 0.60},
+    {"angle_deg": 20, "gz_m": 0.80},
+    {"angle_deg": 25, "gz_m": 1.00},
+    {"angle_deg": 30, "gz_m": 1.20},
+    {"angle_deg": 35, "gz_m": 1.40},
+    {"angle_deg": 40, "gz_m": 1.60}
+  ],
+  "Stage 6C": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ],
+  "Stage 7": [
+    {"angle_deg": 0, "gz_m": 0.0},
+    {"angle_deg": 5, "gz_m": 0.15},
+    {"angle_deg": 10, "gz_m": 0.30},
+    {"angle_deg": 15, "gz_m": 0.45},
+    {"angle_deg": 20, "gz_m": 0.60},
+    {"angle_deg": 25, "gz_m": 0.75},
+    {"angle_deg": 30, "gz_m": 0.90},
+    {"angle_deg": 35, "gz_m": 1.05},
+    {"angle_deg": 40, "gz_m": 1.20}
+  ]
+}
+

@@ -189,6 +189,6 @@ For project-related inquiries, please contact through the repository's Issues.
 
 ---
 
-**Version**: v3.9  
-**Last Updated**: 2025-12-30  
+**Version**: v3.9
+**Last Updated**: 2025-12-30
 **Status**: Production Ready

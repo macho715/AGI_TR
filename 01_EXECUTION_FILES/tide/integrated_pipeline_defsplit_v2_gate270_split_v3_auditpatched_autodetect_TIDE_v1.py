@@ -4969,6 +4969,17 @@ def main() -> int:
         default=False,
         help="Enable headers SSOT for all outputs (requires --headers-registry).",
     )
+    ap.add_argument(
+        "--head-registry",
+        default="",
+        help="Path to HEAD_REGISTRY_AGI_v3.0.yaml for header validation (optional).",
+    )
+    ap.add_argument(
+        "--auto-head-guard",
+        action="store_true",
+        default=False,
+        help="Automatically run Head Guard validation after pipeline execution (requires --head-registry).",
+    )
 
     # Input files (override if needed)
     ap.add_argument("--tank_catalog", default="tank_catalog_from_tankmd.json")
@@ -5223,11 +5234,29 @@ def main() -> int:
             elif json_registry.exists():
                 registry_path = json_registry
 
-        if registry_path and registry_path.exists():
-            print(f"[OK] Headers SSOT enabled: {registry_path.name}")
+    if registry_path and registry_path.exists():
+        print(f"[OK] Headers SSOT enabled: {registry_path.name}")
+    else:
+        print(f"[WARN] Headers registry not found, continuing without SSOT")
+        args.enable_headers_ssot = False
+
+    # Head Guard registry support
+    head_registry_path = None
+    if args.auto_head_guard:
+        if args.head_registry:
+            head_registry_path = Path(args.head_registry)
+            if not head_registry_path.is_absolute():
+                head_registry_path = base_dir / head_registry_path
         else:
-            print(f"[WARN] Headers registry not found, continuing without SSOT")
-            args.enable_headers_ssot = False
+            default_registry = base_dir / "HEAD_REGISTRY_AGI_v3.0.yaml"
+            if default_registry.exists():
+                head_registry_path = default_registry
+
+        if head_registry_path and head_registry_path.exists():
+            print(f"[OK] Head Guard registry: {head_registry_path.name}")
+        else:
+            print("[WARN] Head registry not found, skipping auto validation")
+            args.auto_head_guard = False
 
     if not args.base_dir and not args.dry_run:
         migrate_tide_outputs_to_parent(script_dir, base_dir)
@@ -7088,12 +7117,79 @@ def main() -> int:
     # -------------------------------------------------------------------------
     # Final output consolidation + manifest
     # -------------------------------------------------------------------------
+    final_dir = None
     try:
-        create_final_output_folder(
+        final_dir = create_final_output_folder(
             base_dir=base_dir, out_dir=out_dir, merged_excel=merged_excel
         )
     except Exception as e:
         print(f"[WARN] Final output consolidation failed: {type(e).__name__}: {e}")
+        final_dir = None
+
+    # -------------------------------------------------------------------------
+    # Head Guard Validation (optional post-processing)
+    # -------------------------------------------------------------------------
+    if args.auto_head_guard and head_registry_path and head_registry_path.exists() and final_dir:
+        print("\n" + "=" * 80)
+        print("[POST-STEP] Head Guard Validation")
+        print("=" * 80)
+
+        try:
+            head_guard_script = resolve_script_path(
+                base_dir, "Head Guard.py", label="HEAD_GUARD"
+            )
+
+            if head_guard_script.exists():
+                head_guard_cmd = [
+                    which_python(),
+                    str(head_guard_script),
+                    "--registry",
+                    str(head_registry_path),
+                    "--final-dir",
+                    str(final_dir),
+                    "--manifest",
+                    "HEAD_MANIFEST.json",
+                ]
+
+                result = subprocess.run(
+                    head_guard_cmd,
+                    cwd=base_dir,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    timeout=300,
+                )
+
+                if result.returncode == 0:
+                    print("[OK] Head Guard validation completed")
+                    if result.stdout:
+                        lines = result.stdout.split("\n")
+                        in_summary = False
+                        for line in lines:
+                            if "Head Guard Validation Summary" in line:
+                                in_summary = True
+                            if in_summary and line.strip():
+                                if line.startswith("  ") or ":" in line:
+                                    print(line)
+                            if in_summary and line.startswith("="):
+                                break
+                else:
+                    print(
+                        f"[WARN] Head Guard validation failed (non-critical): {result.returncode}"
+                    )
+                    if result.stderr:
+                        print(f"[ERROR] {result.stderr[:500]}")
+            else:
+                print(f"[WARN] Head Guard script not found: {head_guard_script}")
+                print(
+                    "[INFO] You can run manually: python \"Head Guard.py\" --registry HEAD_REGISTRY_AGI_v3.0.yaml --final-dir <final_output_dir>"
+                )
+        except subprocess.TimeoutExpired:
+            print("[WARN] Head Guard validation timeout (300s) - skipping")
+        except Exception as e:
+            print(
+                f"[WARN] Head Guard execution failed (non-critical): {type(e).__name__}: {e}"
+            )
 
     # -------------------------------------------------------------------------
     # Excel formula preservation (COM post-processing)

@@ -20,68 +20,68 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      
+
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
-      
+
       - name: Install dependencies
         run: |
           pip install jsonschema pydantic
-      
+
       - name: Validate Site Profile JSONs
         run: |
           python << 'PYEOF'
           import json
           from pathlib import Path
           import sys
-          
+
           profiles_dir = Path('02_RAW_DATA/profiles')
-          
+
           # Check if directory exists
           if not profiles_dir.exists():
               print("⚠️  profiles directory not found")
               print("📝 To fix: Create 02_RAW_DATA/profiles/ directory")
               print("✅ Validation passed (no files to validate)")
               sys.exit(0)  # Pass with warning
-          
+
           # Get JSON files
           json_files = list(profiles_dir.glob('*.json'))
-          
+
           if not json_files:
               print("⚠️  No JSON files found in profiles directory")
               print("📝 To fix: Add site profile JSON files to 02_RAW_DATA/profiles/")
               print("✅ Validation passed (no files to validate)")
               sys.exit(0)  # Pass with warning
-          
+
           # Validate each file
           errors = []
           warnings = []
-          
+
           for json_file in json_files:
               try:
                   with open(json_file) as f:
                       data = json.load(f)
-                  
+
                   # Basic validation
                   if 'site_name' not in data:
                       warnings.append(f"{json_file.name}: Missing 'site_name' field")
-                  
+
                   print(f"✓ {json_file.name} validated (keys: {list(data.keys())})")
-                  
+
               except json.JSONDecodeError as e:
                   errors.append(f"{json_file.name}: Invalid JSON - {e}")
               except Exception as e:
                   errors.append(f"{json_file.name}: {e}")
-          
+
           # Report results
           if warnings:
               print("\n⚠️  Validation warnings:")
               for warn in warnings:
                   print(f"  - {warn}")
-          
+
           if errors:
               print("\n❌ Validation errors:")
               for err in errors:
@@ -90,7 +90,7 @@ jobs:
           else:
               print(f"\n✅ All {len(json_files)} JSON files validated successfully")
           PYEOF
-  
+
   validate-ssot:
     name: Validate SSOT Components
     runs-on: ubuntu-latest
@@ -98,24 +98,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      
+
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
-      
+
       - name: Install dependencies
         run: |
           pip install -r 01_EXECUTION_FILES/requirements.txt || pip install pandas numpy openpyxl scipy
-      
+
       - name: Validate Gate Definitions
         run: |
           cd 01_EXECUTION_FILES
           python << 'PYEOF'
           import sys
           from pathlib import Path
-          
+
           # Check if SSOT module exists
           ssot_dir = Path('ssot')
           if not ssot_dir.exists():
@@ -123,23 +123,23 @@ jobs:
               print("📝 Location: 01_EXECUTION_FILES/ssot/")
               print("✅ Validation skipped (module not present)")
               sys.exit(0)
-          
+
           try:
               # Try to import SSOT modules
               sys.path.insert(0, str(Path.cwd()))
-              
+
               try:
                   from ssot.gates_loader import load_gates_from_path
                   print("✓ gates_loader module imported")
               except ImportError as e:
                   print(f"⚠️  Cannot import gates_loader: {e}")
-              
+
               try:
                   from ssot.validators import validate_gate_definitions
                   print("✓ validators module imported")
               except ImportError as e:
                   print(f"⚠️  Cannot import validators: {e}")
-              
+
               # Check for gate definitions file
               gate_file = Path('gate_definitions.xlsx')
               if not gate_file.exists():
@@ -147,16 +147,16 @@ jobs:
                   print("📝 Expected location: 01_EXECUTION_FILES/gate_definitions.xlsx")
                   print("✅ Validation skipped (file not present)")
                   sys.exit(0)
-              
+
               print("✓ gate_definitions.xlsx exists")
               print("✅ SSOT structure validated")
-              
+
           except Exception as e:
               print(f"⚠️  Validation warning: {e}")
               print("✅ Continuing (non-critical)")
               sys.exit(0)
           PYEOF
-  
+
   test-pipeline-dry-run:
     name: Test Pipeline Execution (Dry Run)
     runs-on: ubuntu-latest
@@ -164,34 +164,34 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      
+
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
-      
+
       - name: Install dependencies
         run: |
           pip install -r 01_EXECUTION_FILES/requirements.txt || pip install pandas numpy openpyxl scipy
-      
+
       - name: Validate Pipeline Structure
         run: |
           cd 01_EXECUTION_FILES
           python << 'PYEOF'
           import sys
           from pathlib import Path
-          
+
           main_script = Path('agi_tr_patched_v6_6_defsplit_v1.py')
-          
+
           if not main_script.exists():
               print("⚠️  Main pipeline script not found")
               print("📝 Expected: 01_EXECUTION_FILES/agi_tr_patched_v6_6_defsplit_v1.py")
               print("✅ Validation skipped (file not present)")
               sys.exit(0)
-          
+
           print(f"✓ Main script exists: {main_script.name}")
-          
+
           # Check script syntax
           try:
               with open(main_script) as f:
@@ -200,10 +200,10 @@ jobs:
           except SyntaxError as e:
               print(f"❌ Syntax error: {e}")
               sys.exit(1)
-          
+
           print("✅ Pipeline structure validated")
           PYEOF
-      
+
       - name: Summary Report
         run: |
           echo "## 📊 Data Validation Results" >> $GITHUB_STEP_SUMMARY
