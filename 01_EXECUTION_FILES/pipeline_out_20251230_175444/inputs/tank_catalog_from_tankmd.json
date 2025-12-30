@@ -1,0 +1,537 @@
+{
+  "schema": "tank_catalog.v1",
+  "generated_at": "2025-12-16T05:44:25",
+  "source_file": "tank.md",
+  "assumptions": [
+    "cap_t derived from WT(MT) column in tank.md (interpreted as tank capacity in tonnes at stated specific gravity where applicable).",
+    "tcg_side parsed from trailing 'p'/'s' in TCG cell; absent suffix treated as centerline (cl).",
+    "fr_start/fr_end parsed from Loc like 'Fr24-25'."
+  ],
+  "tanks": [
+    {
+      "id": "DO.P",
+      "category": "fuel_oil",
+      "loc": "Fr24-25",
+      "fr_start": 24,
+      "fr_end": 25,
+      "cap_t": 3.05,
+      "lcg_m": 11.251,
+      "tcg_m": 6.247,
+      "tcg_side": "port",
+      "vcg_m": 2.825,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "DO.S",
+      "category": "fuel_oil",
+      "loc": "Fr24-25",
+      "fr_start": 24,
+      "fr_end": 25,
+      "cap_t": 3.05,
+      "lcg_m": 11.251,
+      "tcg_m": 6.247,
+      "tcg_side": "stbd",
+      "vcg_m": 2.825,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "FODB1.C",
+      "category": "fuel_oil",
+      "loc": "Fr22-27",
+      "fr_start": 22,
+      "fr_end": 27,
+      "cap_t": 21.89,
+      "lcg_m": 12.287,
+      "tcg_m": 0.0,
+      "tcg_side": "cl",
+      "vcg_m": 0.669,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "FODB1.P",
+      "category": "fuel_oil",
+      "loc": "Fr22-27",
+      "fr_start": 22,
+      "fr_end": 27,
+      "cap_t": 13.77,
+      "lcg_m": 12.295,
+      "tcg_m": 4.319,
+      "tcg_side": "port",
+      "vcg_m": 0.741,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "FODB1.S",
+      "category": "fuel_oil",
+      "loc": "Fr22-27",
+      "fr_start": 22,
+      "fr_end": 27,
+      "cap_t": 13.77,
+      "lcg_m": 12.295,
+      "tcg_m": 4.319,
+      "tcg_side": "stbd",
+      "vcg_m": 0.741,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "FOW1.P",
+      "category": "fuel_oil",
+      "loc": "Fr24-27",
+      "fr_start": 24,
+      "fr_end": 27,
+      "cap_t": 10.39,
+      "lcg_m": 13.159,
+      "tcg_m": 6.249,
+      "tcg_side": "port",
+      "vcg_m": 2.319,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "FOW1.S",
+      "category": "fuel_oil",
+      "loc": "Fr24-27",
+      "fr_start": 24,
+      "fr_end": 27,
+      "cap_t": 10.39,
+      "lcg_m": 13.159,
+      "tcg_m": 6.249,
+      "tcg_side": "stbd",
+      "vcg_m": 2.319,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "LRFO.P",
+      "category": "fuel_oil",
+      "loc": "Fr27-33",
+      "fr_start": 27,
+      "fr_end": 33,
+      "cap_t": 154.89,
+      "lcg_m": 19.5,
+      "tcg_m": 3.921,
+      "tcg_side": "port",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "LRFO.S",
+      "category": "fuel_oil",
+      "loc": "Fr27-33",
+      "fr_start": 27,
+      "fr_end": 33,
+      "cap_t": 154.89,
+      "lcg_m": 19.5,
+      "tcg_m": 3.921,
+      "tcg_side": "stbd",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "**Total**",
+      "category": "fuel_oil",
+      "loc": "-",
+      "fr_start": null,
+      "fr_end": null,
+      "cap_t": 386.09,
+      "lcg_m": 18.105,
+      "tcg_m": 0.0,
+      "tcg_side": "cl",
+      "vcg_m": 1.792,
+      "source": {
+        "section": "Fuel Oil (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "FW1.P",
+      "category": "fresh_water",
+      "loc": "Fr6-21",
+      "fr_start": 6,
+      "fr_end": 21,
+      "cap_t": 23.16,
+      "lcg_m": 5.982,
+      "tcg_m": 6.094,
+      "tcg_side": "port",
+      "vcg_m": 3.125,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FW1.S",
+      "category": "fresh_water",
+      "loc": "Fr6-21",
+      "fr_start": 6,
+      "fr_end": 21,
+      "cap_t": 23.16,
+      "lcg_m": 5.982,
+      "tcg_m": 6.094,
+      "tcg_side": "stbd",
+      "vcg_m": 3.125,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FW2.P",
+      "category": "fresh_water",
+      "loc": "Fr0-6",
+      "fr_start": 0,
+      "fr_end": 6,
+      "cap_t": 13.92,
+      "lcg_m": 0.119,
+      "tcg_m": 4.686,
+      "tcg_side": "port",
+      "vcg_m": 3.543,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FW2.S",
+      "category": "fresh_water",
+      "loc": "Fr0-6",
+      "fr_start": 0,
+      "fr_end": 6,
+      "cap_t": 13.92,
+      "lcg_m": 0.119,
+      "tcg_m": 4.686,
+      "tcg_side": "stbd",
+      "vcg_m": 3.543,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWCARGO1.P",
+      "category": "fresh_water",
+      "loc": "Fr43-48",
+      "fr_start": 43,
+      "fr_end": 48,
+      "cap_t": 148.35,
+      "lcg_m": 42.75,
+      "tcg_m": 3.921,
+      "tcg_side": "port",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWCARGO1.S",
+      "category": "fresh_water",
+      "loc": "Fr43-48",
+      "fr_start": 43,
+      "fr_end": 48,
+      "cap_t": 148.35,
+      "lcg_m": 42.75,
+      "tcg_m": 3.921,
+      "tcg_side": "stbd",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWCARGO2.P",
+      "category": "fresh_water",
+      "loc": "Fr38-43",
+      "fr_start": 38,
+      "fr_end": 43,
+      "cap_t": 148.36,
+      "lcg_m": 35.25,
+      "tcg_m": 3.921,
+      "tcg_side": "port",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWCARGO2.S",
+      "category": "fresh_water",
+      "loc": "Fr38-43",
+      "fr_start": 38,
+      "fr_end": 43,
+      "cap_t": 148.36,
+      "lcg_m": 35.25,
+      "tcg_m": 3.921,
+      "tcg_side": "stbd",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "**Total**",
+      "category": "fresh_water",
+      "loc": "-",
+      "fr_start": null,
+      "fr_end": null,
+      "cap_t": 667.6,
+      "lcg_m": 35.087,
+      "tcg_m": 0.0,
+      "tcg_side": "cl",
+      "vcg_m": 2.061,
+      "source": {
+        "section": "Fresh Water (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWB1.P",
+      "category": "fresh_water",
+      "loc": "Fr56-FE",
+      "fr_start": 56,
+      "fr_end": 56,
+      "cap_t": 50.57,
+      "lcg_m": 57.519,
+      "tcg_m": 2.379,
+      "tcg_side": "port",
+      "vcg_m": 2.49,
+      "source": {
+        "section": "Fresh Water Ballast (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWB1.S",
+      "category": "fresh_water",
+      "loc": "Fr56-FE",
+      "fr_start": 56,
+      "fr_end": 56,
+      "cap_t": 50.57,
+      "lcg_m": 57.519,
+      "tcg_m": 2.379,
+      "tcg_side": "stbd",
+      "vcg_m": 2.49,
+      "source": {
+        "section": "Fresh Water Ballast (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWB2.P",
+      "category": "fresh_water",
+      "loc": "Fr48-53",
+      "fr_start": 48,
+      "fr_end": 53,
+      "cap_t": 109.98,
+      "lcg_m": 50.038,
+      "tcg_m": 4.368,
+      "tcg_side": "port",
+      "vcg_m": 2.059,
+      "source": {
+        "section": "Fresh Water Ballast (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "FWB2.S",
+      "category": "fresh_water",
+      "loc": "Fr48-53",
+      "fr_start": 48,
+      "fr_end": 53,
+      "cap_t": 109.98,
+      "lcg_m": 50.038,
+      "tcg_m": 4.368,
+      "tcg_side": "stbd",
+      "vcg_m": 2.059,
+      "source": {
+        "section": "Fresh Water Ballast (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "**Total**",
+      "category": "fresh_water",
+      "loc": "-",
+      "fr_start": null,
+      "fr_end": null,
+      "cap_t": 321.1,
+      "lcg_m": 52.394,
+      "tcg_m": 0.0,
+      "tcg_side": "cl",
+      "vcg_m": 2.194,
+      "source": {
+        "section": "Fresh Water Ballast (SpGr 1.000)"
+      }
+    },
+    {
+      "id": "CL.P",
+      "category": "fresh_water",
+      "loc": "Fr56-59",
+      "fr_start": 56,
+      "fr_end": 59,
+      "cap_t": 7.12,
+      "lcg_m": 56.25,
+      "tcg_m": 4.75,
+      "tcg_side": "port",
+      "vcg_m": 4.225,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "CL.S",
+      "category": "fresh_water",
+      "loc": "Fr56-59",
+      "fr_start": 56,
+      "fr_end": 59,
+      "cap_t": 7.12,
+      "lcg_m": 56.25,
+      "tcg_m": 4.75,
+      "tcg_side": "stbd",
+      "vcg_m": 4.225,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "VOID3.P",
+      "category": "fresh_water",
+      "loc": "Fr33-38",
+      "fr_start": 33,
+      "fr_end": 38,
+      "cap_t": 152.08,
+      "lcg_m": 27.75,
+      "tcg_m": 3.921,
+      "tcg_side": "port",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "VOID3.S",
+      "category": "fresh_water",
+      "loc": "Fr33-38",
+      "fr_start": 33,
+      "fr_end": 38,
+      "cap_t": 152.08,
+      "lcg_m": 27.75,
+      "tcg_m": 3.921,
+      "tcg_side": "stbd",
+      "vcg_m": 1.909,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "VOIDDB1.C",
+      "category": "fresh_water",
+      "loc": "Fr48-56",
+      "fr_start": 48,
+      "fr_end": 56,
+      "cap_t": 33.45,
+      "lcg_m": 51.786,
+      "tcg_m": 0.02,
+      "tcg_side": "port",
+      "vcg_m": 0.571,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "VOIDDB2.C",
+      "category": "fresh_water",
+      "loc": "Fr27-48",
+      "fr_start": 27,
+      "fr_end": 48,
+      "cap_t": 49.09,
+      "lcg_m": 30.75,
+      "tcg_m": 0.0,
+      "tcg_side": "cl",
+      "vcg_m": 0.4,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "VOIDDB4.P",
+      "category": "fresh_water",
+      "loc": "Fr21-24",
+      "fr_start": 21,
+      "fr_end": 24,
+      "cap_t": 2.32,
+      "lcg_m": 9.783,
+      "tcg_m": 6.137,
+      "tcg_side": "port",
+      "vcg_m": 1.423,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "VOIDDB4.S",
+      "category": "fresh_water",
+      "loc": "Fr19-24",
+      "fr_start": 19,
+      "fr_end": 24,
+      "cap_t": 5.06,
+      "lcg_m": 9.278,
+      "tcg_m": 5.043,
+      "tcg_side": "stbd",
+      "vcg_m": 1.269,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "**Total**",
+      "category": "fresh_water",
+      "loc": "-",
+      "fr_start": null,
+      "fr_end": null,
+      "cap_t": 408.31,
+      "lcg_m": 30.743,
+      "tcg_m": 0.026,
+      "tcg_side": "stbd",
+      "vcg_m": 1.688,
+      "source": {
+        "section": "Salt Water (SpGr 1.025)"
+      }
+    },
+    {
+      "id": "SLUDGE.C",
+      "category": "sludge_spgr_0_870",
+      "loc": "Fr19-22",
+      "fr_start": 19,
+      "fr_end": 22,
+      "cap_t": 5.42,
+      "lcg_m": 8.794,
+      "tcg_m": 0.0,
+      "tcg_side": "cl",
+      "vcg_m": 1.082,
+      "source": {
+        "section": "Sludge (SpGr 0.870)"
+      }
+    },
+    {
+      "id": "SEWAGE.P",
+      "category": "sewage_spgr_1_025",
+      "loc": "Fr19-22",
+      "fr_start": 19,
+      "fr_end": 22,
+      "cap_t": 2.73,
+      "lcg_m": 8.848,
+      "tcg_m": 4.112,
+      "tcg_side": "port",
+      "vcg_m": 1.137,
+      "source": {
+        "section": "Sewage (SpGr 1.025)"
+      }
+    }
+  ]
+}

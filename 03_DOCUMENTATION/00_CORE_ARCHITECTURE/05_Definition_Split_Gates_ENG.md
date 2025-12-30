@@ -345,6 +345,26 @@ if fwd_max is not None:
     b_ub.append(float(fwd_max - dfwd0))
 ```
 
+**Gate-B Margin Calculation (SSOT):**
+
+**Formula:**
+```
+GateB_FWD_MAX_2p70_CD_Margin_m = 2.70 - Draft_FWD_m_CD
+```
+
+**Where:**
+- `Draft_FWD_m_CD` = `Draft_FWD_m - Forecast_Tide_m` (Chart Datum reference)
+- Positive margin: FWD draft within limit
+- Negative margin: FWD draft exceeds 2.70m (Gate-B violation)
+
+**Example (Stage 5_PreBallast):**
+- `Draft_FWD_m` = 2.19 m (MSL reference)
+- `Forecast_Tide_m` = 2.0 m
+- `Draft_FWD_m_CD` = 2.19 - 2.0 = 0.19 m (Chart Datum reference)
+- `GateB_FWD_MAX_2p70_CD_Margin_m` = 2.70 - 0.19 = 2.51 m ✓
+
+**⚠️ Important:** Always check `Draft_FWD_m_CD` (not `Draft_FWD_m`) when interpreting Gate-B margins. Reports must clearly distinguish MSL vs CD references to prevent confusion (e.g., "FWD 3.42 m (MSL) → 1.42 m (CD), Gate-B PASS (+1.28 m margin)").
+
 ### 5.4.3 AFT_MIN Gate (Gate-A: Captain / Propulsion)
 
 **Purpose:**
@@ -399,6 +419,15 @@ Draft ≤ D_vessel - FB_MIN
 **Default:** `FB_MIN = 0.0 m` (prevents negative, effectively Freeboard ≥ 0)
 
 **Important**: Freeboard is **tide independent**. Tide only affects UKC and does not affect Freeboard. Do not claim that "Tide solves Freeboard."
+
+**⚠️ SSOT Gap - Operational Minimum Freeboard:**
+
+- **Current Implementation:** Geometric definition only (`Freeboard = D_vessel - Draft`)
+- **Gate Check:** Only prevents negative freeboard (`Freeboard_Min_m >= -tol_m`)
+- **Missing:** Operational minimum freeboard requirement not defined in SSOT (AGENTS.md)
+- **Default `freeboard_min_m = 0.0`:** No operational buffer (only prevents deck wet)
+- **Recommendation:** Define operational minimum freeboard in SSOT (e.g., 0.20m, 0.50m for operations)
+- **Documentation Requirement:** When `freeboard = 0.00m`, explicitly state whether this is acceptable or requires mitigation
 
 **Implementation (LP Solver):**
 
@@ -552,7 +581,11 @@ mask_app = df["GateB_FWD_MAX_2p70_CD_applicable"] == True
 df.loc[mask_app, "GateB_FWD_MAX_2p70_CD_PASS"] = (
     df.loc[mask_app, "new_fwd_m"] <= 2.70
 )
-df["GateB_FWD_MAX_2p70_CD_Margin_m"] = (2.70 - df["new_fwd_m"]).round(2)
+# Gate-B Margin calculation (Chart Datum reference)
+# Formula: Margin = 2.70 - Draft_FWD_m_CD
+# Where: Draft_FWD_m_CD = Draft_FWD_m - Forecast_Tide_m
+df["Draft_FWD_m_CD"] = df["new_fwd_m"] - df.get("Forecast_Tide_m", 0.0)
+df["GateB_FWD_MAX_2p70_CD_Margin_m"] = (2.70 - df["Draft_FWD_m_CD"]).round(2)
 df.loc[~mask_app, "GateB_FWD_MAX_2p70_CD_Margin_m"] = None  # Non-critical is NaN
 ```
 
@@ -764,7 +797,7 @@ def freeboard_min(d_vessel_m: Optional[float], dfwd: float, daft: float) -> floa
 | `AFT_Margin_m`                   | float | `Current_AFT_m - AFT_MIN_m` (positive if margin exists)                |
 | `UKC_Margin_m`                   | float | `UKC_Min_m - UKC_Min_Required_m` (if provided)                         |
 | `GateA_AFT_MIN_2p70_Margin_m`    | float | `Current_AFT_m - 2.70` (positive if margin exists)                     |
-| `GateB_FWD_MAX_2p70_CD_Margin_m` | float | `2.70 - Current_FWD_m` (positive if margin exists, only if applicable) |
+| `GateB_FWD_MAX_2p70_CD_Margin_m` | float | `2.70 - Draft_FWD_m_CD` (positive if margin exists, only if applicable). **Note:** Uses Chart Datum (CD) reference: `Draft_FWD_m_CD = Draft_FWD_m - Forecast_Tide_m`. Always check `Draft_FWD_m_CD` (not `Draft_FWD_m`) when interpreting Gate-B margins. |
 
 ### 5.6.2 Example Output
 
@@ -779,6 +812,14 @@ Stage_6B,2.65,2.75,0.30,-0.85,1.00,0.90,0.90,1.85,1.75,1.75,OK,OK,OK,OK,0.05,-0.
 - `AFT_Margin_m = -0.05`: AFT_MIN gate violation (NG)
 - Displayed as `Gate_AFT_Min = "NG"`
 - `Required_WL_for_UKC_m = -0.85`: Negative, so clipped to 0.0 (already satisfies UKC_MIN)
+
+**Gate-B Margin Calculation Example (Stage 2):**
+
+- `Draft_FWD_m` = 3.42 m (MSL reference)
+- `Forecast_Tide_m` = 2.0 m
+- `Draft_FWD_m_CD` = 3.42 - 2.0 = 1.42 m (Chart Datum reference)
+- `GateB_FWD_MAX_2p70_CD_Margin_m` = 2.70 - 1.42 = 1.28 m ✓
+- **⚠️ Important:** Always use `Draft_FWD_m_CD` (not `Draft_FWD_m`) for Gate-B margin interpretation. Reports must clearly distinguish MSL vs CD references to prevent confusion.
 
 ---
 

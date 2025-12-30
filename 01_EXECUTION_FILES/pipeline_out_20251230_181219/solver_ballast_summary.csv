@@ -1,0 +1,10 @@
+﻿Stage,New_FWD_m,New_AFT_m,Forecast_Tide_m,UKC_m,Required_WL_for_UKC_m,Tide_required_m,Forecast_tide_m,Tide_margin_m,UKC_min_m,UKC_fwd_m,UKC_aft_m,UKC_min_actual_m,Tide_verification,Freeboard_MIN_m,viol_fwd_max_m,viol_aft_min_m,viol_fb_min_m,viol_ukc_min_m,Plan_Rows,Plan_Diagnosis
+Stage 1,3.27,3.27,2.0,3.88,-1.38,0.0,2.0,2.0,0.5,3.88,3.88,3.88,OK,0.38,0.0,0.0,0.0,0.0,0,
+Stage 2,3.42,3.63,2.0,3.52,-1.02,0.0,2.0,2.0,0.5,3.73,3.52,3.52,OK,0.02,0.0,0.0,0.0,0.0,0,Solver returned empty plan; check tank operability and constraints
+Stage 3,3.42,3.63,2.0,3.52,-1.02,0.0,2.0,2.0,0.5,3.73,3.52,3.52,OK,0.02,0.0,0.0,0.0,0.0,0,
+Stage 4,3.41,3.65,2.0,3.5,-1.0,0.0,2.0,2.0,0.5,3.74,3.5,3.5,OK,0.0,0.0,0.0,0.0,0.0,0,
+Stage 5,3.41,3.65,2.0,3.5,-1.0,0.0,2.0,2.0,0.5,3.74,3.5,3.5,OK,0.0,0.0,0.0,0.0,0.0,0,
+Stage 5_PreBallast,2.19,2.69,2.0,4.46,-1.96,0.0,2.0,2.0,0.5,4.96,4.46,4.46,OK,0.96,0.0,0.007,0.0,0.0,18,
+Stage 6A_Critical (Opt C),2.2,2.7,2.0,4.45,-1.95,0.0,2.0,2.0,0.5,4.95,4.45,4.45,OK,0.95,0.0,0.0,0.0,0.0,14,
+Stage 6C,3.65,3.65,2.0,3.5,-1.0,0.0,2.0,2.0,0.5,3.5,3.5,3.5,OK,0.0,0.0,0.0,0.0,0.0,0,
+Stage 7,3.27,3.27,2.0,3.88,-1.38,0.0,2.0,2.0,0.5,3.88,3.88,3.88,OK,0.38,0.0,0.0,0.0,0.0,0,

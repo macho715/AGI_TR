@@ -1060,6 +1060,22 @@ if freeboard_min < 0.0:
     print(f"[ERROR] Negative freeboard: {freeboard_min:.2f}m")
 elif freeboard_min == 0.0:
     print(f"[WARNING] Zero freeboard: Deck edge at waterline")
+
+# ⚠️ Critical safety warning for zero freeboard cases
+if zero_freeboard_stages:
+    print(
+        f"[CRITICAL] PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m (deck edge at waterline) "
+        f"for {len(zero_freeboard_stages)} stage(s):"
+    )
+    for stage_name in zero_freeboard_stages:
+        print(f"  - {stage_name}: Draft = D_vessel ({d_vessel_m}m) -> Freeboard = 0.00m")
+    print(
+        "[ACTION REQUIRED] Engineering verification required:\n"
+        "  1. Validate input: Check TR position, cargo weight, and stage calculations\n"
+        "  2. If input is valid: Requires class acceptance and load-line compliance documentation\n"
+        "  3. Risk mitigation: Green water risk, structural stress at deck edge\n"
+        "  4. Approval packages must explicitly state draft clipping and justify freeboard = 0.00m"
+    )
 ```
 
 **Stage 6C Example:**
@@ -1068,6 +1084,22 @@ elif freeboard_min == 0.0:
 - Clipping: 3.80m > 3.65m → clip to 3.65m
 - Output: Dfwd=3.65m, Daft=3.65m
 - Freeboard: 0.00m (deck edge at waterline) ⚠️
+
+**⚠️ Critical Safety Warning:**
+
+**Clipping vs. Physical Judgment:**
+
+- **Clipping masks input validity issues:** Input draft 3.80m exceeding D_vessel indicates potential input error or structural concern
+- **Freeboard = 0.00m risk:** Deck edge at waterline → green water risk, structural stress
+- **Recommendation:** Draft exceeding D_vessel should trigger:
+  1. **FAIL**: If input is invalid (TR position error, calculation error)
+  2. **VERIFY**: If input is valid but requires engineering approval (class acceptance, load-line verification)
+
+**Documentation Requirement:**
+
+- Approval packages must explicitly state when draft clipping occurred
+- Engineering justification required for freeboard = 0.00m conditions
+- Load-line class acceptance documentation required if clipping applied
 
 ### 13.5 Effects and Benefits
 

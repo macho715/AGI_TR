@@ -1,17 +1,17 @@
 ﻿Stage,Phase,VOID3.P,VOID3.S,FWB2.P,FWB2.S
-Stage 1,before,100.0,100.0,28.5,28.5
-Stage 1,after,100.0,100.0,28.5,28.5
-Stage 2,before,100.0,100.0,28.5,28.5
-Stage 2,after,100.0,100.0,28.5,28.5
-Stage 3,before,100.0,100.0,28.5,28.5
-Stage 3,after,100.0,100.0,28.5,28.5
-Stage 4,before,100.0,100.0,28.5,28.5
-Stage 4,after,100.0,100.0,28.5,28.5
-Stage 5,before,100.0,100.0,28.5,28.5
-Stage 5,after,100.0,100.0,28.5,28.5
-Stage 5_PreBallast,before,100.0,100.0,28.5,28.5
-Stage 5_PreBallast,after,152.08,152.08,28.5,28.5
-Stage 6A_Critical (Opt C),before,152.08,152.08,28.5,28.5
+Stage 1,before,0.0,0.0,21.45,21.45
+Stage 1,after,0.0,0.0,21.45,21.45
+Stage 2,before,0.0,0.0,21.45,21.45
+Stage 2,after,0.0,0.0,21.45,21.45
+Stage 3,before,0.0,0.0,21.45,21.45
+Stage 3,after,0.0,0.0,21.45,21.45
+Stage 4,before,0.0,0.0,21.45,21.45
+Stage 4,after,0.0,0.0,21.45,21.45
+Stage 5,before,0.0,0.0,21.45,21.45
+Stage 5,after,0.0,0.0,21.45,21.45
+Stage 5_PreBallast,before,0.0,0.0,21.45,21.45
+Stage 5_PreBallast,after,147.148,152.08,21.45,70.426
+Stage 6A_Critical (Opt C),before,147.148,152.08,21.45,70.426
 Stage 6A_Critical (Opt C),after,152.08,152.08,0.0,0.0
 Stage 6C,before,152.08,152.08,0.0,0.0
 Stage 6C,after,152.08,152.08,0.0,0.0

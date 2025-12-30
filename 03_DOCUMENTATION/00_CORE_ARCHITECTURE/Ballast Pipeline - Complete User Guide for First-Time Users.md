@@ -1153,6 +1153,50 @@ python "01_EXECUTION_FILES\tide\integrated_pipeline_defsplit_v2_gate270_split_v3
 2. `gate_fail_report.md` shows PASS status
 3. Output files exist in `pipeline_out_<timestamp>/`
 
+### Q11: How do I interpret Gate-B margin values?
+
+**A**: Gate-B margin uses **Chart Datum reference**:
+```
+GateB_FWD_MAX_2p70_CD_Margin_m = 2.70 - Draft_FWD_m_CD
+```
+
+**Where:**
+- `Draft_FWD_m_CD` = `Draft_FWD_m - Forecast_Tide_m` (Chart Datum)
+- **⚠️ Important:** Always check `Draft_FWD_m_CD` (not `Draft_FWD_m`) when interpreting Gate-B margins
+
+**Example**:
+- `Draft_FWD_m` = 2.19m, `Forecast_Tide_m` = 2.0m
+- `Draft_FWD_m_CD` = 2.19 - 2.0 = 0.19m
+- `GateB_Margin` = 2.70 - 0.19 = 2.51m ✅ (safe margin)
+
+### Q12: What does Freeboard = 0.00m mean?
+
+**A**:
+- **Geometric Definition**: `Freeboard = D_vessel_m - Draft`
+- **Freeboard = 0.00m**: Deck edge at waterline ⚠️
+- **Risk**: Green water, structural stress
+- **Required**: Engineering verification (class acceptance, load-line compliance)
+
+**⚠️ SSOT Gap**: Current default `freeboard_min_m = 0.0` (no operational buffer). Consider setting operational minimum (e.g., 0.20m, 0.50m) based on requirements.
+
+### Q13: What happens when draft exceeds D_vessel (3.65m)?
+
+**A**:
+- **Automatic Clipping**: Draft is clipped to `D_vessel` (3.65m)
+- **Result**: `Freeboard_Min_m = 0.00m` (deck edge at waterline)
+- **⚠️ Critical Warning**:
+  - Clipping masks input validity issues (TR position error, calculation error)
+  - Requires engineering verification (class acceptance, load-line compliance)
+  - Approval packages must explicitly state when draft clipping occurred
+
+**Pipeline Log Warning**:
+```
+[WARNING] Draft values clipped to D_vessel (3.65m) for 1 stages:
+  - Stage 6C: FWD 3.80 -> 3.65m, AFT 3.80 -> 3.65m
+  ⚠️ PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m
+  → Requires engineering verification
+```
+
 ---
 
 ## 12. Getting Help

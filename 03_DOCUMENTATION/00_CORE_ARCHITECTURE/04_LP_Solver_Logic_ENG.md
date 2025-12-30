@@ -333,6 +333,26 @@ b_ub.append(float(fwd_max - dfwd0))
 - **Critical Stage definition**: `DEFAULT_CRITICAL_STAGE_REGEX = r"(preballast.*critical|6a.*critical|stage\s*5.*preballast|stage\s*6a)"`
 - **Non-critical stages**: `Gate_FWD_MAX_2p70_critical_only = "N/A"` (prevents false failures)
 
+**Gate-B Margin Calculation (SSOT):**
+
+**Formula:**
+```
+GateB_FWD_MAX_2p70_CD_Margin_m = 2.70 - Draft_FWD_m_CD
+```
+
+**Where:**
+- `Draft_FWD_m_CD` = `Draft_FWD_m - Forecast_Tide_m` (Chart Datum reference)
+- Positive margin: FWD draft within limit
+- Negative margin: FWD draft exceeds 2.70m (Gate-B violation)
+
+**Example (Stage 5_PreBallast):**
+- `Draft_FWD_m` = 2.19 m (MSL reference)
+- `Forecast_Tide_m` = 2.0 m
+- `Draft_FWD_m_CD` = 2.19 - 2.0 = 0.19 m (Chart Datum reference)
+- `GateB_FWD_MAX_2p70_CD_Margin_m` = 2.70 - 0.19 = 2.51 m ✓
+
+**⚠️ Important:** Always check `Draft_FWD_m_CD` (not `Draft_FWD_m`) when interpreting Gate-B margins. Reports must clearly distinguish MSL vs CD references to prevent confusion.
+
 #### 2) AFT_MIN Gate (Gate-A: Captain / Propulsion)
 
 **Constraint:**

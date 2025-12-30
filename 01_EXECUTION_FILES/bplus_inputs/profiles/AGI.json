@@ -1,60 +1,83 @@
 {
-  "schema": "site_profile.v1",
-  "site": "AGI",
-  "generated_at": "2025-12-27",
-  "description": "AGI Site Profile - Gate values and coordinate constants (SSOT)",
-  "gates": {
-    "AFT_MIN_m": 2.7,
-    "FWD_MAX_m": 2.7,
-    "FWD_MAX_critical_only": true,
-    "critical_stage_list": [
-      "Stage 2",
-      "Stage 5_PreBallast",
-      "Stage 6A_Critical (Opt C)"
-    ],
-    "critical_regex": "(preballast.*critical|6a.*critical|stage\\s*5.*preballast|stage\\s*6a|stage\\s*2)"
-  },
-  "vessel": {
-    "LPP_m": 60.302,
-    "midship_from_ap_m": 30.151,
-    "D_vessel_m": 3.65,
-    "LBP_m": 60.302
-  },
-  "tide_ukc": {
-    "forecast_tide_m": 2.0,
-    "depth_ref_m": 5.5,
-    "ukc_min_m": 0.5,
-    "datum_offset_m": 0.0,
-    "squat_m": 0.15,
-    "safety_allow_m": 0.2,
-    "tide_tol_m": 0.1
-  },
-  "operational": {
+    "schema": "site_profile.v1",
+    "site": "AGI",
+    "generated_at": "2025-12-27",
+    "description": "AGI Site Profile - Gate values and coordinate constants (SSOT)",
+    "gates": {
+        "AFT_MIN_m": 2.7,
+        "FWD_MAX_m": 2.7,
+        "FWD_MAX_critical_only": true,
+        "critical_stage_list": [
+            "Stage 2",
+            "Stage 5_PreBallast",
+            "Stage 6A_Critical (Opt C)"
+        ],
+        "critical_regex": "(preballast.*critical|6a.*critical|stage\\s*5.*preballast|stage\\s*6a|stage\\s*2)"
+    },
+    "vessel": {
+        "LPP_m": 60.302,
+        "midship_from_ap_m": 30.151,
+        "D_vessel_m": 3.65,
+        "LBP_m": 60.302
+    },
+    "tide_ukc": {
+        "forecast_tide_m": 2.0,
+        "depth_ref_m": 5.5,
+        "ukc_min_m": 0.5,
+        "datum_offset_m": 0.0,
+        "squat_m": 0.15,
+        "safety_allow_m": 0.2,
+        "tide_tol_m": 0.1
+    },
+    "operational": {
+        "fwd_max_m": 2.7,
+        "aft_min_m": 2.7,
+        "aft_max_m": 3.5,
+        "trim_abs_limit_m": 0.5,
+        "pump_rate_tph": 100.0,
+        "gate_guard_band_cm": 2.0,
+        "freeboard_min_m": 0.0,
+        "trim_limit_enforced": true,
+        "freeboard_min_enforced": true
+    },
+    "tank_operability": {
+        "VOID3": {
+            "operability": "PRE_BALLAST_ONLY",
+            "pump_access": false,
+            "transfer_allowed": false,
+            "notes": "Pre-ballast storage ONLY. Transfer NOT OPERABLE during RoRo operations. Current_t fixed (no transfer authorized)."
+        }
+    },
+    "tank_overrides": {
+        "VOID3.P": {
+            "mode": "FIXED",
+            "use_flag": "Y",
+            "Min_t": 0.0,
+            "Max_t": 0.0,
+            "comment": "OPERATIONAL CONSTRAINT: Pre-ballast Storage ONLY. No transfer authorized. Solver cannot modify (FIXED mode)."
+        },
+        "VOID3.S": {
+            "mode": "FIXED",
+            "use_flag": "Y",
+            "Min_t": 0.0,
+            "Max_t": 0.0,
+            "comment": "OPERATIONAL CONSTRAINT: Pre-ballast Storage ONLY. No transfer authorized. Solver cannot modify (FIXED mode)."
+        }
+    },
+    "remarks": "SSOT values for AGI site. Includes Option B gate enforcement flags. VOID3.P/S set to FIXED (Pre-ballast Storage ONLY, no transfer).",
     "fwd_max_m": 2.7,
     "aft_min_m": 2.7,
-    "aft_max_m": 3.5,
     "trim_abs_limit_m": 0.5,
-    "pump_rate_tph": 100.0,
     "gate_guard_band_cm": 2.0,
+    "critical_stage_list": [
+        "Stage 2",
+        "Stage 5_PreBallast",
+        "Stage 6A_Critical (Opt C)"
+    ],
+    "critical_stage_regex": "(preballast.*critical|6a.*critical|stage\\s*5.*preballast|stage\\s*6a|stage\\s*2)",
+    "gateB_critical_only": true,
+    "gateB_fwd_max_m_cd": 2.7,
     "freeboard_min_m": 0.0,
     "trim_limit_enforced": true,
     "freeboard_min_enforced": true
-  },
-  "tank_operability": {},
-  "remarks": "SSOT values for AGI site. Includes Option B gate enforcement flags.",
-  "fwd_max_m": 2.7,
-  "aft_min_m": 2.7,
-  "trim_abs_limit_m": 0.5,
-  "gate_guard_band_cm": 2.0,
-  "critical_stage_list": [
-    "Stage 2",
-    "Stage 5_PreBallast",
-    "Stage 6A_Critical (Opt C)"
-  ],
-  "critical_stage_regex": "(preballast.*critical|6a.*critical|stage\\s*5.*preballast|stage\\s*6a|stage\\s*2)",
-  "gateB_critical_only": true,
-  "gateB_fwd_max_m_cd": 2.7,
-  "freeboard_min_m": 0.0,
-  "trim_limit_enforced": true,
-  "freeboard_min_enforced": true
 }

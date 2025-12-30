@@ -1,0 +1,122 @@
+{
+  "created": "20251230_175458",
+  "base_dir": "C:\\AGI TR\\01_EXECUTION_FILES",
+  "out_dir": "C:\\AGI TR\\01_EXECUTION_FILES\\pipeline_out_20251230_175444",
+  "files": [
+    {
+      "name": "PIPELINE_CONSOLIDATED_AGI_20251230_175457.xlsx",
+      "sha256": "5bdb593cd4d614e58afd3e4bdfeea28c1588186520ab69847a32dae76f19ce94",
+      "size": 136570
+    },
+    {
+      "name": "pipeline_stage_QA.csv",
+      "sha256": "86be022ab6f501881d03ce6f1ebd9d73049c1ea9cb017a94cd7cd1f6707a7747",
+      "size": 6438
+    },
+    {
+      "name": "stage_table_unified.csv",
+      "sha256": "e9b8cdadb0027fcf9f997351d7f9251bf285290a7c3717156ac9e37646ffba3c",
+      "size": 2193
+    },
+    {
+      "name": "tank_ssot_for_solver.csv",
+      "sha256": "bc2b070099d111dee713e6bba3551ebfaebcde095f2f764e0d9d5c5f2f3074ce",
+      "size": 2074
+    },
+    {
+      "name": "hydro_table_for_solver.csv",
+      "sha256": "ace9edd529db5fd878c8d51b9aaceda54fefddb2210deaed4306643c793c1890",
+      "size": 322
+    },
+    {
+      "name": "gate_fail_report.md",
+      "sha256": "7c2a9349b1c1d4f15ebdc5396231f9d38e95b04ebaea116118d4b776788b7b6d",
+      "size": 10172
+    },
+    {
+      "name": "TUG_Operational_SOP_DNV_ST_N001.md",
+      "sha256": "2a04dd90c08bb210ca022b85d33c1a906b6f344dec00bab1dc8abee5bccdafb0",
+      "size": 1564
+    },
+    {
+      "name": "OPS_FINAL_R3_Report_Integrated.md",
+      "sha256": "453817c3a847acaae4b3e6d93de11d5e212f7eba6d2e17496e406b2159ea248e",
+      "size": 4734
+    },
+    {
+      "name": "solver_ballast_stage_plan.csv",
+      "sha256": "0a3ddb75b37531d52a10613f99e0282c28b94ba06ff0d183d78fd954f5676df3",
+      "size": 1098
+    },
+    {
+      "name": "solver_ballast_summary.csv",
+      "sha256": "d9c35548c403add1cb04c72b4f9a7d67444f3a1ab836d96387bc0fbbec6dda14",
+      "size": 1194
+    },
+    {
+      "name": "BALLAST_SEQUENCE.csv",
+      "sha256": "1213c157a70452f28670119fab3136bfb9713a83f6b2384132e6ce82efab5d42",
+      "size": 4354
+    },
+    {
+      "name": "BALLAST_OPTION.csv",
+      "sha256": "a25f204fc1f0fec30fc22747328623e098c48a9714897e92712107626e2735d9",
+      "size": 1164
+    },
+    {
+      "name": "BALLAST_EXEC.csv",
+      "sha256": "856a801d18d511b2040be866b8cae1a597511d881cf2a4c44fd35ec6ad652154",
+      "size": 1412
+    },
+    {
+      "name": "BALLAST_OPERATIONS_CHECKLIST.md",
+      "sha256": "dbc34459feefc6e53e64dbae50ef714de917a5e039957574e1142cb0c85ca49c",
+      "size": 23407
+    },
+    {
+      "name": "BALLAST_SEQUENCE_WITH_VALVES.md",
+      "sha256": "51928f060356bb8fb1fd40b213a36bc940313da257b4a286f7191efe87f95bf8",
+      "size": 12562
+    },
+    {
+      "name": "HOLD_POINT_SUMMARY.csv",
+      "sha256": "ba3ae461d7a9776317352570070ca7dc187f6c2dd42668c4aec914ae880c7acb",
+      "size": 1259
+    },
+    {
+      "name": "AGI_SPMT_Shuttle_Output.xlsx",
+      "sha256": "de6350d0deae812be57c96e34ac700447e35df430d588357d9e1e474886ea8b2",
+      "size": 13440
+    },
+    {
+      "name": "BALLAST_SEQUENCE.xlsx",
+      "sha256": "cda5d263bfd2b0d65506fa998a0d459064e656b8470e84d5d469c0a1c0b65293",
+      "size": 11395
+    },
+    {
+      "name": "Bryan_Submission_Data_Pack_Populated.xlsx",
+      "sha256": "818b2312d47ff1bef588f0ed45b111ca19d63342836387be978f4decbeefe876",
+      "size": 98238
+    },
+    {
+      "name": "Bryan_Submission_Data_Pack_Template.xlsx",
+      "sha256": "bc0303bfa5832023cf45bcee0ddae1499cc3d70083a66eae7904ed34eb5274ce",
+      "size": 97256
+    },
+    {
+      "name": "LCT_BUSHRA_AGI_TR_Final_v6_2.xlsx",
+      "sha256": "88b38ba345218ade6c7908d55d7acbe3dc8367fc7773d5ef94e08626b8ea5a3c",
+      "size": 125170
+    },
+    {
+      "name": "OPS_FINAL_R3_AGI_Ballast_Integrated.xlsx",
+      "sha256": "4c31df8e601a6d8819d6b2a33f54061c10e81b17c51f7d6d728621e5520b8e8c",
+      "size": 14417
+    },
+    {
+      "name": "optimizer_ballast_plan.xlsx",
+      "sha256": "e007fb7fdc7ac166ef2ee7cf0db7ec312e099e0e687119ce4a536e9e6828e4de",
+      "size": 11125
+    }
+  ]
+}

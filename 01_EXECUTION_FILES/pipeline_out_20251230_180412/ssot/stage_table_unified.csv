@@ -1,0 +1,10 @@
+﻿Stage,Current_FWD_m,Current_AFT_m,AFT_MIN_m,D_vessel_m,FWD_MAX_applicable,FWD_MAX_m,FWD_Limit_m,AFT_Limit_m,Trim_Abs_Limit_m,Forecast_Tide_m,DepthRef_m,UKC_Min_m,Input_Disp_t,Input_Tmean_m,Input_Trim_cm,HS_DraftNaN,HS_DraftNegative,HS_DraftOverDepth,Hydro_Disp_Min_t,Hydro_Disp_Max_t,HS_HydroOutOfRange,HS_Any,Squat_m,SafetyAllow_m,Forecast_tide_m,Tide_required_m,Tide_margin_m,UKC_fwd_m,UKC_aft_m,UKC_min_actual_m,Tide_verification,Tide_note
+Stage 1,3.27,3.27,2.7,3.65,False,,,3.5,0.5,2.0,5.5,0.5,2800.0,3.27,0.0,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.88,3.88,3.88,OK,Margin 2.00m
+Stage 2,3.42,3.63,2.7,3.65,True,2.7,2.7,3.5,0.5,2.0,5.5,0.5,3071.2,3.53,20.61,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.73,3.52,3.52,OK,Margin 2.00m
+Stage 3,3.42,3.63,2.7,3.65,False,,,3.5,0.5,2.0,5.5,0.5,3071.2,3.53,20.61,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.73,3.52,3.52,OK,Margin 2.00m
+Stage 4,3.41,3.65,2.7,3.65,False,,,3.5,0.5,2.0,5.5,0.5,3071.2,3.53,23.79,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.7399999999999998,3.5,3.5,OK,Margin 2.00m
+Stage 5,3.41,3.65,2.7,3.65,False,,,3.5,0.5,2.0,5.5,0.5,3071.2,3.53,23.79,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.7399999999999998,3.5,3.5,OK,Margin 2.00m
+Stage 5_PreBallast,1.84,2.16,2.7,3.65,True,2.7,2.7,3.5,0.5,2.0,5.5,0.5,3091.2,3.55,32.63,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,5.31,4.989999999999999,4.989999999999999,OK,Margin 2.00m
+Stage 6A_Critical (Opt C),1.64,2.36,2.7,3.65,True,2.7,2.7,3.5,0.5,2.0,5.5,0.5,3362.4,3.8,72.03,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,5.51,4.79,4.79,OK,Margin 2.00m
+Stage 6C,3.65,3.65,2.7,3.65,False,,,3.5,0.5,2.0,5.5,0.5,3362.4,3.8,0.0,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.5,3.5,3.5,OK,Margin 2.00m
+Stage 7,3.27,3.27,2.7,3.65,False,,,3.5,0.5,2.0,5.5,0.5,2800.0,3.27,0.0,False,False,False,2524.4,3469.0,False,False,0.15,0.2,2.0,0.0,2.0,3.88,3.88,3.88,OK,Margin 2.00m

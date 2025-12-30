@@ -1,0 +1,10 @@
+Stage,Stage_Name,Total_onDeck_t,LCG_x_from_Midship_m,LCG_Fr_from_AP_m,Note
+0,Stage 0 Pre-ballast ready,0.0,0.0,30.151,
+1,Stage 1 25% TR1 on deck @ ramp start,80.7,-8.865,39.016,
+2,Stage 2 50% TR1 on deck @ ramp mid (HOLD),151.4,-6.453,36.604,HOLD
+3,Stage 3 75% TR1 on deck @ ramp mid,222.1,-6.579,36.73,
+4,Stage 4 TR1 fully on deck @ final (pre-stow),292.8,-11.473,41.624,
+5,Stage 5 Pre-ballast TR2 ready (SPMT off deck),227.0,-11.364,41.515,
+6,Stage 6 50% TR2 on deck @ ramp mid (HOLD),368.4,-9.631,39.782,HOLD
+7,Stage 7 TR2 fully on deck @ final (pre-stow),509.8,-10.524,40.675,
+8,Stage 8 Transit (final stow),498.2,-7.276,37.427,

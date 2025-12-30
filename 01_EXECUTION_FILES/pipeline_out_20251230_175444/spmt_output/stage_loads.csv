@@ -1,0 +1,21 @@
+Stage,Stage_Name,Item,Weight_t,Fr_m_from_AP,x_m_from_Midship
+1,Stage 1 25% TR1 on deck @ ramp start,"TR1+SPMT+Beams (assembly, 25%)",70.7,40.15,-9.999
+1,Stage 1 25% TR1 on deck @ ramp start,Dunnage/Load spreading,10.0,31.0,-0.849
+2,Stage 2 50% TR1 on deck @ ramp mid (HOLD),"TR1+SPMT+Beams (assembly, 50%)",141.4,37.0,-6.849
+2,Stage 2 50% TR1 on deck @ ramp mid (HOLD),Dunnage/Load spreading,10.0,31.0,-0.849
+3,Stage 3 75% TR1 on deck @ ramp mid,"TR1+SPMT+Beams (assembly, 75%)",212.1,37.0,-6.849
+3,Stage 3 75% TR1 on deck @ ramp mid,Dunnage/Load spreading,10.0,31.0,-0.849
+4,Stage 4 TR1 fully on deck @ final (pre-stow),"TR1+SPMT+Beams (assembly, 100%)",282.8,42.0,-11.849
+4,Stage 4 TR1 fully on deck @ final (pre-stow),Dunnage/Load spreading,10.0,31.0,-0.849
+5,Stage 5 Pre-ballast TR2 ready (SPMT off deck),TR1 (fixed on stools),217.0,42.0,-11.849
+5,Stage 5 Pre-ballast TR2 ready (SPMT off deck),Dunnage/Load spreading,10.0,31.0,-0.849
+6,Stage 6 50% TR2 on deck @ ramp mid (HOLD),TR1 (fixed on stools),217.0,42.0,-11.849
+6,Stage 6 50% TR2 on deck @ ramp mid (HOLD),Dunnage/Load spreading,10.0,31.0,-0.849
+6,Stage 6 50% TR2 on deck @ ramp mid (HOLD),"TR2+SPMT+Beams (assembly, 50%)",141.4,37.0,-6.849
+7,Stage 7 TR2 fully on deck @ final (pre-stow),TR1 (fixed on stools),217.0,42.0,-11.849
+7,Stage 7 TR2 fully on deck @ final (pre-stow),Dunnage/Load spreading,10.0,31.0,-0.849
+7,Stage 7 TR2 fully on deck @ final (pre-stow),"TR2+SPMT+Beams (assembly, 100%)",282.8,40.0,-9.849
+8,Stage 8 Transit (final stow),TR1 (fixed on stools),217.0,42.0,-11.849
+8,Stage 8 Transit (final stow),TR2 (fixed on stools),217.0,40.0,-9.849
+8,Stage 8 Transit (final stow),Dunnage/Load spreading,10.0,31.0,-0.849
+8,Stage 8 Transit (final stow),"SPMT (empty, parked)",54.2,10.0,20.151

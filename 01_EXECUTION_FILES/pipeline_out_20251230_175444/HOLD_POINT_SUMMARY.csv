@@ -1,0 +1,19 @@
+﻿Step,Stage,Tank,Action,Delta_t,Draft_FWD_m,Draft_AFT_m,Tolerance_cm,Critical_Tolerance_cm
+1,Stage 5_PreBallast,VOID3.S,FILL,152.08,2.2,2.7,2.0,4.0
+2,Stage 5_PreBallast,VOID3.P,FILL,147.15,2.2,2.7,2.0,4.0
+3,Stage 5_PreBallast,VOIDDB2.C,FILL,49.09,2.2,2.7,2.0,4.0
+4,Stage 5_PreBallast,FWB2.S,FILL,48.98,2.2,2.7,2.0,4.0
+5,Stage 5_PreBallast,FODB1.P,FILL,13.77,2.2,2.7,2.0,4.0
+6,Stage 5_PreBallast,FODB1.S,FILL,13.77,2.2,2.7,2.0,4.0
+7,Stage 5_PreBallast,FODB1.C,FILL,10.94,2.2,2.7,2.0,4.0
+8,Stage 5_PreBallast,FW1.P,FILL,5.16,2.2,2.7,2.0,4.0
+13,Stage 5_PreBallast,VOIDDB4.P,FILL,2.32,2.2,2.7,2.0,4.0
+14,Stage 6A_Critical (Opt C),FWCARGO2.P,FILL,148.36,2.14,2.64,2.0,4.0
+15,Stage 6A_Critical (Opt C),FWCARGO2.S,FILL,148.36,2.14,2.64,2.0,4.0
+16,Stage 6A_Critical (Opt C),FWCARGO1.S,FILL,148.35,2.14,2.64,2.0,4.0
+17,Stage 6A_Critical (Opt C),FWCARGO1.P,FILL,140.15,2.14,2.64,2.0,4.0
+18,Stage 6A_Critical (Opt C),FWB2.S,DISCHARGE,-70.42999999999999,2.14,2.64,2.0,4.0
+19,Stage 6A_Critical (Opt C),FWB1.P,DISCHARGE,-50.57,2.14,2.64,2.0,4.0
+20,Stage 6A_Critical (Opt C),FWB1.S,DISCHARGE,-50.57,2.14,2.64,2.0,4.0
+21,Stage 6A_Critical (Opt C),FWB2.P,DISCHARGE,-21.45,2.14,2.64,2.0,4.0
+22,Stage 6A_Critical (Opt C),VOID3.P,FILL,4.93,2.14,2.64,2.0,4.0

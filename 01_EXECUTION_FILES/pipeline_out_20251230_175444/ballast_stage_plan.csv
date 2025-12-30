@@ -1,0 +1,23 @@
+﻿Stage,Tank,Action,Weight_t,Start_%,End_%,Time_h
+Stage 2,FODB1.C,Discharge,-11.0,50.0,0.0,0.11
+Stage 2,FW1.P,Discharge,-18.0,77.7,0.0,0.18
+Stage 2,FW1.S,Discharge,-18.0,77.7,0.0,0.18
+Stage 2,FW2.P,Discharge,-10.0,71.8,0.0,0.1
+Stage 2,FW2.S,Discharge,-10.0,71.8,0.0,0.1
+Stage 2,FWB1.S,Discharge,-26.4,100.0,47.8,0.26
+Stage 2,FWB2.P,Discharge,-21.4,19.5,0.0,0.21
+Stage 2,FWB2.S,Discharge,-21.4,19.5,0.0,0.21
+Stage 3,FWB1.P,Discharge,-5.9,100.0,88.4,0.06
+Stage 3,FWB1.S,Discharge,-24.2,47.8,0.0,0.24
+Stage 4,FWB1.P,Discharge,-34.7,88.4,19.8,0.35
+Stage 5,FW1.S,Fill,18.8,0.0,81.0,0.19
+Stage 5,FW2.P,Fill,13.9,0.0,100.0,0.14
+Stage 5,FW2.S,Fill,13.9,0.0,100.0,0.14
+Stage 5,FWB1.P,Discharge,-10.0,19.8,0.0,0.1
+Stage 6C,FODB1.C,Fill,21.9,0.0,100.0,0.22
+Stage 6C,FODB1.P,Fill,13.8,0.0,100.0,0.14
+Stage 6C,FODB1.S,Fill,13.8,0.0,100.0,0.14
+Stage 6C,FW1.P,Fill,23.2,0.0,100.0,0.23
+Stage 6C,FW1.S,Fill,4.4,81.0,100.0,0.04
+Stage 6C,VOIDDB4.P,Fill,2.3,0.0,100.0,0.02
+Stage 6C,VOIDDB4.S,Fill,5.1,0.0,100.0,0.05

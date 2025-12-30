@@ -1,0 +1,23 @@
+﻿Stage,Step,Tank,Action,Start_t,Delta_t,Target_t,Pump_ID,PumpRate_tph,Time_h,Valve_Lineup,Draft_FWD,Draft_AFT,Trim_cm,UKC,Hold_Point,Notes
+Stage 5_PreBallast,1,VOID3.S,FILL,0.0,152.08,152.08,SHIP_PUMP_01,10.0,15.21,"V-VOID3S-FILL,V-VOID3S-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 15.2h exceeds daylight window 12h
+Stage 5_PreBallast,2,VOID3.P,FILL,0.0,147.15,147.15,SHIP_PUMP_01,10.0,14.71,"V-VOID3P-FILL,V-VOID3P-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 29.9h exceeds daylight window 12h
+Stage 5_PreBallast,3,VOIDDB2.C,FILL,0.0,49.09,49.09,SHIP_PUMP_01,10.0,4.91,"V-VOIDDB2C-FILL,V-VOIDDB2C-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 34.8h exceeds daylight window 12h
+Stage 5_PreBallast,4,FWB2.S,FILL,21.45,48.98,70.43,SHIP_PUMP_01,10.0,4.9,"V-FWB2S-FILL,V-FWB2S-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 39.7h exceeds daylight window 12h
+Stage 5_PreBallast,5,FODB1.P,FILL,0.0,13.77,13.77,SHIP_PUMP_01,10.0,1.38,"V-FODB1P-FILL,V-FODB1P-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 41.1h exceeds daylight window 12h
+Stage 5_PreBallast,6,FODB1.S,FILL,0.0,13.77,13.77,SHIP_PUMP_01,10.0,1.38,"V-FODB1S-FILL,V-FODB1S-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 42.5h exceeds daylight window 12h
+Stage 5_PreBallast,7,FODB1.C,FILL,10.95,10.94,21.89,SHIP_PUMP_01,10.0,1.09,"V-FODB1C-FILL,V-FODB1C-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 43.6h exceeds daylight window 12h
+Stage 5_PreBallast,8,FW1.P,FILL,18.0,5.16,23.16,SHIP_PUMP_01,10.0,0.52,"V-FW1P-FILL,V-FW1P-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 44.1h exceeds daylight window 12h
+Stage 5_PreBallast,9,FW1.S,FILL,18.0,5.16,23.16,SHIP_PUMP_01,10.0,0.52,"V-FW1S-FILL,V-FW1S-INLET",2.2,2.7,32.6,8.95,N,WARNING: cumulative time 44.6h exceeds daylight window 12h
+Stage 5_PreBallast,10,VOIDDB4.S,FILL,0.0,5.06,5.06,SHIP_PUMP_01,10.0,0.51,"V-VOIDDB4S-FILL,V-VOIDDB4S-INLET",2.2,2.7,32.6,8.95,N,WARNING: cumulative time 45.1h exceeds daylight window 12h
+Stage 5_PreBallast,11,FW2.P,FILL,10.0,3.92,13.92,SHIP_PUMP_01,10.0,0.39,"V-FW2P-FILL,V-FW2P-INLET",2.2,2.7,32.6,8.95,N,WARNING: cumulative time 45.5h exceeds daylight window 12h
+Stage 5_PreBallast,12,FW2.S,FILL,10.0,3.92,13.92,SHIP_PUMP_01,10.0,0.39,"V-FW2S-FILL,V-FW2S-INLET",2.2,2.7,32.6,8.95,N,WARNING: cumulative time 45.9h exceeds daylight window 12h
+Stage 5_PreBallast,13,VOIDDB4.P,FILL,0.0,2.32,2.32,SHIP_PUMP_01,10.0,0.23,"V-VOIDDB4P-FILL,V-VOIDDB4P-INLET",2.2,2.7,32.6,8.95,Y,WARNING: cumulative time 46.1h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),14,FWCARGO2.P,FILL,0.0,148.36,148.36,SHORE_PUMP,150.0,0.99,"V-FWCARGO2P-FILL,V-FWCARGO2P-INLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 47.1h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),15,FWCARGO2.S,FILL,0.0,148.36,148.36,SHORE_PUMP,150.0,0.99,"V-FWCARGO2S-FILL,V-FWCARGO2S-INLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 48.1h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),16,FWCARGO1.S,FILL,0.0,148.35,148.35,SHORE_PUMP,150.0,0.99,"V-FWCARGO1S-FILL,V-FWCARGO1S-INLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 49.1h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),17,FWCARGO1.P,FILL,0.0,140.15,140.15,SHORE_PUMP,150.0,0.93,"V-FWCARGO1P-FILL,V-FWCARGO1P-INLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 50.0h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),18,FWB2.S,DISCHARGE,70.43,-70.43,0.0,SHORE_PUMP,150.0,0.47,"V-FWB2S-DISCHARGE,V-FWB2S-OUTLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 50.5h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),19,FWB1.P,DISCHARGE,50.57,-50.57,0.0,SHORE_PUMP,150.0,0.34,"V-FWB1P-DISCHARGE,V-FWB1P-OUTLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 50.8h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),20,FWB1.S,DISCHARGE,50.57,-50.57,0.0,SHORE_PUMP,150.0,0.34,"V-FWB1S-DISCHARGE,V-FWB1S-OUTLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 51.2h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),21,FWB2.P,DISCHARGE,21.45,-21.45,0.0,SHORE_PUMP,150.0,0.14,"V-FWB2P-DISCHARGE,V-FWB2P-OUTLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 51.3h exceeds daylight window 12h
+Stage 6A_Critical (Opt C),22,VOID3.P,FILL,147.15,4.93,152.08,SHORE_PUMP,150.0,0.03,"V-VOID3P-FILL,V-VOID3P-INLET",2.14,2.64,72.0,9.01,Y,WARNING: cumulative time 51.4h exceeds daylight window 12h

@@ -1,0 +1,67 @@
+{
+  "created": "20251230_183228",
+  "base_dir": "C:\\AGI TR\\01_EXECUTION_FILES",
+  "out_dir": "C:\\AGI TR\\01_EXECUTION_FILES\\pipeline_out_20251230_183219",
+  "files": [
+    {
+      "name": "PIPELINE_CONSOLIDATED_AGI_20251230_183227.xlsx",
+      "sha256": "53d7f63781cba7376ab235ee4dcd112f07ca2811b1b7b66ba367b72dc6c94961",
+      "size": 122599
+    },
+    {
+      "name": "pipeline_stage_QA.csv",
+      "sha256": "a4bd3f4bd15b15883a7b9a662a661352cb71d1d5fbf3a12dfd19ff1d9d088e9d",
+      "size": 6221
+    },
+    {
+      "name": "stage_table_unified.csv",
+      "sha256": "94e318a5499840f04dfcc8507b799a692e88cd3a12a6b1c8bcdff7297015a3bb",
+      "size": 2061
+    },
+    {
+      "name": "tank_ssot_for_solver.csv",
+      "sha256": "cd38f9321bac7392f69f8f860850bc4c9605ea3c5357ac363e694e6c6cf424a8",
+      "size": 2050
+    },
+    {
+      "name": "hydro_table_for_solver.csv",
+      "sha256": "ace9edd529db5fd878c8d51b9aaceda54fefddb2210deaed4306643c793c1890",
+      "size": 322
+    },
+    {
+      "name": "gate_fail_report.md",
+      "sha256": "780d92ec5d8fe9c6b576f2fc444f93e921e563317e511b284a2ed488f70b3ff6",
+      "size": 10171
+    },
+    {
+      "name": "TUG_Operational_SOP_DNV_ST_N001.md",
+      "sha256": "932bc1c154f827dfc55b0bc4aee590b537f24b26700092c3c5ca6b7675691910",
+      "size": 1564
+    },
+    {
+      "name": "OPS_FINAL_R3_Report_Integrated.md",
+      "sha256": "9e672365b9490febb0f8d4f2867345ccab48c66e0db907704fd95d99fbea56fa",
+      "size": 4734
+    },
+    {
+      "name": "solver_ballast_stage_plan.csv",
+      "sha256": "6d852456c5d3afa6cdcd042fea6e7c3b6a63749e4478ea904b308dc052d4fa8e",
+      "size": 1581
+    },
+    {
+      "name": "solver_ballast_summary.csv",
+      "sha256": "524670c2ad0e717d55f74b959bfcc08ab79fc411e2e648c944118fb6356e50c8",
+      "size": 1195
+    },
+    {
+      "name": "LCT_BUSHRA_AGI_TR_Final_v6_2.xlsx",
+      "sha256": "0e25d5556654957f96a1b866be54341076a00e8e3c979bef1b2ec6742c8d4d63",
+      "size": 125169
+    },
+    {
+      "name": "OPS_FINAL_R3_AGI_Ballast_Integrated.xlsx",
+      "sha256": "7a93ded38775c144ffd03111b1427b3ba08bf45f2f8f06a18bf50e6c384270ea",
+      "size": 14417
+    }
+  ]
+}

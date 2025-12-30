@@ -1,6 +1,6 @@
 # Ballast Pipeline - Complete Options Reference Guide
 
-**Version**: v1.0
+**Version**: v1.1
 **Last Updated**: 2025-12-30
 **Purpose**: Comprehensive reference for all pipeline command-line options
 **Target Audience**: Advanced users, operators, developers
@@ -18,6 +18,9 @@
 7. [Sensor Data Options](#7-sensor-data-options)
 8. [File Path Options](#8-file-path-options)
 9. [Advanced Features Options](#9-advanced-features-options)
+   - [9.5 Wave and Freeboard Options](#95-wave-and-freeboard-options)
+   - [9.6 Tank Operability Options](#96-tank-operability-options)
+   - [9.7 Data Conversion Options](#97-data-conversion-options)
 10. [Debug and Reporting Options](#10-debug-and-reporting-options)
 11. [Script Path Override Options](#11-script-path-override-options)
 12. [Option Combinations and Examples](#12-option-combinations-and-examples)
@@ -52,14 +55,17 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 |----------|--------------|---------|
 | **Site & Profile** | 2 | Site selection and profile configuration |
 | **Step Control** | 4 | Control which steps to execute |
-| **Gate Configuration** | 6 | Set operational limits |
-| **Tide & UKC** | 5 | Configure tide and UKC calculations |
+| **Gate Configuration** | 7 | Set operational limits |
+| **Tide & UKC** | 6 | Configure tide and UKC calculations |
+| **Wave & Freeboard** | 2 | GL Noble Denton freeboard requirements |
 | **Sensor Data** | 2 | Inject current tank levels |
 | **File Paths** | 3 | Customize input/output locations |
 | **Advanced Features** | 3 | Enable optional features |
+| **Tank Operability** | 5 | Stage-specific tank constraints |
+| **Data Conversion** | 2 | Tank/pump rate configuration |
 | **Debug & Reporting** | 3 | Control reporting and debugging |
 | **Script Paths** | 7 | Override default script locations |
-| **Total** | **35+** | Complete pipeline control |
+| **Total** | **47+** | Complete pipeline control |
 
 ---
 
@@ -359,6 +365,18 @@ Maximum forward draft limit (Gate-B). This is the maximum allowed forward draft,
 - Non-critical stages: `N/A` (prevents false failures)
 - Chart Datum reference
 
+**Gate-B Margin Calculation (SSOT)**:
+```
+GateB_FWD_MAX_2p70_CD_Margin_m = 2.70 - Draft_FWD_m_CD
+```
+
+**Where:**
+- `Draft_FWD_m_CD` = `Draft_FWD_m - Forecast_Tide_m` (Chart Datum reference)
+- Positive margin: FWD draft within limit
+- Negative margin: FWD draft exceeds 2.70m (Gate-B violation)
+
+**⚠️ Important:** Always check `Draft_FWD_m_CD` (not `Draft_FWD_m`) when interpreting Gate-B margins.
+
 **Example**:
 ```bash
 python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
@@ -366,10 +384,16 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
   --fwd_max 2.70
 ```
 
+**Example Interpretation**:
+- `Draft_FWD_m` = 2.19m, `Forecast_Tide_m` = 2.0m
+- `Draft_FWD_m_CD` = 2.19 - 2.0 = 0.19m (Chart Datum)
+- `GateB_Margin` = 2.70 - 0.19 = 2.51m ✅ (safe margin)
+
 **Notes**:
 - Critical stage determination: `DEFAULT_CRITICAL_STAGE_REGEX` or profile `critical_stage_list`
 - Always use with `--aft_min` for complete gate configuration
 - Value in meters
+- **Chart Datum reference**: Gate-B uses Chart Datum (tide-adjusted) draft, not absolute draft
 
 ---
 
@@ -520,12 +544,19 @@ Minimum freeboard requirement. Prevents deck wetting and downflooding.
 --freeboard_min_m 0.5
 ```
 
-**Calculation**:
+**Calculation (SSOT)**:
 ```
 Freeboard = D_vessel_m - Draft
 Freeboard_Min = min(Freeboard_FWD, Freeboard_AFT)
 Gate: Freeboard_Min >= freeboard_min_m
 ```
+
+**⚠️ SSOT Gap - Operational Minimum Freeboard**:
+- **Current Implementation**: Default `freeboard_min_m = 0.0` (no operational buffer)
+- **Current Gate**: Only prevents negative freeboard (deck wet)
+- **Missing**: Operational minimum freeboard requirement (e.g., 0.20m, 0.50m for operations)
+- **Recommendation**: Define operational minimum freeboard in SSOT (AGENTS.md) based on operational requirements
+- **When Freeboard = 0.00m**: Deck edge at waterline → requires engineering verification (class acceptance, load-line compliance)
 
 **Enforcement**:
 - Can be enforced as hard constraint (see `--freeboard_min_enforced`)
@@ -538,10 +569,16 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
   --freeboard_min_m 0.0
 ```
 
+**Example (Freeboard = 0.00m - Critical)**:
+- When draft is clipped to `D_vessel` (3.65m), `Freeboard_Min_m = 0.00m`
+- **Risk**: Deck edge at waterline → green water, structural stress
+- **Required**: Engineering verification (class acceptance, load-line compliance)
+
 **Notes**:
 - Value in meters
 - Freeboard is independent of tide (vessel rises with tide)
 - Use with `--freeboard_min_enforced` to enable/disable enforcement
+- **Operational minimum**: Consider setting `--freeboard_min_m` to operational requirement (e.g., 0.20m, 0.50m)
 
 ---
 
@@ -567,6 +604,43 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
   --site AGI \
   --no-freeboard-min-enforced
 ```
+
+---
+
+### 5.8 `--gate_guard_band_cm`
+
+**Type**: Float (centimeters)
+**Default**: `2.0`
+**Required**: No
+
+**Description**:
+Gate guard-band tolerance in centimeters. Provides operational margin for sensor error and fluid dynamics.
+
+**Usage**:
+```bash
+--gate_guard_band_cm 2.0   # Production (default)
+--gate_guard_band_cm 1.0   # Development (minimal margin)
+--gate_guard_band_cm 0.0   # Strict (exact validation)
+```
+
+**Application**:
+- Applied to Gate-A (AFT_MIN_2p70): `AFT >= (2.70 - guard_band/100)` → PASS
+- Applied to Gate-B (FWD_MAX_2p70_critical_only): `FWD <= (2.70 + guard_band/100)` → PASS
+- Production: 2.0cm (operational tolerance)
+- Development: 1.0cm (minimal margin)
+- Strict: 0.0cm (exact validation, no tolerance)
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --gate_guard_band_cm 2.0
+```
+
+**Notes**:
+- Default: 2.0cm (recommended for production)
+- Use 0.0cm only for strict validation
+- Value in centimeters (converted to meters internally)
 
 ---
 
@@ -757,6 +831,41 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 - Value in meters
 - Additional safety margin
 - Recommended: 0.2m - 0.5m
+
+---
+
+### 6.6 `--tide_tol`
+
+**Type**: Float (meters)
+**Default**: `0.10`
+**Required**: No
+
+**Description**:
+Tide margin tolerance (m) for LIMIT vs OK determination. Used in tide verification logic.
+
+**Usage**:
+```bash
+--tide_tol 0.10
+--tide_tol 0.20
+```
+
+**Application**:
+- Used in tide verification: `abs(forecast_tide - required_tide) <= tide_tol` → OK
+- Default: 0.10m (10cm tolerance)
+- Adjust based on operational requirements
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --forecast_tide 1.5 \
+  --tide_tol 0.10
+```
+
+**Notes**:
+- Value in meters
+- Used for tide verification consistency checks
+- Default: 0.10m from `tide_constants.py`
 
 ---
 
@@ -1107,6 +1216,327 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 
 ---
 
+## 9.5 Wave and Freeboard Options
+
+### 9.5.1 `--hmax_wave_m`
+
+**Type**: Float (meters)
+**Default**: `None`
+**Required**: No
+
+**Description**:
+Maximum wave height (m) for GL Noble Denton 0013/ND effective freeboard check.
+
+**Usage**:
+```bash
+--hmax_wave_m 2.0
+--hmax_wave_m 0.30
+```
+
+**Calculation**:
+- With 4-corner monitoring: `Freeboard_Req = 0.50 + 0.50*Hmax`
+- Without monitoring: `Freeboard_Req = 0.80 + 0.50*Hmax`
+
+**Application**:
+- Required for GL Noble Denton 0013/ND freeboard gate
+- Used with `--four_corner_monitoring` to determine freeboard requirement
+- Gate-FB: MWS load-out effective freeboard verification
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --hmax_wave_m 2.0 \
+  --four_corner_monitoring
+```
+
+**Notes**:
+- Value in meters
+- Required for ND freeboard gate (Gate-FB)
+- Use with `--four_corner_monitoring` to reduce requirement
+
+---
+
+### 9.5.2 `--four_corner_monitoring`
+
+**Type**: Flag (boolean)
+**Default**: `False`
+**Required**: No
+
+**Description**:
+Enable 4-corner freeboard monitoring. Reduces GL Noble Denton freeboard requirement.
+
+**Usage**:
+```bash
+--four_corner_monitoring
+```
+
+**Effect**:
+- With monitoring: `Freeboard_Req = 0.50 + 0.50*Hmax`
+- Without monitoring: `Freeboard_Req = 0.80 + 0.50*Hmax`
+- Reduces requirement by 0.30m
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --hmax_wave_m 2.0 \
+  --four_corner_monitoring
+```
+
+**Notes**:
+- Requires `--hmax_wave_m` to be set
+- Reduces ND freeboard requirement by 0.30m
+- Operational requirement: Must implement 4-corner monitoring if flag is set
+
+---
+
+## 9.6 Tank Operability Options
+
+### 9.6.1 `--tank_operability_json`
+
+**Type**: String (file path)
+**Default**: `""`
+**Required**: No
+
+**Description**:
+Tank operability/profile JSON file for PRE_BALLAST_ONLY enforcement. Contains tank operability metadata.
+
+**Usage**:
+```bash
+--tank_operability_json "bplus_inputs/profiles/AGI.json"
+```
+
+**Application**:
+- Used for PRE_BALLAST_ONLY tank mode enforcement
+- Applies stage-specific tank constraints
+- Works with `--operational_stage_regex` to determine operational stages
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --tank_operability_json "bplus_inputs/profiles/AGI.json" \
+  --operational_stage_regex "(6a|critical|ramp|roll|loadout)"
+```
+
+**Notes**:
+- Can use same file as `--profile_json`
+- Contains `tank_operability` section in profile JSON
+- Used for stage-specific tank mode enforcement
+
+---
+
+### 9.6.2 `--operational_stage_regex`
+
+**Type**: String (regex pattern)
+**Default**: `"(6a|critical|ramp|roll|loadout)"`
+**Required**: No
+
+**Description**:
+Regex pattern to identify operational stages for PRE_BALLAST_ONLY enforcement.
+
+**Usage**:
+```bash
+--operational_stage_regex "(6a|critical|ramp|roll|loadout)"
+--operational_stage_regex "(stage.*6a|critical)"
+```
+
+**Application**:
+- Used to determine which stages are "operational"
+- PRE_BALLAST_ONLY tanks are disabled on operational stages (unless `--disable_preballast_only_on_operational_stages` is set)
+- Default matches: Stage 6A_Critical, ramp, roll, loadout stages
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --tank_operability_json "bplus_inputs/profiles/AGI.json" \
+  --operational_stage_regex "(6a|critical|ramp|roll|loadout)"
+```
+
+**Notes**:
+- Case-insensitive matching
+- Default pattern covers most operational stages
+- Customize based on stage naming convention
+
+---
+
+### 9.6.3 `--disable_preballast_only_on_operational_stages`
+
+**Type**: Flag (boolean)
+**Default**: `False`
+**Required**: No
+
+**Description**:
+Disable PRE_BALLAST_ONLY enforcement on operational stages. Allows PRE_BALLAST_ONLY tanks to be used during operational stages.
+
+**Usage**:
+```bash
+--disable_preballast_only_on_operational_stages
+```
+
+**Behavior**:
+- Default: PRE_BALLAST_ONLY tanks are disabled on operational stages
+- With flag: PRE_BALLAST_ONLY tanks can be used on operational stages
+- Use when operational stages need access to PRE_BALLAST_ONLY tanks
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --tank_operability_json "bplus_inputs/profiles/AGI.json" \
+  --operational_stage_regex "(6a|critical)" \
+  --disable_preballast_only_on_operational_stages
+```
+
+**Notes**:
+- Requires `--tank_operability_json`
+- Overrides default PRE_BALLAST_ONLY behavior
+- Use with caution (verify operational safety)
+
+---
+
+### 9.6.4 `--exclude_fwd_tanks`
+
+**Type**: Flag (boolean)
+**Default**: `False`
+**Required**: No
+
+**Description**:
+Exclude FWD tanks (x_from_mid_m < 0) from solver by setting use_flag=N after profile overrides.
+
+**Usage**:
+```bash
+--exclude_fwd_tanks
+```
+
+**Application**:
+- Global exclusion: Sets `use_flag=N` for all FWD tanks (x_from_mid_m < 0)
+- Applied after profile overrides
+- Use when FWD tanks should not be used in any stage
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --exclude_fwd_tanks
+```
+
+**Notes**:
+- Global exclusion (all stages)
+- Applied after profile overrides
+- Use `--exclude_fwd_tanks_aftmin_only` for stage-specific exclusion
+
+---
+
+### 9.6.5 `--exclude_fwd_tanks_aftmin_only`
+
+**Type**: Flag (boolean)
+**Default**: `False`
+**Required**: No
+
+**Description**:
+For AFT-min violating stages, set FWD tanks to DISCHARGE_ONLY (fill prohibited, discharge allowed).
+
+**Usage**:
+```bash
+--exclude_fwd_tanks_aftmin_only
+```
+
+**Application**:
+- Stage-specific: Only applies to stages violating AFT_MIN
+- Sets FWD tanks to DISCHARGE_ONLY mode (fill prohibited, discharge allowed)
+- Uses stage flag `Ban_FWD_Tanks=True` for per-stage handling
+- Prevents using FWD tanks to raise AFT draft (physical constraint)
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --exclude_fwd_tanks_aftmin_only
+```
+
+**Notes**:
+- Stage-specific (AFT-min violating stages only)
+- Sets FWD tanks to DISCHARGE_ONLY (not BLOCKED)
+- Prevents incorrect use of FWD tanks for AFT draft correction
+- Recommended for AFT ballast optimization scenarios
+
+---
+
+## 9.7 Data Conversion Options
+
+### 9.7.1 `--pump_rate`
+
+**Type**: Float (tonnes per hour)
+**Default**: `100.0`
+**Required**: No
+
+**Description**:
+Default pump rate (t/h) used when generating solver tank CSV. Used for pump time calculations.
+
+**Usage**:
+```bash
+--pump_rate 100.0   # Hired/shore pump (default)
+--pump_rate 10.0    # Ship pump
+```
+
+**Application**:
+- Used in `tank_ssot_for_solver.csv` generation
+- Default pump rate for tanks (unless overridden by profile)
+- Used for PumpTime_h calculations in ballast sequence
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --pump_rate 100.0
+```
+
+**Notes**:
+- Value in tonnes per hour (t/h)
+- Default: 100.0 t/h (hired/shore pump nominal)
+- Ship pump: 10.0 t/h (from AGENTS.md SSOT)
+- Can be overridden per-tank in profile JSON
+
+---
+
+### 9.7.2 `--tank_keywords`
+
+**Type**: String (comma-separated keywords)
+**Default**: `"BALLAST,VOID,FWB,FW,DB"`
+**Required**: No
+
+**Description**:
+Comma-separated keywords to mark `use_flag=Y` in tank conversion. Tanks matching these keywords are marked as usable.
+
+**Usage**:
+```bash
+--tank_keywords "BALLAST,VOID,FWB,FW,DB"
+--tank_keywords "BALLAST,VOID"
+```
+
+**Application**:
+- Used in `convert_tank_catalog_json_to_solver_csv()`
+- Tanks with names containing keywords are set to `use_flag=Y`
+- Default keywords cover standard ballast/void tanks
+
+**Example**:
+```bash
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+  --site AGI \
+  --tank_keywords "BALLAST,VOID,FWB,FW,DB"
+```
+
+**Notes**:
+- Comma-separated keywords (no spaces after commas)
+- Case-insensitive matching
+- Default: "BALLAST,VOID,FWB,FW,DB" (covers standard ballast tanks)
+- Customize based on tank naming convention
+
+---
+
 ## 10. Debug and Reporting Options
 
 ### 10.1 `--no_gate_report`
@@ -1366,12 +1796,24 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
   --forecast_tide 1.5 \
   --depth_ref 10.0 \
   --ukc_min 2.0 \
+  --squat 0.15 \
+  --safety_allow 0.20 \
+  --tide_tol 0.10 \
+  --hmax_wave_m 2.0 \
+  --four_corner_monitoring \
+  --gate_guard_band_cm 2.0 \
   --current_t_csv "sensors/current_t.csv" \
   --current_t_strategy override \
   --spmt_config "spmt v1/spmt_shuttle_example_config_AGI_FR_M.json" \
   --enable-sequence \
   --enable-valve-lineup \
   --stateful_solver \
+  --state_trace_csv "solver_state_trace.csv" \
+  --tank_operability_json "bplus_inputs/profiles/AGI.json" \
+  --operational_stage_regex "(6a|critical|ramp|roll|loadout)" \
+  --exclude_fwd_tanks_aftmin_only \
+  --pump_rate 100.0 \
+  --tank_keywords "BALLAST,VOID,FWB,FW,DB" \
   --debug_report
 ```
 
@@ -1381,6 +1823,7 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 - Ballast sequence files
 - Valve lineup
 - Debug reports
+- Stateful solver trace (`solver_state_trace.csv`)
 
 ---
 
@@ -1463,6 +1906,7 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 - `--trim_limit_enforced` / `--no-trim-limit-enforced`
 - `--freeboard_min_m <m>`
 - `--freeboard_min_enforced` / `--no-freeboard-min-enforced`
+- `--gate_guard_band_cm <cm>`
 
 ### Tide & UKC
 - `--forecast_tide <m>`
@@ -1470,6 +1914,15 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 - `--ukc_min <m>`
 - `--squat <m>`
 - `--safety_allow <m>`
+- `--tide_tol <m>`
+- `--tide_table <path>`
+- `--stage_schedule <path>`
+- `--stage_tide_csv <path>`
+- `--tide_strategy keep_csv|override_from_table`
+
+### Wave and Freeboard
+- `--hmax_wave_m <m>`
+- `--four_corner_monitoring`
 
 ### Sensor Data
 - `--current_t_csv <path>`
@@ -1490,6 +1943,70 @@ python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_
 - `--headers-registry <path>`
 - `--head-registry <path>`
 - `--auto-head-guard`
+
+### Tank Operability
+- `--tank_operability_json <path>`
+- `--operational_stage_regex <regex>`
+- `--disable_preballast_only_on_operational_stages`
+- `--exclude_fwd_tanks`
+- `--exclude_fwd_tanks_aftmin_only`
+
+### Data Conversion
+- `--pump_rate <t/h>`
+- `--tank_keywords <keywords>`
+
+### Stateful Solver
+- `--stateful_solver` / `--stateful`
+- `--reset_tank_state <list|regex>`
+- `--state_trace_csv <path>`
+
+---
+
+## Appendix B: Draft Clipping Safety Warning
+
+### ⚠️ Critical Safety Warning - Draft Clipping
+
+**When Draft Exceeds D_vessel (3.65m)**:
+
+The pipeline automatically clips draft values that exceed `D_vessel` (3.65m, molded depth) to prevent impossible values. However, this masking requires careful interpretation.
+
+**Example (Stage 6C)**:
+- **Input**: `Draft_FWD_m = 3.80m`, `Draft_AFT_m = 3.80m` (exceeds D_vessel = 3.65m)
+- **Clipped**: `Draft_FWD_m = 3.65m`, `Draft_AFT_m = 3.65m`
+- **Result**: `Freeboard_Min_m = 0.00m` (deck edge at waterline)
+
+**⚠️ Critical Safety Warning**:
+
+1. **Clipping Masks Input Validity Issues**:
+   - Input draft 3.80m exceeding D_vessel indicates potential:
+     - TR position error
+     - Calculation error
+     - Structural concern
+
+2. **Freeboard = 0.00m Risk**:
+   - Deck edge at waterline → green water risk
+   - Structural stress at deck edge
+   - Requires engineering verification
+
+3. **Required Actions**:
+   - **If Input Invalid**: FAIL - Correct TR position or calculation
+   - **If Input Valid**: VERIFY - Requires engineering approval:
+     - Class acceptance documentation
+     - Load-line compliance verification
+     - Structural analysis approval
+
+**Pipeline Log Warning**:
+```
+[WARNING] Draft values clipped to D_vessel (3.65m) for 1 stages:
+  - Stage 6C: FWD 3.80 -> 3.65m, AFT 3.80 -> 3.65m
+  ⚠️ PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m
+  → Requires engineering verification (class acceptance, load-line compliance)
+```
+
+**Documentation Requirement**:
+- Approval packages must explicitly state when draft clipping occurred
+- Engineering justification required for freeboard = 0.00m conditions
+- Load-line class acceptance documentation required if clipping applied
 
 ---
 

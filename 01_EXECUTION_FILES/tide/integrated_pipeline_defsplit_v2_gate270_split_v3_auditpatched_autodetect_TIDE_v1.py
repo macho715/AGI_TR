@@ -1699,6 +1699,41 @@ def generate_gate_fail_report_md(
             heuristics.append(
                 "- **Freeboard_Min_m < 0**: 일부 Stage에서 Draft가 Molded Depth를 초과(또는 입력/계산 불일치)했습니다. Stage 입력/하중/수조선 데이터 재검증 필요."
             )
+        elif pd.notna(fb_min) and abs(float(fb_min)) < 1e-3:
+            # Check for zero freeboard (deck edge at waterline)
+            # This can occur due to draft clipping or natural condition
+            zero_fb_mask = (
+                pd.to_numeric(qa["Freeboard_Min_m"], errors="coerce") < 1e-3
+            )
+            # Additional check: Draft = D_vessel indicates clipping likely occurred
+            if "D_vessel_m" in qa.columns and "Draft_FWD_m" in qa.columns:
+                dv = pd.to_numeric(qa["D_vessel_m"], errors="coerce")
+                dfwd = pd.to_numeric(qa["Draft_FWD_m"], errors="coerce")
+                daft = pd.to_numeric(qa["Draft_AFT_m"], errors="coerce")
+                # Draft equals D_vessel suggests clipping (or natural limit)
+                draft_at_limit = (
+                    (abs(dfwd - dv) < 1e-3) | (abs(daft - dv) < 1e-3)
+                ) & zero_fb_mask
+                zero_fb_mask = zero_fb_mask & draft_at_limit
+
+            if "Stage" in qa.columns:
+                zero_fb_stages = (
+                    qa.loc[zero_fb_mask, "Stage"]
+                    .dropna()
+                    .astype(str)
+                    .unique()
+                    .tolist()
+                )
+            else:
+                zero_fb_stages = []
+            if zero_fb_stages:
+                heuristics.append(
+                    "- **⚠️ Freeboard_Min_m = 0.00m (Draft Clipping)**: Stage "
+                    + ", ".join(zero_fb_stages)
+                    + "에서 Draft가 D_vessel을 초과하여 클리핑되었습니다. "
+                    + "Freeboard = 0.00m은 deck edge가 waterline에 위치함을 의미하며, "
+                    + "engineering verification (class acceptance, load-line compliance)이 필요합니다."
+                )
 
     if "Gate_UKC" in qa.columns:
         ukc_vals = set(qa["Gate_UKC"].astype(str).str.upper().unique().tolist())
@@ -2761,6 +2796,7 @@ def build_stage_table_from_stage_results(
         print(
             f"[WARNING] Draft values clipped to D_vessel ({d_vessel_m}m) for {len(clipped_stages)} stages:"
         )
+        zero_freeboard_stages: List[str] = []
         for stage_name, fwd_raw, aft_raw, fwd_clipped, aft_clipped in zip(
             clipped_stages,
             draft_fwd_raw[clipped_mask],
@@ -2773,6 +2809,28 @@ def build_stage_table_from_stage_results(
                     f"  - {stage_name}: FWD {fwd_raw:.2f} -> {fwd_clipped:.2f}m, "
                     f"AFT {aft_raw:.2f} -> {aft_clipped:.2f}m"
                 )
+                if (
+                    abs(fwd_clipped - float(d_vessel_m)) < 1e-3
+                    or abs(aft_clipped - float(d_vessel_m)) < 1e-3
+                ):
+                    zero_freeboard_stages.append(str(stage_name))
+
+        if zero_freeboard_stages:
+            print(
+                "[CRITICAL] PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m (deck edge at waterline) "
+                f"for {len(zero_freeboard_stages)} stage(s):"
+            )
+            for stage_name in zero_freeboard_stages:
+                print(
+                    f"  - {stage_name}: Draft = D_vessel ({d_vessel_m}m) -> Freeboard = 0.00m"
+                )
+            print(
+                "[ACTION REQUIRED] Engineering verification required:\n"
+                "  1. Validate input: Check TR position, cargo weight, and stage calculations\n"
+                "  2. If input is valid: Requires class acceptance and load-line compliance documentation\n"
+                "  3. Risk mitigation: Green water risk, structural stress at deck edge\n"
+                "  4. Approval packages must explicitly state draft clipping and justify freeboard = 0.00m"
+            )
 
     out = pd.DataFrame(
         {

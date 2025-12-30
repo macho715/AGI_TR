@@ -1,0 +1,23 @@
+﻿Stage,Tank,Action,Delta_t,PumpRate_tph,Priority
+Stage 5_PreBallast,VOID3.S,FILL,152.08,10.0,2
+Stage 5_PreBallast,VOID3.P,FILL,147.15,10.0,2
+Stage 5_PreBallast,FWB2.S,FILL,48.98,10.0,2
+Stage 5_PreBallast,VOIDDB2.C,FILL,49.09,10.0,2
+Stage 5_PreBallast,FODB1.P,FILL,13.77,10.0,2
+Stage 5_PreBallast,FODB1.S,FILL,13.77,10.0,2
+Stage 5_PreBallast,FODB1.C,FILL,10.94,10.0,2
+Stage 5_PreBallast,FW1.P,FILL,5.16,10.0,2
+Stage 5_PreBallast,FW1.S,FILL,5.16,10.0,2
+Stage 5_PreBallast,VOIDDB4.S,FILL,5.06,10.0,2
+Stage 5_PreBallast,FW2.P,FILL,3.92,10.0,2
+Stage 5_PreBallast,FW2.S,FILL,3.92,10.0,2
+Stage 5_PreBallast,VOIDDB4.P,FILL,2.32,10.0,2
+Stage 6A_Critical (Opt C),FWCARGO1.S,FILL,148.35,150.0,1
+Stage 6A_Critical (Opt C),FWCARGO2.P,FILL,148.36,150.0,1
+Stage 6A_Critical (Opt C),FWCARGO2.S,FILL,148.36,150.0,1
+Stage 6A_Critical (Opt C),FWCARGO1.P,FILL,140.15,150.0,1
+Stage 6A_Critical (Opt C),FWB2.S,DISCHARGE,-70.43,150.0,1
+Stage 6A_Critical (Opt C),FWB1.P,DISCHARGE,-50.57,150.0,1
+Stage 6A_Critical (Opt C),FWB1.S,DISCHARGE,-50.57,150.0,1
+Stage 6A_Critical (Opt C),FWB2.P,DISCHARGE,-21.45,150.0,1
+Stage 6A_Critical (Opt C),VOID3.P,FILL,4.93,150.0,1

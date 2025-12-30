@@ -1,0 +1,19 @@
+{
+  "file": "BALLAST_EXEC.csv",
+  "deliverable_id": "BALLAST_EXEC_CSV",
+  "tidying": {
+    "errors": [],
+    "warnings": []
+  },
+  "validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "cross_validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "llm_context": "| Stage                     |   Step | Tank       | Action    |   Start_t |   Target_t |   Delta_t |   Time_h |\n|:--------------------------|-------:|:-----------|:----------|----------:|-----------:|----------:|---------:|\n| Stage 5_PreBallast        |      1 | VOID3.S    | FILL      |      0    |     152.08 |    152.08 |    15.21 |\n| Stage 5_PreBallast        |      2 | VOID3.P    | FILL      |      0    |     147.15 |    147.15 |    14.71 |\n| Stage 5_PreBallast        |      3 | VOIDDB2.C  | FILL      |      0    |      49.09 |     49.09 |     4.91 |\n| Stage 5_PreBallast        |      4 | FWB2.S     | FILL      |     21.45 |      70.43 |     48.98 |     4.9  |\n| Stage 5_PreBallast        |      5 | FODB1.P    | FILL      |      0    |      13.77 |     13.77 |     1.38 |\n| Stage 5_PreBallast        |      6 | FODB1.S    | FILL      |      0    |      13.77 |     13.77 |     1.38 |\n| Stage 5_PreBallast        |      7 | FODB1.C    | FILL      |     10.95 |      21.89 |     10.94 |     1.09 |\n| Stage 5_PreBallast        |      8 | FW1.P      | FILL      |     18    |      23.16 |      5.16 |     0.52 |\n| Stage 5_PreBallast        |      9 | FW1.S      | FILL      |     18    |      23.16 |      5.16 |     0.52 |\n| Stage 5_PreBallast        |     10 | VOIDDB4.S  | FILL      |      0    |       5.06 |      5.06 |     0.51 |\n| Stage 5_PreBallast        |     11 | FW2.P      | FILL      |     10    |      13.92 |      3.92 |     0.39 |\n| Stage 5_PreBallast        |     12 | FW2.S      | FILL      |     10    |      13.92 |      3.92 |     0.39 |\n| Stage 5_PreBallast        |     13 | VOIDDB4.P  | FILL      |      0    |       2.32 |      2.32 |     0.23 |\n| Stage 6A_Critical (Opt C) |     14 | FWCARGO2.P | FILL      |      0    |     148.36 |    148.36 |     0.99 |\n| Stage 6A_Critical (Opt C) |     15 | FWCARGO2.S | FILL      |      0    |     148.36 |    148.36 |     0.99 |\n| Stage 6A_Critical (Opt C) |     16 | FWCARGO1.S | FILL      |      0    |     148.35 |    148.35 |     0.99 |\n| Stage 6A_Critical (Opt C) |     17 | FWCARGO1.P | FILL      |      0    |     140.15 |    140.15 |     0.93 |\n| Stage 6A_Critical (Opt C) |     18 | FWB2.S     | DISCHARGE |     70.43 |       0    |    -70.43 |     0.47 |\n| Stage 6A_Critical (Opt C) |     19 | FWB1.P     | DISCHARGE |     50.57 |       0    |    -50.57 |     0.34 |\n| Stage 6A_Critical (Opt C) |     20 | FWB1.S     | DISCHARGE |     50.57 |       0    |    -50.57 |     0.34 |\n| Stage 6A_Critical (Opt C) |     21 | FWB2.P     | DISCHARGE |     21.45 |       0    |    -21.45 |     0.14 |\n| Stage 6A_Critical (Opt C) |     22 | VOID3.P    | FILL      |    147.15 |     152.08 |      4.93 |     0.03 |",
+  "validated_count": 22,
+  "total_rows": 22
+}

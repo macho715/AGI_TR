@@ -1,0 +1,28 @@
+﻿Stage,Tank,Action,Delta_t,PumpTime_h
+Stage 5_PreBallast,VOID3.S,FILL,152.08,1.52
+Stage 5_PreBallast,VOID3.P,FILL,147.15,1.47
+Stage 5_PreBallast,FWB2.S,FILL,48.98,0.49
+Stage 5_PreBallast,VOIDDB2.C,FILL,49.09,0.49
+Stage 5_PreBallast,FODB1.P,FILL,13.77,0.14
+Stage 5_PreBallast,FODB1.S,FILL,13.77,0.14
+Stage 5_PreBallast,FODB1.C,FILL,10.94,0.11
+Stage 5_PreBallast,FW1.P,FILL,5.16,0.05
+Stage 5_PreBallast,FW1.S,FILL,5.16,0.05
+Stage 5_PreBallast,VOIDDB4.S,FILL,5.06,0.05
+Stage 5_PreBallast,FW2.P,FILL,3.92,0.04
+Stage 5_PreBallast,FW2.S,FILL,3.92,0.04
+Stage 5_PreBallast,VOIDDB4.P,FILL,2.32,0.02
+Stage 6A_Critical (Opt C),VOID3.S,FILL,152.08,1.52
+Stage 6A_Critical (Opt C),FWB2.S,FILL,88.53,0.89
+Stage 6A_Critical (Opt C),VOID3.P,FILL,73.65,0.74
+Stage 6A_Critical (Opt C),VOIDDB2.C,FILL,49.09,0.49
+Stage 6A_Critical (Opt C),FWB2.P,FILL,28.8,0.29
+Stage 6A_Critical (Opt C),FODB1.P,FILL,13.77,0.14
+Stage 6A_Critical (Opt C),FODB1.S,FILL,13.77,0.14
+Stage 6A_Critical (Opt C),FODB1.C,FILL,10.94,0.11
+Stage 6A_Critical (Opt C),FW1.P,FILL,5.16,0.05
+Stage 6A_Critical (Opt C),FW1.S,FILL,5.16,0.05
+Stage 6A_Critical (Opt C),VOIDDB4.S,FILL,5.06,0.05
+Stage 6A_Critical (Opt C),FW2.P,FILL,3.92,0.04
+Stage 6A_Critical (Opt C),FW2.S,FILL,3.92,0.04
+Stage 6A_Critical (Opt C),VOIDDB4.P,FILL,2.32,0.02

@@ -515,6 +515,15 @@ freeboard_aft = d_vessel_m - daft
 freeboard_min = min(freeboard_fwd, freeboard_aft)
 ```
 
+**⚠️ SSOT Gap - Operational Minimum Freeboard:**
+
+- **Current Implementation:** Geometric definition only (`Freeboard = D_vessel - Draft`) ✓
+- **Gate Check:** Only prevents negative freeboard (`Freeboard_Min_m >= -tol_m`)
+- **Missing:** Operational minimum freeboard requirement not defined in SSOT (AGENTS.md)
+- **Default `freeboard_min_m = 0.0`:** No operational buffer (only prevents deck wet)
+- **Recommendation:** Define operational minimum freeboard in SSOT (e.g., 0.20m, 0.50m for operations)
+- **Documentation Requirement:** When `freeboard = 0.00m`, explicitly state whether this is acceptable or requires mitigation
+
 **UKC (tide dependent):**
 
 ```python
@@ -817,15 +826,33 @@ freeboard_min = min(freeboard_fwd, freeboard_aft)
 ```
 [WARNING] Draft values clipped to D_vessel (3.65m) for 1 stages:
   - Stage 6C: FWD 3.80 -> 3.65m, AFT 3.80 -> 3.65m
+[CRITICAL] PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m (deck edge at waterline) for 1 stage(s):
+  - Stage 6C: Draft = D_vessel (3.65m) -> Freeboard = 0.00m
+[ACTION REQUIRED] Engineering verification required:
+  1. Validate input: Check TR position, cargo weight, and stage calculations
+  2. If input is valid: Requires class acceptance and load-line compliance documentation
+  3. Risk mitigation: Green water risk, structural stress at deck edge
+  4. Approval packages must explicitly state draft clipping and justify freeboard = 0.00m
 ```
 
 ### 2.9.3 Freeboard = 0.00m Risk and Mitigation
+
+**⚠️ Critical Safety Warning:**
+
+**Clipping vs. Physical Judgment:**
+
+- **Clipping masks input validity issues:** Input draft exceeding D_vessel indicates potential input error or structural concern
+- **Freeboard = 0.00m risk:** Deck edge at waterline → green water risk, structural stress
+- **Recommendation:** Draft exceeding D_vessel should trigger:
+  1. **FAIL**: If input is invalid (TR position error, calculation error)
+  2. **VERIFY**: If input is valid but requires engineering approval (class acceptance, load-line verification)
 
 **Risk:**
 
 - Draft = D_vessel → **Deck edge at waterline**
 - Possible **green water** (deck wet) due to waves/swell
 - Cargo damage, safety risk
+- **Structural stress** at deck edge
 
 **Mitigation:**
 

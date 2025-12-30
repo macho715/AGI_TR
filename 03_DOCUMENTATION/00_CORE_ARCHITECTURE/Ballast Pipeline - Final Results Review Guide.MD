@@ -246,6 +246,56 @@ Stage 6A_Critical,False,True,4.01,1.01
 - Stage 6A_Critical: Gate-A FAIL, Gate-B PASS, UKC 4.01m (safe), Freeboard 1.01m (safe)
 - **Action Required**: Stage 6A_Critical Gate-A violation needs mitigation
 
+#### ⚠️ Draft Clipping Warning
+
+**When Draft Exceeds D_vessel (3.65m)**:
+
+The pipeline automatically clips draft values that exceed `D_vessel` (3.65m, molded depth) to prevent impossible values. However, this masking requires careful interpretation.
+
+**Example (Stage 6C)**:
+```csv
+Stage,Draft_FWD_m,Draft_AFT_m,Freeboard_Min_m
+Stage 6C,3.65,3.65,0.00
+```
+
+**What Happened**:
+- **Input**: `Draft_FWD_m = 3.80m`, `Draft_AFT_m = 3.80m` (exceeds D_vessel = 3.65m)
+- **Clipped**: `Draft_FWD_m = 3.65m`, `Draft_AFT_m = 3.65m`
+- **Result**: `Freeboard_Min_m = 0.00m` (deck edge at waterline)
+
+**⚠️ Critical Safety Warning**:
+
+1. **Clipping Masks Input Validity Issues**:
+   - Input draft 3.80m exceeding D_vessel indicates potential:
+     - TR position error
+     - Calculation error
+     - Structural concern
+
+2. **Freeboard = 0.00m Risk**:
+   - Deck edge at waterline → green water risk
+   - Structural stress at deck edge
+   - Requires engineering verification
+
+3. **Required Actions**:
+   - **If Input Invalid**: FAIL - Correct TR position or calculation
+   - **If Input Valid**: VERIFY - Requires engineering approval:
+     - Class acceptance documentation
+     - Load-line compliance verification
+     - Structural analysis approval
+
+**Pipeline Log Warning**:
+```
+[WARNING] Draft values clipped to D_vessel (3.65m) for 1 stages:
+  - Stage 6C: FWD 3.80 -> 3.65m, AFT 3.80 -> 3.65m
+  ⚠️ PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m
+  → Requires engineering verification (class acceptance, load-line compliance)
+```
+
+**Documentation Requirement**:
+- Approval packages must explicitly state when draft clipping occurred
+- Engineering justification required for freeboard = 0.00m conditions
+- Load-line class acceptance documentation required if clipping applied
+
 ---
 
 ### 3.5 `BALLAST_EXEC.csv` - Execution Sequence
@@ -348,6 +398,18 @@ GateA_AFT_MIN_2p70_Margin_m: -0.54
 - Only applies to critical stages (Stage 5_PreBallast, Stage 6A_Critical)
 - Non-critical stages show `N/A`
 
+**Margin Calculation (SSOT)**:
+```
+GateB_FWD_MAX_2p70_CD_Margin_m = 2.70 - Draft_FWD_m_CD
+```
+
+**Where:**
+- `Draft_FWD_m_CD` = `Draft_FWD_m - Forecast_Tide_m` (Chart Datum reference)
+- Positive margin: FWD draft within limit
+- Negative margin: FWD draft exceeds 2.70m (Gate-B violation)
+
+**⚠️ Important:** Always check `Draft_FWD_m_CD` (not `Draft_FWD_m`) when interpreting Gate-B margins.
+
 **Margin Interpretation**:
 - Positive margin: Safe margin below limit
 - Negative margin: Violation amount
@@ -357,8 +419,14 @@ GateA_AFT_MIN_2p70_Margin_m: -0.54
 GateB_FWD_MAX_2p70_CD_PASS: True
 GateB_FWD_MAX_2p70_CD_Margin_m: 2.56
 GateB_FWD_MAX_2p70_CD_applicable: True
+Draft_FWD_m: 2.19
+Forecast_Tide_m: 2.0
+Draft_FWD_m_CD: 0.19 (2.19 - 2.0)
 ```
-**Meaning**: FWD = 0.14m (2.56m below 2.70m limit) ✅
+**Meaning**:
+- `Draft_FWD_m_CD` = 0.19m (Chart Datum)
+- `GateB_Margin` = 2.70 - 0.19 = 2.51m ✅
+- FWD draft is 2.51m below 2.70m limit (safe margin)
 
 ---
 
@@ -370,11 +438,18 @@ GateB_FWD_MAX_2p70_CD_applicable: True
 - `OK`: Freeboard ≥ requirement ✅
 - `NG`: Freeboard < requirement ❌
 
-**Calculation**:
+**Calculation (SSOT)**:
 ```
 Freeboard = D_vessel_m - Draft
 Freeboard_Min = min(Freeboard_FWD, Freeboard_AFT)
 ```
+
+**⚠️ SSOT Gap - Operational Minimum Freeboard**:
+- **Current Implementation**: Default `freeboard_min_m = 0.0` (no operational buffer)
+- **Current Gate**: Only prevents negative freeboard (deck wet)
+- **Missing**: Operational minimum freeboard requirement (e.g., 0.20m, 0.50m for operations)
+- **Recommendation**: Define operational minimum freeboard in SSOT (AGENTS.md) based on operational requirements
+- **When Freeboard = 0.00m**: Deck edge at waterline → requires engineering verification (class acceptance, load-line compliance)
 
 **Example**:
 ```
@@ -382,6 +457,16 @@ Freeboard_Min_m: 0.95
 Gate_Freeboard_MIN: OK
 ```
 **Meaning**: Minimum freeboard 0.95m (safe) ✅
+
+**Example (Freeboard = 0.00m - Critical)**:
+```
+Freeboard_Min_m: 0.00
+Gate_Freeboard_MIN: OK (geometric only)
+```
+**Meaning**:
+- Deck edge at waterline ⚠️
+- **Requires**: Engineering verification (class acceptance, load-line compliance)
+- **Risk**: Green water, structural stress
 
 ---
 
