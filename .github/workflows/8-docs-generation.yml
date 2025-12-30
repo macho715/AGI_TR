@@ -1,0 +1,180 @@
+name: Documentation Generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '01_EXECUTION_FILES/**/*.py'
+      - '03_DOCUMENTATION/**/*.md'
+      - '.github/workflows/8-docs-generation.yml'
+  workflow_dispatch:
+
+jobs:
+  generate-api-docs:
+    name: Generate API Documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r 01_EXECUTION_FILES/requirements.txt
+          pip install pdoc3 mkdocs mkdocs-material
+      
+      - name: Generate API documentation with pdoc
+        run: |
+          mkdir -p docs/api
+          
+          # Generate HTML documentation
+          cd 01_EXECUTION_FILES
+          pdoc --html --output-dir ../docs/api --force . || true
+          
+          echo "✅ API documentation generated"
+      
+      - name: Generate module overview
+        run: |
+          python << 'PYEOF'
+          from pathlib import Path
+          import ast
+          
+          def extract_docstrings(file_path):
+              try:
+                  with open(file_path) as f:
+                      tree = ast.parse(f.read())
+                  
+                  module_doc = ast.get_docstring(tree)
+                  functions = []
+                  classes = []
+                  
+                  for node in ast.walk(tree):
+                      if isinstance(node, ast.FunctionDef):
+                          doc = ast.get_docstring(node)
+                          functions.append((node.name, doc or "No description"))
+                      elif isinstance(node, ast.ClassDef):
+                          doc = ast.get_docstring(node)
+                          classes.append((node.name, doc or "No description"))
+                  
+                  return module_doc, functions, classes
+              except:
+                  return None, [], []
+          
+          # Generate module index
+          output = ["# AGI_TR API Reference\n", "## Module Overview\n"]
+          
+          code_dir = Path('01_EXECUTION_FILES')
+          for py_file in sorted(code_dir.rglob('*.py')):
+              if '__pycache__' in str(py_file) or py_file.name.startswith('test_'):
+                  continue
+              
+              rel_path = py_file.relative_to(code_dir)
+              module_doc, functions, classes = extract_docstrings(py_file)
+              
+              output.append(f"\n### {rel_path}\n")
+              if module_doc:
+                  output.append(f"{module_doc}\n")
+              
+              if classes:
+                  output.append("\n**Classes:**\n")
+                  for name, doc in classes[:5]:  # Limit to 5
+                      output.append(f"- `{name}`: {doc.split(chr(10))[0] if doc else 'No description'}\n")
+              
+              if functions:
+                  output.append("\n**Functions:**\n")
+                  for name, doc in functions[:5]:  # Limit to 5
+                      output.append(f"- `{name}()`: {doc.split(chr(10))[0] if doc else 'No description'}\n")
+          
+          with open('docs/API_REFERENCE.md', 'w') as f:
+              f.writelines(output)
+          
+          print("✅ Module overview generated")
+          PYEOF
+      
+      - name: Generate project structure documentation
+        run: |
+          cat > docs/PROJECT_STRUCTURE.md << 'EOF'
+          # AGI_TR Project Structure
+          
+          ## Directory Layout
+          
+          ```
+          AGI_TR/
+          ├── 01_EXECUTION_FILES/      # Main execution scripts
+          │   ├── ssot/                # SSOT modules
+          │   ├── tide/                # Tide calculation
+          │   ├── spmt v1/             # SPMT integration
+          │   └── bplus_inputs/        # B+ input data
+          ├── 02_RAW_DATA/             # Raw data files
+          │   ├── profiles/            # Site profiles
+          │   └── sensors/             # Sensor data
+          └── 03_DOCUMENTATION/        # Documentation
+              └── 00_CORE_ARCHITECTURE/ # Architecture docs
+          ```
+          
+          ## Key Components
+          
+          ### Main Pipeline
+          - `agi_tr_patched_v6_6_defsplit_v1.py`: Main pipeline execution
+          - `ballast_sequence_generator.py`: Ballast sequence generation
+          - `valve_lineup_generator.py`: Valve lineup automation
+          
+          ### SSOT Module
+          - `gates_loader.py`: Gate definition management
+          - `draft_calc.py`: Draft calculations
+          - `validators.py`: Data validation
+          
+          ### Tide Module
+          - `tide_ukc_engine.py`: UKC calculation engine
+          - `tide_constants.py`: Tide constants
+          
+          ## Data Flow
+          
+          1. Load SSOT definitions (Gates, Tanks, Sites)
+          2. Import cargo and tide data
+          3. Run LP optimization
+          4. Generate ballast sequence
+          5. Create operational outputs
+          
+          EOF
+          
+          echo "✅ Project structure documentation generated"
+      
+      - name: Commit documentation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add docs/
+          git commit -m "docs: auto-generate API documentation" || echo "No changes to commit"
+          git push origin HEAD:main || echo "Nothing to push"
+        continue-on-error: true
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          enable_jekyll: false
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+      
+      - name: Summary
+        run: |
+          echo "## 📚 Documentation Generated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ API Reference (pdoc)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ Module Overview" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ Project Structure" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -d "docs/api" ]; then
+            echo "📖 View documentation at: https://${{ github.repository_owner }}.github.io/AGI_TR/" >> $GITHUB_STEP_SUMMARY
+          fi

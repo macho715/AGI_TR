@@ -1,0 +1,187 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 10 * * 1'  # Every Monday at 10:00 UTC
+  workflow_dispatch:
+
+jobs:
+  dependency-scan:
+    name: Dependency Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Safety
+        run: pip install safety
+      
+      - name: Scan Python dependencies
+        run: |
+          if [ -f "01_EXECUTION_FILES/requirements.txt" ]; then
+            echo "Scanning requirements.txt for vulnerabilities..."
+            safety check -r 01_EXECUTION_FILES/requirements.txt --json > safety-report.json || true
+            
+            if [ -s safety-report.json ]; then
+              echo "## Security Vulnerabilities Found 🚨" >> $GITHUB_STEP_SUMMARY
+              cat safety-report.json >> $GITHUB_STEP_SUMMARY
+            else
+              echo "✅ No vulnerabilities found in dependencies"
+            fi
+          else
+            echo "⚠️  requirements.txt not found"
+          fi
+        continue-on-error: true
+      
+      - name: Upload Safety report
+        uses: actions/upload-artifact@v4
+        with:
+          name: safety-report
+          path: safety-report.json
+        if: always()
+  
+  secret-scan:
+    name: Secret Detection
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+        continue-on-error: true
+      
+      - name: Check for common secrets in code
+        run: |
+          echo "Checking for potential secrets..."
+          
+          # Check for API keys, tokens, passwords
+          patterns=(
+            "api[_-]?key"
+            "secret[_-]?key"
+            "password"
+            "token"
+            "access[_-]?token"
+            "private[_-]?key"
+            "AWS"
+            "AKIA"
+          )
+          
+          found_secrets=false
+          for pattern in "${patterns[@]}"; do
+            results=$(grep -r -i -n "$pattern" --include="*.py" --include="*.yml" --exclude-dir=".git" . || true)
+            if [ -n "$results" ]; then
+              echo "⚠️  Potential secret pattern found: $pattern"
+              echo "$results"
+              found_secrets=true
+            fi
+          done
+          
+          if [ "$found_secrets" = false ]; then
+            echo "✅ No obvious secret patterns detected"
+          fi
+        continue-on-error: true
+  
+  code-scan:
+    name: Static Code Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Bandit
+        run: pip install bandit[toml]
+      
+      - name: Run Bandit security scan
+        run: |
+          bandit -r 01_EXECUTION_FILES/ \
+            -f json \
+            -o bandit-report.json \
+            --severity-level medium \
+            --confidence-level medium \
+            || true
+          
+          if [ -s bandit-report.json ]; then
+            echo "## Bandit Security Issues 🔒" >> $GITHUB_STEP_SUMMARY
+            cat bandit-report.json >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No security issues found by Bandit"
+          fi
+        continue-on-error: true
+      
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit-report.json
+        if: always()
+  
+  filesystem-scan:
+    name: Trivy Filesystem Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+        continue-on-error: true
+      
+      - name: Upload Trivy results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+        if: always()
+      
+      - name: Generate Trivy summary
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+        continue-on-error: true
+  
+  summary:
+    name: Security Summary
+    runs-on: ubuntu-latest
+    needs: [dependency-scan, secret-scan, code-scan, filesystem-scan]
+    if: always()
+    steps:
+      - name: Create Summary
+        run: |
+          echo "## 🛡️ Security Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All security scans completed:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ Dependency vulnerability scan" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ Secret detection" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ Static code analysis (Bandit)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✓ Filesystem scan (Trivy)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Review artifacts for detailed reports." >> $GITHUB_STEP_SUMMARY

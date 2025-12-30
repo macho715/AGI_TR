@@ -1,0 +1,147 @@
+name: Automated Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v3.7.0)'
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Get version from tag or input
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get previous tag
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          CURRENT_TAG="${{ steps.version.outputs.version }}"
+          
+          echo "Generating changelog from $PREV_TAG to $CURRENT_TAG..."
+          
+          if [ -z "$PREV_TAG" ]; then
+            # First release
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" HEAD)
+          else
+            # Get commits between tags
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" $PREV_TAG..HEAD)
+          fi
+          
+          # Save to file for multiline handling
+          cat > changelog.txt << 'EOF'
+          ## What's Changed
+          
+          $CHANGELOG
+          
+          ## Installation
+          
+          ```bash
+          git clone https://github.com/${{ github.repository }}.git
+          cd AGI_TR/01_EXECUTION_FILES
+          pip install -r requirements.txt
+          ```
+          
+          ## Key Features
+          
+          - SSOT (Single Source of Truth) Gate Management
+          - Linear Programming Ballast Optimization
+          - Automated Tide Integration (AGI-only)
+          - SPMT Cargo Integration
+          - Excel Template Generation
+          
+          **Full Changelog**: https://github.com/${{ github.repository }}/compare/$PREV_TAG...$CURRENT_TAG
+          EOF
+          
+          cat changelog.txt
+      
+      - name: Create Release Archive
+        run: |
+          # Create release artifacts
+          mkdir -p release_artifacts
+          
+          # Copy main execution files
+          cp -r 01_EXECUTION_FILES release_artifacts/
+          cp -r 03_DOCUMENTATION release_artifacts/
+          cp README.md release_artifacts/
+          
+          # Create tar archive
+          tar -czf AGI_TR-${{ steps.version.outputs.version }}.tar.gz release_artifacts/
+          
+          # Create zip archive
+          zip -r AGI_TR-${{ steps.version.outputs.version }}.zip release_artifacts/
+          
+          ls -lh AGI_TR-*
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
+          body_path: changelog.txt
+          draft: false
+          prerelease: false
+          files: |
+            AGI_TR-${{ steps.version.outputs.version }}.tar.gz
+            AGI_TR-${{ steps.version.outputs.version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update CHANGELOG.md
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "# Changelog" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          # Prepend new version to CHANGELOG
+          {
+            echo "## [${{ steps.version.outputs.version }}] - $(date +%Y-%m-%d)"
+            echo ""
+            cat changelog.txt
+            echo ""
+            echo "---"
+            echo ""
+            cat CHANGELOG.md
+          } > CHANGELOG.md.tmp
+          mv CHANGELOG.md.tmp CHANGELOG.md
+          
+          # Commit updated CHANGELOG
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "docs: update CHANGELOG for ${{ steps.version.outputs.version }}" || true
+          git push origin HEAD:main || true
+      
+      - name: Summary
+        run: |
+          echo "## 🚀 Release Created Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version**: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Release URL**: https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "- AGI_TR-${{ steps.version.outputs.version }}.tar.gz" >> $GITHUB_STEP_SUMMARY
+          echo "- AGI_TR-${{ steps.version.outputs.version }}.zip" >> $GITHUB_STEP_SUMMARY

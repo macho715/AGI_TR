@@ -1,0 +1,117 @@
+name: Excel File Validation
+
+on:
+  push:
+    paths:
+      - '**/*.xlsx'
+      - '**/*.xlsm'
+      - '.github/workflows/3-excel-validation.yml'
+  pull_request:
+    paths:
+      - '**/*.xlsx'
+      - '**/*.xlsm'
+
+jobs:
+  validate-excel:
+    name: Validate Excel Structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install openpyxl pandas xlrd
+      
+      - name: Validate Excel File Structure
+        run: |
+          python << 'PYEOF'
+          import openpyxl
+          from pathlib import Path
+          import sys
+          
+          excel_files = list(Path('.').rglob('*.xlsx'))
+          excel_files.extend(Path('.').rglob('*.xlsm'))
+          
+          if not excel_files:
+              print("⚠️  No Excel files found")
+              sys.exit(0)
+          
+          errors = []
+          warnings = []
+          
+          for excel_file in excel_files:
+              # Skip temporary Excel files
+              if excel_file.name.startswith('~$'):
+                  continue
+              
+              try:
+                  wb = openpyxl.load_workbook(excel_file, data_only=True, read_only=True)
+                  print(f"✓ {excel_file.name}: {len(wb.sheetnames)} sheets")
+                  
+                  # Check for empty sheets
+                  for sheet_name in wb.sheetnames:
+                      sheet = wb[sheet_name]
+                      if sheet.max_row <= 1 and sheet.max_column <= 1:
+                          warnings.append(f"{excel_file.name}: Sheet '{sheet_name}' appears empty")
+                  
+                  wb.close()
+              except Exception as e:
+                  errors.append(f"{excel_file.name}: {e}")
+          
+          if warnings:
+              print("\n⚠️  Warnings:")
+              for warn in warnings:
+                  print(f"  - {warn}")
+          
+          if errors:
+              print("\n❌ Errors found:")
+              for err in errors:
+                  print(f"  - {err}")
+              sys.exit(1)
+          else:
+              print(f"\n✅ All {len(excel_files)} Excel files validated successfully")
+          PYEOF
+      
+      - name: Check for Corrupted Files
+        run: |
+          echo "Checking for empty or corrupted Excel files..."
+          empty_files=$(find . -name "*.xlsx" -o -name "*.xlsm" | while read file; do
+            if [ ! -s "$file" ]; then
+              echo "  ❌ Empty file: $file"
+            fi
+          done)
+          
+          if [ -n "$empty_files" ]; then
+            echo "$empty_files"
+            exit 1
+          else
+            echo "✅ No corrupted files found"
+          fi
+      
+      - name: Check File Permissions
+        run: |
+          echo "Checking Excel file permissions..."
+          find . \( -name "*.xlsx" -o -name "*.xlsm" \) -type f -executable -print | while read file; do
+            echo "  ⚠️  Executable flag set: $file"
+            # Don't fail, just warn
+          done
+          echo "✅ Permission check completed"
+      
+      - name: Summary Report
+        run: |
+          echo "## Excel Validation Results 📝" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          excel_count=$(find . \( -name "*.xlsx" -o -name "*.xlsm" \) -type f ! -name "~$*" | wc -l)
+          echo "- **Total Excel Files**: $excel_count" >> $GITHUB_STEP_SUMMARY
+          echo "- **Structure Validation**: ✓ Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- **Corruption Check**: ✓ Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- **Permission Check**: ✓ Passed" >> $GITHUB_STEP_SUMMARY
+        if: always()

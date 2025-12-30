@@ -1,0 +1,103 @@
+name: Performance Benchmark
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '01_EXECUTION_FILES/**/*.py'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    name: Run Performance Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r 01_EXECUTION_FILES/requirements.txt
+          pip install pytest-benchmark memory_profiler
+      
+      - name: Run benchmarks
+        run: |
+          mkdir -p benchmark-results
+          
+          python << 'PYEOF'
+          import time
+          import json
+          from pathlib import Path
+          
+          # Simple performance test
+          results = {
+              "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+              "benchmarks": []
+          }
+          
+          # Test 1: Import time
+          start = time.time()
+          import pandas as pd
+          import numpy as np
+          import openpyxl
+          import scipy
+          import_time = time.time() - start
+          
+          results["benchmarks"].append({
+              "name": "Package Import Time",
+              "value": import_time,
+              "unit": "seconds"
+          })
+          
+          # Test 2: Data processing
+          start = time.time()
+          df = pd.DataFrame(np.random.rand(10000, 10))
+          df['sum'] = df.sum(axis=1)
+          process_time = time.time() - start
+          
+          results["benchmarks"].append({
+              "name": "DataFrame Processing (10k rows)",
+              "value": process_time,
+              "unit": "seconds"
+          })
+          
+          # Save results
+          with open('benchmark-results/results.json', 'w') as f:
+              json.dump(results, f, indent=2)
+          
+          print("\n📊 Benchmark Results:")
+          for bench in results["benchmarks"]:
+              print(f"  {bench['name']}: {bench['value']:.4f} {bench['unit']}")
+          PYEOF
+      
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'customSmallerIsBetter'
+          output-file-path: benchmark-results/results.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          alert-threshold: '150%'
+          comment-on-alert: true
+          fail-on-alert: false
+        continue-on-error: true
+      
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmark-results/
+      
+      - name: Summary
+        run: |
+          echo "## 📊 Performance Benchmark Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat benchmark-results/results.json >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,146 @@
+name: Dependency Updates
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    name: Update Python Dependencies
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install pip-tools
+        run: pip install pip-tools pip-audit
+      
+      - name: Check current dependencies
+        run: |
+          echo "## Current Dependencies" > dep-report.md
+          echo "" >> dep-report.md
+          echo "### requirements.txt" >> dep-report.md
+          echo '```' >> dep-report.md
+          cat 01_EXECUTION_FILES/requirements.txt >> dep-report.md
+          echo '```' >> dep-report.md
+      
+      - name: Audit dependencies for vulnerabilities
+        run: |
+          echo "" >> dep-report.md
+          echo "## Security Audit" >> dep-report.md
+          echo "" >> dep-report.md
+          
+          pip-audit -r 01_EXECUTION_FILES/requirements.txt --format markdown >> dep-report.md || true
+      
+      - name: Update dependencies
+        id: update
+        run: |
+          cd 01_EXECUTION_FILES
+          
+          # Backup original requirements
+          cp requirements.txt requirements.txt.bak
+          
+          # Try to upgrade all dependencies
+          pip-compile --upgrade requirements.txt --output-file=requirements-new.txt || true
+          
+          if [ -f requirements-new.txt ]; then
+            # Check if there are differences
+            if ! diff -q requirements.txt requirements-new.txt > /dev/null 2>&1; then
+              echo "has_updates=true" >> $GITHUB_OUTPUT
+              
+              echo "" >> ../dep-report.md
+              echo "## Updated Dependencies" >> ../dep-report.md
+              echo "" >> ../dep-report.md
+              echo "### Changes" >> ../dep-report.md
+              echo '```diff' >> ../dep-report.md
+              diff -u requirements.txt requirements-new.txt | tail -n +3 >> ../dep-report.md || true
+              echo '```' >> ../dep-report.md
+              
+              # Move new requirements
+              mv requirements-new.txt requirements.txt
+            else
+              echo "has_updates=false" >> $GITHUB_OUTPUT
+              echo "✅ All dependencies are up to date"
+            fi
+          else
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Test updated dependencies
+        if: steps.update.outputs.has_updates == 'true'
+        run: |
+          cd 01_EXECUTION_FILES
+          pip install -r requirements.txt
+          
+          # Run basic import tests
+          python << 'PYEOF'
+          import sys
+          
+          packages = ['pandas', 'numpy', 'openpyxl', 'scipy']
+          
+          for pkg in packages:
+              try:
+                  __import__(pkg)
+                  print(f"✓ {pkg} imported successfully")
+              except ImportError as e:
+                  print(f"✗ Failed to import {pkg}: {e}")
+                  sys.exit(1)
+          
+          print("\n✅ All core packages imported successfully")
+          PYEOF
+      
+      - name: Create Pull Request
+        if: steps.update.outputs.has_updates == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update Python dependencies"
+          title: "📦 Weekly Dependency Update"
+          body-path: dep-report.md
+          branch: dependency-updates-${{ github.run_number }}
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+          assignees: ${{ github.repository_owner }}
+      
+      - name: Check for Python version updates
+        run: |
+          echo "" >> dep-report.md
+          echo "## Python Version Check" >> dep-report.md
+          echo "" >> dep-report.md
+          
+          CURRENT_VERSION=$(python --version | cut -d' ' -f2)
+          echo "Current Python: $CURRENT_VERSION" >> dep-report.md
+          
+          # Check latest stable Python version (example)
+          echo "Consider updating to latest stable Python 3.11 or 3.12" >> dep-report.md
+      
+      - name: Upload dependency report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-report
+          path: dep-report.md
+        if: always()
+      
+      - name: Summary
+        run: |
+          cat dep-report.md >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.update.outputs.has_updates }}" = "true" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ Pull request created for dependency updates" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ All dependencies are up to date" >> $GITHUB_STEP_SUMMARY
+          fi
