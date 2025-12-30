@@ -1,0 +1,1590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot.data_quality_validator API documentation</title>
+<meta name="description" content="Data Quality Validator - 검증 결과 데이터 적합성 확인
+Registry 스키마 검증 후 실제 데이터 값의 적합성을 검증">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot.data_quality_validator</code></h1>
+</header>
+<section id="section-intro">
+<p>Data Quality Validator - 검증 결과 데이터 적합성 확인
+Registry 스키마 검증 후 실제 데이터 값의 적합성을 검증</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description=&#34;Validate data quality for pipeline outputs&#34;
+    )
+    parser.add_argument(
+        &#34;--registry&#34;,
+        type=str,
+        default=&#34;01_EXECUTION_FILES/headers_registry.json&#34;,
+        help=&#34;Path to headers_registry.json&#34;,
+    )
+    parser.add_argument(
+        &#34;--final-dir&#34;,
+        type=str,
+        required=True,
+        help=&#34;Path to output directory to validate&#34;,
+    )
+    parser.add_argument(
+        &#34;--output&#34;,
+        type=str,
+        default=&#34;DATA_QUALITY_REPORT.json&#34;,
+        help=&#34;Output report file name&#34;,
+    )
+
+    args = parser.parse_args()
+
+    registry_path = Path(args.registry)
+    final_dir = Path(args.final_dir)
+    output_path = final_dir / args.output
+
+    if not registry_path.exists():
+        print(f&#34;[ERROR] Registry not found: {registry_path}&#34;)
+        return 1
+
+    if not final_dir.exists():
+        print(f&#34;[ERROR] Directory not found: {final_dir}&#34;)
+        return 1
+
+    validator = DataQualityValidator(registry_path)
+    results = validator.validate_directory(final_dir)
+    validator.print_summary(results)
+
+    # Save report
+    with open(output_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+
+    print(f&#34;\nReport saved to: {output_path}&#34;)
+
+    return 0 if results[&#34;summary&#34;][&#34;total_errors&#34;] == 0 else 1</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.tidy_and_validate_csv"><code class="name flex">
+<span>def <span class="ident">tidy_and_validate_csv</span></span>(<span>validator: <a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator">DataQualityValidator</a>,<br>file_path: pathlib.Path,<br>deliverable_id: str | None = None,<br>custom_validators: List | None = None) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tidy_and_validate_csv(
+    validator: &#34;DataQualityValidator&#34;,
+    file_path: Path,
+    deliverable_id: Optional[str] = None,
+    custom_validators: Optional[List] = None,
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    범용 CSV tidying 및 검증 함수 (DataQualityValidator 메서드로 사용)
+
+    Args:
+        validator: DataQualityValidator 인스턴스
+        file_path: 검증할 CSV 파일 경로
+        deliverable_id: Deliverable ID (headers registry용)
+        custom_validators: 커스텀 검증 함수 리스트
+
+    Returns:
+        검증 결과 딕셔너리
+    &#34;&#34;&#34;
+    try:
+        from ssot.tidying_models import LogiDataTider
+    except ImportError:
+        return {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: deliverable_id or &#34;GENERIC_CSV&#34;,
+            &#34;tidying&#34;: {
+                &#34;errors&#34;: [
+                    &#34;Pydantic not installed. Install with: pip install pydantic&gt;=2.0.0&#34;
+                ],
+                &#34;warnings&#34;: [],
+            },
+            &#34;validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+            &#34;llm_context&#34;: None,
+            &#34;validated_count&#34;: 0,
+            &#34;total_rows&#34;: 0,
+        }
+
+    results = {
+        &#34;file&#34;: str(file_path.name),
+        &#34;deliverable_id&#34;: deliverable_id or &#34;GENERIC_CSV&#34;,
+        &#34;tidying&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+        &#34;validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+        &#34;llm_context&#34;: None,
+        &#34;validated_count&#34;: 0,
+        &#34;total_rows&#34;: 0,
+    }
+
+    try:
+        # Load CSV
+        df_raw = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+        results[&#34;total_rows&#34;] = len(df_raw)
+
+        # Basic tidying
+        tider = LogiDataTider(df_raw)
+
+        # Auto-detect and tidy common columns
+        if &#34;Action&#34; in df_raw.columns:
+            tider.tidy_action_case(&#34;Action&#34;)
+        if &#34;Tank&#34; in df_raw.columns:
+            tider.tidy_tank_ids(&#34;Tank&#34;)
+
+        # Tidy decimal columns (auto-detect)
+        decimal_cols = [
+            col
+            for col in df_raw.columns
+            if any(
+                keyword in col.lower()
+                for keyword in [
+                    &#34;_t&#34;,
+                    &#34;_m&#34;,
+                    &#34;_cm&#34;,
+                    &#34;rate&#34;,
+                    &#34;time&#34;,
+                    &#34;delta&#34;,
+                    &#34;target&#34;,
+                    &#34;start&#34;,
+                    &#34;draft&#34;,
+                    &#34;trim&#34;,
+                    &#34;ukc&#34;,
+                    &#34;capacity&#34;,
+                ]
+            )
+        ]
+        if decimal_cols:
+            tider.tidy_decimal_columns(decimal_cols, decimal_places=2)
+
+        results[&#34;tidying&#34;][&#34;warnings&#34;] = tider.warnings
+
+        # Custom validators if provided
+        if custom_validators:
+            for validator_func in custom_validators:
+                try:
+                    validator_result = validator_func(tider.df)
+                    if isinstance(validator_result, dict):
+                        if &#34;errors&#34; in validator_result:
+                            results[&#34;validation&#34;][&#34;errors&#34;].extend(
+                                validator_result[&#34;errors&#34;]
+                            )
+                        if &#34;warnings&#34; in validator_result:
+                            results[&#34;validation&#34;][&#34;warnings&#34;].extend(
+                                validator_result[&#34;warnings&#34;]
+                            )
+                except Exception as e:
+                    results[&#34;validation&#34;][&#34;warnings&#34;].append(
+                        f&#34;Custom validator failed: {type(e).__name__}: {e}&#34;
+                    )
+
+        # Generate LLM context if no errors
+        if not results[&#34;validation&#34;][&#34;errors&#34;]:
+            results[&#34;llm_context&#34;] = tider.to_llm_markdown(max_rows=50)
+            results[&#34;validated_count&#34;] = len(tider.df)
+
+        return results
+
+    except Exception as e:
+        results[&#34;tidying&#34;][&#34;errors&#34;].append(
+            f&#34;Tidying pipeline failed: {type(e).__name__}: {e}&#34;
+        )
+        return results</code></pre>
+</details>
+<div class="desc"><p>범용 CSV tidying 및 검증 함수 (DataQualityValidator 메서드로 사용)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>validator</code></strong></dt>
+<dd>DataQualityValidator 인스턴스</dd>
+<dt><strong><code>file_path</code></strong></dt>
+<dd>검증할 CSV 파일 경로</dd>
+<dt><strong><code>deliverable_id</code></strong></dt>
+<dd>Deliverable ID (headers registry용)</dd>
+<dt><strong><code>custom_validators</code></strong></dt>
+<dd>커스텀 검증 함수 리스트</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>검증 결과 딕셔너리</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator"><code class="flex name class">
+<span>class <span class="ident">DataQualityValidator</span></span>
+<span>(</span><span>registry_path: pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DataQualityValidator:
+    &#34;&#34;&#34;데이터 적합성 검증 (타입, 범위, 일관성)&#34;&#34;&#34;
+
+    def __init__(self, registry_path: Path):
+        self.registry: HeaderRegistry = load_registry(registry_path)
+        self.issues = {&#34;errors&#34;: [], &#34;warnings&#34;: [], &#34;info&#34;: []}
+
+    def validate_numeric_range(
+        self,
+        value: Any,
+        field_key: str,
+        min_val: Optional[float] = None,
+        max_val: Optional[float] = None,
+    ) -&gt; Tuple[bool, Optional[str]]:
+        &#34;&#34;&#34;숫자 값의 범위 검증&#34;&#34;&#34;
+        if pd.isna(value):
+            return True, None  # NaN은 별도로 처리
+
+        try:
+            num_val = float(value)
+            if min_val is not None and num_val &lt; min_val:
+                return False, f&#34;Value {num_val} &lt; minimum {min_val}&#34;
+            if max_val is not None and num_val &gt; max_val:
+                return False, f&#34;Value {num_val} &gt; maximum {max_val}&#34;
+            return True, None
+        except (ValueError, TypeError):
+            return False, f&#34;Cannot convert to float: {value}&#34;
+
+    def validate_enum(
+        self, value: Any, allowed_values: List[str], case_sensitive: bool = False
+    ) -&gt; Tuple[bool, Optional[str]]:
+        &#34;&#34;&#34;열거형 값 검증&#34;&#34;&#34;
+        if pd.isna(value):
+            return True, None
+
+        val_str = str(value).strip()
+        if not case_sensitive:
+            val_str = val_str.upper()
+            allowed_upper = [v.upper() for v in allowed_values]
+            if val_str not in allowed_upper:
+                return False, f&#34;Value &#39;{value}&#39; not in allowed values: {allowed_values}&#34;
+        else:
+            if val_str not in allowed_values:
+                return False, f&#34;Value &#39;{value}&#39; not in allowed values: {allowed_values}&#34;
+
+        return True, None
+
+    def validate_required_field(
+        self, value: Any, field_name: str
+    ) -&gt; Tuple[bool, Optional[str]]:
+        &#34;&#34;&#34;필수 필드 존재 여부 검증&#34;&#34;&#34;
+        if pd.isna(value) or (isinstance(value, str) and value.strip() == &#34;&#34;):
+            return False, f&#34;Required field &#39;{field_name}&#39; is empty&#34;
+        return True, None
+
+    def validate_ballast_exec_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;BALLAST_EXEC.csv 데이터 적합성 검증&#34;&#34;&#34;
+        results = {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: &#34;BALLAST_EXEC_CSV&#34;,
+            &#34;errors&#34;: [],
+            &#34;warnings&#34;: [],
+            &#34;info&#34;: [],
+        }
+
+        try:
+            df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+            # 1. Stage 필수 필드 검증
+            empty_stage = df[&#34;Stage&#34;].isna() | (
+                df[&#34;Stage&#34;].astype(str).str.strip() == &#34;&#34;
+            )
+            if empty_stage.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;Stage column has {empty_stage.sum()} empty values (required field)&#34;
+                )
+
+            # 2. Step 타입 및 범위 검증
+            if &#34;Step&#34; in df.columns:
+                if not pd.api.types.is_integer_dtype(df[&#34;Step&#34;]):
+                    results[&#34;warnings&#34;].append(&#34;Step column is not integer type&#34;)
+                if (df[&#34;Step&#34;] &lt; 1).any():
+                    results[&#34;errors&#34;].append(&#34;Step values must be &gt;= 1&#34;)
+
+            # 3. Action 값 검증
+            if &#34;Action&#34; in df.columns:
+                valid_actions = [&#34;FILL&#34;, &#34;DISCHARGE&#34;, &#34;DEBALLAST&#34;]
+                for idx, action in df[&#34;Action&#34;].items():
+                    ok, msg = self.validate_enum(
+                        action, valid_actions, case_sensitive=False
+                    )
+                    if not ok:
+                        results[&#34;warnings&#34;].append(f&#34;Row {idx+2}: {msg}&#34;)
+
+            # 4. Delta_t 범위 검증
+            if &#34;Delta_t&#34; in df.columns:
+                negative_delta = df[&#34;Delta_t&#34;] &lt; 0
+                if negative_delta.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Delta_t has {negative_delta.sum()} negative values&#34;
+                    )
+
+            # 5. Time_h 범위 검증
+            if &#34;Time_h&#34; in df.columns:
+                negative_time = df[&#34;Time_h&#34;] &lt; 0
+                if negative_time.any():
+                    results[&#34;errors&#34;].append(
+                        f&#34;Time_h has {negative_time.sum()} negative values&#34;
+                    )
+                # Time_h = Delta_t / PumpRate 검증 (대략적)
+                if &#34;Delta_t&#34; in df.columns:
+                    # PumpRate가 없으면 기본값 10 t/h 가정
+                    pump_rate = 10.0
+                    expected_time = df[&#34;Delta_t&#34;] / pump_rate
+                    time_diff = abs(df[&#34;Time_h&#34;] - expected_time)
+                    large_diff = time_diff &gt; 0.1  # 0.1시간 이상 차이
+                    if large_diff.any():
+                        results[&#34;warnings&#34;].append(
+                            f&#34;Time_h calculation mismatch in {large_diff.sum()} rows &#34;
+                            f&#34;(expected ≈ Delta_t / {pump_rate})&#34;
+                        )
+
+            # 6. Start_t, Target_t 일관성 검증
+            if (
+                &#34;Start_t&#34; in df.columns
+                and &#34;Target_t&#34; in df.columns
+                and &#34;Delta_t&#34; in df.columns
+            ):
+                expected_target = df[&#34;Start_t&#34;] + df[&#34;Delta_t&#34;]
+                target_diff = abs(df[&#34;Target_t&#34;] - expected_target)
+                large_diff = target_diff &gt; 0.01  # 0.01t 이상 차이
+                if large_diff.any():
+                    results[&#34;errors&#34;].append(
+                        f&#34;Target_t = Start_t + Delta_t mismatch in {large_diff.sum()} rows&#34;
+                    )
+
+            # 7. 통계 정보
+            results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+            if &#34;Delta_t&#34; in df.columns:
+                results[&#34;info&#34;].append(
+                    f&#34;Delta_t range: {df[&#39;Delta_t&#39;].min():.2f} ~ {df[&#39;Delta_t&#39;].max():.2f} t&#34;
+                )
+            if &#34;Time_h&#34; in df.columns:
+                results[&#34;info&#34;].append(
+                    f&#34;Time_h range: {df[&#39;Time_h&#39;].min():.2f} ~ {df[&#39;Time_h&#39;].max():.2f} h&#34;
+                )
+
+        except Exception as e:
+            results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+        return results
+
+    def validate_ballast_option_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;BALLAST_OPTION.csv 데이터 적합성 검증&#34;&#34;&#34;
+        results = {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: &#34;BALLAST_OPTION_CSV&#34;,
+            &#34;errors&#34;: [],
+            &#34;warnings&#34;: [],
+            &#34;info&#34;: [],
+        }
+
+        try:
+            df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+            # 1. Stage 필수 필드 검증
+            empty_stage = df[&#34;Stage&#34;].isna() | (
+                df[&#34;Stage&#34;].astype(str).str.strip() == &#34;&#34;
+            )
+            if empty_stage.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;Stage column has {empty_stage.sum()} empty values (required field)&#34;
+                )
+
+            # 2. Priority 값 검증
+            if &#34;Priority&#34; in df.columns:
+                valid_priorities = [1, 2, 3, 5]  # 문서 기준
+                invalid_priority = ~df[&#34;Priority&#34;].isin(valid_priorities)
+                if invalid_priority.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Priority has {invalid_priority.sum()} invalid values &#34;
+                        f&#34;(expected: {valid_priorities})&#34;
+                    )
+
+            # 3. PumpRate_tph 범위 검증
+            if &#34;PumpRate_tph&#34; in df.columns:
+                negative_rate = df[&#34;PumpRate_tph&#34;] &lt;= 0
+                if negative_rate.any():
+                    results[&#34;errors&#34;].append(
+                        f&#34;PumpRate_tph has {negative_rate.sum()} non-positive values&#34;
+                    )
+
+            # 4. Delta_t 범위 검증
+            if &#34;Delta_t&#34; in df.columns:
+                negative_delta = df[&#34;Delta_t&#34;] &lt; 0
+                if negative_delta.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Delta_t has {negative_delta.sum()} negative values&#34;
+                    )
+
+            # 통계 정보
+            results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+            if &#34;Priority&#34; in df.columns:
+                priority_counts = df[&#34;Priority&#34;].value_counts().to_dict()
+                results[&#34;info&#34;].append(f&#34;Priority distribution: {priority_counts}&#34;)
+
+        except Exception as e:
+            results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+        return results
+
+    def tidy_and_validate_ballast_sequence(
+        self,
+        file_path: Path,
+        tank_catalog_path: Optional[Path] = None,
+        deliverable_id: str = &#34;BALLAST_EXEC_CSV&#34;,
+    ) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Tidying + Validation pipeline for BALLAST_EXEC.csv or BALLAST_OPTION.csv
+
+        Steps:
+        1. Load raw CSV
+        2. Tidy (dates, decimals, action case, tank IDs)
+        3. Validate with Pydantic schema
+        4. Cross-validate with tank catalog (operability, Max_t)
+        5. Generate LLM-ready context (only if validation passed)
+
+        Returns:
+            Dict with tidying/validation results and LLM context
+        &#34;&#34;&#34;
+        try:
+            from ssot.tidying_models import (
+                LogiDataTider,
+                BallastSequenceRow,
+                TankCatalogRow,
+                TankOperability,
+                BallastAction,
+            )
+        except ImportError:
+            return {
+                &#34;file&#34;: str(file_path.name),
+                &#34;deliverable_id&#34;: deliverable_id,
+                &#34;tidying&#34;: {
+                    &#34;errors&#34;: [
+                        &#34;Pydantic not installed. Install with: pip install pydantic&gt;=2.0.0&#34;
+                    ],
+                    &#34;warnings&#34;: [],
+                },
+                &#34;validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+                &#34;cross_validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+                &#34;llm_context&#34;: None,
+                &#34;validated_count&#34;: 0,
+                &#34;total_rows&#34;: 0,
+            }
+
+        results = {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: deliverable_id,
+            &#34;tidying&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+            &#34;validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+            &#34;cross_validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+            &#34;llm_context&#34;: None,
+            &#34;validated_count&#34;: 0,
+            &#34;total_rows&#34;: 0,
+        }
+
+        try:
+            # Step 1: Load raw CSV
+            df_raw = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+            results[&#34;total_rows&#34;] = len(df_raw)
+
+            # Step 2: Tidying
+            tider = LogiDataTider(df_raw)
+            tider.tidy_action_case(&#34;Action&#34;)
+            tider.tidy_tank_ids(&#34;Tank&#34;)
+            tider.tidy_decimal_columns(
+                [
+                    &#34;Start_t&#34;,
+                    &#34;Delta_t&#34;,
+                    &#34;Target_t&#34;,
+                    &#34;PumpRate_tph&#34;,
+                    &#34;Time_h&#34;,
+                    &#34;Draft_FWD&#34;,
+                    &#34;Draft_AFT&#34;,
+                    &#34;Trim_cm&#34;,
+                    &#34;UKC&#34;,
+                ],
+                decimal_places=2,
+            )
+            results[&#34;tidying&#34;][&#34;warnings&#34;] = tider.warnings
+
+            # Step 3: Validate with Pydantic schema
+            # Build column mapping dynamically based on available columns
+            column_mapping = {}
+            available_cols = set(tider.df.columns)
+
+            # Map available columns only
+            col_map_defs = {
+                &#34;Stage&#34;: &#34;stage&#34;,
+                &#34;Step&#34;: &#34;step&#34;,
+                &#34;Tank&#34;: &#34;tank&#34;,
+                &#34;Action&#34;: &#34;action&#34;,
+                &#34;Start_t&#34;: &#34;start_t&#34;,
+                &#34;Delta_t&#34;: &#34;delta_t&#34;,
+                &#34;Target_t&#34;: &#34;target_t&#34;,
+                &#34;Pump_ID&#34;: &#34;pump_id&#34;,
+                &#34;PumpRate_tph&#34;: &#34;pump_rate_tph&#34;,
+                &#34;Time_h&#34;: &#34;time_h&#34;,
+                &#34;Valve_Lineup&#34;: &#34;valve_lineup&#34;,
+                &#34;Draft_FWD&#34;: &#34;draft_fwd&#34;,
+                &#34;Draft_AFT&#34;: &#34;draft_aft&#34;,
+                &#34;Trim_cm&#34;: &#34;trim_cm&#34;,
+                &#34;UKC&#34;: &#34;ukc&#34;,
+                &#34;Hold_Point&#34;: &#34;hold_point&#34;,
+                &#34;Notes&#34;: &#34;notes&#34;,
+                &#34;Priority&#34;: &#34;priority&#34;,
+                &#34;Rationale&#34;: &#34;rationale&#34;,
+            }
+
+            for csv_col, model_field in col_map_defs.items():
+                if csv_col in available_cols:
+                    column_mapping[csv_col] = model_field
+
+            validated_rows, validation_errors = tider.validate_with_schema(
+                BallastSequenceRow, column_mapping=column_mapping
+            )
+            results[&#34;validation&#34;][&#34;errors&#34;] = validation_errors
+            results[&#34;validated_count&#34;] = len(validated_rows)
+
+            # Step 4: Cross-validate with tank catalog (VOID3 operability check)
+            if tank_catalog_path and tank_catalog_path.exists():
+                try:
+                    tank_catalog_df = pd.read_csv(
+                        tank_catalog_path, encoding=&#34;utf-8-sig&#34;
+                    )
+                    tank_catalog_tider = LogiDataTider(tank_catalog_df)
+                    tank_catalog_rows, _ = tank_catalog_tider.validate_with_schema(
+                        TankCatalogRow, column_mapping={&#34;Tank&#34;: &#34;tank_id&#34;}
+                    )
+
+                    # Build tank lookup
+                    tank_lookup = {t.tank_id: t for t in tank_catalog_rows}
+
+                    # Check VOID3 operability violations
+                    for row in validated_rows:
+                        if row.tank.startswith(&#34;VOID3&#34;):
+                            tank_info = tank_lookup.get(row.tank)
+                            if tank_info:
+                                if (
+                                    tank_info.operability
+                                    == TankOperability.PRE_BALLAST_ONLY
+                                ):
+                                    if row.action != BallastAction.NONE:
+                                        results[&#34;cross_validation&#34;][&#34;errors&#34;].append(
+                                            f&#34;Row {row.step or &#39;N/A&#39;}: {row.tank} has action={row.action.value} &#34;
+                                            f&#34;but operability=PRE_BALLAST_ONLY (should be NONE)&#34;
+                                        )
+
+                                # Check Target_t &lt;= Max_t (if Target_t present)
+                                if (
+                                    row.target_t is not None
+                                    and row.target_t &gt; tank_info.max_t
+                                ):
+                                    results[&#34;cross_validation&#34;][&#34;errors&#34;].append(
+                                        f&#34;Row {row.step or &#39;N/A&#39;}: {row.tank} Target_t={row.target_t} &gt; Max_t={tank_info.max_t}&#34;
+                                    )
+                except Exception as e:
+                    results[&#34;cross_validation&#34;][&#34;warnings&#34;].append(
+                        f&#34;Tank catalog cross-validation failed: {type(e).__name__}: {e}&#34;
+                    )
+
+            # Step 5: Generate LLM-ready context (only if validation passed)
+            if (
+                not results[&#34;validation&#34;][&#34;errors&#34;]
+                and not results[&#34;cross_validation&#34;][&#34;errors&#34;]
+                and len(validated_rows) &gt; 0
+            ):
+                results[&#34;llm_context&#34;] = tider.to_llm_markdown(max_rows=50)
+            else:
+                results[&#34;llm_context&#34;] = (
+                    None  # Fail-fast: no LLM input if validation failed
+                )
+
+            return results
+
+        except Exception as e:
+            results[&#34;tidying&#34;][&#34;errors&#34;].append(
+                f&#34;Tidying pipeline failed: {type(e).__name__}: {e}&#34;
+            )
+            return results
+
+    def validate_solver_summary_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;solver_ballast_summary.csv 데이터 적합성 검증&#34;&#34;&#34;
+        results = {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: &#34;SOLVER_SUMMARY_CSV&#34;,
+            &#34;errors&#34;: [],
+            &#34;warnings&#34;: [],
+            &#34;info&#34;: [],
+        }
+
+        try:
+            df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+            # 1. UKC_min_m 범위 검증 (일반적으로 &gt; 0)
+            if &#34;UKC_min_m&#34; in df.columns:
+                negative_ukc = df[&#34;UKC_min_m&#34;] &lt; 0
+                if negative_ukc.any():
+                    results[&#34;errors&#34;].append(
+                        f&#34;UKC_min_m has {negative_ukc.sum()} negative values (safety issue)&#34;
+                    )
+                low_ukc = (df[&#34;UKC_min_m&#34;] &gt; 0) &amp; (df[&#34;UKC_min_m&#34;] &lt; 0.5)
+                if low_ukc.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;UKC_min_m has {low_ukc.sum()} values &lt; 0.5m (low UKC warning)&#34;
+                    )
+
+            # 2. Forecast_tide_m 범위 검증
+            if &#34;Forecast_tide_m&#34; in df.columns:
+                extreme_tide = (df[&#34;Forecast_tide_m&#34;] &lt; -1) | (
+                    df[&#34;Forecast_tide_m&#34;] &gt; 5
+                )
+                if extreme_tide.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Forecast_tide_m has {extreme_tide.sum()} extreme values &#34;
+                        f&#34;(outside typical range -1 to 5m)&#34;
+                    )
+
+            # 3. Plan_Rows 검증
+            if &#34;Plan_Rows&#34; in df.columns:
+                empty_plans = df[&#34;Plan_Rows&#34;] == 0
+                if empty_plans.any():
+                    stages = df.loc[empty_plans, &#34;Stage&#34;].tolist()
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Empty plans (Plan_Rows=0) for stages: {stages}&#34;
+                    )
+
+            # 4. Tide_verification 값 검증
+            if &#34;Tide_verification&#34; in df.columns:
+                invalid_verification = ~df[&#34;Tide_verification&#34;].isin(
+                    [&#34;OK&#34;, &#34;FAIL&#34;, &#34;WARNING&#34;]
+                )
+                if invalid_verification.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Tide_verification has {invalid_verification.sum()} unexpected values&#34;
+                    )
+
+            # 통계 정보
+            results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+            if &#34;UKC_min_m&#34; in df.columns:
+                results[&#34;info&#34;].append(
+                    f&#34;UKC_min_m range: {df[&#39;UKC_min_m&#39;].min():.2f} ~ {df[&#39;UKC_min_m&#39;].max():.2f} m&#34;
+                )
+
+        except Exception as e:
+            results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+        return results
+
+    def validate_solver_plan_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;solver_ballast_stage_plan.csv 데이터 적합성 검증&#34;&#34;&#34;
+        results = {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: &#34;SOLVER_PLAN_CSV&#34;,
+            &#34;errors&#34;: [],
+            &#34;warnings&#34;: [],
+            &#34;info&#34;: [],
+        }
+
+        try:
+            df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+            # 1. Action 값 검증 (대소문자 일관성)
+            if &#34;Action&#34; in df.columns:
+                valid_actions = [&#34;FILL&#34;, &#34;DISCHARGE&#34;, &#34;DEBALLAST&#34;]
+                action_values = df[&#34;Action&#34;].unique()
+                for action in action_values:
+                    ok, msg = self.validate_enum(
+                        action, valid_actions, case_sensitive=False
+                    )
+                    if not ok:
+                        results[&#34;warnings&#34;].append(
+                            f&#34;Action value &#39;{action}&#39; should be uppercase (FILL/DISCHARGE)&#34;
+                        )
+                    elif action != action.upper():
+                        results[&#34;warnings&#34;].append(
+                            f&#34;Action value &#39;{action}&#39; is not uppercase (should be &#39;{action.upper()}&#39;)&#34;
+                        )
+
+            # 2. Delta_t 범위 검증
+            if &#34;Delta_t&#34; in df.columns:
+                negative_delta = df[&#34;Delta_t&#34;] &lt; 0
+                if negative_delta.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Delta_t has {negative_delta.sum()} negative values&#34;
+                    )
+
+            # 3. PumpTime_h 범위 검증
+            if &#34;PumpTime_h&#34; in df.columns:
+                negative_time = df[&#34;PumpTime_h&#34;] &lt; 0
+                if negative_time.any():
+                    results[&#34;errors&#34;].append(
+                        f&#34;PumpTime_h has {negative_time.sum()} negative values&#34;
+                    )
+
+            # 통계 정보
+            results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+            if &#34;PumpTime_h&#34; in df.columns:
+                results[&#34;info&#34;].append(
+                    f&#34;PumpTime_h range: {df[&#39;PumpTime_h&#39;].min():.2f} ~ {df[&#39;PumpTime_h&#39;].max():.2f} h&#34;
+                )
+
+        except Exception as e:
+            results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+        return results
+
+    def validate_directory(self, dir_path: Path) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;디렉토리 내 모든 파일 검증&#34;&#34;&#34;
+        all_results = {
+            &#34;timestamp&#34;: datetime.now().isoformat(),
+            &#34;registry_version&#34;: self.registry.version,
+            &#34;files_validated&#34;: [],
+            &#34;summary&#34;: {&#34;total_files&#34;: 0, &#34;total_errors&#34;: 0, &#34;total_warnings&#34;: 0},
+        }
+
+        # 각 deliverable에 대해 검증
+        validators = {
+            &#34;BALLAST_EXEC_CSV&#34;: self.validate_ballast_exec_csv,
+            &#34;BALLAST_OPTION_CSV&#34;: self.validate_ballast_option_csv,
+            &#34;SOLVER_SUMMARY_CSV&#34;: self.validate_solver_summary_csv,
+            &#34;SOLVER_PLAN_CSV&#34;: self.validate_solver_plan_csv,
+        }
+
+        for deliverable_id, validator_func in validators.items():
+            d = self.registry.deliverables.get(deliverable_id)
+            if not d:
+                continue
+
+            file_path = dir_path / d.file_pattern
+            if not file_path.exists():
+                continue
+
+            all_results[&#34;summary&#34;][&#34;total_files&#34;] += 1
+            result = validator_func(file_path)
+            all_results[&#34;files_validated&#34;].append(result)
+
+            all_results[&#34;summary&#34;][&#34;total_errors&#34;] += len(result[&#34;errors&#34;])
+            all_results[&#34;summary&#34;][&#34;total_warnings&#34;] += len(result[&#34;warnings&#34;])
+
+        return all_results
+
+    def print_summary(self, results: Dict[str, Any]):
+        &#34;&#34;&#34;검증 결과 요약 출력&#34;&#34;&#34;
+        print(&#34;=&#34; * 80)
+        print(&#34;Data Quality Validation Summary&#34;)
+        print(&#34;=&#34; * 80)
+        print(f&#34;Registry Version: {results[&#39;registry_version&#39;]}&#34;)
+        print(f&#34;Timestamp: {results[&#39;timestamp&#39;]}&#34;)
+        print()
+        print(&#34;Summary:&#34;)
+        print(f&#34;  Total files: {results[&#39;summary&#39;][&#39;total_files&#39;]}&#34;)
+        print(f&#34;  Total errors: {results[&#39;summary&#39;][&#39;total_errors&#39;]}&#34;)
+        print(f&#34;  Total warnings: {results[&#39;summary&#39;][&#39;total_warnings&#39;]}&#34;)
+        print()
+
+        for file_result in results[&#34;files_validated&#34;]:
+            print(f&#34;\n{file_result[&#39;file&#39;]} ({file_result[&#39;deliverable_id&#39;]}):&#34;)
+
+            if file_result[&#34;errors&#34;]:
+                print(&#34;  ERRORS:&#34;)
+                for err in file_result[&#34;errors&#34;]:
+                    print(f&#34;    - {err}&#34;)
+
+            if file_result[&#34;warnings&#34;]:
+                print(&#34;  WARNINGS:&#34;)
+                for warn in file_result[&#34;warnings&#34;][:10]:
+                    print(f&#34;    - {warn}&#34;)
+                if len(file_result[&#34;warnings&#34;]) &gt; 10:
+                    print(f&#34;    ... and {len(file_result[&#39;warnings&#39;]) - 10} more&#34;)
+
+            if file_result[&#34;info&#34;]:
+                print(&#34;  INFO:&#34;)
+                for info in file_result[&#34;info&#34;]:
+                    print(f&#34;    - {info}&#34;)</code></pre>
+</details>
+<div class="desc"><p>데이터 적합성 검증 (타입, 범위, 일관성)</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.print_summary"><code class="name flex">
+<span>def <span class="ident">print_summary</span></span>(<span>self, results: Dict[str, Any])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_summary(self, results: Dict[str, Any]):
+    &#34;&#34;&#34;검증 결과 요약 출력&#34;&#34;&#34;
+    print(&#34;=&#34; * 80)
+    print(&#34;Data Quality Validation Summary&#34;)
+    print(&#34;=&#34; * 80)
+    print(f&#34;Registry Version: {results[&#39;registry_version&#39;]}&#34;)
+    print(f&#34;Timestamp: {results[&#39;timestamp&#39;]}&#34;)
+    print()
+    print(&#34;Summary:&#34;)
+    print(f&#34;  Total files: {results[&#39;summary&#39;][&#39;total_files&#39;]}&#34;)
+    print(f&#34;  Total errors: {results[&#39;summary&#39;][&#39;total_errors&#39;]}&#34;)
+    print(f&#34;  Total warnings: {results[&#39;summary&#39;][&#39;total_warnings&#39;]}&#34;)
+    print()
+
+    for file_result in results[&#34;files_validated&#34;]:
+        print(f&#34;\n{file_result[&#39;file&#39;]} ({file_result[&#39;deliverable_id&#39;]}):&#34;)
+
+        if file_result[&#34;errors&#34;]:
+            print(&#34;  ERRORS:&#34;)
+            for err in file_result[&#34;errors&#34;]:
+                print(f&#34;    - {err}&#34;)
+
+        if file_result[&#34;warnings&#34;]:
+            print(&#34;  WARNINGS:&#34;)
+            for warn in file_result[&#34;warnings&#34;][:10]:
+                print(f&#34;    - {warn}&#34;)
+            if len(file_result[&#34;warnings&#34;]) &gt; 10:
+                print(f&#34;    ... and {len(file_result[&#39;warnings&#39;]) - 10} more&#34;)
+
+        if file_result[&#34;info&#34;]:
+            print(&#34;  INFO:&#34;)
+            for info in file_result[&#34;info&#34;]:
+                print(f&#34;    - {info}&#34;)</code></pre>
+</details>
+<div class="desc"><p>검증 결과 요약 출력</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.tidy_and_validate_ballast_sequence"><code class="name flex">
+<span>def <span class="ident">tidy_and_validate_ballast_sequence</span></span>(<span>self,<br>file_path: pathlib.Path,<br>tank_catalog_path: pathlib.Path | None = None,<br>deliverable_id: str = 'BALLAST_EXEC_CSV') ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tidy_and_validate_ballast_sequence(
+    self,
+    file_path: Path,
+    tank_catalog_path: Optional[Path] = None,
+    deliverable_id: str = &#34;BALLAST_EXEC_CSV&#34;,
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Tidying + Validation pipeline for BALLAST_EXEC.csv or BALLAST_OPTION.csv
+
+    Steps:
+    1. Load raw CSV
+    2. Tidy (dates, decimals, action case, tank IDs)
+    3. Validate with Pydantic schema
+    4. Cross-validate with tank catalog (operability, Max_t)
+    5. Generate LLM-ready context (only if validation passed)
+
+    Returns:
+        Dict with tidying/validation results and LLM context
+    &#34;&#34;&#34;
+    try:
+        from ssot.tidying_models import (
+            LogiDataTider,
+            BallastSequenceRow,
+            TankCatalogRow,
+            TankOperability,
+            BallastAction,
+        )
+    except ImportError:
+        return {
+            &#34;file&#34;: str(file_path.name),
+            &#34;deliverable_id&#34;: deliverable_id,
+            &#34;tidying&#34;: {
+                &#34;errors&#34;: [
+                    &#34;Pydantic not installed. Install with: pip install pydantic&gt;=2.0.0&#34;
+                ],
+                &#34;warnings&#34;: [],
+            },
+            &#34;validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+            &#34;cross_validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+            &#34;llm_context&#34;: None,
+            &#34;validated_count&#34;: 0,
+            &#34;total_rows&#34;: 0,
+        }
+
+    results = {
+        &#34;file&#34;: str(file_path.name),
+        &#34;deliverable_id&#34;: deliverable_id,
+        &#34;tidying&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+        &#34;validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+        &#34;cross_validation&#34;: {&#34;errors&#34;: [], &#34;warnings&#34;: []},
+        &#34;llm_context&#34;: None,
+        &#34;validated_count&#34;: 0,
+        &#34;total_rows&#34;: 0,
+    }
+
+    try:
+        # Step 1: Load raw CSV
+        df_raw = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+        results[&#34;total_rows&#34;] = len(df_raw)
+
+        # Step 2: Tidying
+        tider = LogiDataTider(df_raw)
+        tider.tidy_action_case(&#34;Action&#34;)
+        tider.tidy_tank_ids(&#34;Tank&#34;)
+        tider.tidy_decimal_columns(
+            [
+                &#34;Start_t&#34;,
+                &#34;Delta_t&#34;,
+                &#34;Target_t&#34;,
+                &#34;PumpRate_tph&#34;,
+                &#34;Time_h&#34;,
+                &#34;Draft_FWD&#34;,
+                &#34;Draft_AFT&#34;,
+                &#34;Trim_cm&#34;,
+                &#34;UKC&#34;,
+            ],
+            decimal_places=2,
+        )
+        results[&#34;tidying&#34;][&#34;warnings&#34;] = tider.warnings
+
+        # Step 3: Validate with Pydantic schema
+        # Build column mapping dynamically based on available columns
+        column_mapping = {}
+        available_cols = set(tider.df.columns)
+
+        # Map available columns only
+        col_map_defs = {
+            &#34;Stage&#34;: &#34;stage&#34;,
+            &#34;Step&#34;: &#34;step&#34;,
+            &#34;Tank&#34;: &#34;tank&#34;,
+            &#34;Action&#34;: &#34;action&#34;,
+            &#34;Start_t&#34;: &#34;start_t&#34;,
+            &#34;Delta_t&#34;: &#34;delta_t&#34;,
+            &#34;Target_t&#34;: &#34;target_t&#34;,
+            &#34;Pump_ID&#34;: &#34;pump_id&#34;,
+            &#34;PumpRate_tph&#34;: &#34;pump_rate_tph&#34;,
+            &#34;Time_h&#34;: &#34;time_h&#34;,
+            &#34;Valve_Lineup&#34;: &#34;valve_lineup&#34;,
+            &#34;Draft_FWD&#34;: &#34;draft_fwd&#34;,
+            &#34;Draft_AFT&#34;: &#34;draft_aft&#34;,
+            &#34;Trim_cm&#34;: &#34;trim_cm&#34;,
+            &#34;UKC&#34;: &#34;ukc&#34;,
+            &#34;Hold_Point&#34;: &#34;hold_point&#34;,
+            &#34;Notes&#34;: &#34;notes&#34;,
+            &#34;Priority&#34;: &#34;priority&#34;,
+            &#34;Rationale&#34;: &#34;rationale&#34;,
+        }
+
+        for csv_col, model_field in col_map_defs.items():
+            if csv_col in available_cols:
+                column_mapping[csv_col] = model_field
+
+        validated_rows, validation_errors = tider.validate_with_schema(
+            BallastSequenceRow, column_mapping=column_mapping
+        )
+        results[&#34;validation&#34;][&#34;errors&#34;] = validation_errors
+        results[&#34;validated_count&#34;] = len(validated_rows)
+
+        # Step 4: Cross-validate with tank catalog (VOID3 operability check)
+        if tank_catalog_path and tank_catalog_path.exists():
+            try:
+                tank_catalog_df = pd.read_csv(
+                    tank_catalog_path, encoding=&#34;utf-8-sig&#34;
+                )
+                tank_catalog_tider = LogiDataTider(tank_catalog_df)
+                tank_catalog_rows, _ = tank_catalog_tider.validate_with_schema(
+                    TankCatalogRow, column_mapping={&#34;Tank&#34;: &#34;tank_id&#34;}
+                )
+
+                # Build tank lookup
+                tank_lookup = {t.tank_id: t for t in tank_catalog_rows}
+
+                # Check VOID3 operability violations
+                for row in validated_rows:
+                    if row.tank.startswith(&#34;VOID3&#34;):
+                        tank_info = tank_lookup.get(row.tank)
+                        if tank_info:
+                            if (
+                                tank_info.operability
+                                == TankOperability.PRE_BALLAST_ONLY
+                            ):
+                                if row.action != BallastAction.NONE:
+                                    results[&#34;cross_validation&#34;][&#34;errors&#34;].append(
+                                        f&#34;Row {row.step or &#39;N/A&#39;}: {row.tank} has action={row.action.value} &#34;
+                                        f&#34;but operability=PRE_BALLAST_ONLY (should be NONE)&#34;
+                                    )
+
+                            # Check Target_t &lt;= Max_t (if Target_t present)
+                            if (
+                                row.target_t is not None
+                                and row.target_t &gt; tank_info.max_t
+                            ):
+                                results[&#34;cross_validation&#34;][&#34;errors&#34;].append(
+                                    f&#34;Row {row.step or &#39;N/A&#39;}: {row.tank} Target_t={row.target_t} &gt; Max_t={tank_info.max_t}&#34;
+                                )
+            except Exception as e:
+                results[&#34;cross_validation&#34;][&#34;warnings&#34;].append(
+                    f&#34;Tank catalog cross-validation failed: {type(e).__name__}: {e}&#34;
+                )
+
+        # Step 5: Generate LLM-ready context (only if validation passed)
+        if (
+            not results[&#34;validation&#34;][&#34;errors&#34;]
+            and not results[&#34;cross_validation&#34;][&#34;errors&#34;]
+            and len(validated_rows) &gt; 0
+        ):
+            results[&#34;llm_context&#34;] = tider.to_llm_markdown(max_rows=50)
+        else:
+            results[&#34;llm_context&#34;] = (
+                None  # Fail-fast: no LLM input if validation failed
+            )
+
+        return results
+
+    except Exception as e:
+        results[&#34;tidying&#34;][&#34;errors&#34;].append(
+            f&#34;Tidying pipeline failed: {type(e).__name__}: {e}&#34;
+        )
+        return results</code></pre>
+</details>
+<div class="desc"><p>Tidying + Validation pipeline for BALLAST_EXEC.csv or BALLAST_OPTION.csv</p>
+<p>Steps:
+1. Load raw CSV
+2. Tidy (dates, decimals, action case, tank IDs)
+3. Validate with Pydantic schema
+4. Cross-validate with tank catalog (operability, Max_t)
+5. Generate LLM-ready context (only if validation passed)</p>
+<h2 id="returns">Returns</h2>
+<p>Dict with tidying/validation results and LLM context</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_ballast_exec_csv"><code class="name flex">
+<span>def <span class="ident">validate_ballast_exec_csv</span></span>(<span>self, file_path: pathlib.Path) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_ballast_exec_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;BALLAST_EXEC.csv 데이터 적합성 검증&#34;&#34;&#34;
+    results = {
+        &#34;file&#34;: str(file_path.name),
+        &#34;deliverable_id&#34;: &#34;BALLAST_EXEC_CSV&#34;,
+        &#34;errors&#34;: [],
+        &#34;warnings&#34;: [],
+        &#34;info&#34;: [],
+    }
+
+    try:
+        df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+        # 1. Stage 필수 필드 검증
+        empty_stage = df[&#34;Stage&#34;].isna() | (
+            df[&#34;Stage&#34;].astype(str).str.strip() == &#34;&#34;
+        )
+        if empty_stage.any():
+            results[&#34;errors&#34;].append(
+                f&#34;Stage column has {empty_stage.sum()} empty values (required field)&#34;
+            )
+
+        # 2. Step 타입 및 범위 검증
+        if &#34;Step&#34; in df.columns:
+            if not pd.api.types.is_integer_dtype(df[&#34;Step&#34;]):
+                results[&#34;warnings&#34;].append(&#34;Step column is not integer type&#34;)
+            if (df[&#34;Step&#34;] &lt; 1).any():
+                results[&#34;errors&#34;].append(&#34;Step values must be &gt;= 1&#34;)
+
+        # 3. Action 값 검증
+        if &#34;Action&#34; in df.columns:
+            valid_actions = [&#34;FILL&#34;, &#34;DISCHARGE&#34;, &#34;DEBALLAST&#34;]
+            for idx, action in df[&#34;Action&#34;].items():
+                ok, msg = self.validate_enum(
+                    action, valid_actions, case_sensitive=False
+                )
+                if not ok:
+                    results[&#34;warnings&#34;].append(f&#34;Row {idx+2}: {msg}&#34;)
+
+        # 4. Delta_t 범위 검증
+        if &#34;Delta_t&#34; in df.columns:
+            negative_delta = df[&#34;Delta_t&#34;] &lt; 0
+            if negative_delta.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;Delta_t has {negative_delta.sum()} negative values&#34;
+                )
+
+        # 5. Time_h 범위 검증
+        if &#34;Time_h&#34; in df.columns:
+            negative_time = df[&#34;Time_h&#34;] &lt; 0
+            if negative_time.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;Time_h has {negative_time.sum()} negative values&#34;
+                )
+            # Time_h = Delta_t / PumpRate 검증 (대략적)
+            if &#34;Delta_t&#34; in df.columns:
+                # PumpRate가 없으면 기본값 10 t/h 가정
+                pump_rate = 10.0
+                expected_time = df[&#34;Delta_t&#34;] / pump_rate
+                time_diff = abs(df[&#34;Time_h&#34;] - expected_time)
+                large_diff = time_diff &gt; 0.1  # 0.1시간 이상 차이
+                if large_diff.any():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Time_h calculation mismatch in {large_diff.sum()} rows &#34;
+                        f&#34;(expected ≈ Delta_t / {pump_rate})&#34;
+                    )
+
+        # 6. Start_t, Target_t 일관성 검증
+        if (
+            &#34;Start_t&#34; in df.columns
+            and &#34;Target_t&#34; in df.columns
+            and &#34;Delta_t&#34; in df.columns
+        ):
+            expected_target = df[&#34;Start_t&#34;] + df[&#34;Delta_t&#34;]
+            target_diff = abs(df[&#34;Target_t&#34;] - expected_target)
+            large_diff = target_diff &gt; 0.01  # 0.01t 이상 차이
+            if large_diff.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;Target_t = Start_t + Delta_t mismatch in {large_diff.sum()} rows&#34;
+                )
+
+        # 7. 통계 정보
+        results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+        if &#34;Delta_t&#34; in df.columns:
+            results[&#34;info&#34;].append(
+                f&#34;Delta_t range: {df[&#39;Delta_t&#39;].min():.2f} ~ {df[&#39;Delta_t&#39;].max():.2f} t&#34;
+            )
+        if &#34;Time_h&#34; in df.columns:
+            results[&#34;info&#34;].append(
+                f&#34;Time_h range: {df[&#39;Time_h&#39;].min():.2f} ~ {df[&#39;Time_h&#39;].max():.2f} h&#34;
+            )
+
+    except Exception as e:
+        results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+    return results</code></pre>
+</details>
+<div class="desc"><p>BALLAST_EXEC.csv 데이터 적합성 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_ballast_option_csv"><code class="name flex">
+<span>def <span class="ident">validate_ballast_option_csv</span></span>(<span>self, file_path: pathlib.Path) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_ballast_option_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;BALLAST_OPTION.csv 데이터 적합성 검증&#34;&#34;&#34;
+    results = {
+        &#34;file&#34;: str(file_path.name),
+        &#34;deliverable_id&#34;: &#34;BALLAST_OPTION_CSV&#34;,
+        &#34;errors&#34;: [],
+        &#34;warnings&#34;: [],
+        &#34;info&#34;: [],
+    }
+
+    try:
+        df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+        # 1. Stage 필수 필드 검증
+        empty_stage = df[&#34;Stage&#34;].isna() | (
+            df[&#34;Stage&#34;].astype(str).str.strip() == &#34;&#34;
+        )
+        if empty_stage.any():
+            results[&#34;errors&#34;].append(
+                f&#34;Stage column has {empty_stage.sum()} empty values (required field)&#34;
+            )
+
+        # 2. Priority 값 검증
+        if &#34;Priority&#34; in df.columns:
+            valid_priorities = [1, 2, 3, 5]  # 문서 기준
+            invalid_priority = ~df[&#34;Priority&#34;].isin(valid_priorities)
+            if invalid_priority.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;Priority has {invalid_priority.sum()} invalid values &#34;
+                    f&#34;(expected: {valid_priorities})&#34;
+                )
+
+        # 3. PumpRate_tph 범위 검증
+        if &#34;PumpRate_tph&#34; in df.columns:
+            negative_rate = df[&#34;PumpRate_tph&#34;] &lt;= 0
+            if negative_rate.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;PumpRate_tph has {negative_rate.sum()} non-positive values&#34;
+                )
+
+        # 4. Delta_t 범위 검증
+        if &#34;Delta_t&#34; in df.columns:
+            negative_delta = df[&#34;Delta_t&#34;] &lt; 0
+            if negative_delta.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;Delta_t has {negative_delta.sum()} negative values&#34;
+                )
+
+        # 통계 정보
+        results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+        if &#34;Priority&#34; in df.columns:
+            priority_counts = df[&#34;Priority&#34;].value_counts().to_dict()
+            results[&#34;info&#34;].append(f&#34;Priority distribution: {priority_counts}&#34;)
+
+    except Exception as e:
+        results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+    return results</code></pre>
+</details>
+<div class="desc"><p>BALLAST_OPTION.csv 데이터 적합성 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_directory"><code class="name flex">
+<span>def <span class="ident">validate_directory</span></span>(<span>self, dir_path: pathlib.Path) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_directory(self, dir_path: Path) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;디렉토리 내 모든 파일 검증&#34;&#34;&#34;
+    all_results = {
+        &#34;timestamp&#34;: datetime.now().isoformat(),
+        &#34;registry_version&#34;: self.registry.version,
+        &#34;files_validated&#34;: [],
+        &#34;summary&#34;: {&#34;total_files&#34;: 0, &#34;total_errors&#34;: 0, &#34;total_warnings&#34;: 0},
+    }
+
+    # 각 deliverable에 대해 검증
+    validators = {
+        &#34;BALLAST_EXEC_CSV&#34;: self.validate_ballast_exec_csv,
+        &#34;BALLAST_OPTION_CSV&#34;: self.validate_ballast_option_csv,
+        &#34;SOLVER_SUMMARY_CSV&#34;: self.validate_solver_summary_csv,
+        &#34;SOLVER_PLAN_CSV&#34;: self.validate_solver_plan_csv,
+    }
+
+    for deliverable_id, validator_func in validators.items():
+        d = self.registry.deliverables.get(deliverable_id)
+        if not d:
+            continue
+
+        file_path = dir_path / d.file_pattern
+        if not file_path.exists():
+            continue
+
+        all_results[&#34;summary&#34;][&#34;total_files&#34;] += 1
+        result = validator_func(file_path)
+        all_results[&#34;files_validated&#34;].append(result)
+
+        all_results[&#34;summary&#34;][&#34;total_errors&#34;] += len(result[&#34;errors&#34;])
+        all_results[&#34;summary&#34;][&#34;total_warnings&#34;] += len(result[&#34;warnings&#34;])
+
+    return all_results</code></pre>
+</details>
+<div class="desc"><p>디렉토리 내 모든 파일 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_enum"><code class="name flex">
+<span>def <span class="ident">validate_enum</span></span>(<span>self, value: Any, allowed_values: List[str], case_sensitive: bool = False) ‑> Tuple[bool, str | None]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_enum(
+    self, value: Any, allowed_values: List[str], case_sensitive: bool = False
+) -&gt; Tuple[bool, Optional[str]]:
+    &#34;&#34;&#34;열거형 값 검증&#34;&#34;&#34;
+    if pd.isna(value):
+        return True, None
+
+    val_str = str(value).strip()
+    if not case_sensitive:
+        val_str = val_str.upper()
+        allowed_upper = [v.upper() for v in allowed_values]
+        if val_str not in allowed_upper:
+            return False, f&#34;Value &#39;{value}&#39; not in allowed values: {allowed_values}&#34;
+    else:
+        if val_str not in allowed_values:
+            return False, f&#34;Value &#39;{value}&#39; not in allowed values: {allowed_values}&#34;
+
+    return True, None</code></pre>
+</details>
+<div class="desc"><p>열거형 값 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_numeric_range"><code class="name flex">
+<span>def <span class="ident">validate_numeric_range</span></span>(<span>self,<br>value: Any,<br>field_key: str,<br>min_val: float | None = None,<br>max_val: float | None = None) ‑> Tuple[bool, str | None]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_numeric_range(
+    self,
+    value: Any,
+    field_key: str,
+    min_val: Optional[float] = None,
+    max_val: Optional[float] = None,
+) -&gt; Tuple[bool, Optional[str]]:
+    &#34;&#34;&#34;숫자 값의 범위 검증&#34;&#34;&#34;
+    if pd.isna(value):
+        return True, None  # NaN은 별도로 처리
+
+    try:
+        num_val = float(value)
+        if min_val is not None and num_val &lt; min_val:
+            return False, f&#34;Value {num_val} &lt; minimum {min_val}&#34;
+        if max_val is not None and num_val &gt; max_val:
+            return False, f&#34;Value {num_val} &gt; maximum {max_val}&#34;
+        return True, None
+    except (ValueError, TypeError):
+        return False, f&#34;Cannot convert to float: {value}&#34;</code></pre>
+</details>
+<div class="desc"><p>숫자 값의 범위 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_required_field"><code class="name flex">
+<span>def <span class="ident">validate_required_field</span></span>(<span>self, value: Any, field_name: str) ‑> Tuple[bool, str | None]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_required_field(
+    self, value: Any, field_name: str
+) -&gt; Tuple[bool, Optional[str]]:
+    &#34;&#34;&#34;필수 필드 존재 여부 검증&#34;&#34;&#34;
+    if pd.isna(value) or (isinstance(value, str) and value.strip() == &#34;&#34;):
+        return False, f&#34;Required field &#39;{field_name}&#39; is empty&#34;
+    return True, None</code></pre>
+</details>
+<div class="desc"><p>필수 필드 존재 여부 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_solver_plan_csv"><code class="name flex">
+<span>def <span class="ident">validate_solver_plan_csv</span></span>(<span>self, file_path: pathlib.Path) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_solver_plan_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;solver_ballast_stage_plan.csv 데이터 적합성 검증&#34;&#34;&#34;
+    results = {
+        &#34;file&#34;: str(file_path.name),
+        &#34;deliverable_id&#34;: &#34;SOLVER_PLAN_CSV&#34;,
+        &#34;errors&#34;: [],
+        &#34;warnings&#34;: [],
+        &#34;info&#34;: [],
+    }
+
+    try:
+        df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+        # 1. Action 값 검증 (대소문자 일관성)
+        if &#34;Action&#34; in df.columns:
+            valid_actions = [&#34;FILL&#34;, &#34;DISCHARGE&#34;, &#34;DEBALLAST&#34;]
+            action_values = df[&#34;Action&#34;].unique()
+            for action in action_values:
+                ok, msg = self.validate_enum(
+                    action, valid_actions, case_sensitive=False
+                )
+                if not ok:
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Action value &#39;{action}&#39; should be uppercase (FILL/DISCHARGE)&#34;
+                    )
+                elif action != action.upper():
+                    results[&#34;warnings&#34;].append(
+                        f&#34;Action value &#39;{action}&#39; is not uppercase (should be &#39;{action.upper()}&#39;)&#34;
+                    )
+
+        # 2. Delta_t 범위 검증
+        if &#34;Delta_t&#34; in df.columns:
+            negative_delta = df[&#34;Delta_t&#34;] &lt; 0
+            if negative_delta.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;Delta_t has {negative_delta.sum()} negative values&#34;
+                )
+
+        # 3. PumpTime_h 범위 검증
+        if &#34;PumpTime_h&#34; in df.columns:
+            negative_time = df[&#34;PumpTime_h&#34;] &lt; 0
+            if negative_time.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;PumpTime_h has {negative_time.sum()} negative values&#34;
+                )
+
+        # 통계 정보
+        results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+        if &#34;PumpTime_h&#34; in df.columns:
+            results[&#34;info&#34;].append(
+                f&#34;PumpTime_h range: {df[&#39;PumpTime_h&#39;].min():.2f} ~ {df[&#39;PumpTime_h&#39;].max():.2f} h&#34;
+            )
+
+    except Exception as e:
+        results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+    return results</code></pre>
+</details>
+<div class="desc"><p>solver_ballast_stage_plan.csv 데이터 적합성 검증</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_solver_summary_csv"><code class="name flex">
+<span>def <span class="ident">validate_solver_summary_csv</span></span>(<span>self, file_path: pathlib.Path) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_solver_summary_csv(self, file_path: Path) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;solver_ballast_summary.csv 데이터 적합성 검증&#34;&#34;&#34;
+    results = {
+        &#34;file&#34;: str(file_path.name),
+        &#34;deliverable_id&#34;: &#34;SOLVER_SUMMARY_CSV&#34;,
+        &#34;errors&#34;: [],
+        &#34;warnings&#34;: [],
+        &#34;info&#34;: [],
+    }
+
+    try:
+        df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+
+        # 1. UKC_min_m 범위 검증 (일반적으로 &gt; 0)
+        if &#34;UKC_min_m&#34; in df.columns:
+            negative_ukc = df[&#34;UKC_min_m&#34;] &lt; 0
+            if negative_ukc.any():
+                results[&#34;errors&#34;].append(
+                    f&#34;UKC_min_m has {negative_ukc.sum()} negative values (safety issue)&#34;
+                )
+            low_ukc = (df[&#34;UKC_min_m&#34;] &gt; 0) &amp; (df[&#34;UKC_min_m&#34;] &lt; 0.5)
+            if low_ukc.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;UKC_min_m has {low_ukc.sum()} values &lt; 0.5m (low UKC warning)&#34;
+                )
+
+        # 2. Forecast_tide_m 범위 검증
+        if &#34;Forecast_tide_m&#34; in df.columns:
+            extreme_tide = (df[&#34;Forecast_tide_m&#34;] &lt; -1) | (
+                df[&#34;Forecast_tide_m&#34;] &gt; 5
+            )
+            if extreme_tide.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;Forecast_tide_m has {extreme_tide.sum()} extreme values &#34;
+                    f&#34;(outside typical range -1 to 5m)&#34;
+                )
+
+        # 3. Plan_Rows 검증
+        if &#34;Plan_Rows&#34; in df.columns:
+            empty_plans = df[&#34;Plan_Rows&#34;] == 0
+            if empty_plans.any():
+                stages = df.loc[empty_plans, &#34;Stage&#34;].tolist()
+                results[&#34;warnings&#34;].append(
+                    f&#34;Empty plans (Plan_Rows=0) for stages: {stages}&#34;
+                )
+
+        # 4. Tide_verification 값 검증
+        if &#34;Tide_verification&#34; in df.columns:
+            invalid_verification = ~df[&#34;Tide_verification&#34;].isin(
+                [&#34;OK&#34;, &#34;FAIL&#34;, &#34;WARNING&#34;]
+            )
+            if invalid_verification.any():
+                results[&#34;warnings&#34;].append(
+                    f&#34;Tide_verification has {invalid_verification.sum()} unexpected values&#34;
+                )
+
+        # 통계 정보
+        results[&#34;info&#34;].append(f&#34;Total rows: {len(df)}&#34;)
+        if &#34;UKC_min_m&#34; in df.columns:
+            results[&#34;info&#34;].append(
+                f&#34;UKC_min_m range: {df[&#39;UKC_min_m&#39;].min():.2f} ~ {df[&#39;UKC_min_m&#39;].max():.2f} m&#34;
+            )
+
+    except Exception as e:
+        results[&#34;errors&#34;].append(f&#34;Error reading file: {type(e).__name__}: {e}&#34;)
+
+    return results</code></pre>
+</details>
+<div class="desc"><p>solver_ballast_summary.csv 데이터 적합성 검증</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot" href="index.html">01_EXECUTION_FILES.ssot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.main" href="#01_EXECUTION_FILES.ssot.data_quality_validator.main">main</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.tidy_and_validate_csv" href="#01_EXECUTION_FILES.ssot.data_quality_validator.tidy_and_validate_csv">tidy_and_validate_csv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator">DataQualityValidator</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.print_summary" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.print_summary">print_summary</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.tidy_and_validate_ballast_sequence" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.tidy_and_validate_ballast_sequence">tidy_and_validate_ballast_sequence</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_ballast_exec_csv" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_ballast_exec_csv">validate_ballast_exec_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_ballast_option_csv" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_ballast_option_csv">validate_ballast_option_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_directory" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_directory">validate_directory</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_enum" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_enum">validate_enum</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_numeric_range" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_numeric_range">validate_numeric_range</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_required_field" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_required_field">validate_required_field</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_solver_plan_csv" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_solver_plan_csv">validate_solver_plan_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_solver_summary_csv" href="#01_EXECUTION_FILES.ssot.data_quality_validator.DataQualityValidator.validate_solver_summary_csv">validate_solver_summary_csv</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.tide.tide_ukc_engine API documentation</title>
+<meta name="description" content="Tide + UKC SSOT Engine
+…">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.tide.tide_ukc_engine</code></h1>
+</header>
+<section id="section-intro">
+<h1 id="tide-ukc-ssot-engine">Tide + UKC SSOT Engine</h1>
+<p>AGI/DAS 공통으로 사용할 수 있는 Tide/UKC 계산 SSOT 모듈.</p>
+<p>본 모듈은 "Forecast Tide(예보 조위)"와 "Required WL(UKC 만족을 위해 필요한 수위)"
+를 혼동하지 않도록, 아래 정의를 <strong>엄격히 분리</strong>한다.</p>
+<p>Definitions (CD 기준)
+- Forecast_tide_m / Forecast_Tide_m:
+예보 조위(Chart Datum 기준). "필요 수위"가 아니라 예보값.
+- Tide_required_m:
+UKC 요구조건을 만족하기 위해 필요한 최소 수위(조위).
+Tide_required_m = max(0, (Draft_ref + Squat + Safety + UKC_min) - DepthRef)
+- Tide_margin_m:
+Tide_margin_m = Forecast_tide_m - Tide_required_m
+- UKC_fwd_m / UKC_aft_m:
+UKC_end = DepthRef + Forecast_tide - Draft_end - Squat - Safety
+- UKC_min_actual_m:
+min(UKC_fwd_m, UKC_aft_m)</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.apply_forecast_tide_from_table"><code class="name flex">
+<span>def <span class="ident">apply_forecast_tide_from_table</span></span>(<span>stage_df: pd.DataFrame,<br>tide_df: pd.DataFrame,<br>schedule_df: pd.DataFrame,<br>*,<br>stage_col: str = 'Stage',<br>out_col: str = 'Forecast_Tide_m',<br>strategy: str = 'fillna') ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def apply_forecast_tide_from_table(
+    stage_df: pd.DataFrame,
+    tide_df: pd.DataFrame,
+    schedule_df: pd.DataFrame,
+    *,
+    stage_col: str = &#34;Stage&#34;,
+    out_col: str = &#34;Forecast_Tide_m&#34;,
+    strategy: str = &#34;fillna&#34;,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Assign per-stage forecast tide from official tide table using stage schedule.
+    strategy:
+      - fillna : only fill when Forecast_Tide_m is missing/NaN
+      - override : override existing values
+    &#34;&#34;&#34;
+    if stage_df is None or stage_df.empty:
+        return stage_df
+    if tide_df is None or tide_df.empty or schedule_df is None or schedule_df.empty:
+        return stage_df
+
+    df = stage_df.copy()
+    if out_col not in df.columns:
+        df[out_col] = np.nan
+
+    # map stage -&gt; ts
+    sched_map = {r[&#34;StageKey&#34;]: r[&#34;ts&#34;] for _, r in schedule_df.iterrows()}
+
+    assigned = 0
+    for i, r in df.iterrows():
+        sk = _norm_stage_key(r.get(stage_col, &#34;&#34;))
+        ts = sched_map.get(sk)
+        if ts is None:
+            continue
+        tide_val = tide_at_timestamp(tide_df, ts)
+        if np.isnan(tide_val):
+            continue
+        cur = _to_float(r.get(out_col), fallback=None, warn=False)
+        if strategy == &#34;override&#34; or cur is None or (isinstance(cur, float) and np.isnan(cur)):
+            df.at[i, out_col] = float(tide_val)
+            assigned += 1
+
+    # Convenience metadata
+    df[&#34;Forecast_Tide_Source&#34;] = np.where(
+        pd.to_numeric(df[out_col], errors=&#34;coerce&#34;).notna(),
+        &#34;tide_table&#34;,
+        df.get(&#34;Forecast_Tide_Source&#34;, &#34;N/A&#34;) if &#34;Forecast_Tide_Source&#34; in df.columns else &#34;N/A&#34;,
+    )
+    df.attrs[&#34;tide_assigned_count&#34;] = assigned
+    return df</code></pre>
+</details>
+<div class="desc"><p>Assign per-stage forecast tide from official tide table using stage schedule.
+strategy:
+- fillna : only fill when Forecast_Tide_m is missing/NaN
+- override : override existing values</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.load_stage_schedule_any"><code class="name flex">
+<span>def <span class="ident">load_stage_schedule_any</span></span>(<span>path: Path) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_stage_schedule_any(path: Path) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Load stage schedule CSV/XLSX with at least (Stage, Timestamp).
+    Output df columns: StageKey, ts.
+    &#34;&#34;&#34;
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(str(path))
+
+    ext = path.suffix.lower()
+    if ext in (&#34;.csv&#34;, &#34;.txt&#34;):
+        df = pd.read_csv(path, sep=None, engine=&#34;python&#34;)
+    elif ext in (&#34;.xlsx&#34;, &#34;.xls&#34;):
+        df = pd.read_excel(path)
+    else:
+        df = pd.read_csv(path, sep=None, engine=&#34;python&#34;)
+
+    if df.empty:
+        raise ValueError(f&#34;Stage schedule is empty: {path}&#34;)
+
+    # detect stage col
+    stage_candidates = (&#34;stage&#34;, &#34;stage_id&#34;, &#34;stage name&#34;, &#34;stagename&#34;, &#34;stage_name&#34;)
+    cols_lower = {str(c).strip().lower(): c for c in df.columns}
+    stage_col = None
+    for k in stage_candidates:
+        if k in cols_lower:
+            stage_col = cols_lower[k]
+            break
+    if stage_col is None:
+        # fallback: first col
+        stage_col = df.columns[0]
+
+    # detect datetime col
+    dt_col = None
+    for k in (&#34;timestamp&#34;, &#34;datetime&#34;, &#34;time&#34;, &#34;ts&#34;, &#34;start&#34;, &#34;start_time&#34;, &#34;eta&#34;):
+        if k in cols_lower and cols_lower[k] != stage_col:
+            dt_col = cols_lower[k]
+            break
+    if dt_col is None:
+        dt_col = _detect_datetime_col(df)
+    if dt_col is None:
+        raise ValueError(f&#34;Cannot detect timestamp column in stage schedule: cols={list(df.columns)}&#34;)
+
+    out = pd.DataFrame(
+        {
+            &#34;StageKey&#34;: df[stage_col].astype(str).map(_norm_stage_key),
+            &#34;ts&#34;: pd.to_datetime(df[dt_col], errors=&#34;coerce&#34;, utc=False),
+        }
+    ).dropna(subset=[&#34;StageKey&#34;, &#34;ts&#34;])
+
+    if out.empty:
+        raise ValueError(&#34;Parsed stage schedule has no valid (Stage, ts) rows.&#34;)
+    # If duplicates exist, keep earliest
+    out = out.sort_values(&#34;ts&#34;).groupby(&#34;StageKey&#34;, as_index=False).first()
+    return out</code></pre>
+</details>
+<div class="desc"><p>Load stage schedule CSV/XLSX with at least (Stage, Timestamp).
+Output df columns: StageKey, ts.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.load_tide_table_any"><code class="name flex">
+<span>def <span class="ident">load_tide_table_any</span></span>(<span>path: Path) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_tide_table_any(path: Path) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Load official tide table.
+    Output df columns: ts (datetime64[ns]), tide_m (float).
+    &#34;&#34;&#34;
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(str(path))
+
+    ext = path.suffix.lower()
+    if ext in (&#34;.csv&#34;, &#34;.txt&#34;):
+        df = pd.read_csv(path, sep=None, engine=&#34;python&#34;)
+    elif ext in (&#34;.xlsx&#34;, &#34;.xls&#34;):
+        df = pd.read_excel(path)
+    elif ext in (&#34;.json&#34;,):
+        # Support list-of-dict or dict-with-records
+        raw = path.read_text(encoding=&#34;utf-8&#34;, errors=&#34;replace&#34;)
+        try:
+            obj = pd.read_json(raw)
+            df = obj
+        except Exception:
+            # try json.loads then DataFrame
+            import json
+            j = json.loads(raw)
+            if isinstance(j, dict):
+                if &#34;records&#34; in j:
+                    df = pd.DataFrame(j[&#34;records&#34;])
+                elif &#34;data&#34; in j:
+                    df = pd.DataFrame(j[&#34;data&#34;])
+                else:
+                    df = pd.DataFrame([j])
+            else:
+                df = pd.DataFrame(j)
+    else:
+        # try csv fallback
+        df = pd.read_csv(path, sep=None, engine=&#34;python&#34;)
+
+    if df.empty:
+        raise ValueError(f&#34;Tide table is empty: {path}&#34;)
+
+    dt_col = _detect_datetime_col(df)
+    if not dt_col:
+        raise ValueError(f&#34;Cannot detect datetime column in tide table: cols={list(df.columns)}&#34;)
+
+    tide_col = _detect_tide_col(df, dt_col)
+    if not tide_col:
+        raise ValueError(f&#34;Cannot detect tide column in tide table: cols={list(df.columns)}&#34;)
+
+    out = pd.DataFrame(
+        {
+            &#34;ts&#34;: pd.to_datetime(df[dt_col], errors=&#34;coerce&#34;, utc=False),
+            &#34;tide_m&#34;: pd.to_numeric(df[tide_col], errors=&#34;coerce&#34;),
+        }
+    ).dropna(subset=[&#34;ts&#34;, &#34;tide_m&#34;])
+
+    if out.empty:
+        raise ValueError(&#34;Parsed tide table has no valid (ts,tide_m) rows.&#34;)
+
+    out = out.sort_values(&#34;ts&#34;).reset_index(drop=True)
+    return out</code></pre>
+</details>
+<div class="desc"><p>Load official tide table.
+Output df columns: ts (datetime64[ns]), tide_m (float).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.required_tide_m"><code class="name flex">
+<span>def <span class="ident">required_tide_m</span></span>(<span>depth_ref_m: Optional[float],<br>draft_ref_m: Optional[float],<br>ukc_min_m: Optional[float],<br>squat_m: float = 0.0,<br>safety_allow_m: float = 0.0,<br>clamp_zero: bool = True,<br>fallback_depth: Optional[float] = None,<br>fallback_draft: Optional[float] = None,<br>fallback_ukc: Optional[float] = None) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def required_tide_m(
+    depth_ref_m: Optional[float],
+    draft_ref_m: Optional[float],
+    ukc_min_m: Optional[float],
+    squat_m: float = 0.0,
+    safety_allow_m: float = 0.0,
+    clamp_zero: bool = True,
+    fallback_depth: Optional[float] = None,
+    fallback_draft: Optional[float] = None,
+    fallback_ukc: Optional[float] = None,
+) -&gt; float:
+    &#34;&#34;&#34;Return required tide (m, CD) with fallbacks.&#34;&#34;&#34;
+    # Apply fallbacks
+    depth = depth_ref_m if depth_ref_m is not None else (fallback_depth or DEFAULT_DEPTH_REF_M)
+    draft = draft_ref_m if draft_ref_m is not None else (fallback_draft or 2.00)
+    ukc = ukc_min_m if ukc_min_m is not None else (fallback_ukc or DEFAULT_UKC_MIN_M)
+
+    req = float(draft + float(squat_m) + float(safety_allow_m) + float(ukc) - float(depth))
+    if clamp_zero:
+        return float(max(0.0, req))
+    return float(req)</code></pre>
+</details>
+<div class="desc"><p>Return required tide (m, CD) with fallbacks.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.tide_at_timestamp"><code class="name flex">
+<span>def <span class="ident">tide_at_timestamp</span></span>(<span>tide_df: pd.DataFrame, ts: pd.Timestamp) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tide_at_timestamp(tide_df: pd.DataFrame, ts: pd.Timestamp) -&gt; float:
+    &#34;&#34;&#34;
+    Linear interpolation of tide at timestamp.
+    Returns NaN if outside table range.
+    &#34;&#34;&#34;
+    if tide_df is None or tide_df.empty:
+        return float(&#34;nan&#34;)
+    if ts is None or pd.isna(ts):
+        return float(&#34;nan&#34;)
+    ts = pd.to_datetime(ts, errors=&#34;coerce&#34;, utc=False)
+    if pd.isna(ts):
+        return float(&#34;nan&#34;)
+
+    x = tide_df[&#34;ts&#34;].astype(&#34;datetime64[ns]&#34;).view(&#34;int64&#34;).to_numpy()
+    y = pd.to_numeric(tide_df[&#34;tide_m&#34;], errors=&#34;coerce&#34;).to_numpy()
+    xi = np.int64(ts.to_datetime64().astype(&#34;datetime64[ns]&#34;).astype(&#34;int64&#34;))
+
+    if xi &lt; x.min() or xi &gt; x.max():
+        return float(&#34;nan&#34;)
+    try:
+        return float(np.interp(xi, x, y))
+    except Exception:
+        return float(&#34;nan&#34;)</code></pre>
+</details>
+<div class="desc"><p>Linear interpolation of tide at timestamp.
+Returns NaN if outside table range.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.ukc_end_m"><code class="name flex">
+<span>def <span class="ident">ukc_end_m</span></span>(<span>depth_ref_m: Optional[float],<br>forecast_tide_m: Optional[float],<br>draft_end_m: Optional[float],<br>squat_m: float = 0.0,<br>safety_allow_m: float = 0.0) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ukc_end_m(
+    depth_ref_m: Optional[float],
+    forecast_tide_m: Optional[float],
+    draft_end_m: Optional[float],
+    squat_m: float = 0.0,
+    safety_allow_m: float = 0.0,
+) -&gt; float:
+    &#34;&#34;&#34;Return UKC at one end (m).&#34;&#34;&#34;
+    if depth_ref_m is None or forecast_tide_m is None or draft_end_m is None:
+        return float(&#34;nan&#34;)
+    return float(float(depth_ref_m) + float(forecast_tide_m) - float(draft_end_m) - float(squat_m) - float(safety_allow_m))</code></pre>
+</details>
+<div class="desc"><p>Return UKC at one end (m).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.ukc_fwd_aft_min"><code class="name flex">
+<span>def <span class="ident">ukc_fwd_aft_min</span></span>(<span>depth_ref_m: Optional[float],<br>forecast_tide_m: Optional[float],<br>draft_fwd_m: Optional[float],<br>draft_aft_m: Optional[float],<br>squat_m: float = 0.0,<br>safety_allow_m: float = 0.0) ‑> Tuple[float, float, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ukc_fwd_aft_min(
+    depth_ref_m: Optional[float],
+    forecast_tide_m: Optional[float],
+    draft_fwd_m: Optional[float],
+    draft_aft_m: Optional[float],
+    squat_m: float = 0.0,
+    safety_allow_m: float = 0.0,
+) -&gt; Tuple[float, float, float]:
+    &#34;&#34;&#34;Return (UKC_fwd, UKC_aft, UKC_min_actual).&#34;&#34;&#34;
+    uf = ukc_end_m(depth_ref_m, forecast_tide_m, draft_fwd_m, squat_m, safety_allow_m)
+    ua = ukc_end_m(depth_ref_m, forecast_tide_m, draft_aft_m, squat_m, safety_allow_m)
+    try:
+        umin = float(min(uf, ua))
+    except Exception:
+        umin = float(&#34;nan&#34;)
+    return uf, ua, umin</code></pre>
+</details>
+<div class="desc"><p>Return (UKC_fwd, UKC_aft, UKC_min_actual).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.tide_ukc_engine.verify_tide"><code class="name flex">
+<span>def <span class="ident">verify_tide</span></span>(<span>tide_required_m_val: float,<br>forecast_tide_m_val: Optional[float],<br>tolerance_m: float = 0.1) ‑> Tuple[str, str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def verify_tide(
+    tide_required_m_val: float,
+    forecast_tide_m_val: Optional[float],
+    tolerance_m: float = DEFAULT_TIDE_TOL_M,
+) -&gt; Tuple[str, str]:
+    &#34;&#34;&#34;
+    Return (status, note)
+    - VERIFY: forecast missing (no official tide table / forecast not provided)
+    - FAIL  : margin &lt; 0
+    - LIMIT : 0 &lt;= margin &lt; tolerance
+    - OK    : margin &gt;= tolerance
+    &#34;&#34;&#34;
+    ft = _to_float(forecast_tide_m_val, fallback=None, warn=False)
+    if ft is None or (isinstance(ft, float) and np.isnan(ft)):
+        return &#34;VERIFY&#34;, &#34;Forecast tide not provided&#34;
+    try:
+        req = float(tide_required_m_val)
+    except Exception:
+        return &#34;VERIFY&#34;, &#34;Tide_required_m invalid&#34;
+
+    margin = float(ft - req)
+    if margin &lt; 0.0:
+        return &#34;FAIL&#34;, f&#34;Forecast {ft:.2f}m &lt; required {req:.2f}m&#34;
+    if margin &lt; float(tolerance_m):
+        return &#34;LIMIT&#34;, f&#34;Margin {margin:.2f}m &lt; tol {float(tolerance_m):.2f}m&#34;
+    return &#34;OK&#34;, f&#34;Margin {margin:.2f}m&#34;</code></pre>
+</details>
+<div class="desc"><p>Return (status, note)
+- VERIFY: forecast missing (no official tide table / forecast not provided)
+- FAIL
+: margin &lt; 0
+- LIMIT : 0 &lt;= margin &lt; tolerance
+- OK
+: margin &gt;= tolerance</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul>
+<li><a href="#tide-ukc-ssot-engine">Tide + UKC SSOT Engine</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.tide" href="index.html">01_EXECUTION_FILES.tide</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.apply_forecast_tide_from_table" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.apply_forecast_tide_from_table">apply_forecast_tide_from_table</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.load_stage_schedule_any" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.load_stage_schedule_any">load_stage_schedule_any</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.load_tide_table_any" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.load_tide_table_any">load_tide_table_any</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.required_tide_m" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.required_tide_m">required_tide_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.tide_at_timestamp" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.tide_at_timestamp">tide_at_timestamp</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.ukc_end_m" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.ukc_end_m">ukc_end_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.ukc_fwd_aft_min" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.ukc_fwd_aft_min">ukc_fwd_aft_min</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.tide_ukc_engine.verify_tide" href="#01_EXECUTION_FILES.tide.tide_ukc_engine.verify_tide">verify_tide</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

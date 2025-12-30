@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot.headers_registry API documentation</title>
+<meta name="description" content="Headers Registry - SSOT for all pipeline output headers
+Supports both validation (read) and schema application (write)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot.headers_registry</code></h1>
+</header>
+<section id="section-intro">
+<p>Headers Registry - SSOT for all pipeline output headers
+Supports both validation (read) and schema application (write)</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.apply_schema"><code class="name flex">
+<span>def <span class="ident">apply_schema</span></span>(<span>df: pd.DataFrame,<br>reg: <a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry">HeaderRegistry</a>,<br>deliverable_id: str,<br>*,<br>keep_extra: bool = False,<br>fill_missing: bool = True,<br>fill_value: Any = &lt;NA&gt;) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def apply_schema(
+    df: pd.DataFrame,
+    reg: HeaderRegistry,
+    deliverable_id: str,
+    *,
+    keep_extra: bool = False,
+    fill_missing: bool = True,
+    fill_value: Any = pd.NA,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Apply header schema to DataFrame.
+
+    Args:
+        df: Input DataFrame (may have mismatched headers)
+        reg: HeaderRegistry instance
+        deliverable_id: Deliverable ID from registry
+        keep_extra: Keep columns not in schema
+        fill_missing: Fill missing columns with fill_value
+        fill_value: Value to use for missing columns
+
+    Returns:
+        DataFrame with standardized headers and column order
+    &#34;&#34;&#34;
+    if deliverable_id not in reg.deliverables:
+        raise KeyError(f&#34;Unknown deliverable_id: {deliverable_id}&#34;)
+
+    d = reg.deliverables[deliverable_id]
+    fields = reg.fields
+
+    # Build mapping: existing df columns -&gt; canonical field key
+    col_to_key: Dict[str, str] = {}
+    for c in df.columns:
+        k = _find_field_key_for_col(reg, str(c))
+        if k and k not in col_to_key.values():  # First match wins
+            col_to_key[str(c)] = k
+
+    # Build output columns in order
+    out_cols: List[str] = []
+    key_to_out_header: Dict[str, str] = {}
+    for key in d.columns:
+        if key not in fields:
+            raise KeyError(f&#34;Deliverable {deliverable_id} refers to unknown field key: {key}&#34;)
+        # Use output_headers override if available, otherwise default_header
+        out_header = d.output_headers.get(key) or fields[key].default_header
+        key_to_out_header[key] = out_header
+        out_cols.append(out_header)
+
+    # Create output frame
+    out = pd.DataFrame(index=df.index)
+
+    # Copy/move values from input to output
+    used_input_cols = set()
+    for in_col, key in col_to_key.items():
+        if key not in d.columns:
+            continue
+        used_input_cols.add(in_col)
+        out_header = key_to_out_header[key]
+        out[out_header] = df[in_col]
+
+    # Fill missing columns
+    if fill_missing:
+        for key in d.columns:
+            oh = key_to_out_header[key]
+            if oh not in out.columns:
+                out[oh] = fill_value
+
+    # Keep extra columns if requested
+    if keep_extra:
+        extra_cols = [c for c in df.columns if c not in used_input_cols]
+        for c in extra_cols:
+            out[str(c)] = df[c]
+
+    # Strict validation
+    if d.strict:
+        rep = validate_df(out, reg, deliverable_id, treat_out_headers_as_true=True)
+        if rep[&#34;missing_keys&#34;]:
+            raise ValueError(
+                f&#34;Header schema violation (missing): {rep[&#39;missing_keys&#39;]} &#34;
+                f&#34;for deliverable {deliverable_id}&#34;
+            )
+        if rep[&#34;unexpected_cols&#34;] and not keep_extra:
+            raise ValueError(
+                f&#34;Header schema violation (unexpected): {rep[&#39;unexpected_cols&#39;]} &#34;
+                f&#34;for deliverable {deliverable_id}&#34;
+            )
+
+    return out</code></pre>
+</details>
+<div class="desc"><p>Apply header schema to DataFrame.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>df</code></strong></dt>
+<dd>Input DataFrame (may have mismatched headers)</dd>
+<dt><strong><code>reg</code></strong></dt>
+<dd>HeaderRegistry instance</dd>
+<dt><strong><code>deliverable_id</code></strong></dt>
+<dd>Deliverable ID from registry</dd>
+<dt><strong><code>keep_extra</code></strong></dt>
+<dd>Keep columns not in schema</dd>
+<dt><strong><code>fill_missing</code></strong></dt>
+<dd>Fill missing columns with fill_value</dd>
+<dt><strong><code>fill_value</code></strong></dt>
+<dd>Value to use for missing columns</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>DataFrame with standardized headers and column order</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.get_header_row"><code class="name flex">
+<span>def <span class="ident">get_header_row</span></span>(<span>reg: <a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry">HeaderRegistry</a>,<br>deliverable_id: str) ‑> int | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_header_row(reg: HeaderRegistry, deliverable_id: str) -&gt; Optional[int]:
+    &#34;&#34;&#34;Get header row number for deliverable.&#34;&#34;&#34;
+    if deliverable_id not in reg.deliverables:
+        return None
+    return reg.deliverables[deliverable_id].header_row</code></pre>
+</details>
+<div class="desc"><p>Get header row number for deliverable.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.get_sheet_name"><code class="name flex">
+<span>def <span class="ident">get_sheet_name</span></span>(<span>reg: <a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry">HeaderRegistry</a>,<br>deliverable_id: str) ‑> str | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_sheet_name(reg: HeaderRegistry, deliverable_id: str) -&gt; Optional[str]:
+    &#34;&#34;&#34;Get sheet name for deliverable.&#34;&#34;&#34;
+    if deliverable_id not in reg.deliverables:
+        return None
+    return reg.deliverables[deliverable_id].sheet</code></pre>
+</details>
+<div class="desc"><p>Get sheet name for deliverable.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.load_registry"><code class="name flex">
+<span>def <span class="ident">load_registry</span></span>(<span>path: str | Path) ‑> 01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_registry(path: str | Path) -&gt; HeaderRegistry:
+    &#34;&#34;&#34;Load registry from JSON file.&#34;&#34;&#34;
+    p = Path(path)
+    raw = json.loads(p.read_text(encoding=&#34;utf-8&#34;))
+
+    meta = raw.get(&#34;meta&#34;) or {}
+    version = str(meta.get(&#34;version&#34;, &#34;0.0.0&#34;))
+    normalize = str(meta.get(&#34;normalize&#34;, &#34;loose&#34;))
+
+    # Load fields
+    fields_raw: Dict[str, Any] = raw.get(&#34;fields&#34;) or {}
+    fields: Dict[str, FieldDef] = {}
+    for k, v in fields_raw.items():
+        fields[k] = FieldDef(
+            key=k,
+            default_header=str(v.get(&#34;default_header&#34;) or k),
+            aliases=[str(a) for a in (v.get(&#34;aliases&#34;) or [])],
+            unit=str(v.get(&#34;unit&#34;, &#34;&#34;)),
+            type=str(v.get(&#34;type&#34;, &#34;string&#34;)),
+            description=str(v.get(&#34;description&#34;, &#34;&#34;)),
+        )
+
+    # Load deliverables
+    deliv_raw: Dict[str, Any] = raw.get(&#34;deliverables&#34;) or {}
+    deliverables: Dict[str, Deliverable] = {}
+    for did, v in deliv_raw.items():
+        deliverables[did] = Deliverable(
+            id=did,
+            file_pattern=str(v.get(&#34;file_pattern&#34;, &#34;&#34;)),
+            sheet=v.get(&#34;sheet&#34;),
+            header_row=v.get(&#34;header_row&#34;),
+            columns=[str(x) for x in (v.get(&#34;columns&#34;) or [])],
+            output_headers={str(k): str(val) for k, val in (v.get(&#34;output_headers&#34;) or {}).items()},
+            strict=bool(v.get(&#34;strict&#34;, True)),
+            version=str(v.get(&#34;version&#34;, version)),
+        )
+
+    # Build alias map (normalized alias -&gt; canonical field key)
+    # Process fields in sorted order to ensure consistent precedence
+    # (e.g., &#39;stage&#39; should be matched before &#39;stage_id&#39; for ambiguous aliases)
+    alias_to_key: Dict[str, str] = {}
+    for fkey in sorted(fields.keys()):
+        fdef = fields[fkey]
+        candidates = set([fdef.default_header, fkey] + list(fdef.aliases))
+        for a in candidates:
+            norm_a = _norm(a, normalize)
+            # Only set if not already mapped (first match wins)
+            if norm_a not in alias_to_key:
+                alias_to_key[norm_a] = fkey
+
+    return HeaderRegistry(
+        version=version,
+        normalize=normalize,
+        fields=fields,
+        deliverables=deliverables,
+        alias_to_key=alias_to_key,
+    )</code></pre>
+</details>
+<div class="desc"><p>Load registry from JSON file.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.validate_df"><code class="name flex">
+<span>def <span class="ident">validate_df</span></span>(<span>df: pd.DataFrame,<br>reg: <a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry">HeaderRegistry</a>,<br>deliverable_id: str,<br>*,<br>treat_out_headers_as_true: bool = False) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_df(
+    df: pd.DataFrame,
+    reg: HeaderRegistry,
+    deliverable_id: str,
+    *,
+    treat_out_headers_as_true: bool = False,
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Validate DataFrame against deliverable schema.
+
+    Returns:
+        {
+            &#34;missing_keys&#34;: [...],
+            &#34;unexpected_cols&#34;: [...],
+            &#34;expected_headers&#34;: [...]
+        }
+    &#34;&#34;&#34;
+    d = reg.deliverables[deliverable_id]
+    fields = reg.fields
+
+    # Build expected headers
+    expected_headers: List[str] = []
+    header_to_key: Dict[str, str] = {}
+    for key in d.columns:
+        expected_header = d.output_headers.get(key) or fields[key].default_header
+        expected_headers.append(expected_header)
+        header_to_key[expected_header] = key
+
+    cols = [str(c) for c in df.columns]
+
+    if treat_out_headers_as_true:
+        # Direct header name comparison
+        missing_headers = [h for h in expected_headers if h not in cols]
+        unexpected = [c for c in cols if c not in expected_headers]
+        missing_keys = [header_to_key.get(h) for h in missing_headers if header_to_key.get(h)]
+        return {
+            &#34;missing_keys&#34;: missing_keys,
+            &#34;unexpected_cols&#34;: unexpected,
+            &#34;expected_headers&#34;: expected_headers,
+        }
+
+    # Otherwise: treat df columns as &#34;input&#34; and check if they map to required keys
+    present_keys = set()
+    for c in cols:
+        k = _find_field_key_for_col(reg, c)
+        if k in d.columns:
+            present_keys.add(k)
+
+    missing_keys = [k for k in d.columns if k not in present_keys]
+    unexpected = []
+    for c in cols:
+        k = _find_field_key_for_col(reg, c)
+        if (k is None) or (k not in d.columns):
+            unexpected.append(c)
+
+    return {
+        &#34;missing_keys&#34;: missing_keys,
+        &#34;unexpected_cols&#34;: unexpected,
+        &#34;expected_headers&#34;: expected_headers,
+    }</code></pre>
+</details>
+<div class="desc"><p>Validate DataFrame against deliverable schema.</p>
+<h2 id="returns">Returns</h2>
+<p>{
+"missing_keys": [&hellip;],
+"unexpected_cols": [&hellip;],
+"expected_headers": [&hellip;]
+}</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable"><code class="flex name class">
+<span>class <span class="ident">Deliverable</span></span>
+<span>(</span><span>id: str,<br>file_pattern: str,<br>sheet: Optional[str],<br>header_row: Optional[int],<br>columns: List[str],<br>output_headers: Dict[str, str],<br>strict: bool,<br>version: str = '')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(frozen=True)
+class Deliverable:
+    id: str
+    file_pattern: str
+    sheet: Optional[str]
+    header_row: Optional[int]
+    columns: List[str]  # Ordered list of field keys
+    output_headers: Dict[str, str]  # field_key -&gt; output header override
+    strict: bool
+    version: str = &#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>Deliverable(id: 'str', file_pattern: 'str', sheet: 'Optional[str]', header_row: 'Optional[int]', columns: 'List[str]', output_headers: 'Dict[str, str]', strict: 'bool', version: 'str' = '')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.columns"><code class="name">var <span class="ident">columns</span> : List[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.file_pattern"><code class="name">var <span class="ident">file_pattern</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.header_row"><code class="name">var <span class="ident">header_row</span> : int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.id"><code class="name">var <span class="ident">id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.output_headers"><code class="name">var <span class="ident">output_headers</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.sheet"><code class="name">var <span class="ident">sheet</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.strict"><code class="name">var <span class="ident">strict</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef"><code class="flex name class">
+<span>class <span class="ident">FieldDef</span></span>
+<span>(</span><span>key: str,<br>default_header: str,<br>aliases: List[str],<br>unit: str = '',<br>type: str = 'string',<br>description: str = '')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(frozen=True)
+class FieldDef:
+    key: str
+    default_header: str
+    aliases: List[str]
+    unit: str = &#34;&#34;
+    type: str = &#34;string&#34;
+    description: str = &#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>FieldDef(key: 'str', default_header: 'str', aliases: 'List[str]', unit: 'str' = '', type: 'str' = 'string', description: 'str' = '')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.aliases"><code class="name">var <span class="ident">aliases</span> : List[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.default_header"><code class="name">var <span class="ident">default_header</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.key"><code class="name">var <span class="ident">key</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.unit"><code class="name">var <span class="ident">unit</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry"><code class="flex name class">
+<span>class <span class="ident">HeaderRegistry</span></span>
+<span>(</span><span>version: str,<br>normalize: str,<br>fields: Dict[str, <a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef">FieldDef</a>],<br>deliverables: Dict[str, <a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable">Deliverable</a>],<br>alias_to_key: Dict[str, str])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(frozen=True)
+class HeaderRegistry:
+    version: str
+    normalize: str
+    fields: Dict[str, FieldDef]
+    deliverables: Dict[str, Deliverable]
+    alias_to_key: Dict[str, str]  # Precomputed: normalized alias -&gt; canonical key</code></pre>
+</details>
+<div class="desc"><p>HeaderRegistry(version: 'str', normalize: 'str', fields: 'Dict[str, FieldDef]', deliverables: 'Dict[str, Deliverable]', alias_to_key: 'Dict[str, str]')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.alias_to_key"><code class="name">var <span class="ident">alias_to_key</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.deliverables"><code class="name">var <span class="ident">deliverables</span> : Dict[str, 01_EXECUTION_FILES.ssot.headers_registry.Deliverable]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.fields"><code class="name">var <span class="ident">fields</span> : Dict[str, 01_EXECUTION_FILES.ssot.headers_registry.FieldDef]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.normalize"><code class="name">var <span class="ident">normalize</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot" href="index.html">01_EXECUTION_FILES.ssot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.apply_schema" href="#01_EXECUTION_FILES.ssot.headers_registry.apply_schema">apply_schema</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.get_header_row" href="#01_EXECUTION_FILES.ssot.headers_registry.get_header_row">get_header_row</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.get_sheet_name" href="#01_EXECUTION_FILES.ssot.headers_registry.get_sheet_name">get_sheet_name</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.load_registry" href="#01_EXECUTION_FILES.ssot.headers_registry.load_registry">load_registry</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.validate_df" href="#01_EXECUTION_FILES.ssot.headers_registry.validate_df">validate_df</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable">Deliverable</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.columns" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.columns">columns</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.file_pattern" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.file_pattern">file_pattern</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.header_row" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.header_row">header_row</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.id" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.id">id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.output_headers" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.output_headers">output_headers</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.sheet" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.sheet">sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.strict" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.strict">strict</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.Deliverable.version" href="#01_EXECUTION_FILES.ssot.headers_registry.Deliverable.version">version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef">FieldDef</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.aliases" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef.aliases">aliases</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.default_header" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef.default_header">default_header</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.description" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef.description">description</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.key" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef.key">key</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.type" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef.type">type</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.FieldDef.unit" href="#01_EXECUTION_FILES.ssot.headers_registry.FieldDef.unit">unit</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry">HeaderRegistry</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.alias_to_key" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.alias_to_key">alias_to_key</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.deliverables" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.deliverables">deliverables</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.fields" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.fields">fields</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.normalize" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.normalize">normalize</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.version" href="#01_EXECUTION_FILES.ssot.headers_registry.HeaderRegistry.version">version</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

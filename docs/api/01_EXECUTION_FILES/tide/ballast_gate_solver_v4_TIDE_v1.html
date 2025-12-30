@@ -1,0 +1,1790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1 API documentation</title>
+<meta name="description" content="ballast_gate_solver_v4.py
+Definition-split + Gate-unified ballast solver …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1</code></h1>
+</header>
+<section id="section-intro">
+<p>ballast_gate_solver_v4.py
+Definition-split + Gate-unified ballast solver.</p>
+<p>Key points (per your “원인” 정리)
+- Forecast_Tide_m (forecast) is NOT Required_WL_for_UKC_m (required WL).
+- Draft is independent of tide.
+- Draft vs Freeboard vs UKC are computed separately.
+- Unified gate set:
+FWD &lt;= FWD_MAX
+AFT &gt;= AFT_MIN
+Freeboard &gt;= FB_MIN (requires D_vessel_m)
+UKC &gt;= UKC_MIN (requires DepthRef_m + Forecast_Tide_m)</p>
+<p>Modes:
+- limit
+: soft violations (always returns best plan + violation meters)
+- target : targets (Target_FWD_m, Target_AFT_m) via ΔW/ΔM equalities (with slack)</p>
+<p>Dependencies:
+- numpy, pandas, scipy</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.apply_delta"><code class="name flex">
+<span>def <span class="ident">apply_delta</span></span>(<span>tanks: List[<a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank">Tank</a>],<br>delta: Dict[str, float]) ‑> List[01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def apply_delta(tanks: List[Tank], delta: Dict[str, float]) -&gt; List[Tank]:
+    out = []
+    for t in tanks:
+        dw = float(delta.get(t.name, 0.0))
+        out.append(
+            Tank(
+                name=t.name,
+                x_from_mid_m=t.x_from_mid_m,
+                current_t=min(max(t.current_t + dw, t.min_t), t.max_t),
+                min_t=t.min_t,
+                max_t=t.max_t,
+                mode=t.mode,
+                use_flag=t.use_flag,
+                pump_rate_tph=t.pump_rate_tph,
+                priority_weight=t.priority_weight,
+            )
+        )
+    return out</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.build_rows"><code class="name flex">
+<span>def <span class="ident">build_rows</span></span>(<span>hydro: <a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint">HydroPoint</a>,<br>tanks: List[<a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank">Tank</a>]) ‑> Tuple[numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_rows(hydro: HydroPoint, tanks: List[Tank]) -&gt; Tuple[np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;
+    Build ΣΔw and ΣΔw*(x-LCF) rows for variables [p1,n1,p2,n2,...]
+    &#34;&#34;&#34;
+    n = len(tanks)
+    rowW = np.zeros(2 * n, dtype=float)
+    rowM = np.zeros(2 * n, dtype=float)
+    for i, t in enumerate(tanks):
+        arm = t.x_from_mid_m - hydro.lcf_m
+        rowW[2 * i] = 1.0
+        rowW[2 * i + 1] = -1.0
+        rowM[2 * i] = arm
+        rowM[2 * i + 1] = -arm
+    return rowW, rowM</code></pre>
+</details>
+<div class="desc"><p>Build ΣΔw and ΣΔw*(x-LCF) rows for variables [p1,n1,p2,n2,&hellip;]</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.diagnose_solver_plan_absence"><code class="name flex">
+<span>def <span class="ident">diagnose_solver_plan_absence</span></span>(<span>stage_name: str,<br>dfwd0: float,<br>daft0: float,<br>aft_min_m: float,<br>fwd_max_m: float,<br>fb_min_m: Optional[float],<br>d_vessel_m: Optional[float]) ‑> Dict[str, object]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def diagnose_solver_plan_absence(
+    stage_name: str,
+    dfwd0: float,
+    daft0: float,
+    aft_min_m: float,
+    fwd_max_m: float,
+    fb_min_m: Optional[float],
+    d_vessel_m: Optional[float],
+) -&gt; Dict[str, object]:
+    diagnosis = {
+        &#34;stage&#34;: stage_name,
+        &#34;aft_draft&#34;: daft0,
+        &#34;fwd_draft&#34;: dfwd0,
+        &#34;aft_min_required&#34;: aft_min_m,
+        &#34;fwd_max_required&#34;: fwd_max_m,
+        &#34;aft_margin&#34;: daft0 - aft_min_m,
+        &#34;fwd_margin&#34;: fwd_max_m - dfwd0,
+        &#34;possible_reasons&#34;: [],
+    }
+
+    if diagnosis[&#34;aft_margin&#34;] &lt; -0.50:
+        diagnosis[&#34;possible_reasons&#34;].append(
+            &#34;AFT draft below limit by &gt;0.50m; may need significant ballast&#34;
+        )
+    elif diagnosis[&#34;aft_margin&#34;] &lt; -0.30:
+        diagnosis[&#34;possible_reasons&#34;].append(
+            &#34;AFT draft below limit by &gt;0.30m; tank capacity constraints likely&#34;
+        )
+
+    if diagnosis[&#34;fwd_margin&#34;] &lt; -0.30:
+        diagnosis[&#34;possible_reasons&#34;].append(
+            &#34;FWD draft exceeds limit by &gt;0.30m; constraints may conflict&#34;
+        )
+
+    if fb_min_m is not None and d_vessel_m is not None:
+        fb_fwd = d_vessel_m - dfwd0
+        fb_aft = d_vessel_m - daft0
+        fb_min = min(fb_fwd, fb_aft)
+        if fb_min &lt; fb_min_m:
+            diagnosis[&#34;possible_reasons&#34;].append(
+                &#34;Freeboard below minimum; limited ballast options may block plan&#34;
+            )
+
+    if not diagnosis[&#34;possible_reasons&#34;]:
+        diagnosis[&#34;possible_reasons&#34;].append(
+            &#34;Solver returned empty plan; check tank operability and constraints&#34;
+        )
+
+    return diagnosis</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.freeboard_min"><code class="name flex">
+<span>def <span class="ident">freeboard_min</span></span>(<span>d_vessel_m: Optional[float], dfwd: float, daft: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def freeboard_min(d_vessel_m: Optional[float], dfwd: float, daft: float) -&gt; float:
+    if d_vessel_m is None:
+        return float(&#34;nan&#34;)
+    return float(min(d_vessel_m - dfwd, d_vessel_m - daft))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.interp_hydro"><code class="name flex">
+<span>def <span class="ident">interp_hydro</span></span>(<span>hdf: pd.DataFrame, tmean_m: float) ‑> 01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def interp_hydro(hdf: pd.DataFrame, tmean_m: float) -&gt; HydroPoint:
+    x = hdf[&#34;Tmean_m&#34;].to_numpy(dtype=float)
+
+    def _interp(col: str) -&gt; float:
+        return float(np.interp(float(tmean_m), x, hdf[col].to_numpy(dtype=float)))
+
+    hp = HydroPoint(
+        tmean_m=float(tmean_m),
+        tpc_t_per_cm=_interp(&#34;TPC_t_per_cm&#34;),
+        mtc_t_m_per_cm=_interp(&#34;MTC_t_m_per_cm&#34;),
+        lcf_m=_interp(&#34;LCF_m&#34;),
+        lbp_m=_interp(&#34;LBP_m&#34;),
+    )
+    if hp.tpc_t_per_cm &lt;= 0 or hp.mtc_t_m_per_cm &lt;= 0:
+        raise ValueError(&#34;Invalid hydro: TPC/MTC must be &gt; 0&#34;)
+    return hp</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_hydro_table"><code class="name flex">
+<span>def <span class="ident">load_hydro_table</span></span>(<span>path: Path) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_hydro_table(path: Path) -&gt; pd.DataFrame:
+    df = _read_df_any(path).copy()
+    need = {&#34;Tmean_m&#34;, &#34;TPC_t_per_cm&#34;, &#34;MTC_t_m_per_cm&#34;, &#34;LCF_m&#34;, &#34;LBP_m&#34;}
+    miss = need - set(df.columns)
+    if miss:
+        raise ValueError(f&#34;Hydro table missing columns: {sorted(miss)}&#34;)
+    for c in need:
+        df[c] = pd.to_numeric(df[c], errors=&#34;coerce&#34;)
+    df = df.dropna(subset=[&#34;Tmean_m&#34;]).sort_values(&#34;Tmean_m&#34;).reset_index(drop=True)
+    return df</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_stage_table"><code class="name flex">
+<span>def <span class="ident">load_stage_table</span></span>(<span>path: Path) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_stage_table(path: Path) -&gt; pd.DataFrame:
+    df = _read_df_any(path).copy()
+
+    # tolerant rename
+    ren = {}
+    for c in df.columns:
+        cl = str(c).strip().lower()
+        if cl in (&#34;stage&#34;, &#34;stage_name&#34;):
+            ren[c] = &#34;Stage&#34;
+        elif cl in (&#34;current_fwd_m&#34;, &#34;dfwd_m&#34;, &#34;fwd&#34;):
+            ren[c] = &#34;Current_FWD_m&#34;
+        elif cl in (&#34;current_aft_m&#34;, &#34;daft_m&#34;, &#34;aft&#34;):
+            ren[c] = &#34;Current_AFT_m&#34;
+        elif cl in (&#34;forecast_tide_m&#34;, &#34;tide_m&#34;):
+            ren[c] = &#34;Forecast_Tide_m&#34;
+        elif cl in (&#34;depthref_m&#34;, &#34;depth_ref_m&#34;):
+            ren[c] = &#34;DepthRef_m&#34;
+        elif cl in (&#34;squat_m&#34;,):
+            ren[c] = &#34;Squat_m&#34;
+        elif cl in (&#34;safetyallow_m&#34;, &#34;safety_allow_m&#34;):
+            ren[c] = &#34;SafetyAllow_m&#34;
+        elif cl in (&#34;fwd_max_m&#34;, &#34;fwd_limit_m&#34;):
+            ren[c] = &#34;FWD_MAX_m&#34;
+        elif cl in (&#34;aft_min_m&#34;,):
+            ren[c] = &#34;AFT_MIN_m&#34;
+        elif cl in (&#34;fb_min_m&#34;, &#34;freeboard_min_m&#34;):
+            ren[c] = &#34;FB_MIN_m&#34;
+        elif cl in (&#34;ukc_min_m&#34;,):
+            ren[c] = &#34;UKC_MIN_m&#34;
+        elif cl in (&#34;target_fwd_m&#34;,):
+            ren[c] = &#34;Target_FWD_m&#34;
+        elif cl in (&#34;target_aft_m&#34;,):
+            ren[c] = &#34;Target_AFT_m&#34;
+        elif cl in (&#34;ukc_ref&#34;,):
+            ren[c] = &#34;UKC_Ref&#34;
+
+    df = df.rename(columns=ren)
+    need = {&#34;Stage&#34;, &#34;Current_FWD_m&#34;, &#34;Current_AFT_m&#34;}
+    miss = need - set(df.columns)
+    if miss:
+        raise ValueError(f&#34;stage table missing columns: {sorted(miss)}&#34;)
+
+    for c in [
+        &#34;Current_FWD_m&#34;,
+        &#34;Current_AFT_m&#34;,
+        &#34;Forecast_Tide_m&#34;,
+        &#34;DepthRef_m&#34;,
+        &#34;Squat_m&#34;,
+        &#34;SafetyAllow_m&#34;,
+        &#34;FWD_MAX_m&#34;,
+        &#34;AFT_MIN_m&#34;,
+        &#34;FB_MIN_m&#34;,
+        &#34;UKC_MIN_m&#34;,
+        &#34;Target_FWD_m&#34;,
+        &#34;Target_AFT_m&#34;,
+    ]:
+        if c in df.columns:
+            # Convert column to numeric - use apply for compatibility
+            df[c] = df[c].apply(lambda x: pd.to_numeric(x, errors=&#34;coerce&#34;))
+
+    if &#34;UKC_Ref&#34; not in df.columns:
+        df[&#34;UKC_Ref&#34;] = &#34;MAX&#34;
+    df[&#34;UKC_Ref&#34;] = (
+        df[&#34;UKC_Ref&#34;].astype(str).str.upper().replace({&#34;&#34;: &#34;MAX&#34;}).fillna(&#34;MAX&#34;)
+    )
+
+    return df</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_tanks"><code class="name flex">
+<span>def <span class="ident">load_tanks</span></span>(<span>path: Path, default_min_t: float = 0.0, default_rate_tph: float = 50.0) ‑> List[01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_tanks(
+    path: Path, default_min_t: float = 0.0, default_rate_tph: float = 50.0
+) -&gt; List[Tank]:
+    df = _read_df_any(path).copy()
+    req = {&#34;Tank&#34;, &#34;Current_t&#34;, &#34;Capacity_t&#34;, &#34;x_from_mid_m&#34;, &#34;use_flag&#34;}
+    miss = req - set(df.columns)
+    if miss:
+        raise ValueError(f&#34;tank SSOT missing columns: {sorted(miss)}&#34;)
+
+    # defaults
+    if &#34;Min_t&#34; not in df.columns:
+        df[&#34;Min_t&#34;] = default_min_t
+    if &#34;Max_t&#34; not in df.columns:
+        df[&#34;Max_t&#34;] = df[&#34;Capacity_t&#34;]
+    if &#34;mode&#34; not in df.columns:
+        df[&#34;mode&#34;] = &#34;FILL_DISCHARGE&#34;
+    if &#34;pump_rate_tph&#34; not in df.columns:
+        df[&#34;pump_rate_tph&#34;] = default_rate_tph
+    if &#34;priority_weight&#34; not in df.columns:
+        df[&#34;priority_weight&#34;] = 1.0
+
+    for c in [
+        &#34;Current_t&#34;,
+        &#34;Capacity_t&#34;,
+        &#34;x_from_mid_m&#34;,
+        &#34;Min_t&#34;,
+        &#34;Max_t&#34;,
+        &#34;pump_rate_tph&#34;,
+        &#34;priority_weight&#34;,
+    ]:
+        df[c] = pd.to_numeric(df[c], errors=&#34;coerce&#34;).fillna(0.0)
+
+    tanks: List[Tank] = []
+    for _, r in df.iterrows():
+        cap = float(r[&#34;Capacity_t&#34;])
+        mx = float(r[&#34;Max_t&#34;]) if float(r[&#34;Max_t&#34;]) &gt; 0 else cap
+        mn = float(r[&#34;Min_t&#34;])
+        mx = min(mx, cap) if cap &gt; 0 else mx
+        cur = min(max(float(r[&#34;Current_t&#34;]), mn), mx)
+
+        tanks.append(
+            Tank(
+                name=str(r[&#34;Tank&#34;]).strip(),
+                x_from_mid_m=float(r[&#34;x_from_mid_m&#34;]),
+                current_t=cur,
+                min_t=mn,
+                max_t=mx,
+                mode=str(r[&#34;mode&#34;]).strip(),
+                use_flag=str(r[&#34;use_flag&#34;]).strip(),
+                pump_rate_tph=max(float(r[&#34;pump_rate_tph&#34;]), 0.01),
+                priority_weight=max(float(r[&#34;priority_weight&#34;]), 0.01),
+            )
+        )
+    return tanks</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main() -&gt; None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(&#34;--tank&#34;, required=True)
+    ap.add_argument(&#34;--hydro&#34;, required=True)
+    ap.add_argument(&#34;--mode&#34;, choices=[&#34;limit&#34;, &#34;target&#34;], required=True)
+    ap.add_argument(&#34;--iterate_hydro&#34;, type=int, default=2)
+    ap.add_argument(&#34;--prefer_tons&#34;, action=&#34;store_true&#34;)
+
+    # single-case inputs
+    ap.add_argument(&#34;--current_fwd&#34;, type=float, default=None)
+    ap.add_argument(&#34;--current_aft&#34;, type=float, default=None)
+
+    # targets (target mode)
+    ap.add_argument(&#34;--target_fwd&#34;, type=float, default=None)
+    ap.add_argument(&#34;--target_aft&#34;, type=float, default=None)
+
+    # unified gates (limit mode)
+    ap.add_argument(&#34;--fwd_max&#34;, type=float, default=None)
+    ap.add_argument(&#34;--aft_min&#34;, type=float, default=None)
+    ap.add_argument(&#34;--d_vessel&#34;, type=float, default=None)
+    ap.add_argument(&#34;--fb_min&#34;, type=float, default=None)
+    ap.add_argument(
+        &#34;--trim_abs_limit&#34;,
+        type=float,
+        default=0.50,
+        help=&#34;Absolute trim limit (m) for hard constraint.&#34;,
+    )
+    ap.add_argument(
+        &#34;--trim_limit_enforced&#34;,
+        dest=&#34;trim_limit_enforced&#34;,
+        action=&#34;store_true&#34;,
+        default=True,
+        help=&#34;Enforce trim limit as hard constraint (default: enabled).&#34;,
+    )
+    ap.add_argument(
+        &#34;--no-trim-limit-enforced&#34;,
+        dest=&#34;trim_limit_enforced&#34;,
+        action=&#34;store_false&#34;,
+        help=&#34;Disable hard enforcement of trim limit.&#34;,
+    )
+    ap.add_argument(
+        &#34;--freeboard_min_m&#34;,
+        type=float,
+        default=0.0,
+        help=&#34;Minimum freeboard requirement (m) for hard constraint.&#34;,
+    )
+    ap.add_argument(
+        &#34;--freeboard_min_enforced&#34;,
+        dest=&#34;freeboard_min_enforced&#34;,
+        action=&#34;store_true&#34;,
+        default=True,
+        help=&#34;Enforce minimum freeboard as hard constraint (default: enabled).&#34;,
+    )
+    ap.add_argument(
+        &#34;--no-freeboard-min-enforced&#34;,
+        dest=&#34;freeboard_min_enforced&#34;,
+        action=&#34;store_false&#34;,
+        help=&#34;Disable hard enforcement of minimum freeboard.&#34;,
+    )
+
+    # tide/WL/UKC split
+    ap.add_argument(&#34;--forecast_tide&#34;, type=float, default=None)
+    ap.add_argument(&#34;--depth_ref&#34;, type=float, default=None)
+    ap.add_argument(&#34;--ukc_min&#34;, type=float, default=None)
+    ap.add_argument(&#34;--ukc_ref&#34;, type=str, default=&#34;MAX&#34;)
+    ap.add_argument(&#34;--squat&#34;, type=float, default=0.0)
+    ap.add_argument(&#34;--safety_allow&#34;, type=float, default=0.0)
+
+    # penalties
+    ap.add_argument(&#34;--violation_penalty&#34;, type=float, default=1e7)
+    ap.add_argument(&#34;--slack_weight_penalty&#34;, type=float, default=1e6)
+    ap.add_argument(&#34;--slack_moment_penalty&#34;, type=float, default=1e3)
+
+    # stage mode
+    ap.add_argument(&#34;--stage&#34;, type=str, default=&#34;&#34;)
+    ap.add_argument(&#34;--out_plan&#34;, type=str, default=&#34;ballast_plan_out.csv&#34;)
+    ap.add_argument(&#34;--out_summary&#34;, type=str, default=&#34;ballast_summary_out.csv&#34;)
+    ap.add_argument(&#34;--out_stage_plan&#34;, type=str, default=&#34;ballast_stage_plan_out.csv&#34;)
+    ap.add_argument(
+        &#34;--stateful_solver&#34;,
+        &#34;--stateful&#34;,
+        action=&#34;store_true&#34;,
+        help=&#34;Carry-forward tank Current_t across stages (stateful stage loop).&#34;,
+    )
+    ap.add_argument(
+        &#34;--reset_tank_state&#34;,
+        default=&#34;&#34;,
+        help=&#34;Comma list or regex (prefix &#39;re:&#39;) to reset Current_t from SSOT.&#34;,
+    )
+    ap.add_argument(
+        &#34;--state_trace_csv&#34;,
+        default=&#34;&#34;,
+        help=&#34;Optional CSV path for stateful tank snapshot tracing.&#34;,
+    )
+    ap.add_argument(
+        &#34;--tank_operability_json&#34;,
+        default=&#34;&#34;,
+        help=&#34;Optional JSON with tank operability metadata (e.g., PRE_BALLAST_ONLY).&#34;,
+    )
+    ap.add_argument(
+        &#34;--disable_preballast_only_on_operational_stages&#34;,
+        action=&#34;store_true&#34;,
+        default=False,
+        help=&#34;Disable enforcing PRE_BALLAST_ONLY tanks as FIXED on operational stages.&#34;,
+    )
+    ap.add_argument(
+        &#34;--operational_stage_regex&#34;,
+        default=r&#34;(6a|6b|critical|ramp|roll|loadout)&#34;,
+        help=&#34;Regex to decide operational stages for PRE_BALLAST_ONLY enforcement.&#34;,
+    )
+
+    args = ap.parse_args()
+    if args.fb_min is None:
+        args.fb_min = args.freeboard_min_m
+
+    print(
+        &#34;[INFO] Applying gates: Gate-A=AFT_MIN_2p70, &#34;
+        &#34;Gate-B=FWD_MAX_2p70_critical_only (critical only)&#34;
+    )
+
+    tanks = load_tanks(Path(args.tank))
+    hdf = load_hydro_table(Path(args.hydro))
+
+    prefer_time = not args.prefer_tons
+
+    # Stage mode
+    if args.stage:
+        st = load_stage_table(Path(args.stage))
+        tank_ssot_cache: Dict[str, List[Tank]] = {}
+        default_ssot_path = Path(args.tank).resolve()
+        stage_table_dir = Path(args.stage).resolve().parent
+
+        def _load_tanks_cached(ssot_path: Path) -&gt; List[Tank]:
+            key = str(ssot_path.resolve())
+            if key not in tank_ssot_cache:
+                tank_ssot_cache[key] = load_tanks(ssot_path)
+            return [
+                Tank(
+                    name=t.name,
+                    x_from_mid_m=t.x_from_mid_m,
+                    current_t=t.current_t,
+                    min_t=t.min_t,
+                    max_t=t.max_t,
+                    mode=t.mode,
+                    use_flag=t.use_flag,
+                    pump_rate_tph=t.pump_rate_tph,
+                    priority_weight=t.priority_weight,
+                )
+                for t in tank_ssot_cache[key]
+            ]
+
+        def _tank_state_from_list(tanks: List[Tank]) -&gt; Dict[str, float]:
+            return {t.name: float(t.current_t) for t in tanks}
+
+        def _merge_policy_with_state(
+            policy_tanks: List[Tank],
+            cur_state: Dict[str, float],
+        ) -&gt; List[Tank]:
+            stage_tanks = []
+            for p in policy_tanks:
+                current = float(cur_state.get(p.name, p.current_t))
+                current = min(max(current, float(p.min_t)), float(p.max_t))
+                stage_tanks.append(
+                    Tank(
+                        name=p.name,
+                        x_from_mid_m=p.x_from_mid_m,
+                        current_t=current,
+                        min_t=p.min_t,
+                        max_t=p.max_t,
+                        mode=p.mode,
+                        use_flag=p.use_flag,
+                        pump_rate_tph=p.pump_rate_tph,
+                        priority_weight=p.priority_weight,
+                    )
+                )
+            return stage_tanks
+
+        def _load_operability_map(path: str) -&gt; Dict[str, str]:
+            if not path:
+                return {}
+            p = Path(str(path))
+            if not p.exists():
+                print(f&#34;[WARN] tank_operability_json not found: {p}&#34;)
+                return {}
+            try:
+                obj = json.loads(p.read_text(encoding=&#34;utf-8&#34;))
+            except Exception as e:
+                print(
+                    f&#34;[WARN] tank_operability_json read failed: {type(e).__name__}: {e}&#34;
+                )
+                return {}
+
+            def _set_oper(m: Dict[str, str], key: str, oper: str) -&gt; None:
+                key = str(key or &#34;&#34;).strip().upper()
+                oper = str(oper or &#34;&#34;).strip().upper()
+                if key and oper:
+                    m[key] = oper
+
+            oper_map: Dict[str, str] = {}
+
+            if isinstance(obj, dict) and isinstance(obj.get(&#34;tanks&#34;), list):
+                for row in obj[&#34;tanks&#34;]:
+                    if not isinstance(row, dict):
+                        continue
+                    _set_oper(
+                        oper_map,
+                        row.get(&#34;id&#34;) or row.get(&#34;Tank&#34;) or row.get(&#34;tank&#34;),
+                        row.get(&#34;operability&#34;),
+                    )
+
+            if isinstance(obj, dict) and isinstance(
+                obj.get(&#34;operational_constraints&#34;), dict
+            ):
+                for key, meta in obj[&#34;operational_constraints&#34;].items():
+                    if not isinstance(meta, dict):
+                        continue
+                    oper = meta.get(&#34;operability&#34;)
+                    if not oper:
+                        transfer = meta.get(&#34;transfer_authorized&#34;)
+                        pump_access = meta.get(&#34;pump_access&#34;)
+                        role = str(meta.get(&#34;role&#34;, &#34;&#34;)).lower()
+                        if transfer is False or pump_access is False or &#34;pre-ballast&#34; in role:
+                            oper = &#34;PRE_BALLAST_ONLY&#34;
+                    _set_oper(oper_map, key, oper)
+
+            if isinstance(obj, dict) and isinstance(obj.get(&#34;tank_operability&#34;), dict):
+                for key, meta in obj[&#34;tank_operability&#34;].items():
+                    if not isinstance(meta, dict):
+                        continue
+                    oper = meta.get(&#34;operability&#34;)
+                    if not oper:
+                        transfer = meta.get(&#34;transfer_authorized&#34;)
+                        pump_access = meta.get(&#34;pump_access&#34;)
+                        role = str(meta.get(&#34;role&#34;, &#34;&#34;)).lower()
+                        if transfer is False or pump_access is False or &#34;pre-ballast&#34; in role:
+                            oper = &#34;PRE_BALLAST_ONLY&#34;
+                    _set_oper(oper_map, key, oper)
+
+            if isinstance(obj, dict):
+                for key, meta in obj.items():
+                    if not isinstance(meta, dict) or key in (
+                        &#34;tanks&#34;,
+                        &#34;operational_constraints&#34;,
+                        &#34;tank_operability&#34;,
+                    ):
+                        continue
+                    _set_oper(oper_map, key, meta.get(&#34;operability&#34;))
+
+            return oper_map
+
+        def _is_operational_stage(stage_name: str, regex: str) -&gt; bool:
+            try:
+                return re.search(regex, stage_name or &#34;&#34;, re.IGNORECASE) is not None
+            except re.error:
+                print(
+                    f&#34;[WARN] operational_stage_regex invalid: {regex!r}; defaulting to False.&#34;
+                )
+                return False
+
+        def _force_fixed_for_preballast_only(
+            stage_tanks: List[Tank],
+            oper_map: Dict[str, str],
+            op_stage: bool,
+        ) -&gt; List[Tank]:
+            if not op_stage or not oper_map:
+                return stage_tanks
+            for t in stage_tanks:
+                key = str(t.name).strip().upper()
+                base = key.split(&#34;.&#34;, 1)[0]
+                oper = oper_map.get(key) or oper_map.get(base) or &#34;&#34;
+                if oper == &#34;PRE_BALLAST_ONLY&#34;:
+                    t.mode = &#34;FIXED&#34;
+                    if (t.use_flag or &#34;&#34;).strip().upper() != &#34;Y&#34;:
+                        t.use_flag = &#34;Y&#34;
+            return stage_tanks
+
+        def _should_reset_stage(stage_name: str, spec: str) -&gt; bool:
+            if not spec:
+                return False
+            spec = str(spec).strip()
+            if not spec:
+                return False
+            if spec.lower().startswith(&#34;re:&#34;):
+                pattern = spec[3:].strip()
+                if not pattern:
+                    return False
+                try:
+                    return re.search(pattern, stage_name, re.IGNORECASE) is not None
+                except re.error:
+                    print(
+                        f&#34;[WARN] reset_tank_state regex invalid: {pattern!r}; ignoring.&#34;
+                    )
+                    return False
+            choices = [s.strip().lower() for s in spec.split(&#34;,&#34;) if s.strip()]
+            return stage_name.strip().lower() in choices
+
+        trace_keys = (&#34;VOID3.P&#34;, &#34;VOID3.S&#34;, &#34;FWB2.P&#34;, &#34;FWB2.S&#34;)
+
+        def _log_state(stage_name: str, cur_state: Dict[str, float]) -&gt; None:
+            snap = {k: round(float(cur_state.get(k, 0.0)), 3) for k in trace_keys}
+            print(f&#34;[STATE][{stage_name}] {snap}&#34;)
+
+        def _trace_row(
+            stage_name: str,
+            phase: str,
+            cur_state_map: Dict[str, float],
+        ) -&gt; Dict[str, object]:
+            row: Dict[str, object] = {&#34;Stage&#34;: stage_name, &#34;Phase&#34;: phase}
+            for key in trace_keys:
+                row[key] = round(float(cur_state_map.get(key, 0.0)), 3)
+            return row
+
+        default_policy_tanks = _load_tanks_cached(default_ssot_path)
+        oper_map = _load_operability_map(args.tank_operability_json)
+        cur_state = _tank_state_from_list(default_policy_tanks)
+        cur_tanks = list(default_policy_tanks)
+        state_trace_rows = []
+        all_plan = []
+        all_sum = []
+
+        def _is_true(val) -&gt; bool:
+            if isinstance(val, str):
+                return val.strip().lower() in (&#34;1&#34;, &#34;true&#34;, &#34;y&#34;, &#34;yes&#34;)
+            return bool(val) if pd.notna(val) else False
+
+        for _, r in st.iterrows():
+            stage_name = str(r.get(&#34;Stage&#34;, &#34;Unknown&#34;))
+            ssot_name = r.get(&#34;Tank_SSOT_CSV&#34;, None)
+            ssot_was_custom = False
+            policy_tanks = default_policy_tanks
+            policy_source = default_ssot_path.name
+            if ssot_name and str(ssot_name).strip():
+                ssot_path = (stage_table_dir / str(ssot_name).strip()).resolve()
+                if ssot_path.exists():
+                    policy_tanks = _load_tanks_cached(ssot_path)
+                    policy_source = ssot_path.name
+                    print(
+                        f&#34;[INFO] Stage {stage_name}: Using tank SSOT {ssot_path.name}&#34;
+                    )
+                    ssot_was_custom = True
+                else:
+                    print(
+                        f&#34;[WARN] Stage {stage_name}: Tank_SSOT_CSV={ssot_name} not found, using default&#34;
+                    )
+                    policy_tanks = default_policy_tanks
+                    policy_source = default_ssot_path.name
+
+            if args.stateful_solver and _should_reset_stage(
+                stage_name, args.reset_tank_state
+            ):
+                cur_state = _tank_state_from_list(policy_tanks)
+                print(
+                    f&#34;[INFO] Stage {stage_name}: reset tank state from {policy_source}&#34;
+                )
+
+            dfwd0 = float(r[&#34;Current_FWD_m&#34;])
+            daft0 = float(r[&#34;Current_AFT_m&#34;])
+
+            # Helper function to safely get float value from Series
+            def safe_get_float(row, key, default):
+                if key in row.index:
+                    val = row[key]
+                    if (
+                        pd.notna(val)
+                        if not isinstance(val, pd.Series)
+                        else not pd.isna(val).any()
+                    ):
+                        try:
+                            return float(val)
+                        except (ValueError, TypeError):
+                            pass
+                return default
+
+            fwd_max = safe_get_float(r, &#34;FWD_MAX_m&#34;, args.fwd_max)
+            aft_min = safe_get_float(r, &#34;AFT_MIN_m&#34;, args.aft_min)
+            fb_min = safe_get_float(r, &#34;FB_MIN_m&#34;, args.fb_min)
+            ukc_min = safe_get_float(r, &#34;UKC_MIN_m&#34;, args.ukc_min)
+            wl = safe_get_float(r, &#34;Forecast_Tide_m&#34;, args.forecast_tide)
+            depth_ref = safe_get_float(r, &#34;DepthRef_m&#34;, args.depth_ref)
+            squat = safe_get_float(r, &#34;Squat_m&#34;, args.squat)
+            safety = safe_get_float(r, &#34;SafetyAllow_m&#34;, args.safety_allow)
+            target_fwd = safe_get_float(r, &#34;Target_FWD_m&#34;, args.target_fwd)
+            target_aft = safe_get_float(r, &#34;Target_AFT_m&#34;, args.target_aft)
+            ukc_ref = str(r.get(&#34;UKC_Ref&#34;, args.ukc_ref)).upper().strip() or &#34;MAX&#34;
+
+            op_stage = _is_operational_stage(
+                stage_name, args.operational_stage_regex
+            )
+
+            if args.stateful_solver:
+                stage_tanks = _merge_policy_with_state(policy_tanks, cur_state)
+            else:
+                cur_tanks = policy_tanks
+                stage_tanks = cur_tanks
+
+            if not args.disable_preballast_only_on_operational_stages:
+                stage_tanks = _force_fixed_for_preballast_only(
+                    stage_tanks, oper_map, op_stage
+                )
+
+            if args.stateful_solver and args.state_trace_csv:
+                stage_state = _tank_state_from_list(stage_tanks)
+                state_trace_rows.append(_trace_row(stage_name, &#34;before&#34;, stage_state))
+
+            # Stage-level SSOT already handles DISCHARGE_ONLY for FWD tanks (via tank_ssot_for_solver__aftmin.csv)
+            # Only apply Ban_FWD_Tanks logic if stage-level SSOT was NOT used (fallback)
+            if not ssot_was_custom:
+                # Fallback: apply Ban_FWD_Tanks logic only when stage-level SSOT was not used
+                try:
+                    ban_fwd = r.get(&#34;Ban_FWD_Tanks&#34;, False)
+                    if isinstance(ban_fwd, str):
+                        ban_fwd = ban_fwd.strip().lower() in (&#34;1&#34;, &#34;true&#34;, &#34;y&#34;, &#34;yes&#34;)
+                    if bool(ban_fwd):
+                        base_tanks = stage_tanks
+                        stage_tanks = []
+                        fwd_tanks_modified = 0
+                        for t in base_tanks:
+                            t2 = Tank(
+                                name=t.name,
+                                x_from_mid_m=t.x_from_mid_m,
+                                current_t=t.current_t,
+                                min_t=t.min_t,
+                                max_t=t.max_t,
+                                mode=t.mode,
+                                use_flag=t.use_flag,
+                                pump_rate_tph=t.pump_rate_tph,
+                                priority_weight=t.priority_weight,
+                            )
+                            if t2.x_from_mid_m &lt; 0:
+                                t2.mode = &#34;DISCHARGE_ONLY&#34;
+                                t2.min_t = 0.0
+                                if t2.max_t &gt; t2.current_t:
+                                    t2.max_t = t2.current_t
+                                if t2.use_flag != &#34;Y&#34;:
+                                    t2.use_flag = &#34;Y&#34;
+                                fwd_tanks_modified += 1
+                            stage_tanks.append(t2)
+                        if fwd_tanks_modified &gt; 0:
+                            print(
+                                f&#34;[INFO] AFT-min stage (fallback): {fwd_tanks_modified} FWD tank(s) set to DISCHARGE_ONLY (fill prohibited, discharge allowed)&#34;
+                            )
+                except Exception as e:
+                    print(
+                        f&#34;[WARN] FWD tank discharge-only setup failed: {type(e).__name__}: {e}&#34;
+                    )
+
+            plan, pred, delta, _ = solve_lp(
+                dfwd0=dfwd0,
+                daft0=daft0,
+                hdf=hdf,
+                tanks=stage_tanks,
+                mode=args.mode,
+                iterate_hydro=args.iterate_hydro,
+                target_fwd=target_fwd,
+                target_aft=target_aft,
+                fwd_max=fwd_max,
+                aft_min=aft_min,
+                d_vessel=args.d_vessel,
+                fb_min=fb_min,
+                ukc_min=ukc_min,
+                depth_ref=depth_ref,
+                forecast_tide=wl,
+                squat=squat,
+                safety_allow=safety,
+                ukc_ref=ukc_ref,
+                trim_abs_limit_m=args.trim_abs_limit,
+                trim_limit_enforced=args.trim_limit_enforced,
+                freeboard_min_enforced=args.freeboard_min_enforced,
+                prefer_time=prefer_time,
+                violation_penalty=args.violation_penalty,
+                slack_weight_penalty=args.slack_weight_penalty,
+                slack_moment_penalty=args.slack_moment_penalty,
+            )
+
+            dfwd_new = float(pred[&#34;FWD_new_m&#34;])
+            daft_new = float(pred[&#34;AFT_new_m&#34;])
+            draft_ref = pick_draft_ref_for_ukc(ukc_ref, dfwd_new, daft_new)
+            plan_row_count = 0 if plan.empty else len(plan)
+
+            stage_name = str(r.get(&#34;Stage&#34;, &#34;Unknown&#34;))
+            stage_is_critical = False
+            if &#34;Gate_B_Applies&#34; in r.index:
+                stage_is_critical = _is_true(r.get(&#34;Gate_B_Applies&#34;))
+            elif &#34;FWD_MAX_applicable&#34; in r.index:
+                stage_is_critical = _is_true(r.get(&#34;FWD_MAX_applicable&#34;))
+            else:
+                stage_l = stage_name.lower()
+                stage_is_critical = any(
+                    key in stage_l for key in (&#34;preballast&#34;, &#34;critical&#34;, &#34;6a&#34;, &#34;ramp&#34;)
+                )
+
+            plan_diag = &#34;&#34;
+            if plan.empty and stage_is_critical:
+                diag = diagnose_solver_plan_absence(
+                    stage_name=stage_name,
+                    dfwd0=dfwd0,
+                    daft0=daft0,
+                    aft_min_m=aft_min,
+                    fwd_max_m=fwd_max,
+                    fb_min_m=fb_min,
+                    d_vessel_m=args.d_vessel,
+                )
+                plan_diag = &#34;; &#34;.join(diag.get(&#34;possible_reasons&#34;, []))
+                print(f&#34;[WARN] Stage {stage_name}: solver plan empty. {plan_diag}&#34;)
+
+            # Tide/UKC derived fields (definition-split aware)
+            try:
+                req_raw = required_wl_for_ukc(depth_ref, ukc_min, draft_ref, squat, safety)
+                req_clamped = (
+                    max(0.0, float(req_raw))
+                    if (req_raw is not None and not np.isnan(req_raw))
+                    else np.nan
+                )
+                ukc_fwd = (
+                    ukc_value(depth_ref, wl, dfwd_new, squat, safety)
+                    if depth_ref is not None and wl is not None
+                    else np.nan
+                )
+                ukc_aft = (
+                    ukc_value(depth_ref, wl, daft_new, squat, safety)
+                    if depth_ref is not None and wl is not None
+                    else np.nan
+                )
+                ukc_min_actual = (
+                    min(float(ukc_fwd), float(ukc_aft))
+                    if (not np.isnan(ukc_fwd) and not np.isnan(ukc_aft))
+                    else np.nan
+                )
+                tide_margin = (
+                    float(wl) - float(req_clamped)
+                    if (wl is not None and not np.isnan(req_clamped))
+                    else np.nan
+                )
+                if wl is None or (isinstance(wl, float) and np.isnan(wl)) or np.isnan(req_clamped):
+                    tide_status = &#34;VERIFY&#34;
+                elif tide_margin &lt; 0.0:
+                    tide_status = &#34;FAIL&#34;
+                elif tide_margin &lt; 0.10:
+                    tide_status = &#34;LIMIT&#34;
+                else:
+                    tide_status = &#34;OK&#34;
+            except Exception:
+                req_raw = np.nan
+                req_clamped = np.nan
+                ukc_fwd = np.nan
+                ukc_aft = np.nan
+                ukc_min_actual = np.nan
+                tide_margin = np.nan
+                tide_status = &#34;VERIFY&#34;
+
+            all_sum.append(
+                {
+                    &#34;Stage&#34;: stage_name,
+                    &#34;New_FWD_m&#34;: round(dfwd_new, 2),
+                    &#34;New_AFT_m&#34;: round(daft_new, 2),
+                    &#34;Forecast_Tide_m&#34;: (
+                        round(float(wl), 2) if wl is not None else np.nan
+                    ),
+                    &#34;UKC_m&#34;: (
+                        round(ukc_value(depth_ref, wl, draft_ref, squat, safety), 2)
+                        if depth_ref is not None and wl is not None
+                        else np.nan
+                    ),
+                    &#34;Required_WL_for_UKC_m&#34;: (
+                        round(float(req_raw), 2)
+                        if req_raw is not None and not np.isnan(req_raw)
+                        else np.nan
+                    ),
+                    &#34;Tide_required_m&#34;: (
+                        round(float(req_clamped), 2)
+                        if req_clamped is not None and not np.isnan(req_clamped)
+                        else np.nan
+                    ),
+                    &#34;Forecast_tide_m&#34;: (round(float(wl), 2) if wl is not None else np.nan),
+                    &#34;Tide_margin_m&#34;: (
+                        round(float(tide_margin), 2)
+                        if tide_margin is not None and not np.isnan(tide_margin)
+                        else np.nan
+                    ),
+                    &#34;UKC_min_m&#34;: (
+                        round(float(ukc_min), 2)
+                        if ukc_min is not None and not np.isnan(ukc_min)
+                        else np.nan
+                    ),
+                    &#34;UKC_fwd_m&#34;: (
+                        round(float(ukc_fwd), 2)
+                        if ukc_fwd is not None and not np.isnan(ukc_fwd)
+                        else np.nan
+                    ),
+                    &#34;UKC_aft_m&#34;: (
+                        round(float(ukc_aft), 2)
+                        if ukc_aft is not None and not np.isnan(ukc_aft)
+                        else np.nan
+                    ),
+                    &#34;UKC_min_actual_m&#34;: (
+                        round(float(ukc_min_actual), 2)
+                        if ukc_min_actual is not None and not np.isnan(ukc_min_actual)
+                        else np.nan
+                    ),
+                    &#34;Tide_verification&#34;: tide_status,
+                    &#34;Freeboard_MIN_m&#34;: (
+                        round(freeboard_min(args.d_vessel, dfwd_new, daft_new), 2)
+                        if args.d_vessel is not None
+                        else np.nan
+                    ),
+                    &#34;viol_fwd_max_m&#34;: round(float(pred.get(&#34;viol_fwd_max_m&#34;, 0.0)), 3),
+                    &#34;viol_aft_min_m&#34;: round(float(pred.get(&#34;viol_aft_min_m&#34;, 0.0)), 3),
+                    &#34;viol_fb_min_m&#34;: round(float(pred.get(&#34;viol_fb_min_m&#34;, 0.0)), 3),
+                    &#34;viol_ukc_min_m&#34;: round(float(pred.get(&#34;viol_ukc_min_m&#34;, 0.0)), 3),
+                    &#34;Plan_Rows&#34;: plan_row_count,
+                    &#34;Plan_Diagnosis&#34;: plan_diag,
+                }
+            )
+
+            if not plan.empty:
+                p2 = plan.copy()
+                p2.insert(0, &#34;Stage&#34;, str(r[&#34;Stage&#34;]))
+                all_plan.append(p2)
+
+            if args.stateful_solver:
+                for t in stage_tanks:
+                    dw = float(delta.get(t.name, 0.0))
+                    new_current = t.current_t + dw
+                    new_current = min(max(new_current, float(t.min_t)), float(t.max_t))
+                    cur_state[t.name] = new_current
+                _log_state(stage_name, cur_state)
+                if args.state_trace_csv:
+                    state_trace_rows.append(
+                        _trace_row(stage_name, &#34;after&#34;, cur_state)
+                    )
+            else:
+                cur_tanks = apply_delta(cur_tanks, delta)
+
+        df_stage = (
+            pd.concat(all_plan, ignore_index=True) if all_plan else pd.DataFrame()
+        )
+        df_stage.to_csv(args.out_stage_plan, index=False, encoding=&#34;utf-8-sig&#34;)
+        # Compatibility: also write out_plan in stage mode
+        if args.out_plan:
+            df_stage.to_csv(args.out_plan, index=False, encoding=&#34;utf-8-sig&#34;)
+        pd.DataFrame(all_sum).to_csv(
+            args.out_summary, index=False, encoding=&#34;utf-8-sig&#34;
+        )
+        if args.state_trace_csv and state_trace_rows:
+            trace_path = Path(args.state_trace_csv)
+            trace_path.parent.mkdir(parents=True, exist_ok=True)
+            pd.DataFrame(state_trace_rows).to_csv(
+                trace_path, index=False, encoding=&#34;utf-8-sig&#34;
+            )
+            print(f&#34;[OK] Stateful trace CSV: {trace_path}&#34;)
+        return
+
+    # Single-case mode
+    if args.current_fwd is None or args.current_aft is None:
+        raise SystemExit(&#34;Provide --stage OR (--current_fwd and --current_aft).&#34;)
+
+    dfwd0 = float(args.current_fwd)
+    daft0 = float(args.current_aft)
+
+    plan, pred, _, _ = solve_lp(
+        dfwd0=dfwd0,
+        daft0=daft0,
+        hdf=hdf,
+        tanks=tanks,
+        mode=args.mode,
+        iterate_hydro=args.iterate_hydro,
+        target_fwd=args.target_fwd,
+        target_aft=args.target_aft,
+        fwd_max=args.fwd_max,
+        aft_min=args.aft_min,
+        d_vessel=args.d_vessel,
+        fb_min=args.fb_min,
+        ukc_min=args.ukc_min,
+        depth_ref=args.depth_ref,
+        forecast_tide=args.forecast_tide,
+        squat=args.squat,
+        safety_allow=args.safety_allow,
+        ukc_ref=args.ukc_ref,
+        trim_abs_limit_m=args.trim_abs_limit,
+        trim_limit_enforced=args.trim_limit_enforced,
+        freeboard_min_enforced=args.freeboard_min_enforced,
+        prefer_time=prefer_time,
+        violation_penalty=args.violation_penalty,
+        slack_weight_penalty=args.slack_weight_penalty,
+        slack_moment_penalty=args.slack_moment_penalty,
+    )
+
+    dfwd_new = float(pred[&#34;FWD_new_m&#34;])
+    daft_new = float(pred[&#34;AFT_new_m&#34;])
+    draft_ref = pick_draft_ref_for_ukc(args.ukc_ref, dfwd_new, daft_new)
+
+    summary = {
+        &#34;New_FWD_m&#34;: round(dfwd_new, 2),
+        &#34;New_AFT_m&#34;: round(daft_new, 2),
+        &#34;Forecast_Tide_m&#34;: (
+            round(float(args.forecast_tide), 2)
+            if args.forecast_tide is not None
+            else np.nan
+        ),
+        &#34;UKC_m&#34;: round(
+            ukc_value(
+                args.depth_ref,
+                args.forecast_tide,
+                draft_ref,
+                args.squat,
+                args.safety_allow,
+            ),
+            2,
+        ),
+        &#34;Required_WL_for_UKC_m&#34;: round(
+            required_wl_for_ukc(
+                args.depth_ref, args.ukc_min, draft_ref, args.squat, args.safety_allow
+            ),
+            2,
+        ),
+        &#34;Freeboard_MIN_m&#34;: (
+            round(freeboard_min(args.d_vessel, dfwd_new, daft_new), 2)
+            if args.d_vessel is not None
+            else np.nan
+        ),
+        &#34;viol_fwd_max_m&#34;: round(float(pred.get(&#34;viol_fwd_max_m&#34;, 0.0)), 3),
+        &#34;viol_aft_min_m&#34;: round(float(pred.get(&#34;viol_aft_min_m&#34;, 0.0)), 3),
+        &#34;viol_fb_min_m&#34;: round(float(pred.get(&#34;viol_fb_min_m&#34;, 0.0)), 3),
+        &#34;viol_ukc_min_m&#34;: round(float(pred.get(&#34;viol_ukc_min_m&#34;, 0.0)), 3),
+    }
+
+    plan.to_csv(args.out_plan, index=False, encoding=&#34;utf-8-sig&#34;)
+    pd.DataFrame([summary]).to_csv(args.out_summary, index=False, encoding=&#34;utf-8-sig&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.pick_draft_ref_for_ukc"><code class="name flex">
+<span>def <span class="ident">pick_draft_ref_for_ukc</span></span>(<span>ref: str, dfwd: float, daft: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pick_draft_ref_for_ukc(ref: str, dfwd: float, daft: float) -&gt; float:
+    r = (ref or &#34;MAX&#34;).upper().strip()
+    if r == &#34;FWD&#34;:
+        return float(dfwd)
+    if r == &#34;AFT&#34;:
+        return float(daft)
+    if r == &#34;MEAN&#34;:
+        return float(0.5 * (dfwd + daft))
+    return float(max(dfwd, daft))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.predict_drafts"><code class="name flex">
+<span>def <span class="ident">predict_drafts</span></span>(<span>dfwd0: float,<br>daft0: float,<br>hydro: <a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint">HydroPoint</a>,<br>tanks: List[<a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank">Tank</a>],<br>delta: Dict[str, float]) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def predict_drafts(
+    dfwd0: float,
+    daft0: float,
+    hydro: HydroPoint,
+    tanks: List[Tank],
+    delta: Dict[str, float],
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Draft prediction WITHOUT tide mixing.
+    ΔTmean = ΣΔw / (TPC*100)
+    ΔTrim  = ΣΔw*(x-LCF) / (MTC*100)
+    Lpp/LCF-based trim distribution:
+      slope = ΔTrim / LBP
+      Dfwd = Dfwd0 + ΔTmean + slope*(x_fp - LCF)
+      Daft = Daft0 + ΔTmean + slope*(x_ap - LCF)
+    Fallback to 0.5*ΔTrim if LBP is missing.
+    &#34;&#34;&#34;
+    total_w = 0.0
+    total_m = 0.0
+    for t in tanks:
+        dw = float(delta.get(t.name, 0.0))
+        total_w += dw
+        total_m += dw * (t.x_from_mid_m - hydro.lcf_m)
+
+    d_tmean = total_w / (hydro.tpc_t_per_cm * 100.0)
+    d_trim = total_m / (hydro.mtc_t_m_per_cm * 100.0)
+
+    lbp = float(hydro.lbp_m) if hydro.lbp_m is not None else None
+    lcf = float(hydro.lcf_m) if hydro.lcf_m is not None else 0.0
+    if lbp is not None and lbp != 0.0 and not np.isnan(lbp):
+        x_fp = -lbp / 2.0
+        x_ap = lbp / 2.0
+        slope = d_trim / lbp
+        dfwd = dfwd0 + d_tmean + slope * (x_fp - lcf)
+        daft = daft0 + d_tmean + slope * (x_ap - lcf)
+    else:
+        dfwd = dfwd0 + d_tmean - 0.5 * d_trim
+        daft = daft0 + d_tmean + 0.5 * d_trim
+
+    return {
+        &#34;ΔW_t&#34;: float(total_w),
+        &#34;ΔM_t_m&#34;: float(total_m),
+        &#34;FWD_new_m&#34;: float(dfwd),
+        &#34;AFT_new_m&#34;: float(daft),
+        &#34;Trim_new_m&#34;: float(daft - dfwd),
+        &#34;Tmean_new_m&#34;: float(0.5 * (dfwd + daft)),
+    }</code></pre>
+</details>
+<div class="desc"><p>Draft prediction WITHOUT tide mixing.
+ΔTmean = ΣΔw / (TPC<em>100)
+ΔTrim
+= ΣΔw</em>(x-LCF) / (MTC<em>100)
+Lpp/LCF-based trim distribution:
+slope = ΔTrim / LBP
+Dfwd = Dfwd0 + ΔTmean + slope</em>(x_fp - LCF)
+Daft = Daft0 + ΔTmean + slope<em>(x_ap - LCF)
+Fallback to 0.5</em>ΔTrim if LBP is missing.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.required_wl_for_ukc"><code class="name flex">
+<span>def <span class="ident">required_wl_for_ukc</span></span>(<span>depth_ref_m: Optional[float],<br>ukc_min_m: Optional[float],<br>draft_ref_m: Optional[float],<br>squat_m: float,<br>safety_allow_m: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def required_wl_for_ukc(
+    depth_ref_m: Optional[float],
+    ukc_min_m: Optional[float],
+    draft_ref_m: Optional[float],
+    squat_m: float,
+    safety_allow_m: float,
+) -&gt; float:
+    if depth_ref_m is None or ukc_min_m is None or draft_ref_m is None:
+        return float(&#34;nan&#34;)
+    return float(ukc_min_m + draft_ref_m + squat_m + safety_allow_m - depth_ref_m)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.solve_lp"><code class="name flex">
+<span>def <span class="ident">solve_lp</span></span>(<span>*,<br>dfwd0: float,<br>daft0: float,<br>hdf: pd.DataFrame,<br>tanks: List[<a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank">Tank</a>],<br>mode: str,<br>iterate_hydro: int,<br>target_fwd: Optional[float],<br>target_aft: Optional[float],<br>fwd_max: Optional[float],<br>aft_min: Optional[float],<br>d_vessel: Optional[float],<br>fb_min: Optional[float],<br>ukc_min: Optional[float],<br>depth_ref: Optional[float],<br>forecast_tide: Optional[float],<br>squat: float,<br>safety_allow: float,<br>ukc_ref: str,<br>trim_abs_limit_m: Optional[float] = None,<br>trim_limit_enforced: bool = True,<br>freeboard_min_enforced: bool = True,<br>prefer_time: bool,<br>violation_penalty: float,<br>slack_weight_penalty: float,<br>slack_moment_penalty: float) ‑> Tuple[pandas.core.frame.DataFrame, Dict[str, float], Dict[str, float], 01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def solve_lp(
+    *,
+    dfwd0: float,
+    daft0: float,
+    hdf: pd.DataFrame,
+    tanks: List[Tank],
+    mode: str,
+    iterate_hydro: int,
+    # targets
+    target_fwd: Optional[float],
+    target_aft: Optional[float],
+    # gates
+    fwd_max: Optional[float],
+    aft_min: Optional[float],
+    d_vessel: Optional[float],
+    fb_min: Optional[float],
+    ukc_min: Optional[float],
+    depth_ref: Optional[float],
+    forecast_tide: Optional[float],
+    squat: float,
+    safety_allow: float,
+    ukc_ref: str,
+    trim_abs_limit_m: Optional[float] = None,
+    trim_limit_enforced: bool = True,
+    freeboard_min_enforced: bool = True,
+    # objective + penalties
+    prefer_time: bool,
+    violation_penalty: float,
+    slack_weight_penalty: float,
+    slack_moment_penalty: float,
+) -&gt; Tuple[pd.DataFrame, Dict[str, float], Dict[str, float], HydroPoint]:
+    mode = (mode or &#34;&#34;).strip().lower()
+    if mode not in (&#34;limit&#34;, &#34;target&#34;):
+        raise ValueError(&#34;mode must be limit|target&#34;)
+
+    tmean = 0.5 * (dfwd0 + daft0)
+    hydro_used = interp_hydro(hdf, tmean)
+
+    last_plan = pd.DataFrame()
+    last_pred: Dict[str, float] = {}
+    last_delta: Dict[str, float] = {}
+
+    for _ in range(max(1, int(iterate_hydro))):
+        hydro_used = interp_hydro(hdf, tmean)
+
+        n = len(tanks)
+        var_names: List[str] = []
+        bounds: List[Tuple[float, Optional[float]]] = []
+        c: List[float] = []
+
+        # tank vars
+        for t in tanks:
+            p_lo, p_hi, n_lo, n_hi = t.bounds_pos_neg()
+            var_names += [f&#34;{t.name}__p&#34;, f&#34;{t.name}__n&#34;]
+            bounds += [(p_lo, p_hi), (n_lo, n_hi)]
+            w = t.priority_weight
+            if prefer_time:
+                c += [w / t.pump_rate_tph, w / t.pump_rate_tph]
+            else:
+                c += [w, w]
+
+        # slacks
+        if mode == &#34;limit&#34;:
+            slack_names = [&#34;viol_fwd&#34;, &#34;viol_aft&#34;, &#34;viol_fb&#34;, &#34;viol_ukc&#34;]
+            var_names += slack_names
+            bounds += [(0.0, None)] * 4
+            c += [violation_penalty] * 4
+            if freeboard_min_enforced:
+                try:
+                    viol_fb_idx = var_names.index(&#34;viol_fb&#34;)
+                    bounds[viol_fb_idx] = (0.0, 0.0)
+                except Exception:
+                    pass
+        else:
+            slack_names = [&#34;slackW_pos&#34;, &#34;slackW_neg&#34;, &#34;slackM_pos&#34;, &#34;slackM_neg&#34;]
+            var_names += slack_names
+            bounds += [(0.0, None)] * 4
+            c += [
+                slack_weight_penalty,
+                slack_weight_penalty,
+                slack_moment_penalty,
+                slack_moment_penalty,
+            ]
+
+        c = np.array(c, dtype=float)
+
+        # coefficients
+        rowW, rowM = build_rows(hydro_used, tanks)
+        coef_tmean = rowW / (hydro_used.tpc_t_per_cm * 100.0)
+        coef_trim = rowM / (hydro_used.mtc_t_m_per_cm * 100.0)
+        # Lpp/LCF-based distribution; fallback to legacy if LBP missing
+        lbp = float(hydro_used.lbp_m) if hydro_used.lbp_m is not None else None
+        lcf = float(hydro_used.lcf_m) if hydro_used.lcf_m is not None else 0.0
+        if lbp is not None and lbp != 0.0 and not np.isnan(lbp):
+            x_fp = -lbp / 2.0
+            x_ap = lbp / 2.0
+            coef_dfwd = coef_tmean + coef_trim * ((x_fp - lcf) / lbp)
+            coef_daft = coef_tmean + coef_trim * ((x_ap - lcf) / lbp)
+        else:
+            coef_dfwd = coef_tmean - 0.5 * coef_trim
+            coef_daft = coef_tmean + 0.5 * coef_trim
+
+        A_eq, b_eq = [], []
+        if mode == &#34;target&#34;:
+            if target_fwd is None or target_aft is None:
+                raise ValueError(&#34;target mode requires Target_FWD_m and Target_AFT_m&#34;)
+
+            mean0 = 0.5 * (dfwd0 + daft0)
+            meanT = 0.5 * (target_fwd + target_aft)
+            dTmean = meanT - mean0
+
+            trim0 = daft0 - dfwd0
+            trimT = target_aft - target_fwd
+            dTrim = trimT - trim0
+
+            reqW = dTmean * hydro_used.tpc_t_per_cm * 100.0
+            reqM = dTrim * hydro_used.mtc_t_m_per_cm * 100.0
+
+            eqW = np.zeros(len(var_names), dtype=float)
+            eqW[: 2 * n] = rowW
+            eqW[var_names.index(&#34;slackW_pos&#34;)] = 1.0
+            eqW[var_names.index(&#34;slackW_neg&#34;)] = -1.0
+
+            eqM = np.zeros(len(var_names), dtype=float)
+            eqM[: 2 * n] = rowM
+            eqM[var_names.index(&#34;slackM_pos&#34;)] = 1.0
+            eqM[var_names.index(&#34;slackM_neg&#34;)] = -1.0
+
+            A_eq = [eqW, eqM]
+            b_eq = [reqW, reqM]
+
+        A_ub, b_ub = [], []
+
+        if mode == &#34;limit&#34;:
+            fwd_max_eff = fwd_max
+            if fwd_max is not None and forecast_tide is not None and not np.isnan(forecast_tide):
+                # Gate-B is CD-referenced; convert to MSL for comparison
+                fwd_max_eff = float(fwd_max + forecast_tide)
+            # FWD &lt;= FWD_MAX + viol_fwd
+            if fwd_max_eff is not None and not np.isnan(fwd_max_eff):
+                row = np.zeros(len(var_names), dtype=float)
+                row[: 2 * n] = coef_dfwd
+                row[var_names.index(&#34;viol_fwd&#34;)] = -1.0
+                A_ub.append(row)
+                b_ub.append(float(fwd_max_eff - dfwd0))
+
+            # AFT &gt;= AFT_MIN  =&gt; -AFT - viol_aft &lt;= -AFT_MIN
+            if aft_min is not None and not np.isnan(aft_min):
+                row = np.zeros(len(var_names), dtype=float)
+                row[: 2 * n] = -coef_daft
+                row[var_names.index(&#34;viol_aft&#34;)] = -1.0
+                A_ub.append(row)
+                b_ub.append(float(-(aft_min - daft0)))
+
+            # Freeboard &gt;= FB_MIN -&gt; Draft_end &lt;= D_vessel - FB_MIN
+            if (d_vessel is not None and fb_min is not None) and (
+                not np.isnan(d_vessel) and not np.isnan(fb_min)
+            ):
+                draft_max = float(d_vessel - fb_min)
+
+                row = np.zeros(len(var_names), dtype=float)
+                row[: 2 * n] = coef_dfwd
+                row[var_names.index(&#34;viol_fb&#34;)] = -1.0
+                A_ub.append(row)
+                b_ub.append(float(draft_max - dfwd0))
+
+                row = np.zeros(len(var_names), dtype=float)
+                row[: 2 * n] = coef_daft
+                row[var_names.index(&#34;viol_fb&#34;)] = -1.0
+                A_ub.append(row)
+                b_ub.append(float(draft_max - daft0))
+
+            # UKC &gt;= UKC_MIN -&gt; Draft_ref &lt;= DepthRef + WL - squat - safety - UKC_MIN
+            if (
+                ukc_min is not None
+                and depth_ref is not None
+                and forecast_tide is not None
+            ) and (
+                not np.isnan(ukc_min)
+                and not np.isnan(depth_ref)
+                and not np.isnan(forecast_tide)
+            ):
+                draft_max = float(
+                    depth_ref + forecast_tide - squat - safety_allow - ukc_min
+                )
+
+                ref = (ukc_ref or &#34;MAX&#34;).upper().strip()
+
+                def add_ukc_row(coef_end, base_draft):
+                    row = np.zeros(len(var_names), dtype=float)
+                    row[: 2 * n] = coef_end
+                    row[var_names.index(&#34;viol_ukc&#34;)] = -1.0
+                    A_ub.append(row)
+                    b_ub.append(float(draft_max - base_draft))
+
+                if ref == &#34;FWD&#34;:
+                    add_ukc_row(coef_dfwd, dfwd0)
+                elif ref == &#34;AFT&#34;:
+                    add_ukc_row(coef_daft, daft0)
+                elif ref == &#34;MEAN&#34;:
+                    coef_mean = 0.5 * (coef_dfwd + coef_daft)
+                    add_ukc_row(coef_mean, 0.5 * (dfwd0 + daft0))
+                else:  # MAX
+                    add_ukc_row(coef_dfwd, dfwd0)
+                    add_ukc_row(coef_daft, daft0)
+
+            # Trim constraint (hard if enforced): |Trim| &lt;= trim_abs_limit_m
+            if trim_limit_enforced and trim_abs_limit_m is not None:
+                try:
+                    trim_limit = float(trim_abs_limit_m)
+                    trim0 = daft0 - dfwd0
+                    coef_trim_m = coef_daft - coef_dfwd
+
+                    row = np.zeros(len(var_names), dtype=float)
+                    row[: 2 * n] = coef_trim_m
+                    A_ub.append(row)
+                    b_ub.append(float(trim_limit - trim0))
+
+                    row = np.zeros(len(var_names), dtype=float)
+                    row[: 2 * n] = -coef_trim_m
+                    A_ub.append(row)
+                    b_ub.append(float(trim_limit + trim0))
+                except Exception:
+                    pass
+
+        res = linprog(
+            c=c,
+            A_ub=(np.vstack(A_ub) if A_ub else None),
+            b_ub=(np.array(b_ub, dtype=float) if b_ub else None),
+            A_eq=(np.vstack(A_eq) if A_eq else None),
+            b_eq=(np.array(b_eq, dtype=float) if b_eq else None),
+            bounds=bounds,
+            method=&#34;highs&#34;,
+        )
+        if not res.success:
+            raise RuntimeError(f&#34;LP failed: {res.message}&#34;)
+
+        x = res.x
+        delta: Dict[str, float] = {}
+        plan_rows = []
+        for i, t in enumerate(tanks):
+            p = float(x[2 * i])
+            nvar = float(x[2 * i + 1])
+            dw = p - nvar
+            pumped = p + nvar
+            if abs(dw) &lt; 1e-10 and pumped &lt; 1e-10:
+                continue
+            delta[t.name] = dw
+            plan_rows.append(
+                {
+                    &#34;Tank&#34;: t.name,
+                    &#34;Action&#34;: &#34;FILL&#34; if dw &gt; 0 else &#34;DISCHARGE&#34;,
+                    &#34;Delta_t&#34;: round(dw, 2),
+                    &#34;PumpTime_h&#34;: round(pumped / t.pump_rate_tph, 2),
+                }
+            )
+
+        plan = (
+            pd.DataFrame(plan_rows)
+            .sort_values([&#34;PumpTime_h&#34;, &#34;Tank&#34;], ascending=[False, True])
+            .reset_index(drop=True)
+            if plan_rows
+            else pd.DataFrame()
+        )
+        pred = predict_drafts(dfwd0, daft0, hydro_used, tanks, delta)
+
+        if mode == &#34;limit&#34;:
+            pred[&#34;viol_fwd_max_m&#34;] = float(x[var_names.index(&#34;viol_fwd&#34;)])
+            pred[&#34;viol_aft_min_m&#34;] = float(x[var_names.index(&#34;viol_aft&#34;)])
+            pred[&#34;viol_fb_min_m&#34;] = float(x[var_names.index(&#34;viol_fb&#34;)])
+            pred[&#34;viol_ukc_min_m&#34;] = float(x[var_names.index(&#34;viol_ukc&#34;)])
+
+        # update for next iteration
+        tmean = float(pred[&#34;Tmean_new_m&#34;])
+        last_plan, last_pred, last_delta = plan, pred, delta
+
+    return last_plan, last_pred, last_delta, hydro_used</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.ukc_value"><code class="name flex">
+<span>def <span class="ident">ukc_value</span></span>(<span>depth_ref_m: Optional[float],<br>wl_forecast_m: Optional[float],<br>draft_ref_m: Optional[float],<br>squat_m: float,<br>safety_allow_m: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ukc_value(
+    depth_ref_m: Optional[float],
+    wl_forecast_m: Optional[float],
+    draft_ref_m: Optional[float],
+    squat_m: float,
+    safety_allow_m: float,
+) -&gt; float:
+    if depth_ref_m is None or wl_forecast_m is None or draft_ref_m is None:
+        return float(&#34;nan&#34;)
+    return float(depth_ref_m + wl_forecast_m - draft_ref_m - squat_m - safety_allow_m)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint"><code class="flex name class">
+<span>class <span class="ident">HydroPoint</span></span>
+<span>(</span><span>tmean_m: float,<br>tpc_t_per_cm: float,<br>mtc_t_m_per_cm: float,<br>lcf_m: float,<br>lbp_m: float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(frozen=True)
+class HydroPoint:
+    tmean_m: float
+    tpc_t_per_cm: float
+    mtc_t_m_per_cm: float
+    lcf_m: float
+    lbp_m: float</code></pre>
+</details>
+<div class="desc"><p>HydroPoint(tmean_m: 'float', tpc_t_per_cm: 'float', mtc_t_m_per_cm: 'float', lcf_m: 'float', lbp_m: 'float')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.lbp_m"><code class="name">var <span class="ident">lbp_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.lcf_m"><code class="name">var <span class="ident">lcf_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.mtc_t_m_per_cm"><code class="name">var <span class="ident">mtc_t_m_per_cm</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.tmean_m"><code class="name">var <span class="ident">tmean_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.tpc_t_per_cm"><code class="name">var <span class="ident">tpc_t_per_cm</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank"><code class="flex name class">
+<span>class <span class="ident">Tank</span></span>
+<span>(</span><span>name: str,<br>x_from_mid_m: float,<br>current_t: float,<br>min_t: float,<br>max_t: float,<br>mode: str,<br>use_flag: str,<br>pump_rate_tph: float,<br>priority_weight: float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class Tank:
+    name: str
+    x_from_mid_m: float
+    current_t: float
+    min_t: float
+    max_t: float
+    mode: str
+    use_flag: str
+    pump_rate_tph: float
+    priority_weight: float
+
+    def bounds_pos_neg(self) -&gt; Tuple[float, float, float, float]:
+        &#34;&#34;&#34;
+        LP variables: p_i (fill), n_i (discharge)
+        Δw_i = p_i - n_i
+        &#34;&#34;&#34;
+        mode = (self.mode or &#34;FILL_DISCHARGE&#34;).strip().upper()
+        use = (self.use_flag or &#34;N&#34;).strip().upper()
+
+        if use != &#34;Y&#34; or mode in (&#34;BLOCKED&#34;, &#34;FIXED&#34;):
+            return 0.0, 0.0, 0.0, 0.0
+
+        cur = float(self.current_t)
+        mn = float(self.min_t)
+        mx = float(self.max_t)
+
+        max_fill = max(0.0, mx - cur)
+        max_dis = max(0.0, cur - mn)
+
+        # ENFORCE MODE AT BOUND LEVEL (non-negotiable)
+        if mode == &#34;DISCHARGE_ONLY&#34;:
+            # prohibit fill (delta &gt; 0)
+            max_fill = 0.0
+            # discharge allowed: max_dis = cur - mn (already calculated above)
+            # No need to recalculate, but ensure it&#39;s correct
+        elif mode == &#34;FILL_ONLY&#34;:
+            # prohibit discharge (delta &lt; 0)
+            max_dis = 0.0
+
+        return 0.0, max_fill, 0.0, max_dis</code></pre>
+</details>
+<div class="desc"><p>Tank(name: 'str', x_from_mid_m: 'float', current_t: 'float', min_t: 'float', max_t: 'float', mode: 'str', use_flag: 'str', pump_rate_tph: 'float', priority_weight: 'float')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.current_t"><code class="name">var <span class="ident">current_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.max_t"><code class="name">var <span class="ident">max_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.min_t"><code class="name">var <span class="ident">min_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.priority_weight"><code class="name">var <span class="ident">priority_weight</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.pump_rate_tph"><code class="name">var <span class="ident">pump_rate_tph</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.use_flag"><code class="name">var <span class="ident">use_flag</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.x_from_mid_m"><code class="name">var <span class="ident">x_from_mid_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.bounds_pos_neg"><code class="name flex">
+<span>def <span class="ident">bounds_pos_neg</span></span>(<span>self) ‑> Tuple[float, float, float, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bounds_pos_neg(self) -&gt; Tuple[float, float, float, float]:
+    &#34;&#34;&#34;
+    LP variables: p_i (fill), n_i (discharge)
+    Δw_i = p_i - n_i
+    &#34;&#34;&#34;
+    mode = (self.mode or &#34;FILL_DISCHARGE&#34;).strip().upper()
+    use = (self.use_flag or &#34;N&#34;).strip().upper()
+
+    if use != &#34;Y&#34; or mode in (&#34;BLOCKED&#34;, &#34;FIXED&#34;):
+        return 0.0, 0.0, 0.0, 0.0
+
+    cur = float(self.current_t)
+    mn = float(self.min_t)
+    mx = float(self.max_t)
+
+    max_fill = max(0.0, mx - cur)
+    max_dis = max(0.0, cur - mn)
+
+    # ENFORCE MODE AT BOUND LEVEL (non-negotiable)
+    if mode == &#34;DISCHARGE_ONLY&#34;:
+        # prohibit fill (delta &gt; 0)
+        max_fill = 0.0
+        # discharge allowed: max_dis = cur - mn (already calculated above)
+        # No need to recalculate, but ensure it&#39;s correct
+    elif mode == &#34;FILL_ONLY&#34;:
+        # prohibit discharge (delta &lt; 0)
+        max_dis = 0.0
+
+    return 0.0, max_fill, 0.0, max_dis</code></pre>
+</details>
+<div class="desc"><p>LP variables: p_i (fill), n_i (discharge)
+Δw_i = p_i - n_i</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.tide" href="index.html">01_EXECUTION_FILES.tide</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.apply_delta" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.apply_delta">apply_delta</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.build_rows" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.build_rows">build_rows</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.diagnose_solver_plan_absence" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.diagnose_solver_plan_absence">diagnose_solver_plan_absence</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.freeboard_min" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.freeboard_min">freeboard_min</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.interp_hydro" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.interp_hydro">interp_hydro</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_hydro_table" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_hydro_table">load_hydro_table</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_stage_table" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_stage_table">load_stage_table</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_tanks" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.load_tanks">load_tanks</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.main" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.main">main</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.pick_draft_ref_for_ukc" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.pick_draft_ref_for_ukc">pick_draft_ref_for_ukc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.predict_drafts" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.predict_drafts">predict_drafts</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.required_wl_for_ukc" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.required_wl_for_ukc">required_wl_for_ukc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.solve_lp" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.solve_lp">solve_lp</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.ukc_value" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.ukc_value">ukc_value</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint">HydroPoint</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.lbp_m" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.lbp_m">lbp_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.lcf_m" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.lcf_m">lcf_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.mtc_t_m_per_cm" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.mtc_t_m_per_cm">mtc_t_m_per_cm</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.tmean_m" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.tmean_m">tmean_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.tpc_t_per_cm" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.HydroPoint.tpc_t_per_cm">tpc_t_per_cm</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank">Tank</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.bounds_pos_neg" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.bounds_pos_neg">bounds_pos_neg</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.current_t" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.current_t">current_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.max_t" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.max_t">max_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.min_t" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.min_t">min_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.mode" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.mode">mode</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.name" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.name">name</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.priority_weight" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.priority_weight">priority_weight</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.pump_rate_tph" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.pump_rate_tph">pump_rate_tph</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.use_flag" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.use_flag">use_flag</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.x_from_mid_m" href="#01_EXECUTION_FILES.tide.ballast_gate_solver_v4_TIDE_v1.Tank.x_from_mid_m">x_from_mid_m</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.populate_template API documentation</title>
+<meta name="description" content="populate_template.py …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.populate_template</code></h1>
+</header>
+<section id="section-intro">
+<p>populate_template.py</p>
+<p>Fill 07_Stage_Calc input columns from engine stage CSV (e.g., stage_results.csv).</p>
+<p>Default mapping (CSV -&gt; 07_Stage_Calc)
+- Stage / Stage_ID
+-&gt; A (Stage_ID)
+- x_stage_m
+-&gt; F (x_stage_m)
+- W_stage_t
+-&gt; G (W_stage_t)
+- Disp_t
+-&gt; H (Displacement_t)
+- Tmean_m
+-&gt; I (Tmean_m)
+- Dfwd_m
+-&gt; K (Draft_FWD_m)
+- Daft_m
+-&gt; L (Draft_AFT_m)
+- GM(m)
+-&gt; U (GM_m)</p>
+<p>Notes
+- Keeps existing formulas in calc columns.
+- If the stage row exists (Stage_ID match), overwrites/FillBlank based on &ndash;mode.
+- If not found, writes into the first empty row; if no empty rows, extends rows.
+- Writes LOG sheet + text log.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.populate_template.append_log"><code class="name flex">
+<span>def <span class="ident">append_log</span></span>(<span>ws: Worksheet, msg: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def append_log(ws: Worksheet, msg: str) -&gt; None:
+    &#34;&#34;&#34;
+    Append log line to LOG sheet (A:Time, B:Message)
+    &#34;&#34;&#34;
+    if ws.max_row == 1 and ws[&#34;A1&#34;].value is None:
+        ws[&#34;A1&#34;] = &#34;Time&#34;
+        ws[&#34;B1&#34;] = &#34;Message&#34;
+    r = ws.max_row + 1
+    ws.cell(r, 1, datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;))
+    ws.cell(r, 2, msg)</code></pre>
+</details>
+<div class="desc"><p>Append log line to LOG sheet (A:Time, B:Message)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.ensure_column"><code class="name flex">
+<span>def <span class="ident">ensure_column</span></span>(<span>ws: Worksheet, header_row: int, name: str) ‑> int</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ensure_column(ws: Worksheet, header_row: int, name: str) -&gt; int:
+    existing = find_col_by_header(ws, header_row, [name])
+    if existing:
+        return existing
+    insert_at = _last_header_col(ws, header_row) + 1
+    ws.insert_cols(insert_at)
+    ws.cell(header_row, insert_at).value = name
+    return insert_at
+    if isinstance(x, (int, float)):
+        return float(x)
+    s = str(x).strip()
+    if s == &#34;&#34; or s.lower() in (&#34;nan&#34;, &#34;none&#34;, &#34;null&#34;):
+        return None
+    try:
+        return float(s)
+    except Exception:
+        try:
+            return float(s.replace(&#34;,&#34;, &#34;&#34;))
+        except Exception:
+            return None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.ensure_stage_formulas"><code class="name flex">
+<span>def <span class="ident">ensure_stage_formulas</span></span>(<span>ws: Worksheet, r: int) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ensure_stage_formulas(ws: Worksheet, r: int) -&gt; None:
+    &#34;&#34;&#34;
+    For rows that didn&#39;t have formulas (e.g., template rows beyond initial 9),
+    inject core formulas if blank.
+    - Only sets if cell is empty (None/&#34;&#34;).
+    &#34;&#34;&#34;
+
+    def set_if_blank(col: int, formula: str):
+        cell = ws.cell(r, col)
+        if cell.value is None or str(cell.value).strip() == &#34;&#34;:
+            cell.value = formula
+
+    # Parameter cells in 07_Stage_Calc (as defined in create script)
+    GATE_AFT_MIN = &#34;$B$4&#34;
+    GATE_FWD_MAX = &#34;$B$5&#34;
+    TRIM_LIMIT = &#34;$B$6&#34;
+    DEPTHREF = &#34;$B$7&#34;
+    UKC_MIN = &#34;$B$8&#34;
+    SQUAT = &#34;$B$9&#34;
+    SAFETY = &#34;$B$10&#34;
+
+    # Columns (A=1..AG=33)
+    COL_HOLD = 2
+    COL_CRIT = 3
+    COL_REMARK = 4
+    COL_PROG = 5
+    COL_TRIM = 10
+    COL_FBMIN = 13
+    COL_TIDE_REQ = 14
+    COL_TIDE_MARG = 16
+    COL_UKC_MIN = 17
+    COL_UKC_FWD = 18
+    COL_UKC_AFT = 19
+    COL_GATE_FWD = 22
+    COL_GATE_AFT = 23
+    COL_GATE_TRIM = 24
+    COL_GATE_UKC = 25
+    COL_GATE_RAMP = 26
+    COL_HP_BAND = 27
+    COL_GONOGO = 28
+
+    set_if_blank(
+        COL_HOLD,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$E:$E,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_CRIT,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$F:$F,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_REMARK,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$H:$H,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_PROG,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$B:$B,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+    )
+
+    set_if_blank(COL_TRIM, f&#39;=IF(OR($K{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,($L{r}-$K{r})*100)&#39;)
+
+    set_if_blank(
+        COL_FBMIN,
+        f&#39;=IF(OR($K{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,MIN(&#39;
+        f&#34;INDEX(&#39;01_SSOT_Master&#39;!$B:$B,MATCH(\&#34;Molded Depth (D)\&#34;,&#39;01_SSOT_Master&#39;!$A:$A,0))-$K{r},&#34;
+        f&#34;INDEX(&#39;01_SSOT_Master&#39;!$B:$B,MATCH(\&#34;Molded Depth (D)\&#34;,&#39;01_SSOT_Master&#39;!$A:$A,0))-$L{r}))&#34;,
+    )
+
+    set_if_blank(COL_UKC_MIN, f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,{UKC_MIN})&#39;)
+
+    set_if_blank(
+        COL_TIDE_REQ,
+        f&#39;=IF(OR($K{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,MAX(0,(MAX($K{r},$L{r})+{SQUAT}+{SAFETY}+{UKC_MIN})-{DEPTHREF}))&#39;,
+    )
+    set_if_blank(COL_TIDE_MARG, f&#39;=IF(OR($O{r}=&#34;&#34;,$N{r}=&#34;&#34;),&#34;&#34;,$O{r}-$N{r})&#39;)
+
+    set_if_blank(
+        COL_UKC_FWD,
+        f&#39;=IF(OR($O{r}=&#34;&#34;,$K{r}=&#34;&#34;),&#34;&#34;,({DEPTHREF}+$O{r})-($K{r}+{SQUAT}+{SAFETY}))&#39;,
+    )
+    set_if_blank(
+        COL_UKC_AFT,
+        f&#39;=IF(OR($O{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,({DEPTHREF}+$O{r})-($L{r}+{SQUAT}+{SAFETY}))&#39;,
+    )
+
+    set_if_blank(
+        COL_GATE_FWD,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($C{r}&lt;&gt;&#34;Y&#34;,&#34;N/A&#34;,IF($K{r}&lt;={GATE_FWD_MAX},&#34;PASS&#34;,&#34;LIMIT&#34;)))&#39;,
+    )
+    set_if_blank(
+        COL_GATE_AFT,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($L{r}&gt;={GATE_AFT_MIN},&#34;PASS&#34;,&#34;LIMIT&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_GATE_TRIM,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF(ABS($J{r})&lt;={TRIM_LIMIT},&#34;PASS&#34;,&#34;LIMIT&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_GATE_UKC,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF(MIN($R{r},$S{r})&gt;={UKC_MIN},&#34;PASS&#34;,&#34;LIMIT&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_GATE_RAMP,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($T{r}=&#34;&#34;,&#34;VERIFY&#34;,IF($T{r}&lt;=6,&#34;PASS&#34;,&#34;LIMIT&#34;)))&#39;,
+    )
+
+    set_if_blank(
+        COL_HP_BAND,
+        f&#39;=IF($B{r}&lt;&gt;&#34;Y&#34;,&#34;-&#34;,IF(OR($V{r}=&#34;LIMIT&#34;,$W{r}=&#34;LIMIT&#34;,$X{r}=&#34;LIMIT&#34;,$Y{r}=&#34;LIMIT&#34;),&#34;STOP&#34;,&#34;GO&#34;))&#39;,
+    )
+    set_if_blank(
+        COL_GONOGO,
+        f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($AA{r}=&#34;STOP&#34;,&#34;ABORT&#34;,IF($AA{r}=&#34;RECALC&#34;,&#34;NO-GO&#34;,&#34;GO&#34;)))&#39;,
+    )</code></pre>
+</details>
+<div class="desc"><p>For rows that didn't have formulas (e.g., template rows beyond initial 9),
+inject core formulas if blank.
+- Only sets if cell is empty (None/"").</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.find_col_by_header"><code class="name flex">
+<span>def <span class="ident">find_col_by_header</span></span>(<span>ws: Worksheet, header_row: int, candidates: List[str]) ‑> int | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_col_by_header(
+    ws: Worksheet, header_row: int, candidates: List[str]
+) -&gt; Optional[int]:
+    headers = {}
+    for c in range(1, ws.max_column + 1):
+        v = ws.cell(header_row, c).value
+        if v is not None and str(v).strip() != &#34;&#34;:
+            headers[str(v).strip()] = c
+    for cand in candidates:
+        if cand in headers:
+            return headers[cand]
+    norm_headers = {_norm_header(k): v for k, v in headers.items()}
+    for cand in candidates:
+        key = _norm_header(cand)
+        if key in norm_headers:
+            return norm_headers[key]
+    return None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.find_header_row"><code class="name flex">
+<span>def <span class="ident">find_header_row</span></span>(<span>ws: Worksheet, header_text: str = 'Stage_ID', search_rows: int = 40) ‑> Tuple[int, int]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_header_row(
+    ws: Worksheet, header_text: str = &#34;Stage_ID&#34;, search_rows: int = 40
+) -&gt; Tuple[int, int]:
+    &#34;&#34;&#34;
+    Find header row where column A equals header_text. Return (header_row, data_start_row).
+    Fallback to (20, 21).
+    &#34;&#34;&#34;
+    for r in range(1, search_rows + 1):
+        if _norm_text(ws.cell(r, 1).value) == header_text:
+            return r, r + 1
+    return 20, 21</code></pre>
+</details>
+<div class="desc"><p>Find header row where column A equals header_text. Return (header_row, data_start_row).
+Fallback to (20, 21).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.find_or_create_stage_row"><code class="name flex">
+<span>def <span class="ident">find_or_create_stage_row</span></span>(<span>ws: Worksheet, stage_id: str, data_start: int, soft_last_row: int = 200) ‑> int</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_or_create_stage_row(
+    ws: Worksheet,
+    stage_id: str,
+    data_start: int,
+    soft_last_row: int = 200,
+) -&gt; int:
+    &#34;&#34;&#34;
+    Find existing row where A == stage_id.
+    Else first empty row in A.
+    Else extend after soft_last_row (or ws.max_row).
+    &#34;&#34;&#34;
+    last_scan = max(soft_last_row, ws.max_row)
+    for r in range(data_start, last_scan + 1):
+        if _norm_text(ws.cell(r, 1).value) == stage_id:
+            return r
+
+    for r in range(data_start, last_scan + 1):
+        if _norm_text(ws.cell(r, 1).value) == &#34;&#34;:
+            ws.cell(r, 1).value = stage_id
+            return r
+
+    r = last_scan + 1
+    ws.cell(r, 1).value = stage_id
+    return r</code></pre>
+</details>
+<div class="desc"><p>Find existing row where A == stage_id.
+Else first empty row in A.
+Else extend after soft_last_row (or ws.max_row).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.get_or_create_sheet"><code class="name flex">
+<span>def <span class="ident">get_or_create_sheet</span></span>(<span>wb, name: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_or_create_sheet(wb, name: str):
+    if name in wb.sheetnames:
+        return wb[name]
+    return wb.create_sheet(name)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main() -&gt; None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(&#34;--template&#34;, required=True, help=&#34;Input template xlsx path&#34;)
+    ap.add_argument(&#34;--stage-csv&#34;, required=True, help=&#34;stage_results.csv path&#34;)
+    ap.add_argument(
+        &#34;--qa-csv&#34;,
+        default=&#34;&#34;,
+        help=&#34;Optional pipeline_stage_QA.csv to populate Tide/UKC columns&#34;,
+    )
+    ap.add_argument(&#34;--out&#34;, required=True, help=&#34;Output populated xlsx path&#34;)
+    ap.add_argument(
+        &#34;--mode&#34;,
+        choices=[&#34;overwrite&#34;, &#34;fillblank&#34;],
+        default=&#34;overwrite&#34;,
+        help=&#34;Write policy&#34;,
+    )
+    ap.add_argument(&#34;--sheet&#34;, default=&#34;07_Stage_Calc&#34;, help=&#34;Target sheet name&#34;)
+    ap.add_argument(
+        &#34;--soft-last-row&#34;,
+        type=int,
+        default=200,
+        help=&#34;Prefer writing within this last row&#34;,
+    )
+    ap.add_argument(
+        &#34;--headers-registry&#34;,
+        default=&#34;&#34;,
+        help=&#34;Path to headers_registry.json for SSOT header management (optional).&#34;,
+    )
+    args = ap.parse_args()
+
+    template_path = Path(args.template).resolve()
+    stage_csv_path = Path(args.stage_csv).resolve()
+    qa_csv_path = Path(args.qa_csv).resolve() if args.qa_csv else None
+    out_path = Path(args.out).resolve()
+
+    if not template_path.exists():
+        raise FileNotFoundError(f&#34;Template not found: {template_path}&#34;)
+    if not stage_csv_path.exists():
+        raise FileNotFoundError(f&#34;Stage CSV not found: {stage_csv_path}&#34;)
+    if qa_csv_path and not qa_csv_path.exists():
+        raise FileNotFoundError(f&#34;QA CSV not found: {qa_csv_path}&#34;)
+
+    log_txt = out_path.with_suffix(&#34;.populate.log.txt&#34;)
+
+    df = pd.read_csv(stage_csv_path)
+    if df.empty:
+        raise ValueError(&#34;Stage CSV is empty.&#34;)
+
+    col_stage = pick_column(
+        df, [&#34;Stage_ID&#34;, &#34;Stage&#34;, &#34;stage&#34;, &#34;StageName&#34;, &#34;Stage Name&#34;]
+    )
+    col_x = pick_column(df, [&#34;x_stage_m&#34;, &#34;x_m&#34;, &#34;x&#34;, &#34;xstage&#34;])
+    col_w = pick_column(df, [&#34;W_stage_t&#34;, &#34;W_t&#34;, &#34;W&#34;, &#34;Weight_t&#34;])
+    col_disp = pick_column(df, [&#34;Disp_t&#34;, &#34;Displacement_t&#34;, &#34;Displacement&#34;, &#34;Disp&#34;])
+    col_tmean = pick_column(df, [&#34;Tmean_m&#34;, &#34;Tmean&#34;, &#34;T_mean_m&#34;, &#34;Tmean(m)&#34;])
+    col_dfwd = pick_column(
+        df, [&#34;Dfwd_m&#34;, &#34;Draft_FWD_m&#34;, &#34;Fwd Draft(m)&#34;, &#34;FWD Draft(m)&#34;, &#34;Dfwd&#34;]
+    )
+    col_daft = pick_column(
+        df, [&#34;Daft_m&#34;, &#34;Draft_AFT_m&#34;, &#34;Aft Draft(m)&#34;, &#34;AFT Draft(m)&#34;, &#34;Daft&#34;]
+    )
+    col_gm = pick_column(df, [&#34;GM(m)&#34;, &#34;GM_m&#34;, &#34;GM&#34;, &#34;GM (m)&#34;])
+
+    if not col_stage:
+        raise ValueError(
+            f&#34;Cannot find Stage column in CSV. Columns: {list(df.columns)}&#34;
+        )
+
+    wb = load_workbook(template_path)
+    if args.sheet not in wb.sheetnames:
+        raise KeyError(f&#34;Sheet not found: {args.sheet}&#34;)
+    ws = wb[args.sheet]
+    ws_log = get_or_create_sheet(wb, &#34;LOG&#34;)
+
+    # Headers SSOT support
+    writer = None
+    registry_header_row = None
+    if args.headers_registry and HEADERS_SSOT_AVAILABLE:
+        registry_path = Path(args.headers_registry)
+        if registry_path.exists():
+            try:
+                writer = HeadersWriter(registry_path)
+                if writer.registry and args.sheet == &#34;07_Stage_Calc&#34;:
+                    registry_header_row = get_header_row(
+                        writer.registry, &#34;BRYAN_STAGE_CALC&#34;
+                    )
+                    if registry_header_row:
+                        append_log(
+                            ws_log,
+                            f&#34;[Headers SSOT] Using header_row={registry_header_row} from registry&#34;,
+                        )
+            except Exception as e:
+                append_log(ws_log, f&#34;[WARN] Headers registry load failed: {e}&#34;)
+
+    # Find header row (use registry if available, otherwise auto-detect)
+    if registry_header_row:
+        header_row = registry_header_row
+        data_start = header_row + 1
+    else:
+        header_row, data_start = find_header_row(ws, &#34;Stage_ID&#34;, search_rows=60)
+
+    def _stage_key(val: str) -&gt; str:
+        return re.sub(r&#34;\\s+&#34;, &#34; &#34;, str(val).strip()).lower()
+
+    qa_df = None
+    qa_stage_col = None
+    qa_cols_map: Dict[str, Optional[str]] = {}
+    qa_idx = None
+    if qa_csv_path:
+        qa_df = pd.read_csv(qa_csv_path, encoding=&#34;utf-8-sig&#34;)
+        qa_stage_col = pick_column(
+            qa_df, [&#34;Stage&#34;, &#34;Stage_ID&#34;, &#34;Stage Name&#34;, &#34;StageName&#34;]
+        )
+        if not qa_stage_col:
+            raise ValueError(
+                f&#34;QA CSV missing Stage column. Columns: {list(qa_df.columns)}&#34;
+            )
+
+        # Use headers registry if available for better column mapping
+        if writer and writer.registry and args.sheet == &#34;07_Stage_Calc&#34;:
+            try:
+                # Apply schema to QA DataFrame
+                qa_std = apply_schema(
+                    qa_df,
+                    writer.registry,
+                    &#34;BRYAN_STAGE_CALC&#34;,
+                    keep_extra=False,
+                    fill_missing=False,
+                )
+                # Map standardized columns to Excel column names
+                deliverable = writer.registry.deliverables[&#34;BRYAN_STAGE_CALC&#34;]
+                for field_key in deliverable.columns:
+                    if field_key in qa_std.columns:
+                        excel_header = (
+                            deliverable.output_headers.get(field_key)
+                            or writer.registry.fields[field_key].default_header
+                        )
+                        qa_cols_map[excel_header] = field_key
+                # Use standardized DataFrame
+                qa_df = qa_std
+                qa_stage_col = (
+                    &#34;Stage_ID&#34; if &#34;Stage_ID&#34; in qa_df.columns else qa_stage_col
+                )
+                append_log(ws_log, &#34;[Headers SSOT] Applied schema to QA CSV&#34;)
+            except Exception as e:
+                append_log(
+                    ws_log,
+                    f&#34;[WARN] Headers SSOT schema application failed: {e}, using fallback&#34;,
+                )
+                # Fallback to original logic
+                qa_cols_map = {
+                    &#34;Forecast_tide_m&#34;: pick_column(
+                        qa_df, [&#34;Forecast_tide_m&#34;, &#34;Forecast_Tide_m&#34;]
+                    ),
+                    &#34;DepthRef_m&#34;: pick_column(qa_df, [&#34;DepthRef_m&#34;, &#34;Depth_Ref_m&#34;]),
+                    &#34;UKC_min_m&#34;: pick_column(
+                        qa_df, [&#34;UKC_min_m&#34;, &#34;UKC_Min_m&#34;, &#34;UKC_Min_Required_m&#34;]
+                    ),
+                    &#34;UKC_fwd_m&#34;: pick_column(qa_df, [&#34;UKC_fwd_m&#34;, &#34;UKC_FWD_m&#34;]),
+                    &#34;UKC_aft_m&#34;: pick_column(qa_df, [&#34;UKC_aft_m&#34;, &#34;UKC_AFT_m&#34;]),
+                    &#34;Tide_required_m&#34;: pick_column(
+                        qa_df, [&#34;Tide_required_m&#34;, &#34;Required_WL_for_UKC_m&#34;]
+                    ),
+                    &#34;Tide_margin_m&#34;: pick_column(qa_df, [&#34;Tide_margin_m&#34;]),
+                    &#34;Tide_verdict&#34;: pick_column(
+                        qa_df, [&#34;Tide_verdict&#34;, &#34;Tide_verification&#34;]
+                    ),
+                }
+        else:
+            # Original fallback logic
+            qa_cols_map = {
+                &#34;Forecast_tide_m&#34;: pick_column(
+                    qa_df, [&#34;Forecast_tide_m&#34;, &#34;Forecast_Tide_m&#34;]
+                ),
+                &#34;DepthRef_m&#34;: pick_column(qa_df, [&#34;DepthRef_m&#34;, &#34;Depth_Ref_m&#34;]),
+                &#34;UKC_min_m&#34;: pick_column(
+                    qa_df, [&#34;UKC_min_m&#34;, &#34;UKC_Min_m&#34;, &#34;UKC_Min_Required_m&#34;]
+                ),
+                &#34;UKC_fwd_m&#34;: pick_column(qa_df, [&#34;UKC_fwd_m&#34;, &#34;UKC_FWD_m&#34;]),
+                &#34;UKC_aft_m&#34;: pick_column(qa_df, [&#34;UKC_aft_m&#34;, &#34;UKC_AFT_m&#34;]),
+                &#34;Tide_required_m&#34;: pick_column(
+                    qa_df, [&#34;Tide_required_m&#34;, &#34;Required_WL_for_UKC_m&#34;]
+                ),
+                &#34;Tide_margin_m&#34;: pick_column(qa_df, [&#34;Tide_margin_m&#34;]),
+                &#34;Tide_verdict&#34;: pick_column(
+                    qa_df, [&#34;Tide_verdict&#34;, &#34;Tide_verification&#34;]
+                ),
+            }
+
+        qa_df[&#34;_stage_norm&#34;] = qa_df[qa_stage_col].apply(_stage_key)
+        qa_idx = qa_df.set_index(&#34;_stage_norm&#34;)
+
+        for excel_col, src_col in qa_cols_map.items():
+            if src_col:
+                ensure_column(ws, header_row, excel_col)
+
+    append_log(
+        ws_log,
+        f&#34;[populate_template] template={template_path.name}, stage_csv={stage_csv_path.name}, mode={args.mode}&#34;,
+    )
+    append_log(
+        ws_log,
+        &#34;Detected CSV cols: &#34;
+        f&#34;Stage={col_stage}, x={col_x}, W={col_w}, Disp={col_disp}, &#34;
+        f&#34;Tmean={col_tmean}, Dfwd={col_dfwd}, Daft={col_daft}, GM={col_gm}&#34;,
+    )
+    if qa_csv_path:
+        append_log(
+            ws_log,
+            &#34;Detected QA cols: &#34;
+            + &#34;, &#34;.join([f&#34;{k}={v}&#34; for k, v in qa_cols_map.items() if v]),
+        )
+
+    written_count = 0
+    stage_count = 0
+
+    for _, row in df.iterrows():
+        stage_id = _norm_text(row[col_stage])
+        if stage_id == &#34;&#34;:
+            continue
+
+        stage_count += 1
+        r_excel = find_or_create_stage_row(
+            ws, stage_id, data_start, soft_last_row=args.soft_last_row
+        )
+
+        ensure_stage_formulas(ws, r_excel)
+
+        v_x = safe_float(row[col_x]) if col_x else None
+        v_w = safe_float(row[col_w]) if col_w else None
+        v_d = safe_float(row[col_disp]) if col_disp else None
+        v_t = safe_float(row[col_tmean]) if col_tmean else None
+        v_k = safe_float(row[col_dfwd]) if col_dfwd else None
+        v_l = safe_float(row[col_daft]) if col_daft else None
+        v_g = safe_float(row[col_gm]) if col_gm else None
+
+        wrote_any = False
+        wrote_any |= write_value(ws, r_excel, 6, v_x, args.mode)  # x_stage_m
+        wrote_any |= write_value(ws, r_excel, 7, v_w, args.mode)  # W_stage_t
+        wrote_any |= write_value(ws, r_excel, 8, v_d, args.mode)  # Displacement_t
+        wrote_any |= write_value(ws, r_excel, 9, v_t, args.mode)  # Tmean_m
+        wrote_any |= write_value(ws, r_excel, 11, v_k, args.mode)  # Draft_FWD_m
+        wrote_any |= write_value(ws, r_excel, 12, v_l, args.mode)  # Draft_AFT_m
+        wrote_any |= write_value(ws, r_excel, 21, v_g, args.mode)  # GM_m
+
+        if qa_idx is not None:
+            key = _stage_key(stage_id)
+            if key in qa_idx.index:
+                qa_row = qa_idx.loc[key]
+                if not isinstance(qa_row, pd.Series):
+                    qa_row = qa_row.iloc[0]
+                for excel_col, src_col in qa_cols_map.items():
+                    if not src_col:
+                        continue
+                    # Handle both direct column name and field key
+                    if src_col in qa_row.index:
+                        v = qa_row.get(src_col)
+                    else:
+                        # Try as field key (if using standardized DataFrame)
+                        v = qa_row.get(src_col) if src_col in qa_row.index else None
+                    if pd.isna(v) if v is not None else True:
+                        continue
+                    col_idx = find_col_by_header(ws, header_row, [excel_col])
+                    if col_idx:
+                        wrote_any |= write_value(ws, r_excel, col_idx, v, args.mode)
+
+        if wrote_any:
+            written_count += 1
+
+    append_log(ws_log, f&#34;Stages processed={stage_count}, rows written={written_count}&#34;)
+    append_log(ws_log, f&#34;Output will be saved: {out_path.name}&#34;)
+
+    try:
+        wb.calculation.calcMode = &#34;auto&#34;
+        wb.calculation.fullCalcOnLoad = True
+        wb.calculation.calcOnSave = True
+    except Exception:
+        pass
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(out_path)
+
+    log_lines = [
+        f&#34;[{datetime.now().strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)}] populate_template.py finished&#34;,
+        f&#34;template: {template_path}&#34;,
+        f&#34;stage_csv: {stage_csv_path}&#34;,
+        f&#34;out: {out_path}&#34;,
+        f&#34;mode: {args.mode}&#34;,
+        f&#34;detected: Stage={col_stage}, x={col_x}, W={col_w}, Disp={col_disp}, &#34;
+        f&#34;Tmean={col_tmean}, Dfwd={col_dfwd}, Daft={col_daft}, GM={col_gm}&#34;,
+        f&#34;stages processed: {stage_count}, rows written: {written_count}&#34;,
+    ]
+    log_txt.write_text(&#34;\n&#34;.join(log_lines), encoding=&#34;utf-8&#34;)
+
+    print(f&#34;[OK] Populated workbook saved: {out_path}&#34;)
+    print(f&#34;[OK] Log saved: {log_txt}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.pick_column"><code class="name flex">
+<span>def <span class="ident">pick_column</span></span>(<span>df: pd.DataFrame, candidates: List[str]) ‑> str | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pick_column(df: pd.DataFrame, candidates: List[str]) -&gt; Optional[str]:
+    &#34;&#34;&#34;
+    Find best matching column from df given candidate names.
+    - exact match first
+    - then normalized match (case/space/symbol insensitive)
+    &#34;&#34;&#34;
+    cols = list(df.columns)
+    for cand in candidates:
+        if cand in cols:
+            return cand
+
+    norm_map = {_norm_col(c): c for c in cols}
+    for cand in candidates:
+        key = _norm_col(cand)
+        if key in norm_map:
+            return norm_map[key]
+    return None</code></pre>
+</details>
+<div class="desc"><p>Find best matching column from df given candidate names.
+- exact match first
+- then normalized match (case/space/symbol insensitive)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.safe_float"><code class="name flex">
+<span>def <span class="ident">safe_float</span></span>(<span>x) ‑> float | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def safe_float(x) -&gt; Optional[float]:
+    if x is None:
+        return None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.populate_template.write_value"><code class="name flex">
+<span>def <span class="ident">write_value</span></span>(<span>ws: Worksheet, r: int, col: int, value, mode: str) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_value(ws: Worksheet, r: int, col: int, value, mode: str) -&gt; bool:
+    &#34;&#34;&#34;
+    mode:
+      - overwrite: always write if value is not None
+      - fillblank: write only if cell is blank
+    returns True if written
+    &#34;&#34;&#34;
+    if value is None:
+        return False
+    cell = ws.cell(r, col)
+    if mode == &#34;fillblank&#34;:
+        if cell.value is not None and str(cell.value).strip() != &#34;&#34;:
+            return False
+    cell.value = value
+    return True</code></pre>
+</details>
+<div class="desc"><p>mode:
+- overwrite: always write if value is not None
+- fillblank: write only if cell is blank
+returns True if written</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES" href="index.html">01_EXECUTION_FILES</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.populate_template.append_log" href="#01_EXECUTION_FILES.populate_template.append_log">append_log</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.ensure_column" href="#01_EXECUTION_FILES.populate_template.ensure_column">ensure_column</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.ensure_stage_formulas" href="#01_EXECUTION_FILES.populate_template.ensure_stage_formulas">ensure_stage_formulas</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.find_col_by_header" href="#01_EXECUTION_FILES.populate_template.find_col_by_header">find_col_by_header</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.find_header_row" href="#01_EXECUTION_FILES.populate_template.find_header_row">find_header_row</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.find_or_create_stage_row" href="#01_EXECUTION_FILES.populate_template.find_or_create_stage_row">find_or_create_stage_row</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.get_or_create_sheet" href="#01_EXECUTION_FILES.populate_template.get_or_create_sheet">get_or_create_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.main" href="#01_EXECUTION_FILES.populate_template.main">main</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.pick_column" href="#01_EXECUTION_FILES.populate_template.pick_column">pick_column</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.safe_float" href="#01_EXECUTION_FILES.populate_template.safe_float">safe_float</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.populate_template.write_value" href="#01_EXECUTION_FILES.populate_template.write_value">write_value</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

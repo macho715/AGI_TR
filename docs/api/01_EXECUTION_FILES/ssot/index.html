@@ -1,0 +1,1799 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot API documentation</title>
+<meta name="description" content="SSOT Module for Ballast Pipeline">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot</code></h1>
+</header>
+<section id="section-intro">
+<p>SSOT Module for Ballast Pipeline</p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.data_quality_validator" href="data_quality_validator.html">01_EXECUTION_FILES.ssot.data_quality_validator</a></code></dt>
+<dd>
+<div class="desc"><p>Data Quality Validator - 검증 결과 데이터 적합성 확인
+Registry 스키마 검증 후 실제 데이터 값의 적합성을 검증</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.draft_calc" href="draft_calc.html">01_EXECUTION_FILES.ssot.draft_calc</a></code></dt>
+<dd>
+<div class="desc"><p>SSOT Draft Calculation Module (AGENTS.md Method B)
+LCF/Lpp-based physically consistent draft calculation …</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.gates_loader" href="gates_loader.html">01_EXECUTION_FILES.ssot.gates_loader</a></code></dt>
+<dd>
+<div class="desc"><p>SSOT Gates Loader Module
+AGENTS.md compliant gate loading and validation …</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.head_guard_v2" href="head_guard_v2.html">01_EXECUTION_FILES.ssot.head_guard_v2</a></code></dt>
+<dd>
+<div class="desc"><p>Head Guard v2 - JSON Registry Validator
+Validates pipeline outputs against headers_registry.json</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.headers_registry" href="headers_registry.html">01_EXECUTION_FILES.ssot.headers_registry</a></code></dt>
+<dd>
+<div class="desc"><p>Headers Registry - SSOT for all pipeline output headers
+Supports both validation (read) and schema application (write)</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.headers_writer" href="headers_writer.html">01_EXECUTION_FILES.ssot.headers_writer</a></code></dt>
+<dd>
+<div class="desc"><p>Unified header writer for all pipeline steps
+Provides backward-compatible wrapper functions</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.tidying_models" href="tidying_models.html">01_EXECUTION_FILES.ssot.tidying_models</a></code></dt>
+<dd>
+<div class="desc"><p>Tidying Models - Pydantic-based data validation for MACHO-GPT pipeline
+Integrates with existing ssot/headers_registry.py and …</p></div>
+</dd>
+<dt><code class="name"><a title="01_EXECUTION_FILES.ssot.validators" href="validators.html">01_EXECUTION_FILES.ssot.validators</a></code></dt>
+<dd>
+<div class="desc"><p>SSOT Validators (P1-1)
+Input/physics/gate preflight validation before pipeline execution.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.calc_drafts"><code class="name flex">
+<span>def <span class="ident">calc_drafts</span></span>(<span>weights: List[Tuple[float, float]],<br>mean_draft_m: float = None,<br>total_weight_t: float = None,<br>LCF_m: float = 0.76,<br>Lpp_m: float = 60.302,<br>MTC: float = 34.0,<br>TPC: float = 8.0) ‑> 01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_drafts(
+    weights: List[Tuple[float, float]],
+    mean_draft_m: float = None,
+    total_weight_t: float = None,
+    LCF_m: float = 0.76,
+    Lpp_m: float = 60.302,
+    MTC: float = 34.00,
+    TPC: float = 8.00,
+) -&gt; DraftCalculationResult:
+    &#34;&#34;&#34;
+    Convenience function for one-off draft calculations
+
+    Args:
+        weights: List of (weight_t, x_from_midship_m) tuples
+        mean_draft_m: Mean draft (optional)
+        total_weight_t: Total weight (optional)
+        LCF_m, Lpp_m, MTC, TPC: Vessel parameters
+
+    Returns:
+        DraftCalculationResult
+    &#34;&#34;&#34;
+    calc = DraftCalculatorMethodB(LCF_m, Lpp_m, MTC, TPC)
+    return calc.calculate(weights, mean_draft_m, total_weight_t)</code></pre>
+</details>
+<div class="desc"><p>Convenience function for one-off draft calculations</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>weights</code></strong></dt>
+<dd>List of (weight_t, x_from_midship_m) tuples</dd>
+<dt><strong><code>mean_draft_m</code></strong></dt>
+<dd>Mean draft (optional)</dd>
+<dt><strong><code>total_weight_t</code></strong></dt>
+<dd>Total weight (optional)</dd>
+</dl>
+<p>LCF_m, Lpp_m, MTC, TPC: Vessel parameters</p>
+<h2 id="returns">Returns</h2>
+<p>DraftCalculationResult</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.load_agi_profile"><code class="name flex">
+<span>def <span class="ident">load_agi_profile</span></span>(<span>) ‑> 01_EXECUTION_FILES.ssot.gates_loader.SiteProfile</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_agi_profile() -&gt; SiteProfile:
+    &#34;&#34;&#34;
+    Convenience function to load AGI site profile
+
+    Returns:
+        SiteProfile for AGI site
+    &#34;&#34;&#34;
+    # Try multiple possible paths
+    possible_paths = [
+        Path(__file__).parent.parent.parent / &#34;patch1225&#34; / &#34;AGI_site_profile_COMPLETE_v1.json&#34;,  # Project root
+        Path(__file__).parent.parent / &#34;patch1225&#34; / &#34;AGI_site_profile_COMPLETE_v1.json&#34;,  # Original
+        Path(&#34;C:/AGI RORO TR/patch1225/AGI_site_profile_COMPLETE_v1.json&#34;),  # Absolute fallback
+    ]
+
+    for profile_path in possible_paths:
+        if profile_path.exists():
+            return SiteProfile(str(profile_path))
+
+    # If none found, raise with helpful message
+    raise FileNotFoundError(
+        f&#34;AGI site profile not found. Tried paths:\n&#34; +
+        &#34;\n&#34;.join(f&#34;  - {p}&#34; for p in possible_paths)
+    )</code></pre>
+</details>
+<div class="desc"><p>Convenience function to load AGI site profile</p>
+<h2 id="returns">Returns</h2>
+<p>SiteProfile for AGI site</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.load_hydro_table_df"><code class="name flex">
+<span>def <span class="ident">load_hydro_table_df</span></span>(<span>hydro_path: Path) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_hydro_table_df(hydro_path: Path) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;Load hydro table from JSON or CSV to a DataFrame.&#34;&#34;&#34;
+    if not hydro_path.exists():
+        raise FileNotFoundError(f&#34;Hydro table not found: {hydro_path}&#34;)
+
+    if hydro_path.suffix.lower() == &#34;.json&#34;:
+        data = json.loads(hydro_path.read_text(encoding=&#34;utf-8&#34;))
+        if isinstance(data, dict):
+            rows = None
+            for key in (&#34;rows&#34;, &#34;table&#34;, &#34;data&#34;, &#34;hydro_table&#34;, &#34;hydro&#34;):
+                if key in data:
+                    rows = data[key]
+                    break
+            if rows is None:
+                raise ValueError(
+                    f&#34;Hydro JSON missing rows/table list: {hydro_path.name}&#34;
+                )
+            return pd.DataFrame(rows)
+        if isinstance(data, list):
+            return pd.DataFrame(data)
+        raise ValueError(f&#34;Unexpected hydro JSON format: {type(data).__name__}&#34;)
+
+    return pd.read_csv(hydro_path, encoding=&#34;utf-8-sig&#34;)</code></pre>
+</details>
+<div class="desc"><p>Load hydro table from JSON or CSV to a DataFrame.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.print_validation_report"><code class="name flex">
+<span>def <span class="ident">print_validation_report</span></span>(<span>report: ValidationReport) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_validation_report(report: ValidationReport) -&gt; None:
+    &#34;&#34;&#34;Print validation report.&#34;&#34;&#34;
+    print(&#34;\n&#34; + &#34;=&#34; * 80)
+    print(&#34;BALLAST PIPELINE VALIDATION REPORT (B+ PREFLIGHT)&#34;)
+    print(&#34;=&#34; * 80)
+    print(f&#34;Timestamp: {report.timestamp}&#34;)
+    print(f&#34;Status: {report.summary()}&#34;)
+    print(&#34;=&#34; * 80)
+
+    if report.passed:
+        print(&#34;\nALL CHECKS PASSED - Pipeline ready for execution\n&#34;)
+    else:
+        print(&#34;\nVALIDATION FAILED - Critical issues must be resolved\n&#34;)
+
+    critical = report.get_critical_issues()
+    if critical:
+        print(f&#34;\nCRITICAL ISSUES ({len(critical)}):&#34;)
+        print(&#34;-&#34; * 80)
+        for i, issue in enumerate(critical, 1):
+            print(f&#34;\n[{i}] {issue.category}: {issue.message}&#34;)
+            print(f&#34;    Details: {issue.details}&#34;)
+            print(f&#34;    Suggestion: {issue.suggestion}&#34;)
+
+    warnings = report.get_warnings()
+    if warnings:
+        print(f&#34;\nWARNINGS ({len(warnings)}):&#34;)
+        print(&#34;-&#34; * 80)
+        for i, issue in enumerate(warnings, 1):
+            print(f&#34;\n[{i}] {issue.category}: {issue.message}&#34;)
+            print(f&#34;    Details: {issue.details}&#34;)
+            print(f&#34;    Suggestion: {issue.suggestion}&#34;)
+
+    print(&#34;\n&#34; + &#34;=&#34; * 80 + &#34;\n&#34;)</code></pre>
+</details>
+<div class="desc"><p>Print validation report.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.run_full_validation"><code class="name flex">
+<span>def <span class="ident">run_full_validation</span></span>(<span>profile_path: str,<br>tank_catalog: pd.DataFrame,<br>current_t_sensor: pd.DataFrame,<br>stage_results: pd.DataFrame,<br>hydro_table: pd.DataFrame) ‑> 01_EXECUTION_FILES.ssot.validators.ValidationReport</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_full_validation(
+    profile_path: str,
+    tank_catalog: pd.DataFrame,
+    current_t_sensor: pd.DataFrame,
+    stage_results: pd.DataFrame,
+    hydro_table: pd.DataFrame,
+) -&gt; ValidationReport:
+    &#34;&#34;&#34;
+    Run all validation checks.
+
+    Returns:
+        ValidationReport with pass/fail and all issues.
+    &#34;&#34;&#34;
+    all_issues: List[ValidationIssue] = []
+
+    try:
+        if profile_path:
+            profile = SiteProfile(profile_path)
+        else:
+            profile = load_agi_profile()
+    except Exception as e:
+        all_issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;SSOT&#34;,
+                message=&#34;Failed to load SSOT profile&#34;,
+                details=str(e),
+                suggestion=&#34;Check profile JSON syntax and schema&#34;,
+            )
+        )
+        return ValidationReport(
+            passed=False,
+            issues=all_issues,
+            timestamp=datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        )
+
+    all_issues.extend(SSOTVersionValidator.validate_ssot_version(profile_path))
+
+    input_validator = InputValidator(profile)
+    all_issues.extend(input_validator.validate_tank_current_t(tank_catalog, current_t_sensor))
+    all_issues.extend(input_validator.validate_stage_results(stage_results))
+
+    physics_validator = PhysicsValidator(profile)
+    tmean_col = _first_existing_column(stage_results, [&#34;Tmean_m&#34;])
+    trim_col = _first_existing_column(stage_results, [&#34;Trim_cm&#34;, &#34;Trim&#34;])
+    displ_col = _first_existing_column(stage_results, [&#34;W_stage_t&#34;, &#34;W_Total_t&#34;, &#34;Disp_t&#34;])
+
+    if tmean_col and trim_col and displ_col:
+        for _, row in stage_results.iterrows():
+            displ_t = _safe_float(row.get(displ_col), 0.0) or 0.0
+            tmean_m = _safe_float(row.get(tmean_col), 0.0) or 0.0
+            trim_cm = _safe_float(row.get(trim_col), 0.0) or 0.0
+            all_issues.extend(
+                physics_validator.validate_draft_calculation(
+                    displ_t, tmean_m, trim_cm, hydro_table
+                )
+            )
+    else:
+        all_issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Skipping draft physics validation&#34;,
+                details=&#34;Missing displacement/Tmean/Trim columns in stage_results.csv&#34;,
+                suggestion=&#34;Ensure stage_results.csv includes W_stage_t, Tmean_m, Trim_cm&#34;,
+            )
+        )
+
+    gate_validator = GatePreflightValidator(profile)
+    all_issues.extend(gate_validator.preflight_gate_check(stage_results))
+
+    critical_issues = [i for i in all_issues if i.severity == &#34;CRITICAL&#34;]
+    passed = len(critical_issues) == 0
+
+    return ValidationReport(
+        passed=passed,
+        issues=all_issues,
+        timestamp=datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+    )</code></pre>
+</details>
+<div class="desc"><p>Run all validation checks.</p>
+<h2 id="returns">Returns</h2>
+<p>ValidationReport with pass/fail and all issues.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult"><code class="flex name class">
+<span>class <span class="ident">DraftCalculationResult</span></span>
+<span>(</span><span>Dfwd_m: float,<br>Daft_m: float,<br>Tmean_m: float,<br>Trim_cm: float,<br>TM_LCF_tm: float,<br>total_weight_t: float,<br>method: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class DraftCalculationResult:
+    &#34;&#34;&#34;Results from draft calculation&#34;&#34;&#34;
+
+    Dfwd_m: float
+    Daft_m: float
+    Tmean_m: float
+    Trim_cm: float
+    TM_LCF_tm: float
+    total_weight_t: float
+    method: str
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Convert to dictionary for export&#34;&#34;&#34;
+        return {
+            &#34;Dfwd_m&#34;: round(self.Dfwd_m, 3),
+            &#34;Daft_m&#34;: round(self.Daft_m, 3),
+            &#34;Tmean_m&#34;: round(self.Tmean_m, 3),
+            &#34;Trim_cm&#34;: round(self.Trim_cm, 2),
+            &#34;TM_LCF_tm&#34;: round(self.TM_LCF_tm, 2),
+            &#34;total_weight_t&#34;: round(self.total_weight_t, 2),
+            &#34;method&#34;: self.method,
+        }
+
+    def __repr__(self) -&gt; str:
+        return (
+            f&#34;DraftResult(Dfwd={self.Dfwd_m:.3f}m, Daft={self.Daft_m:.3f}m, &#34;
+            f&#34;Trim={self.Trim_cm:.2f}cm)&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Results from draft calculation</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.Daft_m"><code class="name">var <span class="ident">Daft_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.Dfwd_m"><code class="name">var <span class="ident">Dfwd_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.TM_LCF_tm"><code class="name">var <span class="ident">TM_LCF_tm</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.Tmean_m"><code class="name">var <span class="ident">Tmean_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.Trim_cm"><code class="name">var <span class="ident">Trim_cm</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.method"><code class="name">var <span class="ident">method</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.total_weight_t"><code class="name">var <span class="ident">total_weight_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculationResult.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Convert to dictionary for export&#34;&#34;&#34;
+    return {
+        &#34;Dfwd_m&#34;: round(self.Dfwd_m, 3),
+        &#34;Daft_m&#34;: round(self.Daft_m, 3),
+        &#34;Tmean_m&#34;: round(self.Tmean_m, 3),
+        &#34;Trim_cm&#34;: round(self.Trim_cm, 2),
+        &#34;TM_LCF_tm&#34;: round(self.TM_LCF_tm, 2),
+        &#34;total_weight_t&#34;: round(self.total_weight_t, 2),
+        &#34;method&#34;: self.method,
+    }</code></pre>
+</details>
+<div class="desc"><p>Convert to dictionary for export</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB"><code class="flex name class">
+<span>class <span class="ident">DraftCalculatorMethodB</span></span>
+<span>(</span><span>LCF_m: float = 0.76,<br>Lpp_m: float = 60.302,<br>MTC_t_m_per_cm: float = 34.0,<br>TPC_t_per_cm: float = 8.0,<br>frame_offset: float = 30.151,<br>frame_slope: float = -1.0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DraftCalculatorMethodB:
+    &#34;&#34;&#34;
+    AGENTS.md Method B: Lpp/LCF-based draft calculation
+
+    Core Formulas (AGENTS.md v0.2):
+    1. TM_LCF = Σ(w_i * (x_i - LCF))
+    2. Trim_cm = TM_LCF / MTC
+    3. Slope = Trim_m / Lpp
+    4. Dfwd = Tmean + slope * (x_fp - LCF)
+    5. Daft = Tmean + slope * (x_ap - LCF)
+
+    Where:
+    - x is measured from midship
+    - x &gt; 0: AFT (stern)
+    - x &lt; 0: FWD (bow)
+    - LCF &gt; 0: aft of midship (typical)
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        LCF_m: float = 0.76,
+        Lpp_m: float = 60.302,
+        MTC_t_m_per_cm: float = 34.00,
+        TPC_t_per_cm: float = 8.00,
+        frame_offset: float = 30.151,
+        frame_slope: float = -1.0,
+    ):
+        &#34;&#34;&#34;
+        Initialize draft calculator with vessel parameters
+
+        Args:
+            LCF_m: LCF from midship (positive = aft)
+            Lpp_m: Length between perpendiculars
+            MTC_t_m_per_cm: Moment to change trim 1 cm
+            TPC_t_per_cm: Tons per centimeter immersion
+            frame_offset: Frame reference (Fr.30.151 = midship)
+            frame_slope: Frame to x conversion slope
+        &#34;&#34;&#34;
+        self.LCF_m = LCF_m
+        self.Lpp_m = Lpp_m
+        self.MTC_t_m_per_cm = MTC_t_m_per_cm
+        self.TPC_t_per_cm = TPC_t_per_cm
+        self.frame_offset = frame_offset
+        self.frame_slope = frame_slope
+
+        # Calculate FP and AP positions
+        # AP is at +Lpp/2, FP is at -Lpp/2 from midship
+        self.x_ap = Lpp_m / 2.0
+        self.x_fp = -Lpp_m / 2.0
+
+    def frame_to_x(self, frame: float) -&gt; float:
+        &#34;&#34;&#34;
+        Convert Frame to x coordinate
+
+        AGENTS.md convention:
+        - Frame 0 = AP (aft perpendicular)
+        - Frame 30.151 = Midship (x = 0)
+        - x = frame_slope * (Frame - frame_offset)
+        - Default: x = -1.0 * (Frame - 30.151) = 30.151 - Frame
+
+        Args:
+            frame: Frame number
+
+        Returns:
+            x coordinate (m from midship, positive = aft)
+        &#34;&#34;&#34;
+        return self.frame_slope * (frame - self.frame_offset)
+
+    def x_to_frame(self, x: float) -&gt; float:
+        &#34;&#34;&#34;
+        Convert x coordinate to Frame
+
+        Args:
+            x: Position from midship (m, positive = aft)
+
+        Returns:
+            Frame number
+        &#34;&#34;&#34;
+        return (x / self.frame_slope) + self.frame_offset
+
+    def calculate(
+        self,
+        weights: List[Tuple[float, float]],
+        mean_draft_m: float = None,
+        total_weight_t: float = None,
+    ) -&gt; DraftCalculationResult:
+        &#34;&#34;&#34;
+        Calculate drafts using Method B
+
+        Args:
+            weights: List of (weight_t, x_from_midship_m) tuples
+            mean_draft_m: Mean draft (optional, will calculate if total_weight_t provided)
+            total_weight_t: Total weight (optional, will sum from weights)
+
+        Returns:
+            DraftCalculationResult with Dfwd, Daft, Trim, etc.
+        &#34;&#34;&#34;
+        # Calculate total weight if not provided
+        if total_weight_t is None:
+            total_weight_t = sum(w for w, _ in weights)
+
+        # Calculate mean draft if not provided
+        if mean_draft_m is None:
+            if total_weight_t == 0:
+                raise ValueError(&#34;Cannot calculate mean draft with zero weight&#34;)
+            # Simple approximation: draft = weight / TPC / 100
+            mean_draft_m = total_weight_t / self.TPC_t_per_cm / 100.0
+
+        # Step 1: Calculate trimming moment about LCF
+        TM_LCF_tm = sum(w * (x - self.LCF_m) for w, x in weights)
+
+        # Step 2: Calculate trim
+        Trim_cm = TM_LCF_tm / self.MTC_t_m_per_cm
+
+        # Step 3: Calculate slope
+        Trim_m = Trim_cm / 100.0
+        slope = Trim_m / self.Lpp_m
+
+        # Step 4: Calculate drafts
+        # Dfwd = Tmean + slope * (x_fp - LCF)
+        # Daft = Tmean + slope * (x_ap - LCF)
+        Dfwd_m = mean_draft_m + slope * (self.x_fp - self.LCF_m)
+        Daft_m = mean_draft_m + slope * (self.x_ap - self.LCF_m)
+
+        return DraftCalculationResult(
+            Dfwd_m=Dfwd_m,
+            Daft_m=Daft_m,
+            Tmean_m=mean_draft_m,
+            Trim_cm=Trim_cm,
+            TM_LCF_tm=TM_LCF_tm,
+            total_weight_t=total_weight_t,
+            method=&#34;B&#34;,
+        )
+
+    def validate_physical_consistency(
+        self, result: DraftCalculationResult
+    ) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Validate physical consistency of draft calculation
+
+        Checks (AGENTS.md):
+        1. Trim = Daft - Dfwd (within tolerance)
+        2. Mean draft = (Dfwd + Daft) / 2 (within tolerance)
+
+        Args:
+            result: DraftCalculationResult to validate
+
+        Returns:
+            List of warning messages (empty if consistent)
+        &#34;&#34;&#34;
+        warnings = []
+        tolerance_cm = 0.5  # 0.5 cm tolerance
+
+        # Check 1: Trim consistency
+        trim_calculated_cm = (result.Daft_m - result.Dfwd_m) * 100.0
+        trim_diff_cm = abs(trim_calculated_cm - result.Trim_cm)
+        if trim_diff_cm &gt; tolerance_cm:
+            warnings.append(
+                f&#34;Trim inconsistency: {trim_calculated_cm:.2f}cm (from drafts) &#34;
+                f&#34;vs {result.Trim_cm:.2f}cm (from TM) - diff {trim_diff_cm:.2f}cm&#34;
+            )
+
+        # Check 2: Mean draft consistency
+        mean_calculated_m = (result.Dfwd_m + result.Daft_m) / 2.0
+        mean_diff_cm = abs((mean_calculated_m - result.Tmean_m) * 100.0)
+        if mean_diff_cm &gt; tolerance_cm:
+            warnings.append(
+                f&#34;Mean draft inconsistency: {mean_calculated_m:.3f}m (from drafts) &#34;
+                f&#34;vs {result.Tmean_m:.3f}m (input) - diff {mean_diff_cm:.2f}cm&#34;
+            )
+
+        return warnings
+
+    def __repr__(self) -&gt; str:
+        return (
+            f&#34;DraftCalculatorMethodB(LCF={self.LCF_m}m, Lpp={self.Lpp_m}m, &#34;
+            f&#34;MTC={self.MTC_t_m_per_cm})&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>AGENTS.md Method B: Lpp/LCF-based draft calculation</p>
+<p>Core Formulas (AGENTS.md v0.2):
+1. TM_LCF = Σ(w_i * (x_i - LCF))
+2. Trim_cm = TM_LCF / MTC
+3. Slope = Trim_m / Lpp
+4. Dfwd = Tmean + slope * (x_fp - LCF)
+5. Daft = Tmean + slope * (x_ap - LCF)</p>
+<p>Where:
+- x is measured from midship
+- x &gt; 0: AFT (stern)
+- x &lt; 0: FWD (bow)
+- LCF &gt; 0: aft of midship (typical)</p>
+<p>Initialize draft calculator with vessel parameters</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>LCF_m</code></strong></dt>
+<dd>LCF from midship (positive = aft)</dd>
+<dt><strong><code>Lpp_m</code></strong></dt>
+<dd>Length between perpendiculars</dd>
+<dt><strong><code>MTC_t_m_per_cm</code></strong></dt>
+<dd>Moment to change trim 1 cm</dd>
+<dt><strong><code>TPC_t_per_cm</code></strong></dt>
+<dd>Tons per centimeter immersion</dd>
+<dt><strong><code>frame_offset</code></strong></dt>
+<dd>Frame reference (Fr.30.151 = midship)</dd>
+<dt><strong><code>frame_slope</code></strong></dt>
+<dd>Frame to x conversion slope</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.calculate"><code class="name flex">
+<span>def <span class="ident">calculate</span></span>(<span>self,<br>weights: List[Tuple[float, float]],<br>mean_draft_m: float = None,<br>total_weight_t: float = None) ‑> 01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate(
+    self,
+    weights: List[Tuple[float, float]],
+    mean_draft_m: float = None,
+    total_weight_t: float = None,
+) -&gt; DraftCalculationResult:
+    &#34;&#34;&#34;
+    Calculate drafts using Method B
+
+    Args:
+        weights: List of (weight_t, x_from_midship_m) tuples
+        mean_draft_m: Mean draft (optional, will calculate if total_weight_t provided)
+        total_weight_t: Total weight (optional, will sum from weights)
+
+    Returns:
+        DraftCalculationResult with Dfwd, Daft, Trim, etc.
+    &#34;&#34;&#34;
+    # Calculate total weight if not provided
+    if total_weight_t is None:
+        total_weight_t = sum(w for w, _ in weights)
+
+    # Calculate mean draft if not provided
+    if mean_draft_m is None:
+        if total_weight_t == 0:
+            raise ValueError(&#34;Cannot calculate mean draft with zero weight&#34;)
+        # Simple approximation: draft = weight / TPC / 100
+        mean_draft_m = total_weight_t / self.TPC_t_per_cm / 100.0
+
+    # Step 1: Calculate trimming moment about LCF
+    TM_LCF_tm = sum(w * (x - self.LCF_m) for w, x in weights)
+
+    # Step 2: Calculate trim
+    Trim_cm = TM_LCF_tm / self.MTC_t_m_per_cm
+
+    # Step 3: Calculate slope
+    Trim_m = Trim_cm / 100.0
+    slope = Trim_m / self.Lpp_m
+
+    # Step 4: Calculate drafts
+    # Dfwd = Tmean + slope * (x_fp - LCF)
+    # Daft = Tmean + slope * (x_ap - LCF)
+    Dfwd_m = mean_draft_m + slope * (self.x_fp - self.LCF_m)
+    Daft_m = mean_draft_m + slope * (self.x_ap - self.LCF_m)
+
+    return DraftCalculationResult(
+        Dfwd_m=Dfwd_m,
+        Daft_m=Daft_m,
+        Tmean_m=mean_draft_m,
+        Trim_cm=Trim_cm,
+        TM_LCF_tm=TM_LCF_tm,
+        total_weight_t=total_weight_t,
+        method=&#34;B&#34;,
+    )</code></pre>
+</details>
+<div class="desc"><p>Calculate drafts using Method B</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>weights</code></strong></dt>
+<dd>List of (weight_t, x_from_midship_m) tuples</dd>
+<dt><strong><code>mean_draft_m</code></strong></dt>
+<dd>Mean draft (optional, will calculate if total_weight_t provided)</dd>
+<dt><strong><code>total_weight_t</code></strong></dt>
+<dd>Total weight (optional, will sum from weights)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>DraftCalculationResult with Dfwd, Daft, Trim, etc.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.frame_to_x"><code class="name flex">
+<span>def <span class="ident">frame_to_x</span></span>(<span>self, frame: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def frame_to_x(self, frame: float) -&gt; float:
+    &#34;&#34;&#34;
+    Convert Frame to x coordinate
+
+    AGENTS.md convention:
+    - Frame 0 = AP (aft perpendicular)
+    - Frame 30.151 = Midship (x = 0)
+    - x = frame_slope * (Frame - frame_offset)
+    - Default: x = -1.0 * (Frame - 30.151) = 30.151 - Frame
+
+    Args:
+        frame: Frame number
+
+    Returns:
+        x coordinate (m from midship, positive = aft)
+    &#34;&#34;&#34;
+    return self.frame_slope * (frame - self.frame_offset)</code></pre>
+</details>
+<div class="desc"><p>Convert Frame to x coordinate</p>
+<p>AGENTS.md convention:
+- Frame 0 = AP (aft perpendicular)
+- Frame 30.151 = Midship (x = 0)
+- x = frame_slope * (Frame - frame_offset)
+- Default: x = -1.0 * (Frame - 30.151) = 30.151 - Frame</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>frame</code></strong></dt>
+<dd>Frame number</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>x coordinate (m from midship, positive = aft)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.validate_physical_consistency"><code class="name flex">
+<span>def <span class="ident">validate_physical_consistency</span></span>(<span>self, result: 01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult) ‑> List[str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_physical_consistency(
+    self, result: DraftCalculationResult
+) -&gt; List[str]:
+    &#34;&#34;&#34;
+    Validate physical consistency of draft calculation
+
+    Checks (AGENTS.md):
+    1. Trim = Daft - Dfwd (within tolerance)
+    2. Mean draft = (Dfwd + Daft) / 2 (within tolerance)
+
+    Args:
+        result: DraftCalculationResult to validate
+
+    Returns:
+        List of warning messages (empty if consistent)
+    &#34;&#34;&#34;
+    warnings = []
+    tolerance_cm = 0.5  # 0.5 cm tolerance
+
+    # Check 1: Trim consistency
+    trim_calculated_cm = (result.Daft_m - result.Dfwd_m) * 100.0
+    trim_diff_cm = abs(trim_calculated_cm - result.Trim_cm)
+    if trim_diff_cm &gt; tolerance_cm:
+        warnings.append(
+            f&#34;Trim inconsistency: {trim_calculated_cm:.2f}cm (from drafts) &#34;
+            f&#34;vs {result.Trim_cm:.2f}cm (from TM) - diff {trim_diff_cm:.2f}cm&#34;
+        )
+
+    # Check 2: Mean draft consistency
+    mean_calculated_m = (result.Dfwd_m + result.Daft_m) / 2.0
+    mean_diff_cm = abs((mean_calculated_m - result.Tmean_m) * 100.0)
+    if mean_diff_cm &gt; tolerance_cm:
+        warnings.append(
+            f&#34;Mean draft inconsistency: {mean_calculated_m:.3f}m (from drafts) &#34;
+            f&#34;vs {result.Tmean_m:.3f}m (input) - diff {mean_diff_cm:.2f}cm&#34;
+        )
+
+    return warnings</code></pre>
+</details>
+<div class="desc"><p>Validate physical consistency of draft calculation</p>
+<p>Checks (AGENTS.md):
+1. Trim = Daft - Dfwd (within tolerance)
+2. Mean draft = (Dfwd + Daft) / 2 (within tolerance)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>DraftCalculationResult to validate</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of warning messages (empty if consistent)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.x_to_frame"><code class="name flex">
+<span>def <span class="ident">x_to_frame</span></span>(<span>self, x: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def x_to_frame(self, x: float) -&gt; float:
+    &#34;&#34;&#34;
+    Convert x coordinate to Frame
+
+    Args:
+        x: Position from midship (m, positive = aft)
+
+    Returns:
+        Frame number
+    &#34;&#34;&#34;
+    return (x / self.frame_slope) + self.frame_offset</code></pre>
+</details>
+<div class="desc"><p>Convert x coordinate to Frame</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>x</code></strong></dt>
+<dd>Position from midship (m, positive = aft)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Frame number</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate"><code class="flex name class">
+<span>class <span class="ident">Gate</span></span>
+<span>(</span><span>gate_id: str,<br>gate_name: str,<br>phase: str,<br>metric: str,<br>comparator: str,<br>limit_value: float,<br>unit: str,<br>reference_frame: str,<br>basis_doc: str,<br>evidence_required: List[str],<br>owner: str,<br>mandatory: bool,<br>notes: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class Gate:
+    &#34;&#34;&#34;Single gate definition with compliance checking&#34;&#34;&#34;
+
+    gate_id: str
+    gate_name: str
+    phase: str
+    metric: str
+    comparator: str
+    limit_value: float
+    unit: str
+    reference_frame: str
+    basis_doc: str
+    evidence_required: List[str]
+    owner: str
+    mandatory: bool
+    notes: str
+
+    def check(self, value: float, stage_name: Optional[str] = None) -&gt; Tuple[bool, str]:
+        &#34;&#34;&#34;
+        Check gate compliance
+
+        Args:
+            value: Measured value to check
+            stage_name: Optional stage name for phase checking
+
+        Returns:
+            (passed: bool, message: str)
+        &#34;&#34;&#34;
+        # Phase check for critical-only gates
+        if self.phase == &#34;critical_stages&#34; and stage_name:
+            # AGI critical regex from profile
+            if not re.search(
+                r&#34;(preballast|stage.*6[abc]|critical)&#34;, stage_name, re.IGNORECASE
+            ):
+                return (
+                    True,
+                    f&#34;N/A: Stage &#39;{stage_name}&#39; not critical for {self.gate_id}&#34;,
+                )
+
+        # Value check based on comparator
+        if self.comparator == &#34;&gt;=&#34;:
+            passed = value &gt;= self.limit_value
+        elif self.comparator == &#34;&lt;=&#34;:
+            passed = value &lt;= self.limit_value
+        elif self.comparator == &#34;&gt;&#34;:
+            passed = value &gt; self.limit_value
+        elif self.comparator == &#34;&lt;&#34;:
+            passed = value &lt; self.limit_value
+        elif self.comparator == &#34;==&#34;:
+            passed = abs(value - self.limit_value) &lt; 0.01
+        else:
+            raise ValueError(f&#34;Unknown comparator: {self.comparator}&#34;)
+
+        status = &#34;PASS&#34; if passed else &#34;FAIL&#34;
+        msg = (
+            f&#34;{status}: {self.metric} {value:.2f}{self.unit} &#34;
+            f&#34;{self.comparator} {self.limit_value}{self.unit}&#34;
+        )
+
+        if not passed:
+            msg += f&#34; | Owner: {self.owner} | Evidence: {&#39;, &#39;.join(self.evidence_required[:2])}&#34;
+
+        return passed, msg
+
+    def __repr__(self) -&gt; str:
+        return f&#34;Gate({self.gate_id}: {self.metric} {self.comparator} {self.limit_value}{self.unit})&#34;</code></pre>
+</details>
+<div class="desc"><p>Single gate definition with compliance checking</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.Gate.basis_doc"><code class="name">var <span class="ident">basis_doc</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.comparator"><code class="name">var <span class="ident">comparator</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.evidence_required"><code class="name">var <span class="ident">evidence_required</span> : List[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.gate_id"><code class="name">var <span class="ident">gate_id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.gate_name"><code class="name">var <span class="ident">gate_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.limit_value"><code class="name">var <span class="ident">limit_value</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.mandatory"><code class="name">var <span class="ident">mandatory</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.metric"><code class="name">var <span class="ident">metric</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.notes"><code class="name">var <span class="ident">notes</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.owner"><code class="name">var <span class="ident">owner</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.phase"><code class="name">var <span class="ident">phase</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.reference_frame"><code class="name">var <span class="ident">reference_frame</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.Gate.unit"><code class="name">var <span class="ident">unit</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.Gate.check"><code class="name flex">
+<span>def <span class="ident">check</span></span>(<span>self, value: float, stage_name: str | None = None) ‑> Tuple[bool, str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check(self, value: float, stage_name: Optional[str] = None) -&gt; Tuple[bool, str]:
+    &#34;&#34;&#34;
+    Check gate compliance
+
+    Args:
+        value: Measured value to check
+        stage_name: Optional stage name for phase checking
+
+    Returns:
+        (passed: bool, message: str)
+    &#34;&#34;&#34;
+    # Phase check for critical-only gates
+    if self.phase == &#34;critical_stages&#34; and stage_name:
+        # AGI critical regex from profile
+        if not re.search(
+            r&#34;(preballast|stage.*6[abc]|critical)&#34;, stage_name, re.IGNORECASE
+        ):
+            return (
+                True,
+                f&#34;N/A: Stage &#39;{stage_name}&#39; not critical for {self.gate_id}&#34;,
+            )
+
+    # Value check based on comparator
+    if self.comparator == &#34;&gt;=&#34;:
+        passed = value &gt;= self.limit_value
+    elif self.comparator == &#34;&lt;=&#34;:
+        passed = value &lt;= self.limit_value
+    elif self.comparator == &#34;&gt;&#34;:
+        passed = value &gt; self.limit_value
+    elif self.comparator == &#34;&lt;&#34;:
+        passed = value &lt; self.limit_value
+    elif self.comparator == &#34;==&#34;:
+        passed = abs(value - self.limit_value) &lt; 0.01
+    else:
+        raise ValueError(f&#34;Unknown comparator: {self.comparator}&#34;)
+
+    status = &#34;PASS&#34; if passed else &#34;FAIL&#34;
+    msg = (
+        f&#34;{status}: {self.metric} {value:.2f}{self.unit} &#34;
+        f&#34;{self.comparator} {self.limit_value}{self.unit}&#34;
+    )
+
+    if not passed:
+        msg += f&#34; | Owner: {self.owner} | Evidence: {&#39;, &#39;.join(self.evidence_required[:2])}&#34;
+
+    return passed, msg</code></pre>
+</details>
+<div class="desc"><p>Check gate compliance</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>Measured value to check</dd>
+<dt><strong><code>stage_name</code></strong></dt>
+<dd>Optional stage name for phase checking</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(passed: bool, message: str)</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile"><code class="flex name class">
+<span>class <span class="ident">SiteProfile</span></span>
+<span>(</span><span>profile_path: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SiteProfile:
+    &#34;&#34;&#34;
+    AGI Site Profile SSOT
+
+    Provides unified access to:
+    - Gate definitions
+    - Draft calculation parameters
+    - Ballast parameters
+    - Hydro parameters
+    - Operational limits
+    &#34;&#34;&#34;
+
+    def __init__(self, profile_path: str):
+        &#34;&#34;&#34;
+        Load site profile from JSON
+
+        Args:
+            profile_path: Path to site profile JSON file
+        &#34;&#34;&#34;
+        self.profile_path = Path(profile_path)
+        if not self.profile_path.exists():
+            raise FileNotFoundError(f&#34;Site profile not found: {profile_path}&#34;)
+
+        self.data = self._load()
+        self.gates = self._build_gates()
+
+    def _load(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Load and parse JSON profile&#34;&#34;&#34;
+        with open(self.profile_path, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+            return json.load(f)
+
+    def _build_gates(self) -&gt; List[Gate]:
+        &#34;&#34;&#34;Build Gate objects from profile data&#34;&#34;&#34;
+        gates = []
+        for g in self.data.get(&#34;gates&#34;, []):
+            gates.append(
+                Gate(
+                    gate_id=g[&#34;gate_id&#34;],
+                    gate_name=g[&#34;gate_name&#34;],
+                    phase=g[&#34;phase&#34;],
+                    metric=g[&#34;metric&#34;],
+                    comparator=g[&#34;comparator&#34;],
+                    limit_value=g[&#34;limit_value&#34;],
+                    unit=g[&#34;unit&#34;],
+                    reference_frame=g[&#34;reference_frame&#34;],
+                    basis_doc=g[&#34;basis_doc&#34;],
+                    evidence_required=g[&#34;evidence_required&#34;],
+                    owner=g[&#34;owner&#34;],
+                    mandatory=g[&#34;mandatory&#34;],
+                    notes=g.get(&#34;notes&#34;, &#34;&#34;),
+                )
+            )
+        return gates
+
+    def get_gate(self, gate_id: str) -&gt; Gate:
+        &#34;&#34;&#34;
+        Get gate by ID
+
+        Args:
+            gate_id: Gate identifier (e.g., &#34;AFT_MIN_2p70_propulsion&#34;)
+
+        Returns:
+            Gate object
+
+        Raises:
+            KeyError: If gate not found
+        &#34;&#34;&#34;
+        for gate in self.gates:
+            if gate.gate_id == gate_id:
+                return gate
+        raise KeyError(f&#34;Gate not found: {gate_id}&#34;)
+
+    def check_all_gates(
+        self, values: Dict[str, float], stage_name: str
+    ) -&gt; Dict[str, Tuple[bool, str]]:
+        &#34;&#34;&#34;
+        Check all gates for a stage
+
+        Args:
+            values: Dict mapping metric names to values
+                   e.g., {&#34;Draft_AFT&#34;: 2.75, &#34;Draft_FWD&#34;: 2.65, &#34;Trim_abs&#34;: 15.0}
+            stage_name: Stage identifier
+
+        Returns:
+            Dict mapping gate_id to (passed, message)
+        &#34;&#34;&#34;
+        results = {}
+        for gate in self.gates:
+            if gate.metric in values:
+                results[gate.gate_id] = gate.check(values[gate.metric], stage_name)
+            else:
+                results[gate.gate_id] = (None, f&#34;SKIP: {gate.metric} not provided&#34;)
+        return results
+
+    @property
+    def meta(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Profile metadata&#34;&#34;&#34;
+        return self.data.get(&#34;meta&#34;, {})
+
+    @property
+    def draft_calc_params(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Draft calculation parameters (AGENTS.md Method B)&#34;&#34;&#34;
+        return self.data.get(&#34;draft_calc&#34;, {})
+
+    @property
+    def ballast_params(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Ballast parameters (pumps, contingency)&#34;&#34;&#34;
+        return self.data.get(&#34;ballast&#34;, {})
+
+    @property
+    def hydro_params(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Hydro parameters (datum, depth, tide)&#34;&#34;&#34;
+        return self.data.get(&#34;hydro&#34;, {})
+
+    @property
+    def hold_point_params(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Hold point parameters&#34;&#34;&#34;
+        return self.data.get(&#34;hold_point&#34;, {})
+
+    @property
+    def operational_limits(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Operational limits&#34;&#34;&#34;
+        return self.data.get(&#34;operational_limits&#34;, {})
+
+    @property
+    def bplus_preflight(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;B+ preflight configuration&#34;&#34;&#34;
+        return self.data.get(&#34;bplus_preflight&#34;, {})
+
+    def load_tank_catalog(self) -&gt; &#34;pd.DataFrame&#34;:
+        &#34;&#34;&#34;
+        Load tank catalog with operability constraints
+
+        Returns:
+            DataFrame with operability, pump_access, zone
+        &#34;&#34;&#34;
+        try:
+            import pandas as pd
+        except ImportError:
+            raise ImportError(
+                &#34;pandas is required for tank catalog loading. Install with: pip install pandas&#34;
+            )
+
+        tank_catalog_ref = self.data.get(&#34;tank_catalog_ref&#34;, {})
+        tank_catalog_file = tank_catalog_ref.get(
+            &#34;source&#34;, &#34;tank_catalog_AGI_with_operability.json&#34;
+        )
+
+        tank_catalog_path = Path(self.profile_path).parent / tank_catalog_file
+
+        if not tank_catalog_path.exists():
+            raise FileNotFoundError(f&#34;Tank catalog not found: {tank_catalog_path}&#34;)
+
+        with open(tank_catalog_path, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+            tank_data = json.load(f)
+
+        tanks = []
+        for t in tank_data[&#34;tanks&#34;]:
+            tanks.append(
+                {
+                    &#34;Tank&#34;: t[&#34;tank_id&#34;],
+                    &#34;Cap_t&#34;: t[&#34;capacity_t&#34;],
+                    &#34;x_from_mid_m&#34;: t[&#34;lcg_from_midship_m&#34;],
+                    &#34;operability&#34;: t.get(&#34;operability&#34;, &#34;NORMAL&#34;),
+                    &#34;operability_notes&#34;: t.get(&#34;operability_notes&#34;, &#34;&#34;),
+                    &#34;pump_access&#34;: t.get(&#34;pump_access&#34;, True),
+                    &#34;zone&#34;: t.get(&#34;zone&#34;, &#34;UNKNOWN&#34;),
+                    &#34;max_rate_tph&#34;: t.get(&#34;max_rate_tph&#34;, None),
+                    &#34;valve_lineup_id&#34;: t.get(&#34;valve_lineup_id&#34;, None),
+                }
+            )
+
+        df = pd.DataFrame(tanks)
+
+        # Print operability summary
+        pre_ballast_only = df[df[&#34;operability&#34;] == &#34;PRE_BALLAST_ONLY&#34;]
+        if not pre_ballast_only.empty:
+            print(f&#34;\n[OPERABILITY] Pre-ballast storage only tanks:&#34;)
+            for _, row in pre_ballast_only.iterrows():
+                print(f&#34;  - {row[&#39;Tank&#39;]}: {row[&#39;operability_notes&#39;]}&#34;)
+
+        discharge_only = df[df[&#34;operability&#34;] == &#34;DISCHARGE_ONLY&#34;]
+        if not discharge_only.empty:
+            print(f&#34;\n[OPERABILITY] Discharge-only tanks:&#34;)
+            for _, row in discharge_only.iterrows():
+                print(f&#34;  - {row[&#39;Tank&#39;]}: {row[&#39;operability_notes&#39;]}&#34;)
+
+        locked = df[df[&#34;operability&#34;] == &#34;LOCKED&#34;]
+        if not locked.empty:
+            print(f&#34;\n[OPERABILITY] Locked tanks:&#34;)
+            for _, row in locked.iterrows():
+                print(f&#34;  - {row[&#39;Tank&#39;]}: {row[&#39;operability_notes&#39;]}&#34;)
+
+        return df
+
+    def validate_ballast_plan(
+        self, ballast_plan_df: &#34;pd.DataFrame&#34;, tank_catalog_df: &#34;pd.DataFrame&#34; = None
+    ) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Validate ballast plan against operability constraints
+
+        Args:
+            ballast_plan_df: Ballast plan with columns [Tank, Delta_t, ...]
+            tank_catalog_df: Tank catalog (optional, will load if not provided)
+
+        Returns:
+            List of violation messages (empty if compliant)
+        &#34;&#34;&#34;
+        try:
+            import pandas as pd
+        except ImportError:
+            raise ImportError(&#34;pandas is required. Install with: pip install pandas&#34;)
+
+        if tank_catalog_df is None:
+            tank_catalog_df = self.load_tank_catalog()
+
+        violations = []
+
+        for _, plan_row in ballast_plan_df.iterrows():
+            tank_id = plan_row[&#34;Tank&#34;]
+            delta_t = plan_row.get(&#34;Delta_t&#34;, 0)
+
+            # Skip if no change
+            if abs(delta_t) &lt; 0.01:
+                continue
+
+            # Check tank operability
+            tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+            if tank_info.empty:
+                violations.append(f&#34;Tank {tank_id} not found in catalog&#34;)
+                continue
+
+            operability = tank_info.iloc[0][&#34;operability&#34;]
+
+            # PRE_BALLAST_ONLY: Cannot transfer (fill/discharge)
+            if operability == &#34;PRE_BALLAST_ONLY&#34;:
+                violations.append(
+                    f&#34;OPERABILITY VIOLATION: Tank {tank_id} is PRE_BALLAST_ONLY. &#34;
+                    f&#34;Attempted delta: {delta_t:.2f}t. &#34;
+                    f&#34;Notes: {tank_info.iloc[0][&#39;operability_notes&#39;]}&#34;
+                )
+
+            # DISCHARGE_ONLY: Cannot fill (positive delta)
+            elif operability == &#34;DISCHARGE_ONLY&#34; and delta_t &gt; 0:
+                violations.append(
+                    f&#34;OPERABILITY VIOLATION: Tank {tank_id} is DISCHARGE_ONLY. &#34;
+                    f&#34;Attempted fill: {delta_t:.2f}t&#34;
+                )
+
+            # No pump access: Cannot transfer
+            elif not tank_info.iloc[0][&#34;pump_access&#34;] and abs(delta_t) &gt; 0:
+                violations.append(
+                    f&#34;OPERABILITY VIOLATION: Tank {tank_id} has no pump access. &#34;
+                    f&#34;Attempted delta: {delta_t:.2f}t&#34;
+                )
+
+        return violations
+
+    def __repr__(self) -&gt; str:
+        site = self.meta.get(&#34;site&#34;, &#34;UNKNOWN&#34;)
+        version = self.meta.get(&#34;version&#34;, &#34;UNKNOWN&#34;)
+        n_gates = len(self.gates)
+        return f&#34;SiteProfile(site={site}, version={version}, gates={n_gates})&#34;</code></pre>
+</details>
+<div class="desc"><p>AGI Site Profile SSOT</p>
+<p>Provides unified access to:
+- Gate definitions
+- Draft calculation parameters
+- Ballast parameters
+- Hydro parameters
+- Operational limits</p>
+<p>Load site profile from JSON</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>profile_path</code></strong></dt>
+<dd>Path to site profile JSON file</dd>
+</dl></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.ballast_params"><code class="name">prop <span class="ident">ballast_params</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def ballast_params(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Ballast parameters (pumps, contingency)&#34;&#34;&#34;
+    return self.data.get(&#34;ballast&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>Ballast parameters (pumps, contingency)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.bplus_preflight"><code class="name">prop <span class="ident">bplus_preflight</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def bplus_preflight(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;B+ preflight configuration&#34;&#34;&#34;
+    return self.data.get(&#34;bplus_preflight&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>B+ preflight configuration</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.draft_calc_params"><code class="name">prop <span class="ident">draft_calc_params</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def draft_calc_params(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Draft calculation parameters (AGENTS.md Method B)&#34;&#34;&#34;
+    return self.data.get(&#34;draft_calc&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>Draft calculation parameters (AGENTS.md Method B)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.hold_point_params"><code class="name">prop <span class="ident">hold_point_params</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def hold_point_params(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Hold point parameters&#34;&#34;&#34;
+    return self.data.get(&#34;hold_point&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>Hold point parameters</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.hydro_params"><code class="name">prop <span class="ident">hydro_params</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def hydro_params(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Hydro parameters (datum, depth, tide)&#34;&#34;&#34;
+    return self.data.get(&#34;hydro&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>Hydro parameters (datum, depth, tide)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.meta"><code class="name">prop <span class="ident">meta</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def meta(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Profile metadata&#34;&#34;&#34;
+    return self.data.get(&#34;meta&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>Profile metadata</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.operational_limits"><code class="name">prop <span class="ident">operational_limits</span> : Dict[str, Any]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def operational_limits(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Operational limits&#34;&#34;&#34;
+    return self.data.get(&#34;operational_limits&#34;, {})</code></pre>
+</details>
+<div class="desc"><p>Operational limits</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.check_all_gates"><code class="name flex">
+<span>def <span class="ident">check_all_gates</span></span>(<span>self, values: Dict[str, float], stage_name: str) ‑> Dict[str, Tuple[bool, str]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_all_gates(
+    self, values: Dict[str, float], stage_name: str
+) -&gt; Dict[str, Tuple[bool, str]]:
+    &#34;&#34;&#34;
+    Check all gates for a stage
+
+    Args:
+        values: Dict mapping metric names to values
+               e.g., {&#34;Draft_AFT&#34;: 2.75, &#34;Draft_FWD&#34;: 2.65, &#34;Trim_abs&#34;: 15.0}
+        stage_name: Stage identifier
+
+    Returns:
+        Dict mapping gate_id to (passed, message)
+    &#34;&#34;&#34;
+    results = {}
+    for gate in self.gates:
+        if gate.metric in values:
+            results[gate.gate_id] = gate.check(values[gate.metric], stage_name)
+        else:
+            results[gate.gate_id] = (None, f&#34;SKIP: {gate.metric} not provided&#34;)
+    return results</code></pre>
+</details>
+<div class="desc"><p>Check all gates for a stage</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>values</code></strong></dt>
+<dd>Dict mapping metric names to values
+e.g., {"Draft_AFT": 2.75, "Draft_FWD": 2.65, "Trim_abs": 15.0}</dd>
+<dt><strong><code>stage_name</code></strong></dt>
+<dd>Stage identifier</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dict mapping gate_id to (passed, message)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.get_gate"><code class="name flex">
+<span>def <span class="ident">get_gate</span></span>(<span>self, gate_id: str) ‑> 01_EXECUTION_FILES.ssot.gates_loader.Gate</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_gate(self, gate_id: str) -&gt; Gate:
+    &#34;&#34;&#34;
+    Get gate by ID
+
+    Args:
+        gate_id: Gate identifier (e.g., &#34;AFT_MIN_2p70_propulsion&#34;)
+
+    Returns:
+        Gate object
+
+    Raises:
+        KeyError: If gate not found
+    &#34;&#34;&#34;
+    for gate in self.gates:
+        if gate.gate_id == gate_id:
+            return gate
+    raise KeyError(f&#34;Gate not found: {gate_id}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Get gate by ID</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>gate_id</code></strong></dt>
+<dd>Gate identifier (e.g., "AFT_MIN_2p70_propulsion")</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Gate object</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>KeyError</code></dt>
+<dd>If gate not found</dd>
+</dl></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.load_tank_catalog"><code class="name flex">
+<span>def <span class="ident">load_tank_catalog</span></span>(<span>self) ‑> pd.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_tank_catalog(self) -&gt; &#34;pd.DataFrame&#34;:
+    &#34;&#34;&#34;
+    Load tank catalog with operability constraints
+
+    Returns:
+        DataFrame with operability, pump_access, zone
+    &#34;&#34;&#34;
+    try:
+        import pandas as pd
+    except ImportError:
+        raise ImportError(
+            &#34;pandas is required for tank catalog loading. Install with: pip install pandas&#34;
+        )
+
+    tank_catalog_ref = self.data.get(&#34;tank_catalog_ref&#34;, {})
+    tank_catalog_file = tank_catalog_ref.get(
+        &#34;source&#34;, &#34;tank_catalog_AGI_with_operability.json&#34;
+    )
+
+    tank_catalog_path = Path(self.profile_path).parent / tank_catalog_file
+
+    if not tank_catalog_path.exists():
+        raise FileNotFoundError(f&#34;Tank catalog not found: {tank_catalog_path}&#34;)
+
+    with open(tank_catalog_path, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+        tank_data = json.load(f)
+
+    tanks = []
+    for t in tank_data[&#34;tanks&#34;]:
+        tanks.append(
+            {
+                &#34;Tank&#34;: t[&#34;tank_id&#34;],
+                &#34;Cap_t&#34;: t[&#34;capacity_t&#34;],
+                &#34;x_from_mid_m&#34;: t[&#34;lcg_from_midship_m&#34;],
+                &#34;operability&#34;: t.get(&#34;operability&#34;, &#34;NORMAL&#34;),
+                &#34;operability_notes&#34;: t.get(&#34;operability_notes&#34;, &#34;&#34;),
+                &#34;pump_access&#34;: t.get(&#34;pump_access&#34;, True),
+                &#34;zone&#34;: t.get(&#34;zone&#34;, &#34;UNKNOWN&#34;),
+                &#34;max_rate_tph&#34;: t.get(&#34;max_rate_tph&#34;, None),
+                &#34;valve_lineup_id&#34;: t.get(&#34;valve_lineup_id&#34;, None),
+            }
+        )
+
+    df = pd.DataFrame(tanks)
+
+    # Print operability summary
+    pre_ballast_only = df[df[&#34;operability&#34;] == &#34;PRE_BALLAST_ONLY&#34;]
+    if not pre_ballast_only.empty:
+        print(f&#34;\n[OPERABILITY] Pre-ballast storage only tanks:&#34;)
+        for _, row in pre_ballast_only.iterrows():
+            print(f&#34;  - {row[&#39;Tank&#39;]}: {row[&#39;operability_notes&#39;]}&#34;)
+
+    discharge_only = df[df[&#34;operability&#34;] == &#34;DISCHARGE_ONLY&#34;]
+    if not discharge_only.empty:
+        print(f&#34;\n[OPERABILITY] Discharge-only tanks:&#34;)
+        for _, row in discharge_only.iterrows():
+            print(f&#34;  - {row[&#39;Tank&#39;]}: {row[&#39;operability_notes&#39;]}&#34;)
+
+    locked = df[df[&#34;operability&#34;] == &#34;LOCKED&#34;]
+    if not locked.empty:
+        print(f&#34;\n[OPERABILITY] Locked tanks:&#34;)
+        for _, row in locked.iterrows():
+            print(f&#34;  - {row[&#39;Tank&#39;]}: {row[&#39;operability_notes&#39;]}&#34;)
+
+    return df</code></pre>
+</details>
+<div class="desc"><p>Load tank catalog with operability constraints</p>
+<h2 id="returns">Returns</h2>
+<p>DataFrame with operability, pump_access, zone</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.SiteProfile.validate_ballast_plan"><code class="name flex">
+<span>def <span class="ident">validate_ballast_plan</span></span>(<span>self, ballast_plan_df: pd.DataFrame, tank_catalog_df: pd.DataFrame = None) ‑> List[str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_ballast_plan(
+    self, ballast_plan_df: &#34;pd.DataFrame&#34;, tank_catalog_df: &#34;pd.DataFrame&#34; = None
+) -&gt; List[str]:
+    &#34;&#34;&#34;
+    Validate ballast plan against operability constraints
+
+    Args:
+        ballast_plan_df: Ballast plan with columns [Tank, Delta_t, ...]
+        tank_catalog_df: Tank catalog (optional, will load if not provided)
+
+    Returns:
+        List of violation messages (empty if compliant)
+    &#34;&#34;&#34;
+    try:
+        import pandas as pd
+    except ImportError:
+        raise ImportError(&#34;pandas is required. Install with: pip install pandas&#34;)
+
+    if tank_catalog_df is None:
+        tank_catalog_df = self.load_tank_catalog()
+
+    violations = []
+
+    for _, plan_row in ballast_plan_df.iterrows():
+        tank_id = plan_row[&#34;Tank&#34;]
+        delta_t = plan_row.get(&#34;Delta_t&#34;, 0)
+
+        # Skip if no change
+        if abs(delta_t) &lt; 0.01:
+            continue
+
+        # Check tank operability
+        tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+        if tank_info.empty:
+            violations.append(f&#34;Tank {tank_id} not found in catalog&#34;)
+            continue
+
+        operability = tank_info.iloc[0][&#34;operability&#34;]
+
+        # PRE_BALLAST_ONLY: Cannot transfer (fill/discharge)
+        if operability == &#34;PRE_BALLAST_ONLY&#34;:
+            violations.append(
+                f&#34;OPERABILITY VIOLATION: Tank {tank_id} is PRE_BALLAST_ONLY. &#34;
+                f&#34;Attempted delta: {delta_t:.2f}t. &#34;
+                f&#34;Notes: {tank_info.iloc[0][&#39;operability_notes&#39;]}&#34;
+            )
+
+        # DISCHARGE_ONLY: Cannot fill (positive delta)
+        elif operability == &#34;DISCHARGE_ONLY&#34; and delta_t &gt; 0:
+            violations.append(
+                f&#34;OPERABILITY VIOLATION: Tank {tank_id} is DISCHARGE_ONLY. &#34;
+                f&#34;Attempted fill: {delta_t:.2f}t&#34;
+            )
+
+        # No pump access: Cannot transfer
+        elif not tank_info.iloc[0][&#34;pump_access&#34;] and abs(delta_t) &gt; 0:
+            violations.append(
+                f&#34;OPERABILITY VIOLATION: Tank {tank_id} has no pump access. &#34;
+                f&#34;Attempted delta: {delta_t:.2f}t&#34;
+            )
+
+    return violations</code></pre>
+</details>
+<div class="desc"><p>Validate ballast plan against operability constraints</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ballast_plan_df</code></strong></dt>
+<dd>Ballast plan with columns [Tank, Delta_t, &hellip;]</dd>
+<dt><strong><code>tank_catalog_df</code></strong></dt>
+<dd>Tank catalog (optional, will load if not provided)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of violation messages (empty if compliant)</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES" href="../index.html">01_EXECUTION_FILES</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot.data_quality_validator" href="data_quality_validator.html">01_EXECUTION_FILES.ssot.data_quality_validator</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc" href="draft_calc.html">01_EXECUTION_FILES.ssot.draft_calc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.gates_loader" href="gates_loader.html">01_EXECUTION_FILES.ssot.gates_loader</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2" href="head_guard_v2.html">01_EXECUTION_FILES.ssot.head_guard_v2</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_registry" href="headers_registry.html">01_EXECUTION_FILES.ssot.headers_registry</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.headers_writer" href="headers_writer.html">01_EXECUTION_FILES.ssot.headers_writer</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models" href="tidying_models.html">01_EXECUTION_FILES.ssot.tidying_models</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators" href="validators.html">01_EXECUTION_FILES.ssot.validators</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.calc_drafts" href="#01_EXECUTION_FILES.ssot.calc_drafts">calc_drafts</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.load_agi_profile" href="#01_EXECUTION_FILES.ssot.load_agi_profile">load_agi_profile</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.load_hydro_table_df" href="#01_EXECUTION_FILES.ssot.load_hydro_table_df">load_hydro_table_df</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.print_validation_report" href="#01_EXECUTION_FILES.ssot.print_validation_report">print_validation_report</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.run_full_validation" href="#01_EXECUTION_FILES.ssot.run_full_validation">run_full_validation</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult">DraftCalculationResult</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.Daft_m" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.Daft_m">Daft_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.Dfwd_m" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.Dfwd_m">Dfwd_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.TM_LCF_tm" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.TM_LCF_tm">TM_LCF_tm</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.Tmean_m" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.Tmean_m">Tmean_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.Trim_cm" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.Trim_cm">Trim_cm</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.method" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.method">method</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.to_dict" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.to_dict">to_dict</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculationResult.total_weight_t" href="#01_EXECUTION_FILES.ssot.DraftCalculationResult.total_weight_t">total_weight_t</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB" href="#01_EXECUTION_FILES.ssot.DraftCalculatorMethodB">DraftCalculatorMethodB</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.calculate" href="#01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.calculate">calculate</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.frame_to_x" href="#01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.frame_to_x">frame_to_x</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.validate_physical_consistency" href="#01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.validate_physical_consistency">validate_physical_consistency</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.x_to_frame" href="#01_EXECUTION_FILES.ssot.DraftCalculatorMethodB.x_to_frame">x_to_frame</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.Gate" href="#01_EXECUTION_FILES.ssot.Gate">Gate</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.basis_doc" href="#01_EXECUTION_FILES.ssot.Gate.basis_doc">basis_doc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.check" href="#01_EXECUTION_FILES.ssot.Gate.check">check</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.comparator" href="#01_EXECUTION_FILES.ssot.Gate.comparator">comparator</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.evidence_required" href="#01_EXECUTION_FILES.ssot.Gate.evidence_required">evidence_required</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.gate_id" href="#01_EXECUTION_FILES.ssot.Gate.gate_id">gate_id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.gate_name" href="#01_EXECUTION_FILES.ssot.Gate.gate_name">gate_name</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.limit_value" href="#01_EXECUTION_FILES.ssot.Gate.limit_value">limit_value</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.mandatory" href="#01_EXECUTION_FILES.ssot.Gate.mandatory">mandatory</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.metric" href="#01_EXECUTION_FILES.ssot.Gate.metric">metric</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.notes" href="#01_EXECUTION_FILES.ssot.Gate.notes">notes</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.owner" href="#01_EXECUTION_FILES.ssot.Gate.owner">owner</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.phase" href="#01_EXECUTION_FILES.ssot.Gate.phase">phase</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.reference_frame" href="#01_EXECUTION_FILES.ssot.Gate.reference_frame">reference_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.Gate.unit" href="#01_EXECUTION_FILES.ssot.Gate.unit">unit</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.SiteProfile" href="#01_EXECUTION_FILES.ssot.SiteProfile">SiteProfile</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.ballast_params" href="#01_EXECUTION_FILES.ssot.SiteProfile.ballast_params">ballast_params</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.bplus_preflight" href="#01_EXECUTION_FILES.ssot.SiteProfile.bplus_preflight">bplus_preflight</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.check_all_gates" href="#01_EXECUTION_FILES.ssot.SiteProfile.check_all_gates">check_all_gates</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.draft_calc_params" href="#01_EXECUTION_FILES.ssot.SiteProfile.draft_calc_params">draft_calc_params</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.get_gate" href="#01_EXECUTION_FILES.ssot.SiteProfile.get_gate">get_gate</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.hold_point_params" href="#01_EXECUTION_FILES.ssot.SiteProfile.hold_point_params">hold_point_params</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.hydro_params" href="#01_EXECUTION_FILES.ssot.SiteProfile.hydro_params">hydro_params</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.load_tank_catalog" href="#01_EXECUTION_FILES.ssot.SiteProfile.load_tank_catalog">load_tank_catalog</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.meta" href="#01_EXECUTION_FILES.ssot.SiteProfile.meta">meta</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.operational_limits" href="#01_EXECUTION_FILES.ssot.SiteProfile.operational_limits">operational_limits</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.SiteProfile.validate_ballast_plan" href="#01_EXECUTION_FILES.ssot.SiteProfile.validate_ballast_plan">validate_ballast_plan</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot.draft_calc API documentation</title>
+<meta name="description" content="SSOT Draft Calculation Module (AGENTS.md Method B)
+LCF/Lpp-based physically consistent draft calculation …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot.draft_calc</code></h1>
+</header>
+<section id="section-intro">
+<p>SSOT Draft Calculation Module (AGENTS.md Method B)
+LCF/Lpp-based physically consistent draft calculation</p>
+<p>This module implements AGENTS.md Method B for draft calculations:
+- Uses LCF (Longitudinal Center of Flotation) as reference point
+- Physically consistent for all trim ranges
+- Handles coordinate system conversion (Frame ↔ x)</p>
+<p>Key Principles:
+1. Trim moment about LCF: TM_LCF = Σ(w_i * (x_i - LCF))
+2. Trim: Trim_cm = TM_LCF / MTC
+3. Drafts: Dfwd/Daft calculated using Lpp distribution</p>
+<h2 id="usage">Usage</h2>
+<p>from ssot.draft_calc import DraftCalculatorMethodB, calc_drafts</p>
+<h1 id="method-1-using-calculator-object">Method 1: Using calculator object</h1>
+<p>calc = DraftCalculatorMethodB(
+LCF_m=0.76,
+Lpp_m=60.302,
+MTC_t_m_per_cm=34.00,
+TPC_t_per_cm=8.00
+)</p>
+<p>results = calc.calculate(
+weights=[(100.0, -15.0), (50.0, 10.0)],
+mean_draft_m=2.5
+)</p>
+<h1 id="method-2-convenience-function">Method 2: Convenience function</h1>
+<p>results = calc_drafts(
+weights=[(100.0, -15.0)],
+mean_draft_m=2.5,
+LCF_m=0.76,
+Lpp_m=60.302,
+MTC=34.00,
+TPC=8.00
+)</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.calc_drafts"><code class="name flex">
+<span>def <span class="ident">calc_drafts</span></span>(<span>weights: List[Tuple[float, float]],<br>mean_draft_m: float = None,<br>total_weight_t: float = None,<br>LCF_m: float = 0.76,<br>Lpp_m: float = 60.302,<br>MTC: float = 34.0,<br>TPC: float = 8.0) ‑> 01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_drafts(
+    weights: List[Tuple[float, float]],
+    mean_draft_m: float = None,
+    total_weight_t: float = None,
+    LCF_m: float = 0.76,
+    Lpp_m: float = 60.302,
+    MTC: float = 34.00,
+    TPC: float = 8.00,
+) -&gt; DraftCalculationResult:
+    &#34;&#34;&#34;
+    Convenience function for one-off draft calculations
+
+    Args:
+        weights: List of (weight_t, x_from_midship_m) tuples
+        mean_draft_m: Mean draft (optional)
+        total_weight_t: Total weight (optional)
+        LCF_m, Lpp_m, MTC, TPC: Vessel parameters
+
+    Returns:
+        DraftCalculationResult
+    &#34;&#34;&#34;
+    calc = DraftCalculatorMethodB(LCF_m, Lpp_m, MTC, TPC)
+    return calc.calculate(weights, mean_draft_m, total_weight_t)</code></pre>
+</details>
+<div class="desc"><p>Convenience function for one-off draft calculations</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>weights</code></strong></dt>
+<dd>List of (weight_t, x_from_midship_m) tuples</dd>
+<dt><strong><code>mean_draft_m</code></strong></dt>
+<dd>Mean draft (optional)</dd>
+<dt><strong><code>total_weight_t</code></strong></dt>
+<dd>Total weight (optional)</dd>
+</dl>
+<p>LCF_m, Lpp_m, MTC, TPC: Vessel parameters</p>
+<h2 id="returns">Returns</h2>
+<p>DraftCalculationResult</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult"><code class="flex name class">
+<span>class <span class="ident">DraftCalculationResult</span></span>
+<span>(</span><span>Dfwd_m: float,<br>Daft_m: float,<br>Tmean_m: float,<br>Trim_cm: float,<br>TM_LCF_tm: float,<br>total_weight_t: float,<br>method: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class DraftCalculationResult:
+    &#34;&#34;&#34;Results from draft calculation&#34;&#34;&#34;
+
+    Dfwd_m: float
+    Daft_m: float
+    Tmean_m: float
+    Trim_cm: float
+    TM_LCF_tm: float
+    total_weight_t: float
+    method: str
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Convert to dictionary for export&#34;&#34;&#34;
+        return {
+            &#34;Dfwd_m&#34;: round(self.Dfwd_m, 3),
+            &#34;Daft_m&#34;: round(self.Daft_m, 3),
+            &#34;Tmean_m&#34;: round(self.Tmean_m, 3),
+            &#34;Trim_cm&#34;: round(self.Trim_cm, 2),
+            &#34;TM_LCF_tm&#34;: round(self.TM_LCF_tm, 2),
+            &#34;total_weight_t&#34;: round(self.total_weight_t, 2),
+            &#34;method&#34;: self.method,
+        }
+
+    def __repr__(self) -&gt; str:
+        return (
+            f&#34;DraftResult(Dfwd={self.Dfwd_m:.3f}m, Daft={self.Daft_m:.3f}m, &#34;
+            f&#34;Trim={self.Trim_cm:.2f}cm)&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Results from draft calculation</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Daft_m"><code class="name">var <span class="ident">Daft_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Dfwd_m"><code class="name">var <span class="ident">Dfwd_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.TM_LCF_tm"><code class="name">var <span class="ident">TM_LCF_tm</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Tmean_m"><code class="name">var <span class="ident">Tmean_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Trim_cm"><code class="name">var <span class="ident">Trim_cm</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.method"><code class="name">var <span class="ident">method</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.total_weight_t"><code class="name">var <span class="ident">total_weight_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Convert to dictionary for export&#34;&#34;&#34;
+    return {
+        &#34;Dfwd_m&#34;: round(self.Dfwd_m, 3),
+        &#34;Daft_m&#34;: round(self.Daft_m, 3),
+        &#34;Tmean_m&#34;: round(self.Tmean_m, 3),
+        &#34;Trim_cm&#34;: round(self.Trim_cm, 2),
+        &#34;TM_LCF_tm&#34;: round(self.TM_LCF_tm, 2),
+        &#34;total_weight_t&#34;: round(self.total_weight_t, 2),
+        &#34;method&#34;: self.method,
+    }</code></pre>
+</details>
+<div class="desc"><p>Convert to dictionary for export</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB"><code class="flex name class">
+<span>class <span class="ident">DraftCalculatorMethodB</span></span>
+<span>(</span><span>LCF_m: float = 0.76,<br>Lpp_m: float = 60.302,<br>MTC_t_m_per_cm: float = 34.0,<br>TPC_t_per_cm: float = 8.0,<br>frame_offset: float = 30.151,<br>frame_slope: float = -1.0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DraftCalculatorMethodB:
+    &#34;&#34;&#34;
+    AGENTS.md Method B: Lpp/LCF-based draft calculation
+
+    Core Formulas (AGENTS.md v0.2):
+    1. TM_LCF = Σ(w_i * (x_i - LCF))
+    2. Trim_cm = TM_LCF / MTC
+    3. Slope = Trim_m / Lpp
+    4. Dfwd = Tmean + slope * (x_fp - LCF)
+    5. Daft = Tmean + slope * (x_ap - LCF)
+
+    Where:
+    - x is measured from midship
+    - x &gt; 0: AFT (stern)
+    - x &lt; 0: FWD (bow)
+    - LCF &gt; 0: aft of midship (typical)
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        LCF_m: float = 0.76,
+        Lpp_m: float = 60.302,
+        MTC_t_m_per_cm: float = 34.00,
+        TPC_t_per_cm: float = 8.00,
+        frame_offset: float = 30.151,
+        frame_slope: float = -1.0,
+    ):
+        &#34;&#34;&#34;
+        Initialize draft calculator with vessel parameters
+
+        Args:
+            LCF_m: LCF from midship (positive = aft)
+            Lpp_m: Length between perpendiculars
+            MTC_t_m_per_cm: Moment to change trim 1 cm
+            TPC_t_per_cm: Tons per centimeter immersion
+            frame_offset: Frame reference (Fr.30.151 = midship)
+            frame_slope: Frame to x conversion slope
+        &#34;&#34;&#34;
+        self.LCF_m = LCF_m
+        self.Lpp_m = Lpp_m
+        self.MTC_t_m_per_cm = MTC_t_m_per_cm
+        self.TPC_t_per_cm = TPC_t_per_cm
+        self.frame_offset = frame_offset
+        self.frame_slope = frame_slope
+
+        # Calculate FP and AP positions
+        # AP is at +Lpp/2, FP is at -Lpp/2 from midship
+        self.x_ap = Lpp_m / 2.0
+        self.x_fp = -Lpp_m / 2.0
+
+    def frame_to_x(self, frame: float) -&gt; float:
+        &#34;&#34;&#34;
+        Convert Frame to x coordinate
+
+        AGENTS.md convention:
+        - Frame 0 = AP (aft perpendicular)
+        - Frame 30.151 = Midship (x = 0)
+        - x = frame_slope * (Frame - frame_offset)
+        - Default: x = -1.0 * (Frame - 30.151) = 30.151 - Frame
+
+        Args:
+            frame: Frame number
+
+        Returns:
+            x coordinate (m from midship, positive = aft)
+        &#34;&#34;&#34;
+        return self.frame_slope * (frame - self.frame_offset)
+
+    def x_to_frame(self, x: float) -&gt; float:
+        &#34;&#34;&#34;
+        Convert x coordinate to Frame
+
+        Args:
+            x: Position from midship (m, positive = aft)
+
+        Returns:
+            Frame number
+        &#34;&#34;&#34;
+        return (x / self.frame_slope) + self.frame_offset
+
+    def calculate(
+        self,
+        weights: List[Tuple[float, float]],
+        mean_draft_m: float = None,
+        total_weight_t: float = None,
+    ) -&gt; DraftCalculationResult:
+        &#34;&#34;&#34;
+        Calculate drafts using Method B
+
+        Args:
+            weights: List of (weight_t, x_from_midship_m) tuples
+            mean_draft_m: Mean draft (optional, will calculate if total_weight_t provided)
+            total_weight_t: Total weight (optional, will sum from weights)
+
+        Returns:
+            DraftCalculationResult with Dfwd, Daft, Trim, etc.
+        &#34;&#34;&#34;
+        # Calculate total weight if not provided
+        if total_weight_t is None:
+            total_weight_t = sum(w for w, _ in weights)
+
+        # Calculate mean draft if not provided
+        if mean_draft_m is None:
+            if total_weight_t == 0:
+                raise ValueError(&#34;Cannot calculate mean draft with zero weight&#34;)
+            # Simple approximation: draft = weight / TPC / 100
+            mean_draft_m = total_weight_t / self.TPC_t_per_cm / 100.0
+
+        # Step 1: Calculate trimming moment about LCF
+        TM_LCF_tm = sum(w * (x - self.LCF_m) for w, x in weights)
+
+        # Step 2: Calculate trim
+        Trim_cm = TM_LCF_tm / self.MTC_t_m_per_cm
+
+        # Step 3: Calculate slope
+        Trim_m = Trim_cm / 100.0
+        slope = Trim_m / self.Lpp_m
+
+        # Step 4: Calculate drafts
+        # Dfwd = Tmean + slope * (x_fp - LCF)
+        # Daft = Tmean + slope * (x_ap - LCF)
+        Dfwd_m = mean_draft_m + slope * (self.x_fp - self.LCF_m)
+        Daft_m = mean_draft_m + slope * (self.x_ap - self.LCF_m)
+
+        return DraftCalculationResult(
+            Dfwd_m=Dfwd_m,
+            Daft_m=Daft_m,
+            Tmean_m=mean_draft_m,
+            Trim_cm=Trim_cm,
+            TM_LCF_tm=TM_LCF_tm,
+            total_weight_t=total_weight_t,
+            method=&#34;B&#34;,
+        )
+
+    def validate_physical_consistency(
+        self, result: DraftCalculationResult
+    ) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Validate physical consistency of draft calculation
+
+        Checks (AGENTS.md):
+        1. Trim = Daft - Dfwd (within tolerance)
+        2. Mean draft = (Dfwd + Daft) / 2 (within tolerance)
+
+        Args:
+            result: DraftCalculationResult to validate
+
+        Returns:
+            List of warning messages (empty if consistent)
+        &#34;&#34;&#34;
+        warnings = []
+        tolerance_cm = 0.5  # 0.5 cm tolerance
+
+        # Check 1: Trim consistency
+        trim_calculated_cm = (result.Daft_m - result.Dfwd_m) * 100.0
+        trim_diff_cm = abs(trim_calculated_cm - result.Trim_cm)
+        if trim_diff_cm &gt; tolerance_cm:
+            warnings.append(
+                f&#34;Trim inconsistency: {trim_calculated_cm:.2f}cm (from drafts) &#34;
+                f&#34;vs {result.Trim_cm:.2f}cm (from TM) - diff {trim_diff_cm:.2f}cm&#34;
+            )
+
+        # Check 2: Mean draft consistency
+        mean_calculated_m = (result.Dfwd_m + result.Daft_m) / 2.0
+        mean_diff_cm = abs((mean_calculated_m - result.Tmean_m) * 100.0)
+        if mean_diff_cm &gt; tolerance_cm:
+            warnings.append(
+                f&#34;Mean draft inconsistency: {mean_calculated_m:.3f}m (from drafts) &#34;
+                f&#34;vs {result.Tmean_m:.3f}m (input) - diff {mean_diff_cm:.2f}cm&#34;
+            )
+
+        return warnings
+
+    def __repr__(self) -&gt; str:
+        return (
+            f&#34;DraftCalculatorMethodB(LCF={self.LCF_m}m, Lpp={self.Lpp_m}m, &#34;
+            f&#34;MTC={self.MTC_t_m_per_cm})&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>AGENTS.md Method B: Lpp/LCF-based draft calculation</p>
+<p>Core Formulas (AGENTS.md v0.2):
+1. TM_LCF = Σ(w_i * (x_i - LCF))
+2. Trim_cm = TM_LCF / MTC
+3. Slope = Trim_m / Lpp
+4. Dfwd = Tmean + slope * (x_fp - LCF)
+5. Daft = Tmean + slope * (x_ap - LCF)</p>
+<p>Where:
+- x is measured from midship
+- x &gt; 0: AFT (stern)
+- x &lt; 0: FWD (bow)
+- LCF &gt; 0: aft of midship (typical)</p>
+<p>Initialize draft calculator with vessel parameters</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>LCF_m</code></strong></dt>
+<dd>LCF from midship (positive = aft)</dd>
+<dt><strong><code>Lpp_m</code></strong></dt>
+<dd>Length between perpendiculars</dd>
+<dt><strong><code>MTC_t_m_per_cm</code></strong></dt>
+<dd>Moment to change trim 1 cm</dd>
+<dt><strong><code>TPC_t_per_cm</code></strong></dt>
+<dd>Tons per centimeter immersion</dd>
+<dt><strong><code>frame_offset</code></strong></dt>
+<dd>Frame reference (Fr.30.151 = midship)</dd>
+<dt><strong><code>frame_slope</code></strong></dt>
+<dd>Frame to x conversion slope</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.calculate"><code class="name flex">
+<span>def <span class="ident">calculate</span></span>(<span>self,<br>weights: List[Tuple[float, float]],<br>mean_draft_m: float = None,<br>total_weight_t: float = None) ‑> 01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate(
+    self,
+    weights: List[Tuple[float, float]],
+    mean_draft_m: float = None,
+    total_weight_t: float = None,
+) -&gt; DraftCalculationResult:
+    &#34;&#34;&#34;
+    Calculate drafts using Method B
+
+    Args:
+        weights: List of (weight_t, x_from_midship_m) tuples
+        mean_draft_m: Mean draft (optional, will calculate if total_weight_t provided)
+        total_weight_t: Total weight (optional, will sum from weights)
+
+    Returns:
+        DraftCalculationResult with Dfwd, Daft, Trim, etc.
+    &#34;&#34;&#34;
+    # Calculate total weight if not provided
+    if total_weight_t is None:
+        total_weight_t = sum(w for w, _ in weights)
+
+    # Calculate mean draft if not provided
+    if mean_draft_m is None:
+        if total_weight_t == 0:
+            raise ValueError(&#34;Cannot calculate mean draft with zero weight&#34;)
+        # Simple approximation: draft = weight / TPC / 100
+        mean_draft_m = total_weight_t / self.TPC_t_per_cm / 100.0
+
+    # Step 1: Calculate trimming moment about LCF
+    TM_LCF_tm = sum(w * (x - self.LCF_m) for w, x in weights)
+
+    # Step 2: Calculate trim
+    Trim_cm = TM_LCF_tm / self.MTC_t_m_per_cm
+
+    # Step 3: Calculate slope
+    Trim_m = Trim_cm / 100.0
+    slope = Trim_m / self.Lpp_m
+
+    # Step 4: Calculate drafts
+    # Dfwd = Tmean + slope * (x_fp - LCF)
+    # Daft = Tmean + slope * (x_ap - LCF)
+    Dfwd_m = mean_draft_m + slope * (self.x_fp - self.LCF_m)
+    Daft_m = mean_draft_m + slope * (self.x_ap - self.LCF_m)
+
+    return DraftCalculationResult(
+        Dfwd_m=Dfwd_m,
+        Daft_m=Daft_m,
+        Tmean_m=mean_draft_m,
+        Trim_cm=Trim_cm,
+        TM_LCF_tm=TM_LCF_tm,
+        total_weight_t=total_weight_t,
+        method=&#34;B&#34;,
+    )</code></pre>
+</details>
+<div class="desc"><p>Calculate drafts using Method B</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>weights</code></strong></dt>
+<dd>List of (weight_t, x_from_midship_m) tuples</dd>
+<dt><strong><code>mean_draft_m</code></strong></dt>
+<dd>Mean draft (optional, will calculate if total_weight_t provided)</dd>
+<dt><strong><code>total_weight_t</code></strong></dt>
+<dd>Total weight (optional, will sum from weights)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>DraftCalculationResult with Dfwd, Daft, Trim, etc.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.frame_to_x"><code class="name flex">
+<span>def <span class="ident">frame_to_x</span></span>(<span>self, frame: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def frame_to_x(self, frame: float) -&gt; float:
+    &#34;&#34;&#34;
+    Convert Frame to x coordinate
+
+    AGENTS.md convention:
+    - Frame 0 = AP (aft perpendicular)
+    - Frame 30.151 = Midship (x = 0)
+    - x = frame_slope * (Frame - frame_offset)
+    - Default: x = -1.0 * (Frame - 30.151) = 30.151 - Frame
+
+    Args:
+        frame: Frame number
+
+    Returns:
+        x coordinate (m from midship, positive = aft)
+    &#34;&#34;&#34;
+    return self.frame_slope * (frame - self.frame_offset)</code></pre>
+</details>
+<div class="desc"><p>Convert Frame to x coordinate</p>
+<p>AGENTS.md convention:
+- Frame 0 = AP (aft perpendicular)
+- Frame 30.151 = Midship (x = 0)
+- x = frame_slope * (Frame - frame_offset)
+- Default: x = -1.0 * (Frame - 30.151) = 30.151 - Frame</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>frame</code></strong></dt>
+<dd>Frame number</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>x coordinate (m from midship, positive = aft)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.validate_physical_consistency"><code class="name flex">
+<span>def <span class="ident">validate_physical_consistency</span></span>(<span>self, result: 01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult) ‑> List[str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_physical_consistency(
+    self, result: DraftCalculationResult
+) -&gt; List[str]:
+    &#34;&#34;&#34;
+    Validate physical consistency of draft calculation
+
+    Checks (AGENTS.md):
+    1. Trim = Daft - Dfwd (within tolerance)
+    2. Mean draft = (Dfwd + Daft) / 2 (within tolerance)
+
+    Args:
+        result: DraftCalculationResult to validate
+
+    Returns:
+        List of warning messages (empty if consistent)
+    &#34;&#34;&#34;
+    warnings = []
+    tolerance_cm = 0.5  # 0.5 cm tolerance
+
+    # Check 1: Trim consistency
+    trim_calculated_cm = (result.Daft_m - result.Dfwd_m) * 100.0
+    trim_diff_cm = abs(trim_calculated_cm - result.Trim_cm)
+    if trim_diff_cm &gt; tolerance_cm:
+        warnings.append(
+            f&#34;Trim inconsistency: {trim_calculated_cm:.2f}cm (from drafts) &#34;
+            f&#34;vs {result.Trim_cm:.2f}cm (from TM) - diff {trim_diff_cm:.2f}cm&#34;
+        )
+
+    # Check 2: Mean draft consistency
+    mean_calculated_m = (result.Dfwd_m + result.Daft_m) / 2.0
+    mean_diff_cm = abs((mean_calculated_m - result.Tmean_m) * 100.0)
+    if mean_diff_cm &gt; tolerance_cm:
+        warnings.append(
+            f&#34;Mean draft inconsistency: {mean_calculated_m:.3f}m (from drafts) &#34;
+            f&#34;vs {result.Tmean_m:.3f}m (input) - diff {mean_diff_cm:.2f}cm&#34;
+        )
+
+    return warnings</code></pre>
+</details>
+<div class="desc"><p>Validate physical consistency of draft calculation</p>
+<p>Checks (AGENTS.md):
+1. Trim = Daft - Dfwd (within tolerance)
+2. Mean draft = (Dfwd + Daft) / 2 (within tolerance)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>DraftCalculationResult to validate</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of warning messages (empty if consistent)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.x_to_frame"><code class="name flex">
+<span>def <span class="ident">x_to_frame</span></span>(<span>self, x: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def x_to_frame(self, x: float) -&gt; float:
+    &#34;&#34;&#34;
+    Convert x coordinate to Frame
+
+    Args:
+        x: Position from midship (m, positive = aft)
+
+    Returns:
+        Frame number
+    &#34;&#34;&#34;
+    return (x / self.frame_slope) + self.frame_offset</code></pre>
+</details>
+<div class="desc"><p>Convert x coordinate to Frame</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>x</code></strong></dt>
+<dd>Position from midship (m, positive = aft)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Frame number</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot" href="index.html">01_EXECUTION_FILES.ssot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.calc_drafts" href="#01_EXECUTION_FILES.ssot.draft_calc.calc_drafts">calc_drafts</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult">DraftCalculationResult</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Daft_m" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Daft_m">Daft_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Dfwd_m" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Dfwd_m">Dfwd_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.TM_LCF_tm" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.TM_LCF_tm">TM_LCF_tm</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Tmean_m" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Tmean_m">Tmean_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Trim_cm" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.Trim_cm">Trim_cm</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.method" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.method">method</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.to_dict" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.to_dict">to_dict</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.total_weight_t" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculationResult.total_weight_t">total_weight_t</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB">DraftCalculatorMethodB</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.calculate" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.calculate">calculate</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.frame_to_x" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.frame_to_x">frame_to_x</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.validate_physical_consistency" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.validate_physical_consistency">validate_physical_consistency</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.x_to_frame" href="#01_EXECUTION_FILES.ssot.draft_calc.DraftCalculatorMethodB.x_to_frame">x_to_frame</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
