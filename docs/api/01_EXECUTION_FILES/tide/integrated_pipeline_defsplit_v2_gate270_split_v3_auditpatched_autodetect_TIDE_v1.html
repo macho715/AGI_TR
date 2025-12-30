@@ -840,6 +840,7 @@ Applied to both Gate-A (AFT &gt;= 2.70 - tol_m) and Gate-B (FWD &lt;= 2.70 + tol
         print(
             f&#34;[WARNING] Draft values clipped to D_vessel ({d_vessel_m}m) for {len(clipped_stages)} stages:&#34;
         )
+        zero_freeboard_stages: List[str] = []
         for stage_name, fwd_raw, aft_raw, fwd_clipped, aft_clipped in zip(
             clipped_stages,
             draft_fwd_raw[clipped_mask],
@@ -852,6 +853,28 @@ Applied to both Gate-A (AFT &gt;= 2.70 - tol_m) and Gate-B (FWD &lt;= 2.70 + tol
                     f&#34;  - {stage_name}: FWD {fwd_raw:.2f} -&gt; {fwd_clipped:.2f}m, &#34;
                     f&#34;AFT {aft_raw:.2f} -&gt; {aft_clipped:.2f}m&#34;
                 )
+                if (
+                    abs(fwd_clipped - float(d_vessel_m)) &lt; 1e-3
+                    or abs(aft_clipped - float(d_vessel_m)) &lt; 1e-3
+                ):
+                    zero_freeboard_stages.append(str(stage_name))
+
+        if zero_freeboard_stages:
+            print(
+                &#34;[CRITICAL] PHYSICAL LIMIT EXCEEDED: Freeboard = 0.00m (deck edge at waterline) &#34;
+                f&#34;for {len(zero_freeboard_stages)} stage(s):&#34;
+            )
+            for stage_name in zero_freeboard_stages:
+                print(
+                    f&#34;  - {stage_name}: Draft = D_vessel ({d_vessel_m}m) -&gt; Freeboard = 0.00m&#34;
+                )
+            print(
+                &#34;[ACTION REQUIRED] Engineering verification required:\n&#34;
+                &#34;  1. Validate input: Check TR position, cargo weight, and stage calculations\n&#34;
+                &#34;  2. If input is valid: Requires class acceptance and load-line compliance documentation\n&#34;
+                &#34;  3. Risk mitigation: Green water risk, structural stress at deck edge\n&#34;
+                &#34;  4. Approval packages must explicitly state draft clipping and justify freeboard = 0.00m&#34;
+            )
 
     out = pd.DataFrame(
         {
@@ -2606,6 +2629,41 @@ This prevents Step-1 fallback warnings.</p></div>
             heuristics.append(
                 &#34;- **Freeboard_Min_m &lt; 0**: 일부 Stage에서 Draft가 Molded Depth를 초과(또는 입력/계산 불일치)했습니다. Stage 입력/하중/수조선 데이터 재검증 필요.&#34;
             )
+        elif pd.notna(fb_min) and abs(float(fb_min)) &lt; 1e-3:
+            # Check for zero freeboard (deck edge at waterline)
+            # This can occur due to draft clipping or natural condition
+            zero_fb_mask = (
+                pd.to_numeric(qa[&#34;Freeboard_Min_m&#34;], errors=&#34;coerce&#34;) &lt; 1e-3
+            )
+            # Additional check: Draft = D_vessel indicates clipping likely occurred
+            if &#34;D_vessel_m&#34; in qa.columns and &#34;Draft_FWD_m&#34; in qa.columns:
+                dv = pd.to_numeric(qa[&#34;D_vessel_m&#34;], errors=&#34;coerce&#34;)
+                dfwd = pd.to_numeric(qa[&#34;Draft_FWD_m&#34;], errors=&#34;coerce&#34;)
+                daft = pd.to_numeric(qa[&#34;Draft_AFT_m&#34;], errors=&#34;coerce&#34;)
+                # Draft equals D_vessel suggests clipping (or natural limit)
+                draft_at_limit = (
+                    (abs(dfwd - dv) &lt; 1e-3) | (abs(daft - dv) &lt; 1e-3)
+                ) &amp; zero_fb_mask
+                zero_fb_mask = zero_fb_mask &amp; draft_at_limit
+
+            if &#34;Stage&#34; in qa.columns:
+                zero_fb_stages = (
+                    qa.loc[zero_fb_mask, &#34;Stage&#34;]
+                    .dropna()
+                    .astype(str)
+                    .unique()
+                    .tolist()
+                )
+            else:
+                zero_fb_stages = []
+            if zero_fb_stages:
+                heuristics.append(
+                    &#34;- **⚠️ Freeboard_Min_m = 0.00m (Draft Clipping)**: Stage &#34;
+                    + &#34;, &#34;.join(zero_fb_stages)
+                    + &#34;에서 Draft가 D_vessel을 초과하여 클리핑되었습니다. &#34;
+                    + &#34;Freeboard = 0.00m은 deck edge가 waterline에 위치함을 의미하며, &#34;
+                    + &#34;engineering verification (class acceptance, load-line compliance)이 필요합니다.&#34;
+                )
 
     if &#34;Gate_UKC&#34; in qa.columns:
         ukc_vals = set(qa[&#34;Gate_UKC&#34;].astype(str).str.upper().unique().tolist())
