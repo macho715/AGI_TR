@@ -1,0 +1,43 @@
+{
+  "site_name": "BUSHRA_SITE",
+  "location": "Dubai",
+  "site_type": "LCT",
+  "operations": ["LOAD"],
+  "gates": {
+    "FWD_max": 3.8,
+    "AFT_min": 2.5
+  },
+  "tidal_info": {
+    "mean_high_water": 1.8,
+    "mean_low_water": 0.2,
+    "spring_range": 2.0
+  },
+  "berth_info": {
+    "berth_name": "BUSHRA Landing",
+    "depth_at_datum": -7.0,
+    "alongside_depth": 7.5
+  },
+  "vessel_info": {
+    "design_draft_fwd": 2.5,
+    "design_draft_aft": 2.5,
+    "loa": 85.0,
+    "beam": 18.0
+  },
+  "cargo_info": {
+    "max_cargo_weight_ton": 201,
+    "deck_cargo_allowed": true,
+    "heavy_lift": true
+  },
+  "environmental": {
+    "wind_limit_knots": 20,
+    "wave_height_limit_m": 1.0,
+    "current_limit_knots": 1.5
+  },
+  "metadata": {
+    "created_date": "2025-01-15",
+    "last_updated": "2025-12-30",
+    "version": "1.0",
+    "notes": "Sample profile for BUSHRA LCT transformer transport"
+  }
+}
+
