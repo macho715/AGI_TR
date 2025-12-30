@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot.tidying_models API documentation</title>
+<meta name="description" content="Tidying Models - Pydantic-based data validation for MACHO-GPT pipeline
+Integrates with existing ssot/headers_registry.py and …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot.tidying_models</code></h1>
+</header>
+<section id="section-intro">
+<p>Tidying Models - Pydantic-based data validation for MACHO-GPT pipeline
+Integrates with existing ssot/headers_registry.py and ssot/data_quality_validator.py</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastAction"><code class="flex name class">
+<span>class <span class="ident">BallastAction</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BallastAction(str, Enum):
+    &#34;&#34;&#34;Ballast action enum (uppercase only)&#34;&#34;&#34;
+
+    FILL = &#34;FILL&#34;
+    DISCHARGE = &#34;DISCHARGE&#34;
+    NONE = &#34;NONE&#34;</code></pre>
+</details>
+<div class="desc"><p>Ballast action enum (uppercase only)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastAction.DISCHARGE"><code class="name">var <span class="ident">DISCHARGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastAction.FILL"><code class="name">var <span class="ident">FILL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastAction.NONE"><code class="name">var <span class="ident">NONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow"><code class="flex name class">
+<span>class <span class="ident">BallastSequenceRow</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BallastSequenceRow(BaseModel):
+    &#34;&#34;&#34;Validated row from BALLAST_EXEC.csv or BALLAST_OPTION.csv&#34;&#34;&#34;
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    stage: Optional[str] = Field(default=None, description=&#34;Stage name (optional)&#34;)
+    step: Optional[int] = Field(
+        default=None, ge=1, description=&#34;Step number (1-based, optional for OPTION)&#34;
+    )
+    tank: str = Field(min_length=1, description=&#34;Tank ID (required)&#34;)
+    action: BallastAction = Field(description=&#34;Ballast action (FILL/DISCHARGE/NONE)&#34;)
+    start_t: Optional[Decimal] = Field(default=None, ge=0, description=&#34;Start tonnage&#34;)
+    delta_t: Decimal = Field(description=&#34;Delta tonnage&#34;)
+    target_t: Optional[Decimal] = Field(
+        default=None, ge=0, description=&#34;Target tonnage&#34;
+    )
+    pump_id: Optional[str] = Field(default=None, description=&#34;Pump ID&#34;)
+    pump_rate_tph: Optional[Decimal] = Field(
+        default=None, gt=0, description=&#34;Pump rate (tph)&#34;
+    )
+    time_h: Optional[Decimal] = Field(
+        default=None, ge=0, description=&#34;Operating time (hours)&#34;
+    )
+    valve_lineup: Optional[str] = Field(default=None, description=&#34;Valve lineup&#34;)
+    draft_fwd: Optional[Decimal] = Field(default=None, ge=0, le=3.65)
+    draft_aft: Optional[Decimal] = Field(default=None, ge=0, le=3.65)
+    trim_cm: Optional[Decimal] = Field(default=None)
+    ukc: Optional[Decimal] = Field(default=None, ge=0)
+    hold_point: Optional[Literal[&#34;Y&#34;, &#34;N&#34;]] = Field(default=None)
+    notes: Optional[str] = Field(default=None)
+    priority: Optional[int] = Field(
+        default=None, ge=1, le=5, description=&#34;Priority (1=highest, 5=lowest)&#34;
+    )
+    rationale: Optional[str] = Field(default=None, description=&#34;Rationale for action&#34;)
+
+    @field_validator(&#34;action&#34;, mode=&#34;before&#34;)
+    @classmethod
+    def normalize_action(cls, v):
+        &#34;&#34;&#34;Normalize action to uppercase enum&#34;&#34;&#34;
+        if v is None or v == &#34;&#34;:
+            return BallastAction.NONE
+        v_str = str(v).strip().upper()
+        if v_str in [&#34;FILL&#34;, &#34;DISCHARGE&#34;, &#34;NONE&#34;]:
+            return BallastAction(v_str)
+        # Legacy support
+        if v_str in [&#34;F&#34;, &#34;D&#34;]:
+            return BallastAction.FILL if v_str == &#34;F&#34; else BallastAction.DISCHARGE
+        raise ValueError(f&#34;Invalid action: {v}&#34;)
+
+    @field_validator(&#34;tank&#34;, mode=&#34;before&#34;)
+    @classmethod
+    def normalize_tank_id(cls, v):
+        &#34;&#34;&#34;Normalize tank ID (strip, uppercase)&#34;&#34;&#34;
+        return str(v).strip().upper()
+
+    @field_validator(&#34;stage&#34;, mode=&#34;before&#34;)
+    @classmethod
+    def normalize_stage(cls, v):
+        &#34;&#34;&#34;Normalize stage name (strip, preserve case)&#34;&#34;&#34;
+        if v is None or pd.isna(v):
+            return None
+        s = str(v).strip()
+        if not s:
+            return None  # Allow empty stage
+        return s
+
+    @field_validator(
+        &#34;delta_t&#34;,
+        &#34;start_t&#34;,
+        &#34;target_t&#34;,
+        &#34;pump_rate_tph&#34;,
+        &#34;time_h&#34;,
+        &#34;draft_fwd&#34;,
+        &#34;draft_aft&#34;,
+        &#34;trim_cm&#34;,
+        &#34;ukc&#34;,
+        mode=&#34;before&#34;,
+    )
+    @classmethod
+    def normalize_decimal(cls, v):
+        &#34;&#34;&#34;Normalize decimal values to 2 decimal places&#34;&#34;&#34;
+        if v is None or pd.isna(v):
+            return None
+        try:
+            return Decimal(str(v)).quantize(Decimal(&#34;0.01&#34;), rounding=ROUND_HALF_UP)
+        except (ValueError, TypeError):
+            return None
+
+    @model_validator(mode=&#34;after&#34;)
+    def validate_physics(self):
+        &#34;&#34;&#34;Validate physical constraints&#34;&#34;&#34;
+        # Target_t = Start_t + Delta_t (within tolerance, if both present)
+        if self.start_t is not None and self.target_t is not None:
+            expected_target = self.start_t + self.delta_t
+            tolerance = Decimal(&#34;0.01&#34;)
+            if abs(self.target_t - expected_target) &gt; tolerance:
+                raise ValueError(
+                    f&#34;Target_t ({self.target_t}) != Start_t ({self.start_t}) + Delta_t ({self.delta_t})&#34;
+                )
+        return self</code></pre>
+</details>
+<div class="desc"><p>Validated row from BALLAST_EXEC.csv or BALLAST_OPTION.csv</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.action"><code class="name">var <span class="ident">action</span> : 01_EXECUTION_FILES.ssot.tidying_models.BallastAction</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.delta_t"><code class="name">var <span class="ident">delta_t</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.draft_aft"><code class="name">var <span class="ident">draft_aft</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.draft_fwd"><code class="name">var <span class="ident">draft_fwd</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.hold_point"><code class="name">var <span class="ident">hold_point</span> : Literal['Y', 'N'] | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.model_config"><code class="name">var <span class="ident">model_config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.notes"><code class="name">var <span class="ident">notes</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.priority"><code class="name">var <span class="ident">priority</span> : int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.pump_id"><code class="name">var <span class="ident">pump_id</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.pump_rate_tph"><code class="name">var <span class="ident">pump_rate_tph</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.rationale"><code class="name">var <span class="ident">rationale</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.stage"><code class="name">var <span class="ident">stage</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.start_t"><code class="name">var <span class="ident">start_t</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.step"><code class="name">var <span class="ident">step</span> : int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.tank"><code class="name">var <span class="ident">tank</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.target_t"><code class="name">var <span class="ident">target_t</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.time_h"><code class="name">var <span class="ident">time_h</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.trim_cm"><code class="name">var <span class="ident">trim_cm</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.ukc"><code class="name">var <span class="ident">ukc</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.valve_lineup"><code class="name">var <span class="ident">valve_lineup</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_action"><code class="name flex">
+<span>def <span class="ident">normalize_action</span></span>(<span>v)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize action to uppercase enum</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_decimal"><code class="name flex">
+<span>def <span class="ident">normalize_decimal</span></span>(<span>v)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize decimal values to 2 decimal places</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_stage"><code class="name flex">
+<span>def <span class="ident">normalize_stage</span></span>(<span>v)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize stage name (strip, preserve case)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_tank_id"><code class="name flex">
+<span>def <span class="ident">normalize_tank_id</span></span>(<span>v)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize tank ID (strip, uppercase)</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.validate_physics"><code class="name flex">
+<span>def <span class="ident">validate_physics</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@model_validator(mode=&#34;after&#34;)
+def validate_physics(self):
+    &#34;&#34;&#34;Validate physical constraints&#34;&#34;&#34;
+    # Target_t = Start_t + Delta_t (within tolerance, if both present)
+    if self.start_t is not None and self.target_t is not None:
+        expected_target = self.start_t + self.delta_t
+        tolerance = Decimal(&#34;0.01&#34;)
+        if abs(self.target_t - expected_target) &gt; tolerance:
+            raise ValueError(
+                f&#34;Target_t ({self.target_t}) != Start_t ({self.start_t}) + Delta_t ({self.delta_t})&#34;
+            )
+    return self</code></pre>
+</details>
+<div class="desc"><p>Validate physical constraints</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider"><code class="flex name class">
+<span>class <span class="ident">LogiDataTider</span></span>
+<span>(</span><span>df: pd.DataFrame)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LogiDataTider:
+    &#34;&#34;&#34;Data tidying pipeline for MACHO-GPT logistics data&#34;&#34;&#34;
+
+    def __init__(self, df: pd.DataFrame):
+        self.df = df.copy()
+        self.errors: List[str] = []
+        self.warnings: List[str] = []
+
+    def tidy_dates(self, date_columns: Optional[List[str]] = None) -&gt; &#34;LogiDataTider&#34;:
+        &#34;&#34;&#34;Normalize date columns to YYYY-MM-DD format&#34;&#34;&#34;
+        if date_columns is None:
+            date_columns = [c for c in self.df.columns if &#34;date&#34; in c.lower()]
+
+        for col in date_columns:
+            if col in self.df.columns:
+                try:
+                    self.df[col] = pd.to_datetime(
+                        self.df[col], errors=&#34;coerce&#34;
+                    ).dt.strftime(&#34;%Y-%m-%d&#34;)
+                except Exception as e:
+                    self.warnings.append(
+                        f&#34;Date column &#39;{col}&#39; normalization failed: {e}&#34;
+                    )
+        return self
+
+    def tidy_decimal_columns(
+        self, columns: List[str], decimal_places: int = 2
+    ) -&gt; &#34;LogiDataTider&#34;:
+        &#34;&#34;&#34;Normalize decimal columns to specified precision&#34;&#34;&#34;
+        for col in columns:
+            if col in self.df.columns:
+                try:
+                    self.df[col] = self.df[col].apply(
+                        lambda x: (
+                            round(float(x), decimal_places) if pd.notna(x) else None
+                        )
+                    )
+                except Exception as e:
+                    self.warnings.append(
+                        f&#34;Decimal column &#39;{col}&#39; normalization failed: {e}&#34;
+                    )
+        return self
+
+    def tidy_action_case(self, action_column: str = &#34;Action&#34;) -&gt; &#34;LogiDataTider&#34;:
+        &#34;&#34;&#34;Normalize action column to uppercase&#34;&#34;&#34;
+        if action_column in self.df.columns:
+            self.df[action_column] = (
+                self.df[action_column].astype(str).str.strip().str.upper()
+            )
+        return self
+
+    def tidy_tank_ids(self, tank_column: str = &#34;Tank&#34;) -&gt; &#34;LogiDataTider&#34;:
+        &#34;&#34;&#34;Normalize tank ID column (strip, uppercase)&#34;&#34;&#34;
+        if tank_column in self.df.columns:
+            self.df[tank_column] = (
+                self.df[tank_column].astype(str).str.strip().str.upper()
+            )
+        return self
+
+    def validate_with_schema(
+        self,
+        model_class: type[BaseModel],
+        column_mapping: Optional[Dict[str, str]] = None,
+    ) -&gt; Tuple[List[BaseModel], List[str]]:
+        &#34;&#34;&#34;
+        Validate DataFrame rows against Pydantic model
+
+        Returns:
+            Tuple of (validated_models, errors)
+        &#34;&#34;&#34;
+        validated = []
+        errors = []
+
+        # Apply column mapping if provided
+        df_mapped = self.df.copy()
+        if column_mapping:
+            df_mapped = df_mapped.rename(columns=column_mapping)
+
+        for idx, row_dict in df_mapped.to_dict(orient=&#34;index&#34;).items():
+            try:
+                # Handle Pydantic aliases (e.g., &#34;Tank&#34; -&gt; &#34;tank_id&#34;)
+                model = model_class(**row_dict)
+                validated.append(model)
+            except Exception as e:
+                errors.append(f&#34;Row {idx}: {type(e).__name__}: {e}&#34;)
+
+        return validated, errors
+
+    def to_llm_markdown(self, max_rows: int = 50, sample: bool = False) -&gt; str:
+        &#34;&#34;&#34;Convert DataFrame to markdown for LLM context (with sampling if needed)&#34;&#34;&#34;
+        if len(self.df) &gt; max_rows:
+            if sample:
+                view = self.df.sample(n=max_rows, random_state=42)
+            else:
+                view = self.df.head(max_rows)
+            note = f&#34;\n*Note: Showing {max_rows} of {len(self.df)} rows*\n&#34;
+        else:
+            view = self.df
+            note = &#34;&#34;
+
+        try:
+            markdown_table = view.to_markdown(index=False)
+            return f&#34;{note}{markdown_table}&#34;
+        except Exception as e:
+            # Fallback to simple string representation
+            return f&#34;{note}{view.to_string(index=False)}&#34;</code></pre>
+</details>
+<div class="desc"><p>Data tidying pipeline for MACHO-GPT logistics data</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_action_case"><code class="name flex">
+<span>def <span class="ident">tidy_action_case</span></span>(<span>self, action_column: str = 'Action') ‑> 01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tidy_action_case(self, action_column: str = &#34;Action&#34;) -&gt; &#34;LogiDataTider&#34;:
+    &#34;&#34;&#34;Normalize action column to uppercase&#34;&#34;&#34;
+    if action_column in self.df.columns:
+        self.df[action_column] = (
+            self.df[action_column].astype(str).str.strip().str.upper()
+        )
+    return self</code></pre>
+</details>
+<div class="desc"><p>Normalize action column to uppercase</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_dates"><code class="name flex">
+<span>def <span class="ident">tidy_dates</span></span>(<span>self, date_columns: Optional[List[str]] = None) ‑> 01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tidy_dates(self, date_columns: Optional[List[str]] = None) -&gt; &#34;LogiDataTider&#34;:
+    &#34;&#34;&#34;Normalize date columns to YYYY-MM-DD format&#34;&#34;&#34;
+    if date_columns is None:
+        date_columns = [c for c in self.df.columns if &#34;date&#34; in c.lower()]
+
+    for col in date_columns:
+        if col in self.df.columns:
+            try:
+                self.df[col] = pd.to_datetime(
+                    self.df[col], errors=&#34;coerce&#34;
+                ).dt.strftime(&#34;%Y-%m-%d&#34;)
+            except Exception as e:
+                self.warnings.append(
+                    f&#34;Date column &#39;{col}&#39; normalization failed: {e}&#34;
+                )
+    return self</code></pre>
+</details>
+<div class="desc"><p>Normalize date columns to YYYY-MM-DD format</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_decimal_columns"><code class="name flex">
+<span>def <span class="ident">tidy_decimal_columns</span></span>(<span>self, columns: List[str], decimal_places: int = 2) ‑> 01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tidy_decimal_columns(
+    self, columns: List[str], decimal_places: int = 2
+) -&gt; &#34;LogiDataTider&#34;:
+    &#34;&#34;&#34;Normalize decimal columns to specified precision&#34;&#34;&#34;
+    for col in columns:
+        if col in self.df.columns:
+            try:
+                self.df[col] = self.df[col].apply(
+                    lambda x: (
+                        round(float(x), decimal_places) if pd.notna(x) else None
+                    )
+                )
+            except Exception as e:
+                self.warnings.append(
+                    f&#34;Decimal column &#39;{col}&#39; normalization failed: {e}&#34;
+                )
+    return self</code></pre>
+</details>
+<div class="desc"><p>Normalize decimal columns to specified precision</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_tank_ids"><code class="name flex">
+<span>def <span class="ident">tidy_tank_ids</span></span>(<span>self, tank_column: str = 'Tank') ‑> 01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tidy_tank_ids(self, tank_column: str = &#34;Tank&#34;) -&gt; &#34;LogiDataTider&#34;:
+    &#34;&#34;&#34;Normalize tank ID column (strip, uppercase)&#34;&#34;&#34;
+    if tank_column in self.df.columns:
+        self.df[tank_column] = (
+            self.df[tank_column].astype(str).str.strip().str.upper()
+        )
+    return self</code></pre>
+</details>
+<div class="desc"><p>Normalize tank ID column (strip, uppercase)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.to_llm_markdown"><code class="name flex">
+<span>def <span class="ident">to_llm_markdown</span></span>(<span>self, max_rows: int = 50, sample: bool = False) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_llm_markdown(self, max_rows: int = 50, sample: bool = False) -&gt; str:
+    &#34;&#34;&#34;Convert DataFrame to markdown for LLM context (with sampling if needed)&#34;&#34;&#34;
+    if len(self.df) &gt; max_rows:
+        if sample:
+            view = self.df.sample(n=max_rows, random_state=42)
+        else:
+            view = self.df.head(max_rows)
+        note = f&#34;\n*Note: Showing {max_rows} of {len(self.df)} rows*\n&#34;
+    else:
+        view = self.df
+        note = &#34;&#34;
+
+    try:
+        markdown_table = view.to_markdown(index=False)
+        return f&#34;{note}{markdown_table}&#34;
+    except Exception as e:
+        # Fallback to simple string representation
+        return f&#34;{note}{view.to_string(index=False)}&#34;</code></pre>
+</details>
+<div class="desc"><p>Convert DataFrame to markdown for LLM context (with sampling if needed)</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.validate_with_schema"><code class="name flex">
+<span>def <span class="ident">validate_with_schema</span></span>(<span>self,<br>model_class: type[BaseModel],<br>column_mapping: Optional[Dict[str, str]] = None) ‑> Tuple[List[pydantic.main.BaseModel], List[str]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_with_schema(
+    self,
+    model_class: type[BaseModel],
+    column_mapping: Optional[Dict[str, str]] = None,
+) -&gt; Tuple[List[BaseModel], List[str]]:
+    &#34;&#34;&#34;
+    Validate DataFrame rows against Pydantic model
+
+    Returns:
+        Tuple of (validated_models, errors)
+    &#34;&#34;&#34;
+    validated = []
+    errors = []
+
+    # Apply column mapping if provided
+    df_mapped = self.df.copy()
+    if column_mapping:
+        df_mapped = df_mapped.rename(columns=column_mapping)
+
+    for idx, row_dict in df_mapped.to_dict(orient=&#34;index&#34;).items():
+        try:
+            # Handle Pydantic aliases (e.g., &#34;Tank&#34; -&gt; &#34;tank_id&#34;)
+            model = model_class(**row_dict)
+            validated.append(model)
+        except Exception as e:
+            errors.append(f&#34;Row {idx}: {type(e).__name__}: {e}&#34;)
+
+    return validated, errors</code></pre>
+</details>
+<div class="desc"><p>Validate DataFrame rows against Pydantic model</p>
+<h2 id="returns">Returns</h2>
+<p>Tuple of (validated_models, errors)</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow"><code class="flex name class">
+<span>class <span class="ident">TankCatalogRow</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TankCatalogRow(BaseModel):
+    &#34;&#34;&#34;Validated row from tank catalog&#34;&#34;&#34;
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    tank_id: str = Field(min_length=1, alias=&#34;Tank&#34;)
+    capacity_t: Decimal = Field(gt=0, description=&#34;Tank capacity (tons)&#34;)
+    x_from_mid_m: Decimal = Field(description=&#34;X coordinate from midship (m)&#34;)
+    current_t: Decimal = Field(ge=0, description=&#34;Current tonnage&#34;)
+    min_t: Decimal = Field(ge=0, description=&#34;Minimum tonnage&#34;)
+    max_t: Decimal = Field(ge=0, description=&#34;Maximum tonnage&#34;)
+    mode: str = Field(description=&#34;Tank mode (FILL_DISCHARGE/DISCHARGE_ONLY/FIXED)&#34;)
+    use_flag: Literal[&#34;Y&#34;, &#34;N&#34;] = Field(description=&#34;Use flag&#34;)
+    operability: Optional[TankOperability] = Field(default=None)
+    pump_rate_tph: Optional[Decimal] = Field(default=None, gt=0)
+
+    @field_validator(&#34;tank_id&#34;, mode=&#34;before&#34;)
+    @classmethod
+    def normalize_tank_id(cls, v):
+        return str(v).strip().upper()
+
+    @field_validator(
+        &#34;capacity_t&#34;,
+        &#34;current_t&#34;,
+        &#34;min_t&#34;,
+        &#34;max_t&#34;,
+        &#34;x_from_mid_m&#34;,
+        &#34;pump_rate_tph&#34;,
+        mode=&#34;before&#34;,
+    )
+    @classmethod
+    def normalize_decimal(cls, v):
+        &#34;&#34;&#34;Normalize decimal values to 2 decimal places&#34;&#34;&#34;
+        if v is None or pd.isna(v):
+            return None
+        try:
+            return Decimal(str(v)).quantize(Decimal(&#34;0.01&#34;), rounding=ROUND_HALF_UP)
+        except (ValueError, TypeError):
+            return None
+
+    @model_validator(mode=&#34;after&#34;)
+    def validate_capacity(self):
+        &#34;&#34;&#34;Validate capacity constraints&#34;&#34;&#34;
+        if self.min_t &gt; self.max_t:
+            raise ValueError(f&#34;Min_t ({self.min_t}) &gt; Max_t ({self.max_t})&#34;)
+        if self.max_t &gt; self.capacity_t:
+            raise ValueError(f&#34;Max_t ({self.max_t}) &gt; Capacity_t ({self.capacity_t})&#34;)
+        if self.current_t &gt; self.capacity_t:
+            raise ValueError(
+                f&#34;Current_t ({self.current_t}) &gt; Capacity_t ({self.capacity_t})&#34;
+            )
+        return self</code></pre>
+</details>
+<div class="desc"><p>Validated row from tank catalog</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.capacity_t"><code class="name">var <span class="ident">capacity_t</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.current_t"><code class="name">var <span class="ident">current_t</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.max_t"><code class="name">var <span class="ident">max_t</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.min_t"><code class="name">var <span class="ident">min_t</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.mode"><code class="name">var <span class="ident">mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.model_config"><code class="name">var <span class="ident">model_config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.operability"><code class="name">var <span class="ident">operability</span> : 01_EXECUTION_FILES.ssot.tidying_models.TankOperability | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.pump_rate_tph"><code class="name">var <span class="ident">pump_rate_tph</span> : decimal.Decimal | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.tank_id"><code class="name">var <span class="ident">tank_id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.use_flag"><code class="name">var <span class="ident">use_flag</span> : Literal['Y', 'N']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.x_from_mid_m"><code class="name">var <span class="ident">x_from_mid_m</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.normalize_decimal"><code class="name flex">
+<span>def <span class="ident">normalize_decimal</span></span>(<span>v)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize decimal values to 2 decimal places</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.normalize_tank_id"><code class="name flex">
+<span>def <span class="ident">normalize_tank_id</span></span>(<span>v)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.validate_capacity"><code class="name flex">
+<span>def <span class="ident">validate_capacity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@model_validator(mode=&#34;after&#34;)
+def validate_capacity(self):
+    &#34;&#34;&#34;Validate capacity constraints&#34;&#34;&#34;
+    if self.min_t &gt; self.max_t:
+        raise ValueError(f&#34;Min_t ({self.min_t}) &gt; Max_t ({self.max_t})&#34;)
+    if self.max_t &gt; self.capacity_t:
+        raise ValueError(f&#34;Max_t ({self.max_t}) &gt; Capacity_t ({self.capacity_t})&#34;)
+    if self.current_t &gt; self.capacity_t:
+        raise ValueError(
+            f&#34;Current_t ({self.current_t}) &gt; Capacity_t ({self.capacity_t})&#34;
+        )
+    return self</code></pre>
+</details>
+<div class="desc"><p>Validate capacity constraints</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankOperability"><code class="flex name class">
+<span>class <span class="ident">TankOperability</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TankOperability(str, Enum):
+    &#34;&#34;&#34;Tank operability enum&#34;&#34;&#34;
+
+    NORMAL = &#34;NORMAL&#34;
+    PRE_BALLAST_ONLY = &#34;PRE_BALLAST_ONLY&#34;
+    DISCHARGE_ONLY = &#34;DISCHARGE_ONLY&#34;
+    FIXED = &#34;FIXED&#34;
+    LOCKED = &#34;LOCKED&#34;</code></pre>
+</details>
+<div class="desc"><p>Tank operability enum</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.DISCHARGE_ONLY"><code class="name">var <span class="ident">DISCHARGE_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.FIXED"><code class="name">var <span class="ident">FIXED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.LOCKED"><code class="name">var <span class="ident">LOCKED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.NORMAL"><code class="name">var <span class="ident">NORMAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.PRE_BALLAST_ONLY"><code class="name">var <span class="ident">PRE_BALLAST_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot" href="index.html">01_EXECUTION_FILES.ssot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastAction" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastAction">BallastAction</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastAction.DISCHARGE" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastAction.DISCHARGE">DISCHARGE</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastAction.FILL" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastAction.FILL">FILL</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastAction.NONE" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastAction.NONE">NONE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow">BallastSequenceRow</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.action" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.action">action</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.delta_t" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.delta_t">delta_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.draft_aft" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.draft_aft">draft_aft</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.draft_fwd" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.draft_fwd">draft_fwd</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.hold_point" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.hold_point">hold_point</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.model_config" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.model_config">model_config</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_action" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_action">normalize_action</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_decimal" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_decimal">normalize_decimal</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_stage" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_stage">normalize_stage</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_tank_id" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.normalize_tank_id">normalize_tank_id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.notes" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.notes">notes</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.priority" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.priority">priority</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.pump_id" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.pump_id">pump_id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.pump_rate_tph" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.pump_rate_tph">pump_rate_tph</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.rationale" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.rationale">rationale</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.stage" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.stage">stage</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.start_t" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.start_t">start_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.step" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.step">step</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.tank" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.tank">tank</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.target_t" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.target_t">target_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.time_h" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.time_h">time_h</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.trim_cm" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.trim_cm">trim_cm</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.ukc" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.ukc">ukc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.validate_physics" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.validate_physics">validate_physics</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.valve_lineup" href="#01_EXECUTION_FILES.ssot.tidying_models.BallastSequenceRow.valve_lineup">valve_lineup</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider">LogiDataTider</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_action_case" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_action_case">tidy_action_case</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_dates" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_dates">tidy_dates</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_decimal_columns" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_decimal_columns">tidy_decimal_columns</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_tank_ids" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.tidy_tank_ids">tidy_tank_ids</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.to_llm_markdown" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.to_llm_markdown">to_llm_markdown</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.validate_with_schema" href="#01_EXECUTION_FILES.ssot.tidying_models.LogiDataTider.validate_with_schema">validate_with_schema</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow">TankCatalogRow</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.capacity_t" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.capacity_t">capacity_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.current_t" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.current_t">current_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.max_t" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.max_t">max_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.min_t" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.min_t">min_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.mode" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.mode">mode</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.model_config" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.model_config">model_config</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.normalize_decimal" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.normalize_decimal">normalize_decimal</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.normalize_tank_id" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.normalize_tank_id">normalize_tank_id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.operability" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.operability">operability</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.pump_rate_tph" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.pump_rate_tph">pump_rate_tph</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.tank_id" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.tank_id">tank_id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.use_flag" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.use_flag">use_flag</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.validate_capacity" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.validate_capacity">validate_capacity</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.x_from_mid_m" href="#01_EXECUTION_FILES.ssot.tidying_models.TankCatalogRow.x_from_mid_m">x_from_mid_m</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankOperability" href="#01_EXECUTION_FILES.ssot.tidying_models.TankOperability">TankOperability</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.DISCHARGE_ONLY" href="#01_EXECUTION_FILES.ssot.tidying_models.TankOperability.DISCHARGE_ONLY">DISCHARGE_ONLY</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.FIXED" href="#01_EXECUTION_FILES.ssot.tidying_models.TankOperability.FIXED">FIXED</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.LOCKED" href="#01_EXECUTION_FILES.ssot.tidying_models.TankOperability.LOCKED">LOCKED</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.NORMAL" href="#01_EXECUTION_FILES.ssot.tidying_models.TankOperability.NORMAL">NORMAL</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.tidying_models.TankOperability.PRE_BALLAST_ONLY" href="#01_EXECUTION_FILES.ssot.tidying_models.TankOperability.PRE_BALLAST_ONLY">PRE_BALLAST_ONLY</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

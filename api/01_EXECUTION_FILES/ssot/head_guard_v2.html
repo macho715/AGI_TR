@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot.head_guard_v2 API documentation</title>
+<meta name="description" content="Head Guard v2 - JSON Registry Validator
+Validates pipeline outputs against headers_registry.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot.head_guard_v2</code></h1>
+</header>
+<section id="section-intro">
+<p>Head Guard v2 - JSON Registry Validator
+Validates pipeline outputs against headers_registry.json</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description=&#34;Validate pipeline outputs against JSON Head Registry&#34;
+    )
+    parser.add_argument(
+        &#34;--registry&#34;,
+        type=str,
+        default=&#34;01_EXECUTION_FILES/headers_registry.json&#34;,
+        help=&#34;Path to headers_registry.json&#34;,
+    )
+    parser.add_argument(
+        &#34;--final-dir&#34;,
+        type=str,
+        required=True,
+        help=&#34;Path to output directory to validate&#34;,
+    )
+    parser.add_argument(
+        &#34;--manifest&#34;,
+        type=str,
+        default=&#34;HEAD_MANIFEST.json&#34;,
+        help=&#34;Output manifest file name&#34;,
+    )
+    parser.add_argument(&#34;--fail-fast&#34;, action=&#34;store_true&#34;, help=&#34;Exit on first error&#34;)
+
+    args = parser.parse_args()
+
+    registry_path = Path(args.registry)
+    final_dir = Path(args.final_dir)
+    manifest_path = final_dir / args.manifest
+
+    if not registry_path.exists():
+        print(f&#34;[ERROR] Registry not found: {registry_path}&#34;)
+        return 1
+
+    if not final_dir.exists():
+        print(f&#34;[ERROR] Directory not found: {final_dir}&#34;)
+        return 1
+
+    guard = HeadGuardV2(registry_path)
+    ok = guard.validate_directory(final_dir)
+    guard.save_manifest(manifest_path)
+    guard.print_summary()
+
+    return 0 if ok else 1</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2"><code class="flex name class">
+<span>class <span class="ident">HeadGuardV2</span></span>
+<span>(</span><span>registry_path: pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HeadGuardV2:
+    &#34;&#34;&#34;Header validation against JSON registry.&#34;&#34;&#34;
+
+    def __init__(self, registry_path: Path):
+        &#34;&#34;&#34;Load JSON registry.&#34;&#34;&#34;
+        self.registry: HeaderRegistry = load_registry(registry_path)
+        self.manifest = {
+            &#34;version&#34;: self.registry.version,
+            &#34;timestamp&#34;: datetime.now().isoformat(),
+            &#34;files_validated&#34;: [],
+            &#34;errors&#34;: [],
+            &#34;warnings&#34;: [],
+            &#34;summary&#34;: {&#34;total_files&#34;: 0, &#34;passed&#34;: 0, &#34;failed&#34;: 0, &#34;skipped&#34;: 0},
+        }
+
+    def validate_csv_file(self, file_path: Path, deliverable_id: str) -&gt; Tuple[bool, List[str], str]:
+        &#34;&#34;&#34;Validate CSV file against deliverable schema.&#34;&#34;&#34;
+        if deliverable_id not in self.registry.deliverables:
+            return True, [], &#34;SKIPPED&#34;
+
+        try:
+            df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+            # Use alias matching (treat_out_headers_as_true=False)
+            result = validate_df(df, self.registry, deliverable_id, treat_out_headers_as_true=False)
+
+            errors = []
+            if result[&#34;missing_keys&#34;]:
+                errors.append(f&#34;Missing columns: {result[&#39;missing_keys&#39;]}&#34;)
+            if result[&#34;unexpected_cols&#34;]:
+                # Check if strict mode
+                d = self.registry.deliverables[deliverable_id]
+                if d.strict:
+                    errors.append(f&#34;Unexpected columns: {result[&#39;unexpected_cols&#39;]}&#34;)
+                else:
+                    self.manifest[&#34;warnings&#34;].append(
+                        f&#34;{file_path.name}: Unexpected columns (non-strict): {result[&#39;unexpected_cols&#39;]}&#34;
+                    )
+
+            status = &#34;PASS&#34; if len(errors) == 0 else &#34;FAIL&#34;
+            return len(errors) == 0, errors, status
+
+        except Exception as e:
+            return False, [f&#34;Error reading CSV: {type(e).__name__}: {e}&#34;], &#34;FAIL&#34;
+
+    def validate_excel_file(self, file_path: Path, deliverable_id: str) -&gt; Tuple[bool, List[str], str]:
+        &#34;&#34;&#34;Validate Excel file against deliverable schema.&#34;&#34;&#34;
+        if deliverable_id not in self.registry.deliverables:
+            return True, [], &#34;SKIPPED&#34;
+
+        d = self.registry.deliverables[deliverable_id]
+        if not d.sheet:
+            # No specific sheet, validate all sheets or skip
+            return True, [], &#34;SKIPPED&#34;
+
+        errors = []
+        try:
+            wb = load_workbook(file_path, read_only=True, data_only=False)
+
+            if d.sheet not in wb.sheetnames:
+                wb.close()
+                return False, [f&#34;Missing required sheet: {d.sheet}&#34;], &#34;FAIL&#34;
+
+            ws = wb[d.sheet]
+            header_row = d.header_row or 1
+
+            # Read headers from specified row
+            headers = []
+            for c in range(1, ws.max_column + 1):
+                val = ws.cell(header_row, c).value
+                if val:
+                    headers.append(str(val).strip())
+
+            # Create DataFrame from headers for validation
+            # Note: Excel headers are already in output format, but we need alias matching
+            # Convert headers to DataFrame and validate with alias matching
+            df = pd.DataFrame(columns=headers)
+            result = validate_df(df, self.registry, deliverable_id, treat_out_headers_as_true=False)
+
+            if result[&#34;missing_keys&#34;]:
+                errors.append(f&#34;Sheet &#39;{d.sheet}&#39; (Row {header_row}) missing columns: {result[&#39;missing_keys&#39;]}&#34;)
+            if result[&#34;unexpected_cols&#34;] and d.strict:
+                errors.append(f&#34;Sheet &#39;{d.sheet}&#39; unexpected columns: {result[&#39;unexpected_cols&#39;]}&#34;)
+
+            wb.close()
+            status = &#34;PASS&#34; if len(errors) == 0 else &#34;FAIL&#34;
+            return len(errors) == 0, errors, status
+
+        except Exception as e:
+            return False, [f&#34;Error reading Excel: {type(e).__name__}: {e}&#34;], &#34;FAIL&#34;
+
+    def validate_directory(self, dir_path: Path) -&gt; bool:
+        &#34;&#34;&#34;Validate all files in directory against registry.&#34;&#34;&#34;
+        all_ok = True
+
+        # Find all deliverables and match files
+        for deliverable_id, deliverable in self.registry.deliverables.items():
+            file_pattern = deliverable.file_pattern
+
+            # Find matching files
+            if &#34;*&#34; in file_pattern:
+                pattern = file_pattern.replace(&#34;*&#34;, &#34;&#34;)
+                matching_files = list(dir_path.glob(f&#34;*{pattern}*&#34;))
+            else:
+                matching_files = [dir_path / file_pattern]
+
+            for file_path in matching_files:
+                if not file_path.exists():
+                    continue
+
+                self.manifest[&#34;summary&#34;][&#34;total_files&#34;] += 1
+
+                # Determine file type and validate
+                if file_path.suffix.lower() == &#34;.csv&#34;:
+                    ok, errors, status = self.validate_csv_file(file_path, deliverable_id)
+                elif file_path.suffix.lower() in [&#34;.xlsx&#34;, &#34;.xls&#34;]:
+                    ok, errors, status = self.validate_excel_file(file_path, deliverable_id)
+                else:
+                    ok, errors, status = True, [], &#34;SKIPPED&#34;
+
+                if status == &#34;SKIPPED&#34;:
+                    self.manifest[&#34;summary&#34;][&#34;skipped&#34;] += 1
+                    continue
+
+                if not ok:
+                    all_ok = False
+                    self.manifest[&#34;summary&#34;][&#34;failed&#34;] += 1
+                    for err in errors:
+                        self.manifest[&#34;errors&#34;].append(f&#34;{file_path.name}: {err}&#34;)
+                else:
+                    self.manifest[&#34;summary&#34;][&#34;passed&#34;] += 1
+
+                self.manifest[&#34;files_validated&#34;].append({
+                    &#34;file&#34;: str(file_path.name),
+                    &#34;deliverable_id&#34;: deliverable_id,
+                    &#34;status&#34;: status,
+                    &#34;errors&#34;: errors,
+                })
+
+        return all_ok
+
+    def save_manifest(self, output_path: Path):
+        &#34;&#34;&#34;Save validation manifest.&#34;&#34;&#34;
+        with open(output_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
+            json.dump(self.manifest, f, indent=2, ensure_ascii=False)
+
+    def print_summary(self):
+        &#34;&#34;&#34;Print validation summary.&#34;&#34;&#34;
+        print(&#34;=&#34; * 80)
+        print(&#34;Head Guard v2 - JSON Registry Validation Summary&#34;)
+        print(&#34;=&#34; * 80)
+        print(f&#34;Registry Version: {self.manifest[&#39;version&#39;]}&#34;)
+        print(f&#34;Timestamp: {self.manifest[&#39;timestamp&#39;]}&#34;)
+        print()
+        print(&#34;Summary:&#34;)
+        print(f&#34;  Total files: {self.manifest[&#39;summary&#39;][&#39;total_files&#39;]}&#34;)
+        print(f&#34;  Passed: {self.manifest[&#39;summary&#39;][&#39;passed&#39;]}&#34;)
+        print(f&#34;  Failed: {self.manifest[&#39;summary&#39;][&#39;failed&#39;]}&#34;)
+        print(f&#34;  Skipped: {self.manifest[&#39;summary&#39;][&#39;skipped&#39;]}&#34;)
+        print()
+        print(f&#34;Files validated: {len(self.manifest[&#39;files_validated&#39;])}&#34;)
+        print(f&#34;Errors: {len(self.manifest[&#39;errors&#39;])}&#34;)
+        print(f&#34;Warnings: {len(self.manifest[&#39;warnings&#39;])}&#34;)
+
+        if self.manifest[&#34;errors&#34;]:
+            print(&#34;\nErrors:&#34;)
+            for err in self.manifest[&#34;errors&#34;][:20]:
+                print(f&#34;  - {err}&#34;)
+            if len(self.manifest[&#34;errors&#34;]) &gt; 20:
+                print(f&#34;  ... and {len(self.manifest[&#39;errors&#39;]) - 20} more&#34;)
+
+        if self.manifest[&#34;warnings&#34;]:
+            print(&#34;\nWarnings:&#34;)
+            for warn in self.manifest[&#34;warnings&#34;][:10]:
+                print(f&#34;  - {warn}&#34;)
+            if len(self.manifest[&#34;warnings&#34;]) &gt; 10:
+                print(f&#34;  ... and {len(self.manifest[&#39;warnings&#39;]) - 10} more&#34;)
+
+        # Show file status breakdown
+        if self.manifest[&#34;files_validated&#34;]:
+            print(&#34;\nFile Status Breakdown:&#34;)
+            status_counts = {}
+            for f in self.manifest[&#34;files_validated&#34;]:
+                status = f.get(&#34;status&#34;, &#34;UNKNOWN&#34;)
+                status_counts[status] = status_counts.get(status, 0) + 1
+            for status, count in sorted(status_counts.items()):
+                print(f&#34;  {status}: {count}&#34;)
+
+            print(&#34;\nDetailed Results:&#34;)
+            for f in self.manifest[&#34;files_validated&#34;]:
+                print(f&#34;  {f[&#39;file&#39;]} ({f[&#39;deliverable_id&#39;]}): {f[&#39;status&#39;]}&#34;)
+                if f[&#39;errors&#39;]:
+                    for err in f[&#39;errors&#39;]:
+                        print(f&#34;    - {err}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Header validation against JSON registry.</p>
+<p>Load JSON registry.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.print_summary"><code class="name flex">
+<span>def <span class="ident">print_summary</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_summary(self):
+    &#34;&#34;&#34;Print validation summary.&#34;&#34;&#34;
+    print(&#34;=&#34; * 80)
+    print(&#34;Head Guard v2 - JSON Registry Validation Summary&#34;)
+    print(&#34;=&#34; * 80)
+    print(f&#34;Registry Version: {self.manifest[&#39;version&#39;]}&#34;)
+    print(f&#34;Timestamp: {self.manifest[&#39;timestamp&#39;]}&#34;)
+    print()
+    print(&#34;Summary:&#34;)
+    print(f&#34;  Total files: {self.manifest[&#39;summary&#39;][&#39;total_files&#39;]}&#34;)
+    print(f&#34;  Passed: {self.manifest[&#39;summary&#39;][&#39;passed&#39;]}&#34;)
+    print(f&#34;  Failed: {self.manifest[&#39;summary&#39;][&#39;failed&#39;]}&#34;)
+    print(f&#34;  Skipped: {self.manifest[&#39;summary&#39;][&#39;skipped&#39;]}&#34;)
+    print()
+    print(f&#34;Files validated: {len(self.manifest[&#39;files_validated&#39;])}&#34;)
+    print(f&#34;Errors: {len(self.manifest[&#39;errors&#39;])}&#34;)
+    print(f&#34;Warnings: {len(self.manifest[&#39;warnings&#39;])}&#34;)
+
+    if self.manifest[&#34;errors&#34;]:
+        print(&#34;\nErrors:&#34;)
+        for err in self.manifest[&#34;errors&#34;][:20]:
+            print(f&#34;  - {err}&#34;)
+        if len(self.manifest[&#34;errors&#34;]) &gt; 20:
+            print(f&#34;  ... and {len(self.manifest[&#39;errors&#39;]) - 20} more&#34;)
+
+    if self.manifest[&#34;warnings&#34;]:
+        print(&#34;\nWarnings:&#34;)
+        for warn in self.manifest[&#34;warnings&#34;][:10]:
+            print(f&#34;  - {warn}&#34;)
+        if len(self.manifest[&#34;warnings&#34;]) &gt; 10:
+            print(f&#34;  ... and {len(self.manifest[&#39;warnings&#39;]) - 10} more&#34;)
+
+    # Show file status breakdown
+    if self.manifest[&#34;files_validated&#34;]:
+        print(&#34;\nFile Status Breakdown:&#34;)
+        status_counts = {}
+        for f in self.manifest[&#34;files_validated&#34;]:
+            status = f.get(&#34;status&#34;, &#34;UNKNOWN&#34;)
+            status_counts[status] = status_counts.get(status, 0) + 1
+        for status, count in sorted(status_counts.items()):
+            print(f&#34;  {status}: {count}&#34;)
+
+        print(&#34;\nDetailed Results:&#34;)
+        for f in self.manifest[&#34;files_validated&#34;]:
+            print(f&#34;  {f[&#39;file&#39;]} ({f[&#39;deliverable_id&#39;]}): {f[&#39;status&#39;]}&#34;)
+            if f[&#39;errors&#39;]:
+                for err in f[&#39;errors&#39;]:
+                    print(f&#34;    - {err}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Print validation summary.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.save_manifest"><code class="name flex">
+<span>def <span class="ident">save_manifest</span></span>(<span>self, output_path: pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_manifest(self, output_path: Path):
+    &#34;&#34;&#34;Save validation manifest.&#34;&#34;&#34;
+    with open(output_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
+        json.dump(self.manifest, f, indent=2, ensure_ascii=False)</code></pre>
+</details>
+<div class="desc"><p>Save validation manifest.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_csv_file"><code class="name flex">
+<span>def <span class="ident">validate_csv_file</span></span>(<span>self, file_path: pathlib.Path, deliverable_id: str) ‑> Tuple[bool, List[str], str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_csv_file(self, file_path: Path, deliverable_id: str) -&gt; Tuple[bool, List[str], str]:
+    &#34;&#34;&#34;Validate CSV file against deliverable schema.&#34;&#34;&#34;
+    if deliverable_id not in self.registry.deliverables:
+        return True, [], &#34;SKIPPED&#34;
+
+    try:
+        df = pd.read_csv(file_path, encoding=&#34;utf-8-sig&#34;)
+        # Use alias matching (treat_out_headers_as_true=False)
+        result = validate_df(df, self.registry, deliverable_id, treat_out_headers_as_true=False)
+
+        errors = []
+        if result[&#34;missing_keys&#34;]:
+            errors.append(f&#34;Missing columns: {result[&#39;missing_keys&#39;]}&#34;)
+        if result[&#34;unexpected_cols&#34;]:
+            # Check if strict mode
+            d = self.registry.deliverables[deliverable_id]
+            if d.strict:
+                errors.append(f&#34;Unexpected columns: {result[&#39;unexpected_cols&#39;]}&#34;)
+            else:
+                self.manifest[&#34;warnings&#34;].append(
+                    f&#34;{file_path.name}: Unexpected columns (non-strict): {result[&#39;unexpected_cols&#39;]}&#34;
+                )
+
+        status = &#34;PASS&#34; if len(errors) == 0 else &#34;FAIL&#34;
+        return len(errors) == 0, errors, status
+
+    except Exception as e:
+        return False, [f&#34;Error reading CSV: {type(e).__name__}: {e}&#34;], &#34;FAIL&#34;</code></pre>
+</details>
+<div class="desc"><p>Validate CSV file against deliverable schema.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_directory"><code class="name flex">
+<span>def <span class="ident">validate_directory</span></span>(<span>self, dir_path: pathlib.Path) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_directory(self, dir_path: Path) -&gt; bool:
+    &#34;&#34;&#34;Validate all files in directory against registry.&#34;&#34;&#34;
+    all_ok = True
+
+    # Find all deliverables and match files
+    for deliverable_id, deliverable in self.registry.deliverables.items():
+        file_pattern = deliverable.file_pattern
+
+        # Find matching files
+        if &#34;*&#34; in file_pattern:
+            pattern = file_pattern.replace(&#34;*&#34;, &#34;&#34;)
+            matching_files = list(dir_path.glob(f&#34;*{pattern}*&#34;))
+        else:
+            matching_files = [dir_path / file_pattern]
+
+        for file_path in matching_files:
+            if not file_path.exists():
+                continue
+
+            self.manifest[&#34;summary&#34;][&#34;total_files&#34;] += 1
+
+            # Determine file type and validate
+            if file_path.suffix.lower() == &#34;.csv&#34;:
+                ok, errors, status = self.validate_csv_file(file_path, deliverable_id)
+            elif file_path.suffix.lower() in [&#34;.xlsx&#34;, &#34;.xls&#34;]:
+                ok, errors, status = self.validate_excel_file(file_path, deliverable_id)
+            else:
+                ok, errors, status = True, [], &#34;SKIPPED&#34;
+
+            if status == &#34;SKIPPED&#34;:
+                self.manifest[&#34;summary&#34;][&#34;skipped&#34;] += 1
+                continue
+
+            if not ok:
+                all_ok = False
+                self.manifest[&#34;summary&#34;][&#34;failed&#34;] += 1
+                for err in errors:
+                    self.manifest[&#34;errors&#34;].append(f&#34;{file_path.name}: {err}&#34;)
+            else:
+                self.manifest[&#34;summary&#34;][&#34;passed&#34;] += 1
+
+            self.manifest[&#34;files_validated&#34;].append({
+                &#34;file&#34;: str(file_path.name),
+                &#34;deliverable_id&#34;: deliverable_id,
+                &#34;status&#34;: status,
+                &#34;errors&#34;: errors,
+            })
+
+    return all_ok</code></pre>
+</details>
+<div class="desc"><p>Validate all files in directory against registry.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_excel_file"><code class="name flex">
+<span>def <span class="ident">validate_excel_file</span></span>(<span>self, file_path: pathlib.Path, deliverable_id: str) ‑> Tuple[bool, List[str], str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_excel_file(self, file_path: Path, deliverable_id: str) -&gt; Tuple[bool, List[str], str]:
+    &#34;&#34;&#34;Validate Excel file against deliverable schema.&#34;&#34;&#34;
+    if deliverable_id not in self.registry.deliverables:
+        return True, [], &#34;SKIPPED&#34;
+
+    d = self.registry.deliverables[deliverable_id]
+    if not d.sheet:
+        # No specific sheet, validate all sheets or skip
+        return True, [], &#34;SKIPPED&#34;
+
+    errors = []
+    try:
+        wb = load_workbook(file_path, read_only=True, data_only=False)
+
+        if d.sheet not in wb.sheetnames:
+            wb.close()
+            return False, [f&#34;Missing required sheet: {d.sheet}&#34;], &#34;FAIL&#34;
+
+        ws = wb[d.sheet]
+        header_row = d.header_row or 1
+
+        # Read headers from specified row
+        headers = []
+        for c in range(1, ws.max_column + 1):
+            val = ws.cell(header_row, c).value
+            if val:
+                headers.append(str(val).strip())
+
+        # Create DataFrame from headers for validation
+        # Note: Excel headers are already in output format, but we need alias matching
+        # Convert headers to DataFrame and validate with alias matching
+        df = pd.DataFrame(columns=headers)
+        result = validate_df(df, self.registry, deliverable_id, treat_out_headers_as_true=False)
+
+        if result[&#34;missing_keys&#34;]:
+            errors.append(f&#34;Sheet &#39;{d.sheet}&#39; (Row {header_row}) missing columns: {result[&#39;missing_keys&#39;]}&#34;)
+        if result[&#34;unexpected_cols&#34;] and d.strict:
+            errors.append(f&#34;Sheet &#39;{d.sheet}&#39; unexpected columns: {result[&#39;unexpected_cols&#39;]}&#34;)
+
+        wb.close()
+        status = &#34;PASS&#34; if len(errors) == 0 else &#34;FAIL&#34;
+        return len(errors) == 0, errors, status
+
+    except Exception as e:
+        return False, [f&#34;Error reading Excel: {type(e).__name__}: {e}&#34;], &#34;FAIL&#34;</code></pre>
+</details>
+<div class="desc"><p>Validate Excel file against deliverable schema.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot" href="index.html">01_EXECUTION_FILES.ssot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.main" href="#01_EXECUTION_FILES.ssot.head_guard_v2.main">main</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2" href="#01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2">HeadGuardV2</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.print_summary" href="#01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.print_summary">print_summary</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.save_manifest" href="#01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.save_manifest">save_manifest</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_csv_file" href="#01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_csv_file">validate_csv_file</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_directory" href="#01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_directory">validate_directory</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_excel_file" href="#01_EXECUTION_FILES.ssot.head_guard_v2.HeadGuardV2.validate_excel_file">validate_excel_file</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

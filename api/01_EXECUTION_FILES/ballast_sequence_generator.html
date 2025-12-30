@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ballast_sequence_generator API documentation</title>
+<meta name="description" content="Ballast Sequence Generator (P0-2)
+Generates step-by-step ballast operations sequence with hold points.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ballast_sequence_generator</code></h1>
+</header>
+<section id="section-intro">
+<p>Ballast Sequence Generator (P0-2)
+Generates step-by-step ballast operations sequence with hold points.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_exec_to_csv"><code class="name flex">
+<span>def <span class="ident">export_exec_to_csv</span></span>(<span>sequence: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep],<br>output_path: str,<br>optimizer_excel_path: pathlib.Path | None = None,<br>registry_path: pathlib.Path | None = None) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_exec_to_csv(
+    sequence: List[BallastStep],
+    output_path: str,
+    optimizer_excel_path: Optional[Path] = None,
+    registry_path: Optional[Path] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Export execution sequence to CSV with optional headers SSOT.&#34;&#34;&#34;
+    df = export_to_exec_dataframe(sequence, optimizer_excel_path=optimizer_excel_path)
+
+    # Apply headers SSOT if available
+    if registry_path and registry_path.exists():
+        try:
+            from ssot.headers_writer import HeadersWriter
+
+            writer = HeadersWriter(registry_path)
+            writer.write_csv_with_schema(
+                df,
+                Path(output_path),
+                &#34;BALLAST_EXEC_CSV&#34;,
+                keep_extra=False,
+            )
+            print(
+                f&#34;[OK] Ballast execution sequence exported (with SSOT): {output_path}&#34;
+            )
+            return
+        except Exception as e:
+            print(f&#34;[WARN] Headers SSOT failed: {e}, using fallback&#34;)
+
+    # Fallback to original
+    df.to_csv(output_path, index=False, encoding=&#34;utf-8-sig&#34;)
+    print(f&#34;[OK] Ballast execution sequence exported: {output_path}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Export execution sequence to CSV with optional headers SSOT.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_option_to_csv"><code class="name flex">
+<span>def <span class="ident">export_option_to_csv</span></span>(<span>options: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastOption],<br>output_path: str,<br>registry_path: pathlib.Path | None = None) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_option_to_csv(
+    options: List[BallastOption],
+    output_path: str,
+    registry_path: Optional[Path] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Export option plan to CSV with optional headers SSOT.&#34;&#34;&#34;
+    df = export_to_option_dataframe(options)
+
+    # Apply headers SSOT if available
+    if registry_path and registry_path.exists():
+        try:
+            from ssot.headers_writer import HeadersWriter
+
+            writer = HeadersWriter(registry_path)
+            writer.write_csv_with_schema(
+                df,
+                Path(output_path),
+                &#34;BALLAST_OPTION_CSV&#34;,
+                keep_extra=False,
+            )
+            print(f&#34;[OK] Ballast option plan exported (with SSOT): {output_path}&#34;)
+            return
+        except Exception as e:
+            print(f&#34;[WARN] Headers SSOT failed: {e}, using fallback&#34;)
+
+    # Fallback to original
+    df.to_csv(output_path, index=False, encoding=&#34;utf-8-sig&#34;)
+    print(f&#34;[OK] Ballast option plan exported: {output_path}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Export option plan to CSV with optional headers SSOT.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_summary"><code class="name flex">
+<span>def <span class="ident">export_summary</span></span>(<span>sequence: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep]) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_summary(sequence: List[BallastStep]) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;Generate sequence summary statistics.&#34;&#34;&#34;
+    total_time = sum(s.time_h for s in sequence)
+    hold_points = [s for s in sequence if s.hold_point]
+    fill_steps = [s for s in sequence if s.action == &#34;FILL&#34;]
+    discharge_steps = [s for s in sequence if s.action == &#34;DISCHARGE&#34;]
+
+    return {
+        &#34;total_steps&#34;: len(sequence),
+        &#34;total_time_h&#34;: round(total_time, 2),
+        &#34;hold_points&#34;: len(hold_points),
+        &#34;fill_steps&#34;: len(fill_steps),
+        &#34;discharge_steps&#34;: len(discharge_steps),
+        &#34;total_fill_t&#34;: sum(s.delta_t for s in fill_steps),
+        &#34;total_discharge_t&#34;: sum(abs(s.delta_t) for s in discharge_steps),
+    }</code></pre>
+</details>
+<div class="desc"><p>Generate sequence summary statistics.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_to_csv"><code class="name flex">
+<span>def <span class="ident">export_to_csv</span></span>(<span>sequence: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep],<br>output_path: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_to_csv(sequence: List[BallastStep], output_path: str) -&gt; None:
+    &#34;&#34;&#34;Export sequence to CSV.&#34;&#34;&#34;
+    df = export_to_dataframe(sequence)
+    df.to_csv(output_path, index=False, encoding=&#34;utf-8-sig&#34;)
+    print(f&#34;[OK] Ballast sequence exported: {output_path}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Export sequence to CSV.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_to_dataframe"><code class="name flex">
+<span>def <span class="ident">export_to_dataframe</span></span>(<span>sequence: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep]) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_to_dataframe(sequence: List[BallastStep]) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;Convert sequence to pandas DataFrame.&#34;&#34;&#34;
+    data = [
+        {
+            &#34;Stage&#34;: s.stage,
+            &#34;Step&#34;: s.step,
+            &#34;Tank&#34;: s.tank,
+            &#34;Action&#34;: s.action,
+            &#34;Start_t&#34;: round(s.start_t, 2),
+            &#34;Delta_t&#34;: round(s.delta_t, 2),
+            &#34;Target_t&#34;: round(s.target_t, 2),
+            &#34;Pump_ID&#34;: s.pump_id,
+            &#34;PumpRate_tph&#34;: s.pump_rate_tph,
+            &#34;Time_h&#34;: s.time_h,
+            &#34;Valve_Lineup&#34;: s.valve_lineup,
+            &#34;Draft_FWD&#34;: round(s.draft_fwd, 3),
+            &#34;Draft_AFT&#34;: round(s.draft_aft, 3),
+            &#34;Trim_cm&#34;: round(s.trim * 100.0, 1),
+            &#34;UKC&#34;: round(s.ukc, 2),
+            &#34;Hold_Point&#34;: &#34;Y&#34; if s.hold_point else &#34;N&#34;,
+            &#34;Notes&#34;: s.notes,
+        }
+        for s in sequence
+    ]
+
+    return pd.DataFrame(data)</code></pre>
+</details>
+<div class="desc"><p>Convert sequence to pandas DataFrame.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_to_exec_dataframe"><code class="name flex">
+<span>def <span class="ident">export_to_exec_dataframe</span></span>(<span>sequence: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep],<br>optimizer_excel_path: pathlib.Path | None = None) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_to_exec_dataframe(
+    sequence: List[BallastStep],
+    optimizer_excel_path: Optional[Path] = None,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Convert execution sequence to pandas DataFrame.
+
+    Args:
+        sequence: List of BallastStep objects
+        optimizer_excel_path: Optional path to optimizer_ballast_plan.xlsx
+                             to supplement missing Delta_t values
+    &#34;&#34;&#34;
+    data = [
+        {
+            &#34;Stage&#34;: s.stage if s.stage and s.stage.strip() else &#34;&#34;,
+            &#34;Step&#34;: s.step,
+            &#34;Tank&#34;: s.tank,
+            &#34;Action&#34;: s.action,
+            &#34;Start_t&#34;: round(s.start_t, 2),
+            &#34;Target_t&#34;: round(s.target_t, 2),
+            &#34;Delta_t&#34;: round(s.delta_t, 2),  # Always include delta_t (even if 0.0)
+            &#34;Time_h&#34;: s.time_h,
+            &#34;Pump_ID&#34;: s.pump_id,
+            &#34;PumpRate_tph&#34;: s.pump_rate_tph,
+            &#34;Valve_Lineup&#34;: s.valve_lineup,
+            &#34;Hold_Point&#34;: &#34;Y&#34; if s.hold_point else &#34;N&#34;,
+            &#34;Draft_FWD&#34;: round(s.draft_fwd, 3),
+            &#34;Draft_AFT&#34;: round(s.draft_aft, 3),
+            &#34;Trim_cm&#34;: round(s.trim * 100.0, 1),
+            &#34;UKC&#34;: round(s.ukc, 2),
+            &#34;Notes&#34;: s.notes,
+        }
+        for s in sequence
+    ]
+
+    df = pd.DataFrame(data)
+
+    # Supplement missing Delta_t from optimizer Excel if provided
+    if optimizer_excel_path and optimizer_excel_path.exists():
+        try:
+            # Try to read optimizer Excel (Plan sheet)
+            optimizer_df = pd.read_excel(
+                optimizer_excel_path, sheet_name=&#34;Plan&#34;, engine=&#34;openpyxl&#34;
+            )
+
+            # Normalize stage names for matching
+            def _normalize_stage(s: str) -&gt; str:
+                return re.sub(r&#34;\s+&#34;, &#34; &#34;, str(s).strip()).lower()
+
+            optimizer_df[&#34;_stage_norm&#34;] = optimizer_df[&#34;Stage&#34;].apply(_normalize_stage)
+            optimizer_df[&#34;_tank_norm&#34;] = optimizer_df[&#34;Tank&#34;].astype(str).str.strip()
+
+            df[&#34;_stage_norm&#34;] = df[&#34;Stage&#34;].apply(_normalize_stage)
+            df[&#34;_tank_norm&#34;] = df[&#34;Tank&#34;].astype(str).str.strip()
+
+            # Fill missing Delta_t values
+            missing_delta_mask = df[&#34;Delta_t&#34;].isna() | (df[&#34;Delta_t&#34;] == 0.0)
+            if missing_delta_mask.any():
+                filled_count = 0
+                for idx in df[missing_delta_mask].index:
+                    row = df.loc[idx]
+                    stage_norm = row[&#34;_stage_norm&#34;]
+                    tank_norm = row[&#34;_tank_norm&#34;]
+
+                    # Find matching row in optimizer
+                    match = optimizer_df[
+                        (optimizer_df[&#34;_stage_norm&#34;] == stage_norm)
+                        &amp; (optimizer_df[&#34;_tank_norm&#34;] == tank_norm)
+                    ]
+
+                    if not match.empty and &#34;Delta_t&#34; in match.columns:
+                        delta_val = match.iloc[0][&#34;Delta_t&#34;]
+                        if pd.notna(delta_val) and abs(float(delta_val)) &gt; 0.01:
+                            df.loc[idx, &#34;Delta_t&#34;] = round(float(delta_val), 2)
+                            filled_count += 1
+
+                            # Recalculate Time_h if Delta_t was filled
+                            if df.loc[idx, &#34;PumpRate_tph&#34;] &gt; 0:
+                                df.loc[idx, &#34;Time_h&#34;] = round(
+                                    abs(df.loc[idx, &#34;Delta_t&#34;])
+                                    / df.loc[idx, &#34;PumpRate_tph&#34;],
+                                    2,
+                                )
+
+                if filled_count &gt; 0:
+                    print(
+                        f&#34;[INFO] Supplemented {filled_count} Delta_t values from optimizer Excel&#34;
+                    )
+
+            # Clean up temporary columns
+            df = df.drop(columns=[&#34;_stage_norm&#34;, &#34;_tank_norm&#34;], errors=&#34;ignore&#34;)
+
+        except Exception as e:
+            print(
+                f&#34;[WARN] Failed to supplement Delta_t from optimizer Excel: {type(e).__name__}: {e}&#34;
+            )
+
+    return df</code></pre>
+</details>
+<div class="desc"><p>Convert execution sequence to pandas DataFrame.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sequence</code></strong></dt>
+<dd>List of BallastStep objects</dd>
+<dt><strong><code>optimizer_excel_path</code></strong></dt>
+<dd>Optional path to optimizer_ballast_plan.xlsx
+to supplement missing Delta_t values</dd>
+</dl></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.export_to_option_dataframe"><code class="name flex">
+<span>def <span class="ident">export_to_option_dataframe</span></span>(<span>options: List[01_EXECUTION_FILES.ballast_sequence_generator.BallastOption]) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_to_option_dataframe(options: List[BallastOption]) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;Convert option plan to pandas DataFrame.&#34;&#34;&#34;
+    data = [
+        {
+            &#34;Stage&#34;: opt.stage if opt.stage and opt.stage.strip() else &#34;&#34;,
+            &#34;Tank&#34;: opt.tank,
+            &#34;Action&#34;: opt.action,
+            &#34;Delta_t&#34;: round(opt.delta_t, 2),
+            &#34;PumpRate_tph&#34;: opt.pump_rate_tph,
+            &#34;Priority&#34;: opt.priority,
+            &#34;Rationale&#34;: opt.rationale,
+        }
+        for opt in options
+    ]
+    return pd.DataFrame(data)</code></pre>
+</details>
+<div class="desc"><p>Convert option plan to pandas DataFrame.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.generate_option_plan"><code class="name flex">
+<span>def <span class="ident">generate_option_plan</span></span>(<span>ballast_plan_df: pandas.core.frame.DataFrame,<br>profile,<br>stage_drafts: Dict[str, Dict[str, float]],<br>tank_catalog_df: pandas.core.frame.DataFrame | None = None,<br>fallback_plan_df: pandas.core.frame.DataFrame | None = None) ‑> List[01_EXECUTION_FILES.ballast_sequence_generator.BallastOption]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_option_plan(
+    ballast_plan_df: pd.DataFrame,
+    profile,
+    stage_drafts: Dict[str, Dict[str, float]],
+    tank_catalog_df: Optional[pd.DataFrame] = None,
+    fallback_plan_df: Optional[pd.DataFrame] = None,
+) -&gt; List[BallastOption]:
+    &#34;&#34;&#34;Generate option/plan level ballast plan (Delta_t based).&#34;&#34;&#34;
+    options: List[BallastOption] = []
+
+    ballast_plan_df = _canonicalize_stage_column(ballast_plan_df)
+    fallback_plan_df = (
+        _canonicalize_stage_column(fallback_plan_df)
+        if fallback_plan_df is not None
+        else None
+    )
+    ballast_plan_df = _merge_missing_optional_stages(
+        ballast_plan_df, fallback_plan_df, OPTIONAL_STAGES
+    )
+
+    ballast_params = profile.ballast_params if profile else {}
+    default_scenario = ballast_params.get(&#34;default_scenario&#34;, &#34;A&#34;)
+    contingency = ballast_params.get(&#34;contingency&#34;, {})
+    scenario_config = contingency.get(default_scenario, {&#34;pump_rate_tph&#34;: 10.0})
+    default_pump_rate = float(scenario_config.get(&#34;pump_rate_tph&#34;, 10.0)) or 10.0
+
+    def get_priority(stage_name: str) -&gt; int:
+        if &#34;critical&#34; in stage_name.lower() or &#34;6a&#34; in stage_name.lower():
+            return 1
+        if &#34;preballast&#34; in stage_name.lower():
+            return 2
+        if &#34;6b&#34; in stage_name.lower() or &#34;tide&#34; in stage_name.lower():
+            return 5
+        return 3
+
+    def get_rationale(stage_name: str, action: str) -&gt; str:
+        if &#34;preballast&#34; in stage_name.lower():
+            return &#34;Pre-ballast for critical RoRo stage (Gate-A/B compliance)&#34;
+        if &#34;critical&#34; in stage_name.lower() or &#34;6a&#34; in stage_name.lower():
+            return f&#34;Critical RoRo stage: {action} for draft control&#34;
+        if &#34;6b&#34; in stage_name.lower() or &#34;tide&#34; in stage_name.lower():
+            return &#34;Tide window optimization (optional scenario)&#34;
+        return f&#34;Standard ballast operation: {action} for stage requirements&#34;
+
+    stage_order = _stage_order_from_df(ballast_plan_df)
+    for stage_name in stage_order:
+        if not stage_name or not stage_name.strip():
+            continue  # Skip empty stage names
+        stage_df = ballast_plan_df[ballast_plan_df[&#34;Stage&#34;] == stage_name].copy()
+
+        # Stage별 pump rate 결정
+        stage_pump_rate = _get_stage_pump_rate(stage_name, default_pump_rate)
+
+        for _, row in stage_df.iterrows():
+            tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+            if not tank_id:
+                continue
+            delta_t = _delta_from_row(row)
+            if abs(delta_t) &lt; 0.01:
+                continue
+            if tank_catalog_df is not None and &#34;Tank&#34; in tank_catalog_df.columns:
+                tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+                if not tank_info.empty:
+                    operability = (
+                        str(tank_info.iloc[0].get(&#34;operability&#34;, &#34;NORMAL&#34;))
+                        .strip()
+                        .upper()
+                    )
+                    mode = str(tank_info.iloc[0].get(&#34;mode&#34;, &#34;&#34;)).strip().upper()
+                    if operability == &#34;PRE_BALLAST_ONLY&#34; or mode in (
+                        &#34;BLOCKED&#34;,
+                        &#34;FIXED&#34;,
+                    ):
+                        continue
+
+            action = &#34;FILL&#34; if delta_t &gt; 0 else &#34;DISCHARGE&#34;
+            option = BallastOption(
+                stage=stage_name,
+                tank=tank_id,
+                action=action,
+                delta_t=delta_t,
+                pump_rate_tph=stage_pump_rate,
+                priority=get_priority(stage_name),
+                rationale=get_rationale(stage_name, action),
+            )
+            options.append(option)
+
+    return options</code></pre>
+</details>
+<div class="desc"><p>Generate option/plan level ballast plan (Delta_t based).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.generate_optional_sequence"><code class="name flex">
+<span>def <span class="ident">generate_optional_sequence</span></span>(<span>ballast_plan_df: pandas.core.frame.DataFrame,<br>profile,<br>stage_drafts: Dict[str, Dict[str, float]],<br>tank_catalog_df: pandas.core.frame.DataFrame | None = None,<br>fallback_plan_df: pandas.core.frame.DataFrame | None = None,<br>optional_stages: List[str] | None = None) ‑> List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_optional_sequence(
+    ballast_plan_df: pd.DataFrame,
+    profile,
+    stage_drafts: Dict[str, Dict[str, float]],
+    tank_catalog_df: Optional[pd.DataFrame] = None,
+    fallback_plan_df: Optional[pd.DataFrame] = None,
+    optional_stages: Optional[List[str]] = None,
+) -&gt; List[BallastStep]:
+    &#34;&#34;&#34;Generate sequence for optional stages only.&#34;&#34;&#34;
+    optional_stages = optional_stages or OPTIONAL_STAGES
+    ballast_plan_df = _canonicalize_stage_column(ballast_plan_df)
+    fallback_plan_df = (
+        _canonicalize_stage_column(fallback_plan_df)
+        if fallback_plan_df is not None
+        else None
+    )
+    ballast_plan_df = _merge_missing_optional_stages(
+        ballast_plan_df, fallback_plan_df, optional_stages
+    )
+    optional_stages = [_canonical_stage_name(s) for s in optional_stages]
+    if &#34;Stage&#34; not in ballast_plan_df.columns:
+        return []
+    optional_df = ballast_plan_df[
+        ballast_plan_df[&#34;Stage&#34;].astype(str).isin(optional_stages)
+    ].copy()
+    if optional_df.empty:
+        return []
+    return generate_sequence(
+        ballast_plan_df=optional_df,
+        profile=profile,
+        stage_drafts=stage_drafts,
+        tank_catalog_df=tank_catalog_df,
+        exclude_optional_stages=False,
+    )</code></pre>
+</details>
+<div class="desc"><p>Generate sequence for optional stages only.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.generate_sequence"><code class="name flex">
+<span>def <span class="ident">generate_sequence</span></span>(<span>ballast_plan_df: pandas.core.frame.DataFrame,<br>profile,<br>stage_drafts: Dict[str, Dict[str, float]],<br>tank_catalog_df: pandas.core.frame.DataFrame | None = None,<br>exclude_optional_stages: bool = True,<br>fallback_plan_df: pandas.core.frame.DataFrame | None = None) ‑> List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_sequence(
+    ballast_plan_df: pd.DataFrame,
+    profile,
+    stage_drafts: Dict[str, Dict[str, float]],
+    tank_catalog_df: Optional[pd.DataFrame] = None,
+    exclude_optional_stages: bool = True,
+    fallback_plan_df: Optional[pd.DataFrame] = None,
+) -&gt; List[BallastStep]:
+    &#34;&#34;&#34;
+    Generate step-by-step ballast sequence.
+
+    Args:
+        ballast_plan_df: Solver/optimizer output (Stage, Tank, Delta_t/Weight_t)
+        profile: SiteProfile with pump rates
+        stage_drafts: {stage_name: {fwd, aft, trim, ukc}}
+        tank_catalog_df: Tank catalog with Current_t (optional)
+        fallback_plan_df: Optional fallback plan for missing optional stages
+
+    Returns:
+        List of BallastStep objects
+    &#34;&#34;&#34;
+    sequence: List[BallastStep] = []
+    step_counter = 1
+
+    # Get pump scenario from SSOT (기본값만)
+    ballast_params = profile.ballast_params if profile else {}
+    default_scenario = ballast_params.get(&#34;default_scenario&#34;, &#34;A&#34;)
+    contingency = ballast_params.get(&#34;contingency&#34;, {})
+    scenario_config = contingency.get(default_scenario, {&#34;pump_rate_tph&#34;: 10.0})
+    default_pump_rate = float(scenario_config.get(&#34;pump_rate_tph&#34;, 10.0)) or 10.0
+
+    # Get daylight constraint
+    daylight_only = bool(ballast_params.get(&#34;daylight_only&#34;, True))
+    daylight_end = str(ballast_params.get(&#34;daylight_end&#34;, &#34;18:00&#34;))
+    daylight_start = str(ballast_params.get(&#34;daylight_start&#34;, &#34;06:00&#34;))
+    try:
+        end_hour = int(daylight_end[:2])
+        start_hour = int(daylight_start[:2])
+    except ValueError:
+        end_hour = 18
+        start_hour = 6
+    max_hours = end_hour - start_hour if daylight_only else 24
+
+    ballast_plan_df = _canonicalize_stage_column(ballast_plan_df)
+    fallback_plan_df = (
+        _canonicalize_stage_column(fallback_plan_df)
+        if fallback_plan_df is not None
+        else None
+    )
+    ballast_plan_df = _merge_missing_optional_stages(
+        ballast_plan_df, fallback_plan_df, OPTIONAL_STAGES
+    )
+    stage_drafts_norm = {_canonical_stage_name(k): v for k, v in stage_drafts.items()}
+
+    cumulative_time = 0.0
+    initial_tank_current = _tank_current_map(tank_catalog_df)
+    tank_current = dict(initial_tank_current)
+    stage_order = _stage_order_from_df(ballast_plan_df)
+    if exclude_optional_stages:
+        stage_order = [s for s in stage_order if s not in OPTIONAL_STAGES]
+
+    for stage_name in stage_order:
+        if not stage_name or not stage_name.strip():
+            continue  # Skip empty stage names
+        stage_df = ballast_plan_df[ballast_plan_df[&#34;Stage&#34;] == stage_name].copy()
+        stage_info = stage_drafts_norm.get(stage_name, {})
+        stage_tank_current = tank_current
+
+        # Stage별 pump rate 결정
+        stage_pump_rate = _get_stage_pump_rate(stage_name, default_pump_rate)
+        stage_current_map: Dict[str, float] = {}
+        if &#34;Current_t&#34; in stage_df.columns:
+            for _, row in stage_df.iterrows():
+                tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+                if not tank_id:
+                    continue
+                current_t = row.get(&#34;Current_t&#34;)
+                if pd.notna(current_t):
+                    try:
+                        stage_current_map[tank_id] = float(current_t)
+                    except (TypeError, ValueError):
+                        continue
+        # 수정: stage_current_map이 있는 탱크만 업데이트, 나머지는 이전 stage 상태 유지
+        # 이렇게 하면 Stage 6A가 Stage 5_PreBallast의 종료 상태를 사용할 수 있음
+        for tank_id, current_t in stage_current_map.items():
+            tank_current[tank_id] = current_t
+        stage_tank_current = tank_current
+        # stage_current_map이 없으면 tank_current는 이전 stage의 상태를 그대로 사용 (carry-forward 유지)
+
+        # Sort by delta magnitude (large changes first for stability)
+        if &#34;Delta_t&#34; in stage_df.columns:
+            stage_df = stage_df.sort_values(
+                &#34;Delta_t&#34;, key=lambda s: s.abs(), ascending=False
+            )
+        elif &#34;Weight_t&#34; in stage_df.columns:
+            stage_df = stage_df.sort_values(
+                &#34;Weight_t&#34;, key=lambda s: s.abs(), ascending=False
+            )
+
+        for _, row in stage_df.iterrows():
+            tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+            if not tank_id:
+                continue
+
+            delta_t = _delta_from_row(row)
+            if abs(delta_t) &lt; 0.01:
+                continue  # Skip negligible changes
+
+            # Check tank operability
+            if tank_catalog_df is not None and &#34;Tank&#34; in tank_catalog_df.columns:
+                tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+                if not tank_info.empty:
+                    operability = (
+                        str(tank_info.iloc[0].get(&#34;operability&#34;, &#34;NORMAL&#34;))
+                        .strip()
+                        .upper()
+                    )
+                    mode = str(tank_info.iloc[0].get(&#34;mode&#34;, &#34;&#34;)).strip().upper()
+                    if operability == &#34;PRE_BALLAST_ONLY&#34; or mode in (
+                        &#34;BLOCKED&#34;,
+                        &#34;FIXED&#34;,
+                    ):
+                        # Skip - already filled at mobilization
+                        continue
+
+            # Determine action
+            action = &#34;FILL&#34; if delta_t &gt; 0 else &#34;DISCHARGE&#34;
+
+            # Determine start_t
+            start_t = stage_tank_current.get(tank_id, 0.0)
+            if &#34;Current_t&#34; in row and pd.notna(row.get(&#34;Current_t&#34;)):
+                try:
+                    start_t = float(row.get(&#34;Current_t&#34;, 0.0))
+                except (TypeError, ValueError):
+                    start_t = stage_tank_current.get(tank_id, 0.0)
+
+            target_t = start_t + delta_t
+            if tank_catalog_df is not None and &#34;Tank&#34; in tank_catalog_df.columns:
+                tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+                if not tank_info.empty:
+                    capacity_t = float(tank_info.iloc[0].get(&#34;Capacity_t&#34;, 0.0))
+                    min_t = float(tank_info.iloc[0].get(&#34;Min_t&#34;, 0.0))
+                    if target_t &gt; capacity_t:
+                        print(
+                            f&#34;[WARN] Stage {stage_name}, Tank {tank_id}: &#34;
+                            f&#34;Target_t ({target_t:.2f}t) exceeds Capacity_t ({capacity_t:.2f}t). &#34;
+                            &#34;Clamping to capacity.&#34;
+                        )
+                        target_t = capacity_t
+                        delta_t = target_t - start_t
+                    if target_t &lt; min_t:
+                        print(
+                            f&#34;[WARN] Stage {stage_name}, Tank {tank_id}: &#34;
+                            f&#34;Target_t ({target_t:.2f}t) below Min_t ({min_t:.2f}t). &#34;
+                            &#34;Clamping to minimum.&#34;
+                        )
+                        target_t = min_t
+                        delta_t = target_t - start_t
+            stage_tank_current[tank_id] = target_t
+            tank_current[tank_id] = target_t
+
+            # Calculate time
+            time_h = abs(delta_t) / stage_pump_rate if stage_pump_rate &gt; 0 else 0.0
+            cumulative_time += time_h
+
+            # Check daylight constraint
+            if daylight_only and cumulative_time &gt; max_hours:
+                notes = (
+                    f&#34;WARNING: cumulative time {cumulative_time:.1f}h exceeds &#34;
+                    f&#34;daylight window {max_hours}h&#34;
+                )
+            else:
+                # Stage별 pump rate에 따른 notes 설정
+                if &#34;preballast&#34; in stage_name.lower():
+                    notes = f&#34;D-1 급수차 작업 (운영 시간 제외) - Pump scenario: {default_scenario} ({stage_pump_rate} t/h)&#34;
+                elif stage_pump_rate != default_pump_rate:
+                    notes = f&#34;Pump scenario: Stage-specific ({stage_pump_rate} t/h - {&#39;Hired pump&#39; if stage_pump_rate &gt;= 100 else &#39;Ship pump&#39;})&#34;
+                else:
+                    notes = f&#34;Pump scenario: {default_scenario} ({stage_pump_rate} t/h)&#34;
+
+            # Pump ID
+            if stage_pump_rate &lt;= 10.0:
+                pump_id = &#34;SHIP_PUMP_01&#34;
+            elif stage_pump_rate &lt;= 100.0:
+                pump_id = &#34;HIRED_PUMP_01&#34;
+            else:
+                pump_id = &#34;SHORE_PUMP&#34;
+
+            # Valve lineup (simplified - needs valve map)
+            tank_clean = tank_id.replace(&#34;.&#34;, &#34;&#34;).replace(&#34; &#34;, &#34;_&#34;)
+            if delta_t &gt; 0:
+                valve_lineup = f&#34;V-{tank_clean}-FILL,V-{tank_clean}-INLET&#34;
+            else:
+                valve_lineup = f&#34;V-{tank_clean}-DISCHARGE,V-{tank_clean}-OUTLET&#34;
+
+            # Hold point criteria
+            # 1. Large volume change (&gt;10t)
+            # 2. Critical stage (contains &#34;critical&#34; or &#34;6a&#34;)
+            # 3. After significant cumulative time (&gt;2h)
+            is_critical = &#34;critical&#34; in stage_name.lower() or &#34;6a&#34; in stage_name.lower()
+            hold_point = (
+                abs(delta_t) &gt; 10.0
+                or is_critical
+                or (cumulative_time &gt; 0 and cumulative_time % 2.0 &lt; time_h)
+            )
+
+            step = BallastStep(
+                stage=stage_name,
+                step=step_counter,
+                tank=tank_id,
+                action=action,
+                start_t=start_t,
+                delta_t=delta_t,
+                target_t=target_t,
+                pump_id=pump_id,
+                pump_rate_tph=stage_pump_rate,
+                time_h=round(time_h, 2),
+                valve_lineup=valve_lineup,
+                draft_fwd=float(stage_info.get(&#34;fwd&#34;, 0.0)),
+                draft_aft=float(stage_info.get(&#34;aft&#34;, 0.0)),
+                trim=float(stage_info.get(&#34;trim&#34;, 0.0)),
+                ukc=float(stage_info.get(&#34;ukc&#34;, 0.0)),
+                hold_point=hold_point,
+                notes=notes,
+            )
+
+            sequence.append(step)
+            step_counter += 1
+
+    return sequence</code></pre>
+</details>
+<div class="desc"><p>Generate step-by-step ballast sequence.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ballast_plan_df</code></strong></dt>
+<dd>Solver/optimizer output (Stage, Tank, Delta_t/Weight_t)</dd>
+<dt><strong><code>profile</code></strong></dt>
+<dd>SiteProfile with pump rates</dd>
+<dt><strong><code>stage_drafts</code></strong></dt>
+<dd>{stage_name: {fwd, aft, trim, ukc}}</dd>
+<dt><strong><code>tank_catalog_df</code></strong></dt>
+<dd>Tank catalog with Current_t (optional)</dd>
+<dt><strong><code>fallback_plan_df</code></strong></dt>
+<dd>Optional fallback plan for missing optional stages</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of BallastStep objects</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.generate_sequence_with_carryforward"><code class="name flex">
+<span>def <span class="ident">generate_sequence_with_carryforward</span></span>(<span>ballast_plan_df: pandas.core.frame.DataFrame,<br>profile,<br>stage_drafts: Dict[str, Dict[str, float]],<br>tank_catalog_df: pandas.core.frame.DataFrame | None = None,<br>exclude_optional_stages: bool = True,<br>fallback_plan_df: pandas.core.frame.DataFrame | None = None) ‑> List[01_EXECUTION_FILES.ballast_sequence_generator.BallastStep]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_sequence_with_carryforward(
+    ballast_plan_df: pd.DataFrame,
+    profile,
+    stage_drafts: Dict[str, Dict[str, float]],
+    tank_catalog_df: Optional[pd.DataFrame] = None,
+    exclude_optional_stages: bool = True,
+    fallback_plan_df: Optional[pd.DataFrame] = None,
+) -&gt; List[BallastStep]:
+    &#34;&#34;&#34;
+    Generate execution sequence with Start_t/Target_t carry-forward.
+    Each step Start_t = previous Target_t for same tank (or initial Current_t).
+    &#34;&#34;&#34;
+    sequence: List[BallastStep] = []
+    step_counter = 1
+
+    ballast_params = profile.ballast_params if profile else {}
+    default_scenario = ballast_params.get(&#34;default_scenario&#34;, &#34;A&#34;)
+    contingency = ballast_params.get(&#34;contingency&#34;, {})
+    scenario_config = contingency.get(default_scenario, {&#34;pump_rate_tph&#34;: 10.0})
+    default_pump_rate = float(scenario_config.get(&#34;pump_rate_tph&#34;, 10.0)) or 10.0
+
+    daylight_only = bool(ballast_params.get(&#34;daylight_only&#34;, True))
+    daylight_end = str(ballast_params.get(&#34;daylight_end&#34;, &#34;18:00&#34;))
+    daylight_start = str(ballast_params.get(&#34;daylight_start&#34;, &#34;06:00&#34;))
+    try:
+        end_hour = int(daylight_end[:2])
+        start_hour = int(daylight_start[:2])
+    except ValueError:
+        end_hour = 18
+        start_hour = 6
+    max_hours = end_hour - start_hour if daylight_only else 24
+
+    ballast_plan_df = _canonicalize_stage_column(ballast_plan_df)
+    fallback_plan_df = (
+        _canonicalize_stage_column(fallback_plan_df)
+        if fallback_plan_df is not None
+        else None
+    )
+    ballast_plan_df = _merge_missing_optional_stages(
+        ballast_plan_df, fallback_plan_df, OPTIONAL_STAGES
+    )
+    stage_drafts_norm = {_canonical_stage_name(k): v for k, v in stage_drafts.items()}
+
+    cumulative_time = 0.0
+    initial_tank_state = _tank_current_map(tank_catalog_df)
+    tank_state = dict(initial_tank_state)
+
+    stage_order = _stage_order_from_df(ballast_plan_df)
+    if exclude_optional_stages:
+        stage_order = [s for s in stage_order if s not in OPTIONAL_STAGES]
+
+    for stage_name in stage_order:
+        if not stage_name or not stage_name.strip():
+            continue  # Skip empty stage names
+        stage_df = ballast_plan_df[ballast_plan_df[&#34;Stage&#34;] == stage_name].copy()
+        stage_info = stage_drafts_norm.get(stage_name, {})
+
+        # Stage별 pump rate 결정
+        stage_pump_rate = _get_stage_pump_rate(stage_name, default_pump_rate)
+
+        stage_current_map: Dict[str, float] = {}
+        if &#34;Current_t&#34; in stage_df.columns:
+            for _, row in stage_df.iterrows():
+                tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+                if not tank_id:
+                    continue
+                current_t = row.get(&#34;Current_t&#34;)
+                if pd.notna(current_t):
+                    try:
+                        stage_current_map[tank_id] = float(current_t)
+                    except (TypeError, ValueError):
+                        continue
+        # 수정: stage_current_map이 있는 탱크만 업데이트, 나머지는 이전 stage 상태 유지
+        # 이렇게 하면 Stage 6A가 Stage 5_PreBallast의 종료 상태를 사용할 수 있음
+        for tank_id, current_t in stage_current_map.items():
+            tank_state[tank_id] = current_t
+        # stage_current_map이 없으면 tank_state는 이전 stage의 상태를 그대로 사용 (carry-forward 유지)
+
+        if &#34;Delta_t&#34; in stage_df.columns:
+            stage_df = stage_df.sort_values(
+                &#34;Delta_t&#34;, key=lambda s: s.abs(), ascending=False
+            )
+        elif &#34;Weight_t&#34; in stage_df.columns:
+            stage_df = stage_df.sort_values(
+                &#34;Weight_t&#34;, key=lambda s: s.abs(), ascending=False
+            )
+
+        for _, row in stage_df.iterrows():
+            tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+            if not tank_id:
+                continue
+
+            delta_t = _delta_from_row(row)
+            if abs(delta_t) &lt; 0.01:
+                continue
+
+            if tank_catalog_df is not None and &#34;Tank&#34; in tank_catalog_df.columns:
+                tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+                if not tank_info.empty:
+                    operability = (
+                        str(tank_info.iloc[0].get(&#34;operability&#34;, &#34;NORMAL&#34;))
+                        .strip()
+                        .upper()
+                    )
+                    mode = str(tank_info.iloc[0].get(&#34;mode&#34;, &#34;&#34;)).strip().upper()
+                    if operability == &#34;PRE_BALLAST_ONLY&#34; or mode in (
+                        &#34;BLOCKED&#34;,
+                        &#34;FIXED&#34;,
+                    ):
+                        continue
+
+            action = &#34;FILL&#34; if delta_t &gt; 0 else &#34;DISCHARGE&#34;
+
+            start_t = tank_state.get(tank_id, 0.0)
+            if &#34;Current_t&#34; in row and pd.notna(row.get(&#34;Current_t&#34;)):
+                try:
+                    start_t = float(row.get(&#34;Current_t&#34;, 0.0))
+                except (TypeError, ValueError):
+                    start_t = tank_state.get(tank_id, 0.0)
+
+            target_t = start_t + delta_t
+
+            # DISCHARGE 시 target_t가 0 이하로 내려가지 않도록 클리핑 (물리적 제약)
+            if action == &#34;DISCHARGE&#34; and target_t &lt; 0.0:
+                print(
+                    f&#34;[WARN] Stage {stage_name}, Tank {tank_id}: &#34;
+                    f&#34;Target_t ({target_t:.2f}t) would be negative for DISCHARGE. &#34;
+                    f&#34;Clamping to 0.0t (Start_t={start_t:.2f}t, Delta_t={delta_t:.2f}t).&#34;
+                )
+                target_t = 0.0
+                delta_t = target_t - start_t  # delta_t 재조정
+
+            if tank_catalog_df is not None and &#34;Tank&#34; in tank_catalog_df.columns:
+                tank_info = tank_catalog_df[tank_catalog_df[&#34;Tank&#34;] == tank_id]
+                if not tank_info.empty:
+                    capacity_t = float(tank_info.iloc[0].get(&#34;Capacity_t&#34;, 0.0))
+                    min_t = float(tank_info.iloc[0].get(&#34;Min_t&#34;, 0.0))
+                    if target_t &gt; capacity_t:
+                        print(
+                            f&#34;[WARN] Stage {stage_name}, Tank {tank_id}: &#34;
+                            f&#34;Target_t ({target_t:.2f}t) exceeds Capacity_t ({capacity_t:.2f}t). &#34;
+                            &#34;Clamping to capacity.&#34;
+                        )
+                        target_t = capacity_t
+                        delta_t = target_t - start_t
+                    if target_t &lt; min_t:
+                        print(
+                            f&#34;[WARN] Stage {stage_name}, Tank {tank_id}: &#34;
+                            f&#34;Target_t ({target_t:.2f}t) below Min_t ({min_t:.2f}t). &#34;
+                            &#34;Clamping to minimum.&#34;
+                        )
+                        target_t = min_t
+                        delta_t = target_t - start_t
+
+            tank_state[tank_id] = target_t
+
+            time_h = abs(delta_t) / stage_pump_rate if stage_pump_rate &gt; 0 else 0.0
+            cumulative_time += time_h
+
+            if daylight_only and cumulative_time &gt; max_hours:
+                notes = (
+                    f&#34;WARNING: cumulative time {cumulative_time:.1f}h exceeds &#34;
+                    f&#34;daylight window {max_hours}h&#34;
+                )
+            else:
+                # Stage별 pump rate에 따른 notes 설정
+                if &#34;preballast&#34; in stage_name.lower():
+                    notes = f&#34;D-1 급수차 작업 (운영 시간 제외) - Pump scenario: {default_scenario} ({stage_pump_rate} t/h)&#34;
+                elif stage_pump_rate != default_pump_rate:
+                    notes = f&#34;Pump scenario: Stage-specific ({stage_pump_rate} t/h - {&#39;Hired pump&#39; if stage_pump_rate &gt;= 100 else &#39;Ship pump&#39;})&#34;
+                else:
+                    notes = f&#34;Pump scenario: {default_scenario} ({stage_pump_rate} t/h)&#34;
+
+            if stage_pump_rate &lt;= 10.0:
+                pump_id = &#34;SHIP_PUMP_01&#34;
+            elif stage_pump_rate &lt;= 100.0:
+                pump_id = &#34;HIRED_PUMP_01&#34;
+            else:
+                pump_id = &#34;SHORE_PUMP&#34;
+
+            tank_clean = tank_id.replace(&#34;.&#34;, &#34;&#34;).replace(&#34; &#34;, &#34;_&#34;)
+            if delta_t &gt; 0:
+                valve_lineup = f&#34;V-{tank_clean}-FILL,V-{tank_clean}-INLET&#34;
+            else:
+                valve_lineup = f&#34;V-{tank_clean}-DISCHARGE,V-{tank_clean}-OUTLET&#34;
+
+            is_critical = &#34;critical&#34; in stage_name.lower() or &#34;6a&#34; in stage_name.lower()
+            hold_point = (
+                abs(delta_t) &gt; 10.0
+                or is_critical
+                or (cumulative_time &gt; 0 and cumulative_time % 2.0 &lt; time_h)
+            )
+
+            step = BallastStep(
+                stage=stage_name,
+                step=step_counter,
+                tank=tank_id,
+                action=action,
+                start_t=start_t,
+                delta_t=delta_t,
+                target_t=target_t,
+                pump_id=pump_id,
+                pump_rate_tph=stage_pump_rate,
+                time_h=round(time_h, 2),
+                valve_lineup=valve_lineup,
+                draft_fwd=float(stage_info.get(&#34;fwd&#34;, 0.0)),
+                draft_aft=float(stage_info.get(&#34;aft&#34;, 0.0)),
+                trim=float(stage_info.get(&#34;trim&#34;, 0.0)),
+                ukc=float(stage_info.get(&#34;ukc&#34;, 0.0)),
+                hold_point=hold_point,
+                notes=notes,
+            )
+
+            sequence.append(step)
+            step_counter += 1
+
+    return sequence</code></pre>
+</details>
+<div class="desc"><p>Generate execution sequence with Start_t/Target_t carry-forward.
+Each step Start_t = previous Target_t for same tank (or initial Current_t).</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption"><code class="flex name class">
+<span>class <span class="ident">BallastOption</span></span>
+<span>(</span><span>stage: str,<br>tank: str,<br>action: str,<br>delta_t: float,<br>pump_rate_tph: float,<br>priority: int,<br>rationale: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class BallastOption:
+    &#34;&#34;&#34;Ballast option/plan level entry (Delta_t based).&#34;&#34;&#34;
+
+    stage: str
+    tank: str
+    action: str
+    delta_t: float
+    pump_rate_tph: float
+    priority: int
+    rationale: str</code></pre>
+</details>
+<div class="desc"><p>Ballast option/plan level entry (Delta_t based).</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.action"><code class="name">var <span class="ident">action</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.delta_t"><code class="name">var <span class="ident">delta_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.priority"><code class="name">var <span class="ident">priority</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.pump_rate_tph"><code class="name">var <span class="ident">pump_rate_tph</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.rationale"><code class="name">var <span class="ident">rationale</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.stage"><code class="name">var <span class="ident">stage</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.tank"><code class="name">var <span class="ident">tank</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep"><code class="flex name class">
+<span>class <span class="ident">BallastStep</span></span>
+<span>(</span><span>stage: str,<br>step: int,<br>tank: str,<br>action: str,<br>start_t: float,<br>delta_t: float,<br>target_t: float,<br>pump_id: str,<br>pump_rate_tph: float,<br>time_h: float,<br>valve_lineup: str,<br>draft_fwd: float,<br>draft_aft: float,<br>trim: float,<br>ukc: float,<br>hold_point: bool,<br>notes: str = '')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class BallastStep:
+    &#34;&#34;&#34;Single ballast sequence step.&#34;&#34;&#34;
+
+    stage: str
+    step: int
+    tank: str
+    action: str  # FILL, DISCHARGE, HOLD, VERIFY
+    start_t: float
+    delta_t: float
+    target_t: float
+    pump_id: str
+    pump_rate_tph: float
+    time_h: float
+    valve_lineup: str
+    draft_fwd: float
+    draft_aft: float
+    trim: float
+    ukc: float
+    hold_point: bool
+    notes: str = &#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>Single ballast sequence step.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.action"><code class="name">var <span class="ident">action</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.delta_t"><code class="name">var <span class="ident">delta_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.draft_aft"><code class="name">var <span class="ident">draft_aft</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.draft_fwd"><code class="name">var <span class="ident">draft_fwd</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.hold_point"><code class="name">var <span class="ident">hold_point</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.notes"><code class="name">var <span class="ident">notes</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.pump_id"><code class="name">var <span class="ident">pump_id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.pump_rate_tph"><code class="name">var <span class="ident">pump_rate_tph</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.stage"><code class="name">var <span class="ident">stage</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.start_t"><code class="name">var <span class="ident">start_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.step"><code class="name">var <span class="ident">step</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.tank"><code class="name">var <span class="ident">tank</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.target_t"><code class="name">var <span class="ident">target_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.time_h"><code class="name">var <span class="ident">time_h</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.trim"><code class="name">var <span class="ident">trim</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.ukc"><code class="name">var <span class="ident">ukc</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.valve_lineup"><code class="name">var <span class="ident">valve_lineup</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES" href="index.html">01_EXECUTION_FILES</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_exec_to_csv" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_exec_to_csv">export_exec_to_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_option_to_csv" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_option_to_csv">export_option_to_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_summary" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_summary">export_summary</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_to_csv" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_to_csv">export_to_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_to_dataframe" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_to_dataframe">export_to_dataframe</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_to_exec_dataframe" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_to_exec_dataframe">export_to_exec_dataframe</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.export_to_option_dataframe" href="#01_EXECUTION_FILES.ballast_sequence_generator.export_to_option_dataframe">export_to_option_dataframe</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.generate_option_plan" href="#01_EXECUTION_FILES.ballast_sequence_generator.generate_option_plan">generate_option_plan</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.generate_optional_sequence" href="#01_EXECUTION_FILES.ballast_sequence_generator.generate_optional_sequence">generate_optional_sequence</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.generate_sequence" href="#01_EXECUTION_FILES.ballast_sequence_generator.generate_sequence">generate_sequence</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.generate_sequence_with_carryforward" href="#01_EXECUTION_FILES.ballast_sequence_generator.generate_sequence_with_carryforward">generate_sequence_with_carryforward</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption">BallastOption</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.action" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.action">action</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.delta_t" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.delta_t">delta_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.priority" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.priority">priority</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.pump_rate_tph" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.pump_rate_tph">pump_rate_tph</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.rationale" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.rationale">rationale</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.stage" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.stage">stage</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.tank" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastOption.tank">tank</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep">BallastStep</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.action" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.action">action</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.delta_t" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.delta_t">delta_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.draft_aft" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.draft_aft">draft_aft</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.draft_fwd" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.draft_fwd">draft_fwd</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.hold_point" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.hold_point">hold_point</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.notes" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.notes">notes</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.pump_id" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.pump_id">pump_id</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.pump_rate_tph" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.pump_rate_tph">pump_rate_tph</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.stage" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.stage">stage</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.start_t" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.start_t">start_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.step" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.step">step</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.tank" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.tank">tank</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.target_t" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.target_t">target_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.time_h" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.time_h">time_h</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.trim" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.trim">trim</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.ukc" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.ukc">ukc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.valve_lineup" href="#01_EXECUTION_FILES.ballast_sequence_generator.BallastStep.valve_lineup">valve_lineup</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

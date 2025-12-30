@@ -1,0 +1,1535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ssot.validators API documentation</title>
+<meta name="description" content="SSOT Validators (P1-1)
+Input/physics/gate preflight validation before pipeline execution.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ssot.validators</code></h1>
+</header>
+<section id="section-intro">
+<p>SSOT Validators (P1-1)
+Input/physics/gate preflight validation before pipeline execution.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.load_hydro_table_df"><code class="name flex">
+<span>def <span class="ident">load_hydro_table_df</span></span>(<span>hydro_path: Path) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_hydro_table_df(hydro_path: Path) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;Load hydro table from JSON or CSV to a DataFrame.&#34;&#34;&#34;
+    if not hydro_path.exists():
+        raise FileNotFoundError(f&#34;Hydro table not found: {hydro_path}&#34;)
+
+    if hydro_path.suffix.lower() == &#34;.json&#34;:
+        data = json.loads(hydro_path.read_text(encoding=&#34;utf-8&#34;))
+        if isinstance(data, dict):
+            rows = None
+            for key in (&#34;rows&#34;, &#34;table&#34;, &#34;data&#34;, &#34;hydro_table&#34;, &#34;hydro&#34;):
+                if key in data:
+                    rows = data[key]
+                    break
+            if rows is None:
+                raise ValueError(
+                    f&#34;Hydro JSON missing rows/table list: {hydro_path.name}&#34;
+                )
+            return pd.DataFrame(rows)
+        if isinstance(data, list):
+            return pd.DataFrame(data)
+        raise ValueError(f&#34;Unexpected hydro JSON format: {type(data).__name__}&#34;)
+
+    return pd.read_csv(hydro_path, encoding=&#34;utf-8-sig&#34;)</code></pre>
+</details>
+<div class="desc"><p>Load hydro table from JSON or CSV to a DataFrame.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.print_validation_report"><code class="name flex">
+<span>def <span class="ident">print_validation_report</span></span>(<span>report: <a title="01_EXECUTION_FILES.ssot.validators.ValidationReport" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport">ValidationReport</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_validation_report(report: ValidationReport) -&gt; None:
+    &#34;&#34;&#34;Print validation report.&#34;&#34;&#34;
+    print(&#34;\n&#34; + &#34;=&#34; * 80)
+    print(&#34;BALLAST PIPELINE VALIDATION REPORT (B+ PREFLIGHT)&#34;)
+    print(&#34;=&#34; * 80)
+    print(f&#34;Timestamp: {report.timestamp}&#34;)
+    print(f&#34;Status: {report.summary()}&#34;)
+    print(&#34;=&#34; * 80)
+
+    if report.passed:
+        print(&#34;\nALL CHECKS PASSED - Pipeline ready for execution\n&#34;)
+    else:
+        print(&#34;\nVALIDATION FAILED - Critical issues must be resolved\n&#34;)
+
+    critical = report.get_critical_issues()
+    if critical:
+        print(f&#34;\nCRITICAL ISSUES ({len(critical)}):&#34;)
+        print(&#34;-&#34; * 80)
+        for i, issue in enumerate(critical, 1):
+            print(f&#34;\n[{i}] {issue.category}: {issue.message}&#34;)
+            print(f&#34;    Details: {issue.details}&#34;)
+            print(f&#34;    Suggestion: {issue.suggestion}&#34;)
+
+    warnings = report.get_warnings()
+    if warnings:
+        print(f&#34;\nWARNINGS ({len(warnings)}):&#34;)
+        print(&#34;-&#34; * 80)
+        for i, issue in enumerate(warnings, 1):
+            print(f&#34;\n[{i}] {issue.category}: {issue.message}&#34;)
+            print(f&#34;    Details: {issue.details}&#34;)
+            print(f&#34;    Suggestion: {issue.suggestion}&#34;)
+
+    print(&#34;\n&#34; + &#34;=&#34; * 80 + &#34;\n&#34;)</code></pre>
+</details>
+<div class="desc"><p>Print validation report.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.run_full_validation"><code class="name flex">
+<span>def <span class="ident">run_full_validation</span></span>(<span>profile_path: str,<br>tank_catalog: pd.DataFrame,<br>current_t_sensor: pd.DataFrame,<br>stage_results: pd.DataFrame,<br>hydro_table: pd.DataFrame) ‑> 01_EXECUTION_FILES.ssot.validators.ValidationReport</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_full_validation(
+    profile_path: str,
+    tank_catalog: pd.DataFrame,
+    current_t_sensor: pd.DataFrame,
+    stage_results: pd.DataFrame,
+    hydro_table: pd.DataFrame,
+) -&gt; ValidationReport:
+    &#34;&#34;&#34;
+    Run all validation checks.
+
+    Returns:
+        ValidationReport with pass/fail and all issues.
+    &#34;&#34;&#34;
+    all_issues: List[ValidationIssue] = []
+
+    try:
+        if profile_path:
+            profile = SiteProfile(profile_path)
+        else:
+            profile = load_agi_profile()
+    except Exception as e:
+        all_issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;SSOT&#34;,
+                message=&#34;Failed to load SSOT profile&#34;,
+                details=str(e),
+                suggestion=&#34;Check profile JSON syntax and schema&#34;,
+            )
+        )
+        return ValidationReport(
+            passed=False,
+            issues=all_issues,
+            timestamp=datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        )
+
+    all_issues.extend(SSOTVersionValidator.validate_ssot_version(profile_path))
+
+    input_validator = InputValidator(profile)
+    all_issues.extend(input_validator.validate_tank_current_t(tank_catalog, current_t_sensor))
+    all_issues.extend(input_validator.validate_stage_results(stage_results))
+
+    physics_validator = PhysicsValidator(profile)
+    tmean_col = _first_existing_column(stage_results, [&#34;Tmean_m&#34;])
+    trim_col = _first_existing_column(stage_results, [&#34;Trim_cm&#34;, &#34;Trim&#34;])
+    displ_col = _first_existing_column(stage_results, [&#34;W_stage_t&#34;, &#34;W_Total_t&#34;, &#34;Disp_t&#34;])
+
+    if tmean_col and trim_col and displ_col:
+        for _, row in stage_results.iterrows():
+            displ_t = _safe_float(row.get(displ_col), 0.0) or 0.0
+            tmean_m = _safe_float(row.get(tmean_col), 0.0) or 0.0
+            trim_cm = _safe_float(row.get(trim_col), 0.0) or 0.0
+            all_issues.extend(
+                physics_validator.validate_draft_calculation(
+                    displ_t, tmean_m, trim_cm, hydro_table
+                )
+            )
+    else:
+        all_issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Skipping draft physics validation&#34;,
+                details=&#34;Missing displacement/Tmean/Trim columns in stage_results.csv&#34;,
+                suggestion=&#34;Ensure stage_results.csv includes W_stage_t, Tmean_m, Trim_cm&#34;,
+            )
+        )
+
+    gate_validator = GatePreflightValidator(profile)
+    all_issues.extend(gate_validator.preflight_gate_check(stage_results))
+
+    critical_issues = [i for i in all_issues if i.severity == &#34;CRITICAL&#34;]
+    passed = len(critical_issues) == 0
+
+    return ValidationReport(
+        passed=passed,
+        issues=all_issues,
+        timestamp=datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+    )</code></pre>
+</details>
+<div class="desc"><p>Run all validation checks.</p>
+<h2 id="returns">Returns</h2>
+<p>ValidationReport with pass/fail and all issues.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.GatePreflightValidator"><code class="flex name class">
+<span>class <span class="ident">GatePreflightValidator</span></span>
+<span>(</span><span>profile: SiteProfile)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GatePreflightValidator:
+    &#34;&#34;&#34;Preflight gate feasibility check.&#34;&#34;&#34;
+
+    def __init__(self, profile: SiteProfile):
+        self.profile = profile
+        self.gates = profile.data.get(&#34;gates&#34;, [])
+
+    def preflight_gate_check(self, stage_results: pd.DataFrame) -&gt; List[ValidationIssue]:
+        &#34;&#34;&#34;
+        Check if stages can possibly satisfy gates (before solver).
+        &#34;&#34;&#34;
+        issues: List[ValidationIssue] = []
+
+        fwd_max = next(
+            (
+                g.get(&#34;limit_value&#34;)
+                for g in self.gates
+                if g.get(&#34;gate_id&#34;) == &#34;FWD_MAX_2p70_critical_only&#34;
+            ),
+            2.70,
+        )
+        aft_min = next(
+            (
+                g.get(&#34;limit_value&#34;)
+                for g in self.gates
+                if g.get(&#34;gate_id&#34;) == &#34;AFT_MIN_2p70_propulsion&#34;
+            ),
+            2.70,
+        )
+
+        stage_col = _first_existing_column(stage_results, [&#34;Stage&#34;, &#34;StageName&#34;])
+        fwd_col = _first_existing_column(
+            stage_results, [&#34;Draft_FWD_m&#34;, &#34;Dfwd_m&#34;, &#34;Fwd Draft(m)&#34;, &#34;FWD_Height_m&#34;]
+        )
+        aft_col = _first_existing_column(
+            stage_results, [&#34;Draft_AFT_m&#34;, &#34;Daft_m&#34;, &#34;Aft Draft(m)&#34;, &#34;AFT_Height_m&#34;]
+        )
+
+        if stage_col is None or fwd_col is None or aft_col is None:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;GATE&#34;,
+                    message=&#34;Stage draft columns missing for gate preflight&#34;,
+                    details=&#34;Expected Draft_FWD_m/Dfwd_m and Draft_AFT_m/Daft_m&#34;,
+                    suggestion=&#34;Regenerate stage_results.csv with draft columns&#34;,
+                )
+            )
+            return issues
+
+        for _, row in stage_results.iterrows():
+            stage = str(row.get(stage_col, &#34;&#34;))
+            dfwd_raw = _safe_float(row.get(fwd_col), 0.0) or 0.0
+            daft_raw = _safe_float(row.get(aft_col), 0.0) or 0.0
+
+            is_critical = &#34;critical&#34; in stage.lower() or &#34;6a&#34; in stage.lower()
+
+            if is_critical and dfwd_raw &gt; fwd_max:
+                excess_cm = (dfwd_raw - fwd_max) * 100.0
+                issues.append(
+                    ValidationIssue(
+                        severity=&#34;CRITICAL&#34;,
+                        category=&#34;GATE&#34;,
+                        message=f&#34;Gate-B violation in {stage} (raw, before solver)&#34;,
+                        details=(
+                            f&#34;FWD={dfwd_raw:.3f}m &gt; {fwd_max:.2f}m &#34;
+                            f&#34;(excess {excess_cm:.1f}cm)&#34;
+                        ),
+                        suggestion=&#34;Solver must discharge FWD or fill AFT to meet Gate-B&#34;,
+                    )
+                )
+
+            if daft_raw &lt; aft_min:
+                deficit_cm = (aft_min - daft_raw) * 100.0
+                issues.append(
+                    ValidationIssue(
+                        severity=&#34;CRITICAL&#34;,
+                        category=&#34;GATE&#34;,
+                        message=f&#34;Gate-A violation in {stage} (raw, before solver)&#34;,
+                        details=(
+                            f&#34;AFT={daft_raw:.3f}m &lt; {aft_min:.2f}m &#34;
+                            f&#34;(deficit {deficit_cm:.1f}cm)&#34;
+                        ),
+                        suggestion=&#34;Solver must fill AFT tanks or discharge FWD to meet Gate-A&#34;,
+                    )
+                )
+
+        return issues</code></pre>
+</details>
+<div class="desc"><p>Preflight gate feasibility check.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.GatePreflightValidator.preflight_gate_check"><code class="name flex">
+<span>def <span class="ident">preflight_gate_check</span></span>(<span>self, stage_results: pd.DataFrame) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def preflight_gate_check(self, stage_results: pd.DataFrame) -&gt; List[ValidationIssue]:
+    &#34;&#34;&#34;
+    Check if stages can possibly satisfy gates (before solver).
+    &#34;&#34;&#34;
+    issues: List[ValidationIssue] = []
+
+    fwd_max = next(
+        (
+            g.get(&#34;limit_value&#34;)
+            for g in self.gates
+            if g.get(&#34;gate_id&#34;) == &#34;FWD_MAX_2p70_critical_only&#34;
+        ),
+        2.70,
+    )
+    aft_min = next(
+        (
+            g.get(&#34;limit_value&#34;)
+            for g in self.gates
+            if g.get(&#34;gate_id&#34;) == &#34;AFT_MIN_2p70_propulsion&#34;
+        ),
+        2.70,
+    )
+
+    stage_col = _first_existing_column(stage_results, [&#34;Stage&#34;, &#34;StageName&#34;])
+    fwd_col = _first_existing_column(
+        stage_results, [&#34;Draft_FWD_m&#34;, &#34;Dfwd_m&#34;, &#34;Fwd Draft(m)&#34;, &#34;FWD_Height_m&#34;]
+    )
+    aft_col = _first_existing_column(
+        stage_results, [&#34;Draft_AFT_m&#34;, &#34;Daft_m&#34;, &#34;Aft Draft(m)&#34;, &#34;AFT_Height_m&#34;]
+    )
+
+    if stage_col is None or fwd_col is None or aft_col is None:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;GATE&#34;,
+                message=&#34;Stage draft columns missing for gate preflight&#34;,
+                details=&#34;Expected Draft_FWD_m/Dfwd_m and Draft_AFT_m/Daft_m&#34;,
+                suggestion=&#34;Regenerate stage_results.csv with draft columns&#34;,
+            )
+        )
+        return issues
+
+    for _, row in stage_results.iterrows():
+        stage = str(row.get(stage_col, &#34;&#34;))
+        dfwd_raw = _safe_float(row.get(fwd_col), 0.0) or 0.0
+        daft_raw = _safe_float(row.get(aft_col), 0.0) or 0.0
+
+        is_critical = &#34;critical&#34; in stage.lower() or &#34;6a&#34; in stage.lower()
+
+        if is_critical and dfwd_raw &gt; fwd_max:
+            excess_cm = (dfwd_raw - fwd_max) * 100.0
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;GATE&#34;,
+                    message=f&#34;Gate-B violation in {stage} (raw, before solver)&#34;,
+                    details=(
+                        f&#34;FWD={dfwd_raw:.3f}m &gt; {fwd_max:.2f}m &#34;
+                        f&#34;(excess {excess_cm:.1f}cm)&#34;
+                    ),
+                    suggestion=&#34;Solver must discharge FWD or fill AFT to meet Gate-B&#34;,
+                )
+            )
+
+        if daft_raw &lt; aft_min:
+            deficit_cm = (aft_min - daft_raw) * 100.0
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;GATE&#34;,
+                    message=f&#34;Gate-A violation in {stage} (raw, before solver)&#34;,
+                    details=(
+                        f&#34;AFT={daft_raw:.3f}m &lt; {aft_min:.2f}m &#34;
+                        f&#34;(deficit {deficit_cm:.1f}cm)&#34;
+                    ),
+                    suggestion=&#34;Solver must fill AFT tanks or discharge FWD to meet Gate-A&#34;,
+                )
+            )
+
+    return issues</code></pre>
+</details>
+<div class="desc"><p>Check if stages can possibly satisfy gates (before solver).</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.InputValidator"><code class="flex name class">
+<span>class <span class="ident">InputValidator</span></span>
+<span>(</span><span>profile: SiteProfile)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class InputValidator:
+    &#34;&#34;&#34;Validate input data consistency and completeness.&#34;&#34;&#34;
+
+    def __init__(self, profile: SiteProfile):
+        self.profile = profile
+
+    def validate_tank_current_t(
+        self,
+        tank_catalog: pd.DataFrame,
+        current_t_sensor: pd.DataFrame,
+    ) -&gt; List[ValidationIssue]:
+        &#34;&#34;&#34;
+        Validate current_t consistency.
+        - Sensor data vs catalog capacity
+        - Physical constraints (0 &lt;= current_t &lt;= Cap_t)
+        &#34;&#34;&#34;
+        issues: List[ValidationIssue] = []
+
+        if tank_catalog.empty or &#34;Tank&#34; not in tank_catalog.columns:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;Tank catalog missing or invalid&#34;,
+                    details=&#34;Tank catalog must include a Tank column&#34;,
+                    suggestion=&#34;Regenerate tank_ssot_for_solver.csv&#34;,
+                )
+            )
+            return issues
+
+        cap_col = _first_existing_column(tank_catalog, [&#34;Cap_t&#34;, &#34;Capacity_t&#34;])
+        if cap_col is None:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;Tank capacity column missing&#34;,
+                    details=&#34;Expected Cap_t or Capacity_t in tank catalog&#34;,
+                    suggestion=&#34;Regenerate tank_ssot_for_solver.csv from tank catalog&#34;,
+                )
+            )
+            return issues
+
+        if current_t_sensor.empty or &#34;Tank&#34; not in current_t_sensor.columns:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;Current_t sensor data missing or empty&#34;,
+                    details=&#34;No sensor rows available for validation&#34;,
+                    suggestion=&#34;Provide sensors/current_t_sensor.csv if available&#34;,
+                )
+            )
+            return issues
+
+        if &#34;Current_t&#34; not in current_t_sensor.columns:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;Current_t column missing in sensor CSV&#34;,
+                    details=&#34;Expected columns: Tank, Current_t&#34;,
+                    suggestion=&#34;Fix sensors/current_t_sensor.csv export&#34;,
+                )
+            )
+            return issues
+
+        catalog_tanks = set(tank_catalog[&#34;Tank&#34;].astype(str).str.strip().values)
+        sensor_tanks = set(current_t_sensor[&#34;Tank&#34;].astype(str).str.strip().values)
+
+        missing_in_sensor = catalog_tanks - sensor_tanks
+        if missing_in_sensor:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=f&#34;{len(missing_in_sensor)} tanks missing in current_t_sensor.csv&#34;,
+                    details=f&#34;Missing: {&#39;, &#39;.join(sorted(missing_in_sensor))}&#34;,
+                    suggestion=&#34;Add all tanks to current_t_sensor.csv or verify catalog&#34;,
+                )
+            )
+
+        extra_in_sensor = sensor_tanks - catalog_tanks
+        if extra_in_sensor:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=f&#34;{len(extra_in_sensor)} unknown tanks in sensor data&#34;,
+                    details=f&#34;Extra: {&#39;, &#39;.join(sorted(extra_in_sensor))}&#34;,
+                    suggestion=&#34;Remove unknown tanks or update tank catalog&#34;,
+                )
+            )
+
+        # Check current_t vs capacity
+        sensor_map = (
+            current_t_sensor.set_index(&#34;Tank&#34;)[&#34;Current_t&#34;]
+            .apply(pd.to_numeric, errors=&#34;coerce&#34;)
+            .to_dict()
+        )
+        for _, row in tank_catalog.iterrows():
+            tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+            if not tank_id or tank_id not in sensor_map:
+                continue
+            cap_t = _safe_float(row.get(cap_col), None)
+            current_t = _safe_float(sensor_map.get(tank_id), None)
+            if cap_t is None or current_t is None:
+                continue
+
+            if current_t &lt; 0:
+                issues.append(
+                    ValidationIssue(
+                        severity=&#34;CRITICAL&#34;,
+                        category=&#34;INPUT&#34;,
+                        message=f&#34;Negative current_t for {tank_id}&#34;,
+                        details=f&#34;Current_t={current_t:.2f}t (must be &gt;= 0)&#34;,
+                        suggestion=&#34;Check sensor calibration or data entry&#34;,
+                    )
+                )
+
+            if current_t &gt; cap_t * 1.05:
+                issues.append(
+                    ValidationIssue(
+                        severity=&#34;CRITICAL&#34;,
+                        category=&#34;INPUT&#34;,
+                        message=f&#34;Overfilled tank {tank_id}&#34;,
+                        details=f&#34;Current_t={current_t:.2f}t &gt; Cap_t={cap_t:.2f}t&#34;,
+                        suggestion=&#34;Verify tank sounding or capacity data&#34;,
+                    )
+                )
+            elif current_t &gt; cap_t:
+                issues.append(
+                    ValidationIssue(
+                        severity=&#34;WARNING&#34;,
+                        category=&#34;INPUT&#34;,
+                        message=f&#34;Tank {tank_id} near capacity&#34;,
+                        details=f&#34;Current_t={current_t:.2f}t, Cap_t={cap_t:.2f}t&#34;,
+                        suggestion=&#34;Tank may be at maximum fill&#34;,
+                    )
+                )
+
+        return issues
+
+    def validate_stage_results(self, stage_results: pd.DataFrame) -&gt; List[ValidationIssue]:
+        &#34;&#34;&#34;
+        Validate stage_results.csv completeness.
+        - Required columns present
+        - No NaN in critical fields
+        - Stage naming consistency
+        &#34;&#34;&#34;
+        issues: List[ValidationIssue] = []
+
+        if stage_results.empty:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;stage_results.csv is empty&#34;,
+                    details=&#34;No rows found&#34;,
+                    suggestion=&#34;Regenerate stage_results.csv from TR Excel&#34;,
+                )
+            )
+            return issues
+
+        stage_col = _first_existing_column(stage_results, [&#34;Stage&#34;, &#34;StageName&#34;])
+        tmean_col = _first_existing_column(stage_results, [&#34;Tmean_m&#34;])
+        trim_col = _first_existing_column(stage_results, [&#34;Trim_cm&#34;, &#34;Trim&#34;])
+
+        missing_cols = []
+        for label, col in (
+            (&#34;Stage&#34;, stage_col),
+            (&#34;Tmean_m&#34;, tmean_col),
+            (&#34;Trim_cm&#34;, trim_col),
+        ):
+            if col is None:
+                missing_cols.append(label)
+
+        if missing_cols:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;Missing required columns in stage_results.csv&#34;,
+                    details=f&#34;Missing: {&#39;, &#39;.join(missing_cols)}&#34;,
+                    suggestion=&#34;Regenerate stage_results.csv from TR Excel&#34;,
+                )
+            )
+            return issues
+
+        for col in (stage_col, tmean_col, trim_col):
+            nan_count = stage_results[col].isna().sum()
+            if nan_count &gt; 0:
+                issues.append(
+                    ValidationIssue(
+                        severity=&#34;CRITICAL&#34;,
+                        category=&#34;INPUT&#34;,
+                        message=f&#34;NaN values in {col}&#34;,
+                        details=f&#34;{nan_count} rows with missing {col} data&#34;,
+                        suggestion=&#34;Check TR Excel calculation or export logic&#34;,
+                    )
+                )
+
+        stage_names = stage_results[stage_col].astype(str).values
+        critical_stages = [
+            s
+            for s in stage_names
+            if &#34;critical&#34; in s.lower() or &#34;6a&#34; in s.lower()
+        ]
+        if not critical_stages:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=&#34;No critical stages identified&#34;,
+                    details=&#34;Stage names do not contain &#39;critical&#39; or &#39;6A&#39; markers&#34;,
+                    suggestion=&#34;Verify stage naming or Gate-B applicability rules&#34;,
+                )
+            )
+
+        return issues</code></pre>
+</details>
+<div class="desc"><p>Validate input data consistency and completeness.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.InputValidator.validate_stage_results"><code class="name flex">
+<span>def <span class="ident">validate_stage_results</span></span>(<span>self, stage_results: pd.DataFrame) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_stage_results(self, stage_results: pd.DataFrame) -&gt; List[ValidationIssue]:
+    &#34;&#34;&#34;
+    Validate stage_results.csv completeness.
+    - Required columns present
+    - No NaN in critical fields
+    - Stage naming consistency
+    &#34;&#34;&#34;
+    issues: List[ValidationIssue] = []
+
+    if stage_results.empty:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;stage_results.csv is empty&#34;,
+                details=&#34;No rows found&#34;,
+                suggestion=&#34;Regenerate stage_results.csv from TR Excel&#34;,
+            )
+        )
+        return issues
+
+    stage_col = _first_existing_column(stage_results, [&#34;Stage&#34;, &#34;StageName&#34;])
+    tmean_col = _first_existing_column(stage_results, [&#34;Tmean_m&#34;])
+    trim_col = _first_existing_column(stage_results, [&#34;Trim_cm&#34;, &#34;Trim&#34;])
+
+    missing_cols = []
+    for label, col in (
+        (&#34;Stage&#34;, stage_col),
+        (&#34;Tmean_m&#34;, tmean_col),
+        (&#34;Trim_cm&#34;, trim_col),
+    ):
+        if col is None:
+            missing_cols.append(label)
+
+    if missing_cols:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;Missing required columns in stage_results.csv&#34;,
+                details=f&#34;Missing: {&#39;, &#39;.join(missing_cols)}&#34;,
+                suggestion=&#34;Regenerate stage_results.csv from TR Excel&#34;,
+            )
+        )
+        return issues
+
+    for col in (stage_col, tmean_col, trim_col):
+        nan_count = stage_results[col].isna().sum()
+        if nan_count &gt; 0:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=f&#34;NaN values in {col}&#34;,
+                    details=f&#34;{nan_count} rows with missing {col} data&#34;,
+                    suggestion=&#34;Check TR Excel calculation or export logic&#34;,
+                )
+            )
+
+    stage_names = stage_results[stage_col].astype(str).values
+    critical_stages = [
+        s
+        for s in stage_names
+        if &#34;critical&#34; in s.lower() or &#34;6a&#34; in s.lower()
+    ]
+    if not critical_stages:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;No critical stages identified&#34;,
+                details=&#34;Stage names do not contain &#39;critical&#39; or &#39;6A&#39; markers&#34;,
+                suggestion=&#34;Verify stage naming or Gate-B applicability rules&#34;,
+            )
+        )
+
+    return issues</code></pre>
+</details>
+<div class="desc"><p>Validate stage_results.csv completeness.
+- Required columns present
+- No NaN in critical fields
+- Stage naming consistency</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.InputValidator.validate_tank_current_t"><code class="name flex">
+<span>def <span class="ident">validate_tank_current_t</span></span>(<span>self, tank_catalog: pd.DataFrame, current_t_sensor: pd.DataFrame) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_tank_current_t(
+    self,
+    tank_catalog: pd.DataFrame,
+    current_t_sensor: pd.DataFrame,
+) -&gt; List[ValidationIssue]:
+    &#34;&#34;&#34;
+    Validate current_t consistency.
+    - Sensor data vs catalog capacity
+    - Physical constraints (0 &lt;= current_t &lt;= Cap_t)
+    &#34;&#34;&#34;
+    issues: List[ValidationIssue] = []
+
+    if tank_catalog.empty or &#34;Tank&#34; not in tank_catalog.columns:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;Tank catalog missing or invalid&#34;,
+                details=&#34;Tank catalog must include a Tank column&#34;,
+                suggestion=&#34;Regenerate tank_ssot_for_solver.csv&#34;,
+            )
+        )
+        return issues
+
+    cap_col = _first_existing_column(tank_catalog, [&#34;Cap_t&#34;, &#34;Capacity_t&#34;])
+    if cap_col is None:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;Tank capacity column missing&#34;,
+                details=&#34;Expected Cap_t or Capacity_t in tank catalog&#34;,
+                suggestion=&#34;Regenerate tank_ssot_for_solver.csv from tank catalog&#34;,
+            )
+        )
+        return issues
+
+    if current_t_sensor.empty or &#34;Tank&#34; not in current_t_sensor.columns:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;Current_t sensor data missing or empty&#34;,
+                details=&#34;No sensor rows available for validation&#34;,
+                suggestion=&#34;Provide sensors/current_t_sensor.csv if available&#34;,
+            )
+        )
+        return issues
+
+    if &#34;Current_t&#34; not in current_t_sensor.columns:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;INPUT&#34;,
+                message=&#34;Current_t column missing in sensor CSV&#34;,
+                details=&#34;Expected columns: Tank, Current_t&#34;,
+                suggestion=&#34;Fix sensors/current_t_sensor.csv export&#34;,
+            )
+        )
+        return issues
+
+    catalog_tanks = set(tank_catalog[&#34;Tank&#34;].astype(str).str.strip().values)
+    sensor_tanks = set(current_t_sensor[&#34;Tank&#34;].astype(str).str.strip().values)
+
+    missing_in_sensor = catalog_tanks - sensor_tanks
+    if missing_in_sensor:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;INPUT&#34;,
+                message=f&#34;{len(missing_in_sensor)} tanks missing in current_t_sensor.csv&#34;,
+                details=f&#34;Missing: {&#39;, &#39;.join(sorted(missing_in_sensor))}&#34;,
+                suggestion=&#34;Add all tanks to current_t_sensor.csv or verify catalog&#34;,
+            )
+        )
+
+    extra_in_sensor = sensor_tanks - catalog_tanks
+    if extra_in_sensor:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;INPUT&#34;,
+                message=f&#34;{len(extra_in_sensor)} unknown tanks in sensor data&#34;,
+                details=f&#34;Extra: {&#39;, &#39;.join(sorted(extra_in_sensor))}&#34;,
+                suggestion=&#34;Remove unknown tanks or update tank catalog&#34;,
+            )
+        )
+
+    # Check current_t vs capacity
+    sensor_map = (
+        current_t_sensor.set_index(&#34;Tank&#34;)[&#34;Current_t&#34;]
+        .apply(pd.to_numeric, errors=&#34;coerce&#34;)
+        .to_dict()
+    )
+    for _, row in tank_catalog.iterrows():
+        tank_id = str(row.get(&#34;Tank&#34;, &#34;&#34;)).strip()
+        if not tank_id or tank_id not in sensor_map:
+            continue
+        cap_t = _safe_float(row.get(cap_col), None)
+        current_t = _safe_float(sensor_map.get(tank_id), None)
+        if cap_t is None or current_t is None:
+            continue
+
+        if current_t &lt; 0:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=f&#34;Negative current_t for {tank_id}&#34;,
+                    details=f&#34;Current_t={current_t:.2f}t (must be &gt;= 0)&#34;,
+                    suggestion=&#34;Check sensor calibration or data entry&#34;,
+                )
+            )
+
+        if current_t &gt; cap_t * 1.05:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=f&#34;Overfilled tank {tank_id}&#34;,
+                    details=f&#34;Current_t={current_t:.2f}t &gt; Cap_t={cap_t:.2f}t&#34;,
+                    suggestion=&#34;Verify tank sounding or capacity data&#34;,
+                )
+            )
+        elif current_t &gt; cap_t:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;INPUT&#34;,
+                    message=f&#34;Tank {tank_id} near capacity&#34;,
+                    details=f&#34;Current_t={current_t:.2f}t, Cap_t={cap_t:.2f}t&#34;,
+                    suggestion=&#34;Tank may be at maximum fill&#34;,
+                )
+            )
+
+    return issues</code></pre>
+</details>
+<div class="desc"><p>Validate current_t consistency.
+- Sensor data vs catalog capacity
+- Physical constraints (0 &lt;= current_t &lt;= Cap_t)</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.PhysicsValidator"><code class="flex name class">
+<span>class <span class="ident">PhysicsValidator</span></span>
+<span>(</span><span>profile: SiteProfile)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PhysicsValidator:
+    &#34;&#34;&#34;Validate physical consistency of calculations.&#34;&#34;&#34;
+
+    def __init__(self, profile: SiteProfile):
+        self.profile = profile
+        self.MTC = 34.00
+        self.LCF_from_mid = 0.76
+        self.TPC = 8.00
+        self.Lpp = 60.302
+        self.D_vessel = 3.65
+
+    def validate_draft_calculation(
+        self,
+        displ_t: float,
+        tmean_m: float,
+        trim_cm: float,
+        hydro_table: pd.DataFrame,
+    ) -&gt; List[ValidationIssue]:
+        &#34;&#34;&#34;
+        Verify drafts are physically consistent.
+        - Displacement matches hydrostatic table
+        - Trim calculation matches Method B
+        &#34;&#34;&#34;
+        issues: List[ValidationIssue] = []
+
+        draft_col = _first_existing_column(hydro_table, [&#34;Draft_m&#34;, &#34;Tmean_m&#34;])
+        disp_col = _first_existing_column(hydro_table, [&#34;Displ_t&#34;, &#34;Disp_t&#34;])
+        tpc_col = _first_existing_column(hydro_table, [&#34;TPC_t_per_cm&#34;])
+
+        if draft_col is None or disp_col is None:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;PHYSICS&#34;,
+                    message=&#34;Hydro table missing Draft/Displacement columns&#34;,
+                    details=&#34;Expected Draft_m or Tmean_m, and Displ_t or Disp_t&#34;,
+                    suggestion=&#34;Verify Hydro_Table_Engineering.json structure&#34;,
+                )
+            )
+            return issues
+
+        hydro_table_sorted = hydro_table.sort_values(draft_col)
+        closest_idx = (hydro_table_sorted[draft_col] - tmean_m).abs().idxmin()
+        hydro_row = hydro_table_sorted.loc[closest_idx]
+
+        hydro_displ = _safe_float(hydro_row.get(disp_col), None)
+        if hydro_displ is None:
+            return issues
+
+        tpc_val = _safe_float(hydro_row.get(tpc_col), None) if tpc_col else None
+        tpc_use = tpc_val if tpc_val is not None else self.TPC
+
+        displ_error_t = abs(displ_t - hydro_displ)
+        if displ_error_t &gt; tpc_use * 5:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;PHYSICS&#34;,
+                    message=&#34;Displacement mismatch with hydro table&#34;,
+                    details=(
+                        f&#34;Calc: {displ_t:.1f}t, Hydro: {hydro_displ:.1f}t &#34;
+                        f&#34;(delta={displ_error_t:.1f}t)&#34;
+                    ),
+                    suggestion=&#34;Check weight calculation for missing components&#34;,
+                )
+            )
+
+        if tmean_m &gt; self.D_vessel:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;PHYSICS&#34;,
+                    message=&#34;Tmean exceeds vessel molded depth&#34;,
+                    details=f&#34;Tmean={tmean_m:.3f}m &gt; D_vessel={self.D_vessel:.3f}m&#34;,
+                    suggestion=&#34;Check displacement or hydro table data&#34;,
+                )
+            )
+
+        trim_m = trim_cm / 100.0
+        slope = trim_m / self.Lpp
+        x_fp = -self.Lpp / 2.0
+        x_ap = self.Lpp / 2.0
+
+        dfwd_calc = tmean_m + slope * (x_fp - self.LCF_from_mid)
+        daft_calc = tmean_m + slope * (x_ap - self.LCF_from_mid)
+
+        if dfwd_calc &gt; self.D_vessel or daft_calc &gt; self.D_vessel:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;PHYSICS&#34;,
+                    message=&#34;Draft exceeds D_vessel after Method B calculation&#34;,
+                    details=(
+                        f&#34;FWD={dfwd_calc:.3f}m, AFT={daft_calc:.3f}m &#34;
+                        f&#34;(D_vessel={self.D_vessel:.3f}m)&#34;
+                    ),
+                    suggestion=&#34;Check trim calculation or apply clipping&#34;,
+                )
+            )
+
+        return issues
+
+    def validate_trim_moment(self, weights: pd.DataFrame) -&gt; List[ValidationIssue]:
+        &#34;&#34;&#34;
+        Validate trimming moment calculation.
+        - LCG from midship convention (AFT positive)
+        - Trim = TM / MTC consistency
+        &#34;&#34;&#34;
+        issues: List[ValidationIssue] = []
+
+        if &#34;w_t&#34; not in weights.columns or &#34;x_from_mid_m&#34; not in weights.columns:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;PHYSICS&#34;,
+                    message=&#34;Missing weight/LCG columns for trim validation&#34;,
+                    details=&#34;Expected w_t and x_from_mid_m columns&#34;,
+                    suggestion=&#34;Ensure weights DataFrame is provided&#34;,
+                )
+            )
+            return issues
+
+        tm_lcf = float((weights[&#34;w_t&#34;] * (weights[&#34;x_from_mid_m&#34;] - self.LCF_from_mid)).sum())
+        trim_calc_cm = tm_lcf / self.MTC
+
+        issues.append(
+            ValidationIssue(
+                severity=&#34;INFO&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Calculated trim from weights&#34;,
+                details=f&#34;TM_LCF={tm_lcf:.1f} t*m, Trim={trim_calc_cm:.1f} cm&#34;,
+                suggestion=&#34;Compare with stage_results.csv Trim_cm for consistency&#34;,
+            )
+        )
+
+        return issues</code></pre>
+</details>
+<div class="desc"><p>Validate physical consistency of calculations.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.PhysicsValidator.validate_draft_calculation"><code class="name flex">
+<span>def <span class="ident">validate_draft_calculation</span></span>(<span>self, displ_t: float, tmean_m: float, trim_cm: float, hydro_table: pd.DataFrame) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_draft_calculation(
+    self,
+    displ_t: float,
+    tmean_m: float,
+    trim_cm: float,
+    hydro_table: pd.DataFrame,
+) -&gt; List[ValidationIssue]:
+    &#34;&#34;&#34;
+    Verify drafts are physically consistent.
+    - Displacement matches hydrostatic table
+    - Trim calculation matches Method B
+    &#34;&#34;&#34;
+    issues: List[ValidationIssue] = []
+
+    draft_col = _first_existing_column(hydro_table, [&#34;Draft_m&#34;, &#34;Tmean_m&#34;])
+    disp_col = _first_existing_column(hydro_table, [&#34;Displ_t&#34;, &#34;Disp_t&#34;])
+    tpc_col = _first_existing_column(hydro_table, [&#34;TPC_t_per_cm&#34;])
+
+    if draft_col is None or disp_col is None:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Hydro table missing Draft/Displacement columns&#34;,
+                details=&#34;Expected Draft_m or Tmean_m, and Displ_t or Disp_t&#34;,
+                suggestion=&#34;Verify Hydro_Table_Engineering.json structure&#34;,
+            )
+        )
+        return issues
+
+    hydro_table_sorted = hydro_table.sort_values(draft_col)
+    closest_idx = (hydro_table_sorted[draft_col] - tmean_m).abs().idxmin()
+    hydro_row = hydro_table_sorted.loc[closest_idx]
+
+    hydro_displ = _safe_float(hydro_row.get(disp_col), None)
+    if hydro_displ is None:
+        return issues
+
+    tpc_val = _safe_float(hydro_row.get(tpc_col), None) if tpc_col else None
+    tpc_use = tpc_val if tpc_val is not None else self.TPC
+
+    displ_error_t = abs(displ_t - hydro_displ)
+    if displ_error_t &gt; tpc_use * 5:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Displacement mismatch with hydro table&#34;,
+                details=(
+                    f&#34;Calc: {displ_t:.1f}t, Hydro: {hydro_displ:.1f}t &#34;
+                    f&#34;(delta={displ_error_t:.1f}t)&#34;
+                ),
+                suggestion=&#34;Check weight calculation for missing components&#34;,
+            )
+        )
+
+    if tmean_m &gt; self.D_vessel:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Tmean exceeds vessel molded depth&#34;,
+                details=f&#34;Tmean={tmean_m:.3f}m &gt; D_vessel={self.D_vessel:.3f}m&#34;,
+                suggestion=&#34;Check displacement or hydro table data&#34;,
+            )
+        )
+
+    trim_m = trim_cm / 100.0
+    slope = trim_m / self.Lpp
+    x_fp = -self.Lpp / 2.0
+    x_ap = self.Lpp / 2.0
+
+    dfwd_calc = tmean_m + slope * (x_fp - self.LCF_from_mid)
+    daft_calc = tmean_m + slope * (x_ap - self.LCF_from_mid)
+
+    if dfwd_calc &gt; self.D_vessel or daft_calc &gt; self.D_vessel:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Draft exceeds D_vessel after Method B calculation&#34;,
+                details=(
+                    f&#34;FWD={dfwd_calc:.3f}m, AFT={daft_calc:.3f}m &#34;
+                    f&#34;(D_vessel={self.D_vessel:.3f}m)&#34;
+                ),
+                suggestion=&#34;Check trim calculation or apply clipping&#34;,
+            )
+        )
+
+    return issues</code></pre>
+</details>
+<div class="desc"><p>Verify drafts are physically consistent.
+- Displacement matches hydrostatic table
+- Trim calculation matches Method B</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.PhysicsValidator.validate_trim_moment"><code class="name flex">
+<span>def <span class="ident">validate_trim_moment</span></span>(<span>self, weights: pd.DataFrame) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_trim_moment(self, weights: pd.DataFrame) -&gt; List[ValidationIssue]:
+    &#34;&#34;&#34;
+    Validate trimming moment calculation.
+    - LCG from midship convention (AFT positive)
+    - Trim = TM / MTC consistency
+    &#34;&#34;&#34;
+    issues: List[ValidationIssue] = []
+
+    if &#34;w_t&#34; not in weights.columns or &#34;x_from_mid_m&#34; not in weights.columns:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;PHYSICS&#34;,
+                message=&#34;Missing weight/LCG columns for trim validation&#34;,
+                details=&#34;Expected w_t and x_from_mid_m columns&#34;,
+                suggestion=&#34;Ensure weights DataFrame is provided&#34;,
+            )
+        )
+        return issues
+
+    tm_lcf = float((weights[&#34;w_t&#34;] * (weights[&#34;x_from_mid_m&#34;] - self.LCF_from_mid)).sum())
+    trim_calc_cm = tm_lcf / self.MTC
+
+    issues.append(
+        ValidationIssue(
+            severity=&#34;INFO&#34;,
+            category=&#34;PHYSICS&#34;,
+            message=&#34;Calculated trim from weights&#34;,
+            details=f&#34;TM_LCF={tm_lcf:.1f} t*m, Trim={trim_calc_cm:.1f} cm&#34;,
+            suggestion=&#34;Compare with stage_results.csv Trim_cm for consistency&#34;,
+        )
+    )
+
+    return issues</code></pre>
+</details>
+<div class="desc"><p>Validate trimming moment calculation.
+- LCG from midship convention (AFT positive)
+- Trim = TM / MTC consistency</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.SSOTVersionValidator"><code class="flex name class">
+<span>class <span class="ident">SSOTVersionValidator</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SSOTVersionValidator:
+    &#34;&#34;&#34;Validate SSOT profile version and schema compliance.&#34;&#34;&#34;
+
+    @staticmethod
+    def validate_ssot_version(
+        profile_path: str, required_version: str = &#34;v1.0&#34;
+    ) -&gt; List[ValidationIssue]:
+        issues: List[ValidationIssue] = []
+
+        if not profile_path:
+            return issues
+
+        if not Path(profile_path).exists():
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;SSOT&#34;,
+                    message=&#34;SSOT profile not found&#34;,
+                    details=f&#34;Path: {profile_path}&#34;,
+                    suggestion=&#34;Verify profile path or create AGI profile&#34;,
+                )
+            )
+            return issues
+
+        profile_data = json.loads(Path(profile_path).read_text(encoding=&#34;utf-8&#34;))
+
+        profile_version = profile_data.get(&#34;version&#34;, &#34;unknown&#34;)
+        if profile_version != required_version:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;WARNING&#34;,
+                    category=&#34;SSOT&#34;,
+                    message=&#34;SSOT profile version mismatch&#34;,
+                    details=f&#34;Profile: {profile_version}, Required: {required_version}&#34;,
+                    suggestion=&#34;Update profile or verify compatibility&#34;,
+                )
+            )
+
+        required_sections = [&#34;gates&#34;, &#34;draft_calc&#34;, &#34;hydro&#34;, &#34;ballast&#34;]
+        missing_sections = [s for s in required_sections if s not in profile_data]
+        if missing_sections:
+            issues.append(
+                ValidationIssue(
+                    severity=&#34;CRITICAL&#34;,
+                    category=&#34;SSOT&#34;,
+                    message=&#34;Missing required sections in SSOT profile&#34;,
+                    details=f&#34;Missing: {&#39;, &#39;.join(missing_sections)}&#34;,
+                    suggestion=&#34;Update profile to SSOT Phase 1 schema&#34;,
+                )
+            )
+
+        return issues</code></pre>
+</details>
+<div class="desc"><p>Validate SSOT profile version and schema compliance.</p></div>
+<h3>Static methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.SSOTVersionValidator.validate_ssot_version"><code class="name flex">
+<span>def <span class="ident">validate_ssot_version</span></span>(<span>profile_path: str, required_version: str = 'v1.0') ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def validate_ssot_version(
+    profile_path: str, required_version: str = &#34;v1.0&#34;
+) -&gt; List[ValidationIssue]:
+    issues: List[ValidationIssue] = []
+
+    if not profile_path:
+        return issues
+
+    if not Path(profile_path).exists():
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;SSOT&#34;,
+                message=&#34;SSOT profile not found&#34;,
+                details=f&#34;Path: {profile_path}&#34;,
+                suggestion=&#34;Verify profile path or create AGI profile&#34;,
+            )
+        )
+        return issues
+
+    profile_data = json.loads(Path(profile_path).read_text(encoding=&#34;utf-8&#34;))
+
+    profile_version = profile_data.get(&#34;version&#34;, &#34;unknown&#34;)
+    if profile_version != required_version:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;WARNING&#34;,
+                category=&#34;SSOT&#34;,
+                message=&#34;SSOT profile version mismatch&#34;,
+                details=f&#34;Profile: {profile_version}, Required: {required_version}&#34;,
+                suggestion=&#34;Update profile or verify compatibility&#34;,
+            )
+        )
+
+    required_sections = [&#34;gates&#34;, &#34;draft_calc&#34;, &#34;hydro&#34;, &#34;ballast&#34;]
+    missing_sections = [s for s in required_sections if s not in profile_data]
+    if missing_sections:
+        issues.append(
+            ValidationIssue(
+                severity=&#34;CRITICAL&#34;,
+                category=&#34;SSOT&#34;,
+                message=&#34;Missing required sections in SSOT profile&#34;,
+                details=f&#34;Missing: {&#39;, &#39;.join(missing_sections)}&#34;,
+                suggestion=&#34;Update profile to SSOT Phase 1 schema&#34;,
+            )
+        )
+
+    return issues</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationIssue"><code class="flex name class">
+<span>class <span class="ident">ValidationIssue</span></span>
+<span>(</span><span>severity: str, category: str, message: str, details: str, suggestion: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class ValidationIssue:
+    &#34;&#34;&#34;Single validation issue.&#34;&#34;&#34;
+
+    severity: str  # CRITICAL, WARNING, INFO
+    category: str  # INPUT, PHYSICS, GATE, SSOT
+    message: str
+    details: str
+    suggestion: str</code></pre>
+</details>
+<div class="desc"><p>Single validation issue.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationIssue.category"><code class="name">var <span class="ident">category</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationIssue.details"><code class="name">var <span class="ident">details</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationIssue.message"><code class="name">var <span class="ident">message</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationIssue.severity"><code class="name">var <span class="ident">severity</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationIssue.suggestion"><code class="name">var <span class="ident">suggestion</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport"><code class="flex name class">
+<span>class <span class="ident">ValidationReport</span></span>
+<span>(</span><span>passed: bool,<br>issues: List[<a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue">ValidationIssue</a>],<br>timestamp: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class ValidationReport:
+    &#34;&#34;&#34;Complete validation report.&#34;&#34;&#34;
+
+    passed: bool
+    issues: List[ValidationIssue]
+    timestamp: str
+
+    def get_critical_issues(self) -&gt; List[ValidationIssue]:
+        return [i for i in self.issues if i.severity == &#34;CRITICAL&#34;]
+
+    def get_warnings(self) -&gt; List[ValidationIssue]:
+        return [i for i in self.issues if i.severity == &#34;WARNING&#34;]
+
+    def summary(self) -&gt; str:
+        critical = len(self.get_critical_issues())
+        warnings = len(self.get_warnings())
+        status = &#34;PASS&#34; if self.passed else &#34;FAIL&#34;
+        return f&#34;[{status}] {critical} Critical, {warnings} Warnings&#34;</code></pre>
+</details>
+<div class="desc"><p>Complete validation report.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport.issues"><code class="name">var <span class="ident">issues</span> : List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport.passed"><code class="name">var <span class="ident">passed</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport.timestamp"><code class="name">var <span class="ident">timestamp</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport.get_critical_issues"><code class="name flex">
+<span>def <span class="ident">get_critical_issues</span></span>(<span>self) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_critical_issues(self) -&gt; List[ValidationIssue]:
+    return [i for i in self.issues if i.severity == &#34;CRITICAL&#34;]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport.get_warnings"><code class="name flex">
+<span>def <span class="ident">get_warnings</span></span>(<span>self) ‑> List[01_EXECUTION_FILES.ssot.validators.ValidationIssue]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_warnings(self) -&gt; List[ValidationIssue]:
+    return [i for i in self.issues if i.severity == &#34;WARNING&#34;]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ssot.validators.ValidationReport.summary"><code class="name flex">
+<span>def <span class="ident">summary</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def summary(self) -&gt; str:
+    critical = len(self.get_critical_issues())
+    warnings = len(self.get_warnings())
+    status = &#34;PASS&#34; if self.passed else &#34;FAIL&#34;
+    return f&#34;[{status}] {critical} Critical, {warnings} Warnings&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.ssot" href="index.html">01_EXECUTION_FILES.ssot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.load_hydro_table_df" href="#01_EXECUTION_FILES.ssot.validators.load_hydro_table_df">load_hydro_table_df</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.print_validation_report" href="#01_EXECUTION_FILES.ssot.validators.print_validation_report">print_validation_report</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.run_full_validation" href="#01_EXECUTION_FILES.ssot.validators.run_full_validation">run_full_validation</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.validators.GatePreflightValidator" href="#01_EXECUTION_FILES.ssot.validators.GatePreflightValidator">GatePreflightValidator</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.GatePreflightValidator.preflight_gate_check" href="#01_EXECUTION_FILES.ssot.validators.GatePreflightValidator.preflight_gate_check">preflight_gate_check</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.validators.InputValidator" href="#01_EXECUTION_FILES.ssot.validators.InputValidator">InputValidator</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.InputValidator.validate_stage_results" href="#01_EXECUTION_FILES.ssot.validators.InputValidator.validate_stage_results">validate_stage_results</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.InputValidator.validate_tank_current_t" href="#01_EXECUTION_FILES.ssot.validators.InputValidator.validate_tank_current_t">validate_tank_current_t</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.validators.PhysicsValidator" href="#01_EXECUTION_FILES.ssot.validators.PhysicsValidator">PhysicsValidator</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.PhysicsValidator.validate_draft_calculation" href="#01_EXECUTION_FILES.ssot.validators.PhysicsValidator.validate_draft_calculation">validate_draft_calculation</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.PhysicsValidator.validate_trim_moment" href="#01_EXECUTION_FILES.ssot.validators.PhysicsValidator.validate_trim_moment">validate_trim_moment</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.validators.SSOTVersionValidator" href="#01_EXECUTION_FILES.ssot.validators.SSOTVersionValidator">SSOTVersionValidator</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.SSOTVersionValidator.validate_ssot_version" href="#01_EXECUTION_FILES.ssot.validators.SSOTVersionValidator.validate_ssot_version">validate_ssot_version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue">ValidationIssue</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue.category" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue.category">category</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue.details" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue.details">details</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue.message" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue.message">message</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue.severity" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue.severity">severity</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationIssue.suggestion" href="#01_EXECUTION_FILES.ssot.validators.ValidationIssue.suggestion">suggestion</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport">ValidationReport</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport.get_critical_issues" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport.get_critical_issues">get_critical_issues</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport.get_warnings" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport.get_warnings">get_warnings</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport.issues" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport.issues">issues</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport.passed" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport.passed">passed</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport.summary" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport.summary">summary</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ssot.validators.ValidationReport.timestamp" href="#01_EXECUTION_FILES.ssot.validators.ValidationReport.timestamp">timestamp</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

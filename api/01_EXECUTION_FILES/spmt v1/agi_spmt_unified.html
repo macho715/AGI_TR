@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.spmt v1.agi_spmt_unified API documentation</title>
+<meta name="description" content="AGI SPMT Shuttle — Integrated Builder (SSOT-locked) …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.spmt v1.agi_spmt_unified</code></h1>
+</header>
+<section id="section-intro">
+<p>AGI SPMT Shuttle — Integrated Builder (SSOT-locked)</p>
+<p>What this tool does (AGI scope)
+1) Enforces a single coordinate convention (SSOT):
+- Input "Frame" values are <strong>Fr(m) = station from AP in meters</strong> (coord_mode=FR_M)
+- x_from_midship(m) = midship_from_ap_m - Fr(m)
+2) Generates an Excel workbook with:
+- Stage_Config
+- Cargo_SPMT_Inputs (auto-filled, including CoG_x_m = x_from_midship)
+- Stage_Loads (itemized, per stage)
+- Stage_Summary (per stage)
+- Stage_Results + Stage-wise Cargo on Deck (Bryan-format summary)
+- LOG (warnings / assumptions / audit notes)
+3) Exports CSVs (stage_loads.csv, stage_summary.csv, stage_results.csv)</p>
+<p>Notes
+- This script intentionally does NOT use "structural frame spacing" for coordinate conversion.
+- If your input values are truly "frame indexes", DO NOT use this tool without a verified
+frame-index mapping; use a dedicated conversion table instead.</p>
+<p>CLI Example
+python agi_spmt_unified.py &ndash;config spmt_shuttle_config_AGI.json &ndash;out_xlsx AGI_SPMT_Shuttle.xlsx &ndash;out_dir out/</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.build_stage_0_to_8"><code class="name flex">
+<span>def <span class="ident">build_stage_0_to_8</span></span>(<span>ssot: VesselSSOT, cfg: Dict[str, Any]) ‑> List[01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_stage_0_to_8(ssot: VesselSSOT, cfg: Dict[str, Any]) -&gt; List[StageSummary]:
+    midship = float(ssot.midship_from_ap_m)
+
+    def fr_to_x(fr_m: float) -&gt; float:
+        return ssot.x_from_midship_m(fr_m)
+
+    def make_item(name: str, w_t: float, fr_in: float) -&gt; StageItem:
+        fr_m = ssot.to_fr_m_from_ap(fr_in)
+        if fr_m is None:
+            raise ValueError(f&#34;{name}: missing position (frame).&#34;)
+        x = fr_to_x(fr_m)
+        return StageItem(name, float(w_t), float(fr_m), float(x))
+
+    w_tr = float(cfg[&#34;w_tr_t&#34;])
+    w_spmt = float(cfg[&#34;w_spmt_t&#34;])
+    w_beams = float(cfg[&#34;w_beams_t&#34;])
+    w_ppu = float(cfg[&#34;w_ppu_t&#34;])
+    w_asmb = float(cfg[&#34;assembly_total_t&#34;])
+    w_dun = float(cfg[&#34;dunnage_t&#34;])
+    w_pre = float(cfg.get(&#34;preballast_t&#34;, 0.0))
+
+    tr1_fr = float(cfg[&#34;tr1_final_frame&#34;])
+    tr2_fr = float(cfg[&#34;tr2_final_frame&#34;])
+    ramp_fr = float(cfg[&#34;ramp_frame&#34;])
+    ramp_start_fr = float(cfg.get(&#34;ramp_start_frame&#34;, ramp_fr))
+    ramp_mid_fr = float(cfg.get(&#34;ramp_mid_frame&#34;, ramp_fr))
+    spmt_park_fr = float(cfg[&#34;spmt_park_frame&#34;])
+    ppu_park_fr = float(cfg[&#34;ppu_park_frame&#34;])
+    dunnage_fr = float(cfg[&#34;dunnage_frame&#34;])
+    preballast_pos = float(cfg.get(&#34;preballast_pos&#34;, 0.0))
+
+    final_spmt_mode = str(cfg[&#34;final_spmt_mode&#34;]).upper()
+    beams_mode = str(cfg[&#34;beams_mode&#34;]).upper()
+    ppu_mode = str(cfg[&#34;ppu_mode&#34;]).upper()
+    ppu_in_assembly = bool(cfg[&#34;ppu_included_in_assembly&#34;])
+
+    include_pre0 = bool(cfg.get(&#34;include_preballast_in_stage0&#34;, False))
+    include_pre5 = bool(cfg.get(&#34;include_preballast_in_stage5&#34;, False))
+
+    def items_tr_fixed(tr1_loaded: bool, tr2_loaded: bool) -&gt; List[StageItem]:
+        items: List[StageItem] = []
+        if tr1_loaded:
+            items.append(make_item(&#34;TR1 (fixed on stools)&#34;, w_tr, tr1_fr))
+            if beams_mode == &#34;ATTACHED&#34;:
+                items.append(make_item(&#34;Beams (TR1)&#34;, w_beams, tr1_fr))
+        if tr2_loaded:
+            items.append(make_item(&#34;TR2 (fixed on stools)&#34;, w_tr, tr2_fr))
+            if beams_mode == &#34;ATTACHED&#34;:
+                items.append(make_item(&#34;Beams (TR2)&#34;, w_beams, tr2_fr))
+        if w_dun &gt; 0:
+            items.append(make_item(&#34;Dunnage/Load spreading&#34;, w_dun, dunnage_fr))
+        return items
+
+    def items_stage0() -&gt; List[StageItem]:
+        items: List[StageItem] = []
+        if include_pre0 and w_pre &gt; 0:
+            items.append(make_item(&#34;Pre-ballast equivalent (config)&#34;, w_pre, preballast_pos))
+        return items
+
+    def items_stage5_base() -&gt; List[StageItem]:
+        items = items_tr_fixed(tr1_loaded=True, tr2_loaded=False)
+        if include_pre5 and w_pre &gt; 0:
+            items.append(make_item(&#34;Pre-ballast equivalent (config)&#34;, w_pre, preballast_pos))
+        return items
+
+    def items_stage8_final() -&gt; List[StageItem]:
+        items = items_tr_fixed(tr1_loaded=True, tr2_loaded=True)
+
+        # Final SPMT logic
+        if final_spmt_mode == &#34;ONBOARD&#34;:
+            items.append(make_item(&#34;SPMT (empty, parked)&#34;, w_spmt, spmt_park_fr))
+            if ppu_mode == &#34;SEPARATE_ONBOARD&#34;:
+                items.append(make_item(&#34;PPU (separate onboard)&#34;, w_ppu, ppu_park_fr))
+        # If OFFBOARD: do nothing
+
+        return items
+
+    # Build stages (names match stage_shuttle_autocalc.py for pipeline compatibility)
+    stage_defs: List[Tuple[int, str, str, List[StageItem]]] = []
+
+    stage_defs.append((0, &#34;Stage 0 Pre-ballast ready&#34;, &#34;&#34;, items_stage0()))
+
+    stage_defs.append((1, &#34;Stage 1 25% TR1 on deck @ ramp start&#34;, &#34;&#34;, [
+        make_item(&#34;TR1+SPMT+Beams (assembly, 25%)&#34;, w_asmb * 0.25, ramp_start_fr),
+        *([] if w_dun &lt;= 0 else [make_item(&#34;Dunnage/Load spreading&#34;, w_dun, dunnage_fr)]),
+    ]))
+
+    stage_defs.append((2, &#34;Stage 2 50% TR1 on deck @ ramp mid (HOLD)&#34;, &#34;HOLD&#34;, [
+        make_item(&#34;TR1+SPMT+Beams (assembly, 50%)&#34;, w_asmb * 0.50, ramp_mid_fr),
+        *([] if w_dun &lt;= 0 else [make_item(&#34;Dunnage/Load spreading&#34;, w_dun, dunnage_fr)]),
+    ]))
+
+    stage_defs.append((3, &#34;Stage 3 75% TR1 on deck @ ramp mid&#34;, &#34;&#34;, [
+        make_item(&#34;TR1+SPMT+Beams (assembly, 75%)&#34;, w_asmb * 0.75, ramp_mid_fr),
+        *([] if w_dun &lt;= 0 else [make_item(&#34;Dunnage/Load spreading&#34;, w_dun, dunnage_fr)]),
+    ]))
+
+    stage_defs.append((4, &#34;Stage 4 TR1 fully on deck @ final (pre-stow)&#34;, &#34;&#34;, [
+        make_item(&#34;TR1+SPMT+Beams (assembly, 100%)&#34;, w_asmb, tr1_fr),
+        *([] if w_dun &lt;= 0 else [make_item(&#34;Dunnage/Load spreading&#34;, w_dun, dunnage_fr)]),
+    ]))
+
+    stage_defs.append((5, &#34;Stage 5 Pre-ballast TR2 ready (SPMT off deck)&#34;, &#34;&#34;, items_stage5_base()))
+
+    stage_defs.append((6, &#34;Stage 6 50% TR2 on deck @ ramp mid (HOLD)&#34;, &#34;HOLD&#34;, [
+        *items_stage5_base(),
+        make_item(&#34;TR2+SPMT+Beams (assembly, 50%)&#34;, w_asmb * 0.50, ramp_mid_fr),
+    ]))
+
+    stage_defs.append((7, &#34;Stage 7 TR2 fully on deck @ final (pre-stow)&#34;, &#34;&#34;, [
+        *items_stage5_base(),
+        make_item(&#34;TR2+SPMT+Beams (assembly, 100%)&#34;, w_asmb, tr2_fr),
+    ]))
+
+    # Stage 8 transit / final deck load
+    stage_defs.append((8, &#34;Stage 8 Transit (final stow)&#34;, &#34;&#34;, items_stage8_final()))
+
+    # Sanity / warning notes for PPU
+    ppu_note = &#34;&#34;
+    if ppu_mode == &#34;SEPARATE_ONBOARD&#34; and ppu_in_assembly:
+        ppu_note = &#34;WARNING: ppu_mode=SEPARATE_ONBOARD but ppu_included_in_assembly=True (double count risk).&#34;
+
+    # Compute summaries
+    out: List[StageSummary] = []
+    for stage_idx, stage_name, note, items in stage_defs:
+        if ppu_note and stage_idx == 8:
+            note = (note + &#34; | &#34; if note else &#34;&#34;) + ppu_note
+
+        tw = sum(i.weight_t for i in items)
+        if tw &gt; 0:
+            lcg_x = sum(i.weight_t * i.x_m_from_midship for i in items) / tw
+        else:
+            lcg_x = 0.0
+        lcg_fr = ssot.fr_from_x_from_midship_m(lcg_x)  # inverse of x=midship-fr
+        out.append(StageSummary(
+            stage=stage_idx,
+            stage_name=stage_name,
+            note=note,
+            total_ondeck_t=r(tw, 2),
+            lcg_x_m=r(lcg_x, 3),
+            lcg_fr_m=r(lcg_fr, 3),
+            items=items,
+        ))
+    return out</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.build_workbook"><code class="name flex">
+<span>def <span class="ident">build_workbook</span></span>(<span>ssot: VesselSSOT,<br>cfg: Dict[str, Any],<br>warnings: List[str],<br>stages: List[<a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary">StageSummary</a>],<br>out_xlsx: Path,<br>template_xlsx: Optional[Path] = None) ‑> pathlib.Path</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_workbook(
+    ssot: VesselSSOT,
+    cfg: Dict[str, Any],
+    warnings: List[str],
+    stages: List[StageSummary],
+    out_xlsx: Path,
+    template_xlsx: Optional[Path] = None,
+) -&gt; Path:
+    if template_xlsx:
+        wb = load_workbook(template_xlsx)
+    else:
+        wb = Workbook()
+
+    # Ensure sheets
+    ws_cfg = ensure_sheet(wb, &#34;Stage_Config&#34;)
+    ws_cargo = ensure_sheet(wb, &#34;Cargo_SPMT_Inputs&#34;)
+    ws_loads = ensure_sheet(wb, &#34;Stage_Loads&#34;)
+    ws_sum = ensure_sheet(wb, &#34;Stage_Summary&#34;)
+    ws_res = ensure_sheet(wb, &#34;Stage_Results&#34;)
+    ws_stagewise = ensure_sheet(wb, &#34;Stage-wise Cargo on Deck&#34;)
+    ws_log = ensure_sheet(wb, &#34;LOG&#34;)
+
+    # Write content
+    write_stage_config(ws_cfg, ssot, cfg, warnings)
+    write_cargo_inputs(ws_cargo, ssot, cfg)
+    write_stage_loads(ws_loads, stages)
+    write_stage_summary(ws_sum, stages)
+    write_bryan_sheets(ws_res, ws_stagewise, stages)
+
+    # LOG
+    clear_sheet(ws_log)
+    ws_log[&#34;A1&#34;] = &#34;LOG&#34;
+    ws_log[&#34;A1&#34;].font = TITLE_FONT
+    ws_log.merge_cells(&#34;A1:D1&#34;)
+    ws_log[&#34;A2&#34;] = &#34;Notes / warnings emitted during build&#34;
+    ws_log.merge_cells(&#34;A2:D2&#34;)
+
+    if not warnings:
+        warnings = [&#34;(none)&#34;]
+    for w in warnings:
+        log_append(ws_log, w)
+
+    # Save
+    out_xlsx.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(out_xlsx)
+    return out_xlsx</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.clear_sheet"><code class="name flex">
+<span>def <span class="ident">clear_sheet</span></span>(<span>ws) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clear_sheet(ws) -&gt; None:
+    ws.delete_rows(1, ws.max_row)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.ensure_sheet"><code class="name flex">
+<span>def <span class="ident">ensure_sheet</span></span>(<span>wb: Workbook, name: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ensure_sheet(wb: Workbook, name: str):
+    if name in wb.sheetnames:
+        return wb[name]
+    return wb.create_sheet(name)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.export_csv"><code class="name flex">
+<span>def <span class="ident">export_csv</span></span>(<span>out_dir: Path,<br>stages: List[<a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary">StageSummary</a>]) ‑> Dict[str, pathlib.Path]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_csv(out_dir: Path, stages: List[StageSummary]) -&gt; Dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # stage_loads.csv
+    stage_loads_path = out_dir / &#34;stage_loads.csv&#34;
+    with stage_loads_path.open(&#34;w&#34;, newline=&#34;&#34;, encoding=&#34;utf-8&#34;) as f:
+        w = csv.writer(f)
+        w.writerow([&#34;Stage&#34;, &#34;Stage_Name&#34;, &#34;Item&#34;, &#34;Weight_t&#34;, &#34;Fr_m_from_AP&#34;, &#34;x_m_from_Midship&#34;])
+        for s in stages:
+            for it in s.items:
+                w.writerow([s.stage, s.stage_name, it.item, r(it.weight_t, 3), r(it.fr_m_from_ap, 3), r(it.x_m_from_midship, 3)])
+
+    # stage_summary.csv
+    stage_summary_path = out_dir / &#34;stage_summary.csv&#34;
+    with stage_summary_path.open(&#34;w&#34;, newline=&#34;&#34;, encoding=&#34;utf-8&#34;) as f:
+        w = csv.writer(f)
+        w.writerow([&#34;Stage&#34;, &#34;Stage_Name&#34;, &#34;Total_onDeck_t&#34;, &#34;LCG_x_from_Midship_m&#34;, &#34;LCG_Fr_from_AP_m&#34;, &#34;Note&#34;])
+        for s in stages:
+            w.writerow([s.stage, s.stage_name, r(s.total_ondeck_t, 2), r(s.lcg_x_m, 3), r(s.lcg_fr_m, 3), s.note])
+
+    # stage_results.csv (Bryan-style)
+    stage_results_path = out_dir / &#34;stage_results.csv&#34;
+    with stage_results_path.open(&#34;w&#34;, newline=&#34;&#34;, encoding=&#34;utf-8&#34;) as f:
+        w = csv.writer(f)
+        w.writerow(BRYAN_HEADERS)
+        for s in stages:
+            # No external SSOT comparison here; we output calc == SSOT for internal consistency
+            w.writerow([s.stage, r(s.total_ondeck_t, 2), r(s.lcg_x_m, 3), r(s.total_ondeck_t, 2), r(s.lcg_x_m, 3), 0.0, 0.0, s.note])
+
+    return {
+        &#34;stage_loads_csv&#34;: stage_loads_path,
+        &#34;stage_summary_csv&#34;: stage_summary_path,
+        &#34;stage_results_csv&#34;: stage_results_path,
+    }</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.log_append"><code class="name flex">
+<span>def <span class="ident">log_append</span></span>(<span>ws, msg: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log_append(ws, msg: str) -&gt; None:
+    r0 = ws.max_row + 1
+    ws.cell(row=r0, column=1, value=msg).alignment = WRAP</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>) ‑> int</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main() -&gt; int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(&#34;--config&#34;, required=True, help=&#34;Config JSON (AGI SSOT schema).&#34;)
+    ap.add_argument(&#34;--out_xlsx&#34;, required=True, help=&#34;Output XLSX path.&#34;)
+    ap.add_argument(&#34;--out_dir&#34;, default=&#34;&#34;, help=&#34;Output directory for CSV exports (optional).&#34;)
+    ap.add_argument(&#34;--template_xlsx&#34;, default=&#34;&#34;, help=&#34;Existing XLSX template to update (optional).&#34;)
+    ap.add_argument(&#34;--strict_coords&#34;, action=&#34;store_true&#34;, help=&#34;Fail if any position is outside expected range.&#34;)
+    ap.add_argument(&#34;--audit&#34;, action=&#34;store_true&#34;, help=&#34;Run coordinate consistency audit after build.&#34;)
+    args = ap.parse_args()
+
+    cfg_raw = json.loads(Path(args.config).read_text(encoding=&#34;utf-8&#34;))
+    ssot, cfg, warnings = normalize_config(cfg_raw)
+
+    # Enforce FR_M for AGI unless explicitly provided as FRAME_INDEX (warned above)
+    coord_warnings = validate_positions(ssot, cfg, strict=bool(args.strict_coords))
+    warnings.extend(coord_warnings)
+
+    stages = build_stage_0_to_8(ssot, cfg)
+
+    out_xlsx = Path(args.out_xlsx)
+    tpl = Path(args.template_xlsx) if args.template_xlsx else None
+    build_workbook(ssot, cfg, warnings, stages, out_xlsx, template_xlsx=tpl)
+
+    if args.out_dir:
+        export_csv(Path(args.out_dir), stages)
+
+    print(f&#34;[OK] Wrote XLSX: {out_xlsx}&#34;)
+    if args.out_dir:
+        print(f&#34;[OK] Wrote CSVs to: {Path(args.out_dir)}&#34;)
+
+    if args.audit:
+        audit_script = Path(__file__).resolve().with_name(&#34;audit_coordinate_consistency.py&#34;)
+        report_path = out_xlsx.parent / &#34;coord_audit.md&#34;
+        if audit_script.exists():
+            import subprocess
+
+            argv = [
+                sys.executable,
+                str(audit_script),
+                &#34;--root&#34;,
+                str(Path(__file__).resolve().parent),
+                &#34;--report&#34;,
+                str(report_path),
+            ]
+            result = subprocess.run(argv, capture_output=True, text=True)
+            if result.returncode != 0:
+                print(f&#34;[WARN] Audit failed (rc={result.returncode}).&#34;)
+                if result.stdout:
+                    print(result.stdout.strip())
+                if result.stderr:
+                    print(result.stderr.strip())
+            else:
+                print(f&#34;[OK] Audit report: {report_path}&#34;)
+        else:
+            print(f&#34;[WARN] Audit script missing: {audit_script}&#34;)
+    return 0</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.normalize_config"><code class="name flex">
+<span>def <span class="ident">normalize_config</span></span>(<span>cfg_raw: Dict[str, Any]) ‑> Tuple[agi_ssot.VesselSSOT, Dict[str, Any], List[str]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def normalize_config(cfg_raw: Dict[str, Any]) -&gt; Tuple[VesselSSOT, Dict[str, Any], List[str]]:
+    &#34;&#34;&#34;
+    Accepts the existing nested schema used by spmt_shuttle_stage_builder.py and cargo_spmt_inputs_stagewise_autofill.py.
+
+    Returns:
+      - ssot (VesselSSOT)
+      - cfg (flattened dict for downstream)
+      - warnings list
+    &#34;&#34;&#34;
+    warnings: List[str] = []
+
+    site = str(cfg_raw.get(&#34;site&#34;, &#34;AGI&#34;)).strip().upper()
+    if site != &#34;AGI&#34;:
+        warnings.append(f&#34;[SITE] config.site=&#39;{site}&#39; (expected &#39;AGI&#39; for this tool). Proceeding anyway.&#34;)
+
+    ss = cfg_raw.get(&#34;ssot&#34;, {}) if isinstance(cfg_raw.get(&#34;ssot&#34;, {}), dict) else {}
+    coord_mode = str(ss.get(&#34;coord_mode&#34;, &#34;FR_M&#34;)).strip().upper()
+    if coord_mode not in (&#34;FR_M&#34;, &#34;FRAME_INDEX&#34;):
+        warnings.append(f&#34;[SSOT] Unknown coord_mode=&#39;{coord_mode}&#39;. Forcing FR_M.&#34;)
+        coord_mode = &#34;FR_M&#34;
+
+    # Build SSOT (AGI default if unspecified)
+    ssot = build_agi_default_ssot()
+    ssot = VesselSSOT(
+        lpp_m=float(ss.get(&#34;lpp_m&#34;, ssot.lpp_m)),
+        midship_from_ap_m=float(ss.get(&#34;midship_from_ap_m&#34;, ssot.midship_from_ap_m)),
+        coord_mode=&#34;FR_M&#34; if coord_mode == &#34;FR_M&#34; else &#34;FRAME_INDEX&#34;,
+        frame_spacing_m=float(ss.get(&#34;frame_spacing_m&#34;, ssot.frame_spacing_m)),
+        ap_offset_m=float(ss.get(&#34;ap_offset_m&#34;, ssot.ap_offset_m)),
+        fr_range_m=(
+            float(ss.get(&#34;fr_min_m&#34;, ssot.fr_range_m[0])),
+            float(ss.get(&#34;fr_max_m&#34;, ssot.fr_range_m[1])),
+        ),
+    )
+
+    if ssot.coord_mode != &#34;FR_M&#34;:
+        warnings.append(
+            &#34;[SSOT] coord_mode is FRAME_INDEX. For AGI, FR_M is the SSOT default. &#34;
+            &#34;Use FRAME_INDEX only if you have a verified index-to-station definition.&#34;
+        )
+
+    w = cfg_raw.get(&#34;weights&#34;, {}) if isinstance(cfg_raw.get(&#34;weights&#34;, {}), dict) else {}
+    p = cfg_raw.get(&#34;positions&#34;, {}) if isinstance(cfg_raw.get(&#34;positions&#34;, {}), dict) else {}
+    m = cfg_raw.get(&#34;modes&#34;, {}) if isinstance(cfg_raw.get(&#34;modes&#34;, {}), dict) else {}
+
+    # Flatten
+    cfg: Dict[str, Any] = {
+        &#34;site&#34;: site,
+        &#34;midship_frame&#34;: ssot.midship_from_ap_m,  # compatibility name
+        &#34;coord_mode&#34;: ssot.coord_mode,
+        &#34;frame_spacing_m&#34;: ssot.frame_spacing_m,
+        &#34;ap_offset_m&#34;: ssot.ap_offset_m,
+
+        # weights (tons)
+        &#34;w_tr_t&#34;: float(w.get(&#34;w_tr_t&#34;, 217.0)),
+        &#34;w_spmt_t&#34;: float(w.get(&#34;w_spmt_t&#34;, 54.2)),
+        &#34;w_beams_t&#34;: float(w.get(&#34;w_beams_t&#34;, 11.6)),
+        &#34;w_ppu_t&#34;: float(w.get(&#34;w_ppu_t&#34;, 7.2)),
+        &#34;assembly_total_t&#34;: float(w.get(&#34;assembly_total_t&#34;, 282.8)),
+        &#34;dunnage_t&#34;: float(w.get(&#34;dunnage_t&#34;, 0.0)),
+        &#34;preballast_t&#34;: float(w.get(&#34;preballast_t&#34;, 0.0)),
+
+        # positions (interpreted per ssot.coord_mode)
+        &#34;tr1_final_frame&#34;: float(p.get(&#34;tr1_final_frame&#34;, 42.0)),
+        &#34;tr2_final_frame&#34;: float(p.get(&#34;tr2_final_frame&#34;, 40.0)),
+        &#34;ramp_frame&#34;: float(p.get(&#34;ramp_frame&#34;, p.get(&#34;ramp_mid_frame&#34;, 17.95))),
+        &#34;ramp_start_frame&#34;: float(p.get(&#34;ramp_start_frame&#34;, p.get(&#34;ramp_frame&#34;, 17.95))),
+        &#34;ramp_mid_frame&#34;: float(p.get(&#34;ramp_mid_frame&#34;, p.get(&#34;ramp_frame&#34;, 17.95))),
+        &#34;spmt_park_frame&#34;: float(p.get(&#34;spmt_park_frame&#34;, 10.0)),
+        &#34;ppu_park_frame&#34;: float(p.get(&#34;ppu_park_frame&#34;, 46.0)),
+        &#34;dunnage_frame&#34;: float(p.get(&#34;dunnage_frame&#34;, 31.0)),
+        &#34;preballast_pos&#34;: float(p.get(&#34;preballast_pos&#34;, 0.0)),
+
+        # modes
+        &#34;final_spmt_mode&#34;: str(m.get(&#34;final_spmt_mode&#34;, &#34;OFFBOARD&#34;)).strip().upper(),
+        &#34;beams_mode&#34;: str(m.get(&#34;beams_mode&#34;, &#34;REMOVED&#34;)).strip().upper(),
+        &#34;ppu_mode&#34;: str(m.get(&#34;ppu_mode&#34;, &#34;INCLUDED_IN_SPMT&#34;)).strip().upper(),
+        &#34;ppu_included_in_assembly&#34;: bool(m.get(&#34;ppu_included_in_assembly&#34;, True)),
+
+        # operational flags
+        &#34;include_preballast_in_stage0&#34;: bool(cfg_raw.get(&#34;include_preballast_in_stage0&#34;, False)),
+        &#34;include_preballast_in_stage5&#34;: bool(cfg_raw.get(&#34;include_preballast_in_stage5&#34;, False)),
+    }
+
+    # Quick mode validation
+    if cfg[&#34;final_spmt_mode&#34;] not in (&#34;ONBOARD&#34;, &#34;OFFBOARD&#34;):
+        warnings.append(f&#34;[MODE] final_spmt_mode=&#39;{cfg[&#39;final_spmt_mode&#39;]}&#39; invalid. Forcing OFFBOARD.&#34;)
+        cfg[&#34;final_spmt_mode&#34;] = &#34;OFFBOARD&#34;
+
+    if cfg[&#34;beams_mode&#34;] not in (&#34;ATTACHED&#34;, &#34;REMOVED&#34;):
+        warnings.append(f&#34;[MODE] beams_mode=&#39;{cfg[&#39;beams_mode&#39;]}&#39; invalid. Forcing REMOVED.&#34;)
+        cfg[&#34;beams_mode&#34;] = &#34;REMOVED&#34;
+
+    if cfg[&#34;ppu_mode&#34;] not in (&#34;INCLUDED_IN_SPMT&#34;, &#34;SEPARATE_ONBOARD&#34;, &#34;OFFBOARD&#34;):
+        warnings.append(f&#34;[MODE] ppu_mode=&#39;{cfg[&#39;ppu_mode&#39;]}&#39; invalid. Forcing INCLUDED_IN_SPMT.&#34;)
+        cfg[&#34;ppu_mode&#34;] = &#34;INCLUDED_IN_SPMT&#34;
+
+    return ssot, cfg, warnings</code></pre>
+</details>
+<div class="desc"><p>Accepts the existing nested schema used by spmt_shuttle_stage_builder.py and cargo_spmt_inputs_stagewise_autofill.py.</p>
+<h2 id="returns">Returns</h2>
+<ul>
+<li>ssot (VesselSSOT)</li>
+<li>cfg (flattened dict for downstream)</li>
+<li>warnings list</li>
+</ul></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.r"><code class="name flex">
+<span>def <span class="ident">r</span></span>(<span>v: float, nd: int = 3) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def r(v: float, nd: int = DEFAULT_DECIMALS) -&gt; float:
+    return round(float(v), nd)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.set_col_widths"><code class="name flex">
+<span>def <span class="ident">set_col_widths</span></span>(<span>ws, widths: List[float], start_col: int = 1) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_col_widths(ws, widths: List[float], start_col: int = 1) -&gt; None:
+    for i, w in enumerate(widths, start=start_col):
+        ws.column_dimensions[get_column_letter(i)].width = float(w)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.style_table"><code class="name flex">
+<span>def <span class="ident">style_table</span></span>(<span>ws, top_row: int, left_col: int, nrows: int, ncols: int) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def style_table(ws, top_row: int, left_col: int, nrows: int, ncols: int) -&gt; None:
+    for r0 in range(top_row, top_row + nrows):
+        for c0 in range(left_col, left_col + ncols):
+            c = ws.cell(row=r0, column=c0)
+            c.border = BORDER
+            if r0 == top_row:
+                c.alignment = CENTER
+            else:
+                # numeric-ish columns align right
+                c.alignment = WRAP</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.validate_positions"><code class="name flex">
+<span>def <span class="ident">validate_positions</span></span>(<span>ssot: VesselSSOT, cfg: Dict[str, Any], *, strict: bool) ‑> List[str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_positions(ssot: VesselSSOT, cfg: Dict[str, Any], *, strict: bool) -&gt; List[str]:
+    warnings: List[str] = []
+    # Interpret frame inputs according to ssot
+    pos_keys = [
+        &#34;tr1_final_frame&#34;, &#34;tr2_final_frame&#34;,
+        &#34;ramp_frame&#34;, &#34;ramp_start_frame&#34;, &#34;ramp_mid_frame&#34;,
+        &#34;spmt_park_frame&#34;, &#34;ppu_park_frame&#34;, &#34;dunnage_frame&#34;,
+        &#34;preballast_pos&#34;,
+    ]
+    for k in pos_keys:
+        fr = ssot.to_fr_m_from_ap(cfg.get(k))
+        try:
+            ssot.validate_fr_m(fr, name=k, strict=strict)
+        except Exception as e:
+            if strict:
+                raise
+            warnings.append(f&#34;[COORD] {e}&#34;)
+    return warnings</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_bryan_sheets"><code class="name flex">
+<span>def <span class="ident">write_bryan_sheets</span></span>(<span>ws_results,<br>ws_stagewise,<br>stages: List[<a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary">StageSummary</a>]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_bryan_sheets(ws_results, ws_stagewise, stages: List[StageSummary]) -&gt; None:
+    for ws in (ws_results, ws_stagewise):
+        clear_sheet(ws)
+        ws[&#34;A1&#34;] = &#34;Stage results (Bryan-format)&#34;
+        ws[&#34;A1&#34;].font = TITLE_FONT
+        ws.merge_cells(&#34;A1:H1&#34;)
+
+        write_header(ws, 3, 1, BRYAN_HEADERS)
+        set_col_widths(ws, [8, 18, 14, 18, 14, 10, 10, 44], start_col=1)
+
+        r0 = 4
+        for s in stages:
+            row = [s.stage, r(s.total_ondeck_t, 2), r(s.lcg_x_m, 3), r(s.total_ondeck_t, 2), r(s.lcg_x_m, 3), 0.0, 0.0, s.note]
+            for j, v in enumerate(row, start=1):
+                c = ws.cell(row=r0, column=j, value=v)
+                c.border = BORDER
+                c.alignment = RIGHT if j not in (1,8) else WRAP
+            r0 += 1</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_cargo_inputs"><code class="name flex">
+<span>def <span class="ident">write_cargo_inputs</span></span>(<span>ws, ssot: VesselSSOT, cfg: Dict[str, Any]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_cargo_inputs(ws, ssot: VesselSSOT, cfg: Dict[str, Any]) -&gt; None:
+    clear_sheet(ws)
+    ws[&#34;A1&#34;] = &#34;Cargo / SPMT Inputs (AGI) — AutoFill (CoG_x_m = x_from_midship)&#34;
+    ws[&#34;A1&#34;].font = TITLE_FONT
+    ws.merge_cells(&#34;A1:K1&#34;)
+
+    ws[&#34;A2&#34;] = f&#34;SSOT: x_from_midship(m) = {ssot.midship_from_ap_m:.3f} - Fr(m from AP). (Not structural frame spacing.)&#34;
+    ws.merge_cells(&#34;A2:K2&#34;)
+
+    write_header(ws, 4, 1, CARGO_HEADERS)
+    set_col_widths(ws, [32, 12, 12, 12, 12, 12, 12, 10, 10, 10, 44], start_col=1)
+
+    def row_write(r0: int, values: Dict[str, Any]):
+        for j, h in enumerate(CARGO_HEADERS, start=1):
+            v = values.get(h, &#34;&#34;)
+            c = ws.cell(row=r0, column=j, value=v)
+            c.border = BORDER
+            if isinstance(v, (int, float)):
+                c.number_format = &#34;0.00&#34;
+                c.alignment = RIGHT
+            else:
+                c.alignment = WRAP
+
+    def make_row(item: str, weight_t: float, final_frame: Optional[float], ramp_frame: Optional[float], remarks: str) -&gt; Dict[str, Any]:
+        row: Dict[str, Any] = {&#34;Item&#34;: item, &#34;Weight_t&#34;: r(weight_t, 2), &#34;Final_Frame&#34;: final_frame, &#34;Ramp_Frame&#34;: ramp_frame, &#34;Remarks/Source&#34;: remarks}
+        if final_frame is not None:
+            fr_m = ssot.to_fr_m_from_ap(final_frame)
+            if fr_m is not None:
+                row[&#34;CoG_x_m&#34;] = r(ssot.x_from_midship_m(fr_m), 3)
+        return row
+
+    r0 = 5
+    # Assembly rows
+    row_write(r0, make_row(&#34;TR1+SPMT+Beams (Assembly Total)&#34;, cfg[&#34;assembly_total_t&#34;], cfg[&#34;tr1_final_frame&#34;], cfg[&#34;ramp_frame&#34;],
+                           &#34;Used for ramp/transit stage modeling; CoG_x computed from Final_Frame via SSOT.&#34;))
+    r0 += 1
+    row_write(r0, make_row(&#34;TR2+SPMT+Beams (Assembly Total)&#34;, cfg[&#34;assembly_total_t&#34;], cfg[&#34;tr2_final_frame&#34;], cfg[&#34;ramp_frame&#34;],
+                           &#34;Used for ramp/transit stage modeling; CoG_x computed from Final_Frame via SSOT.&#34;))
+    r0 += 1
+
+    # Optional separate items (final stage)
+    row_write(r0, make_row(&#34;SPMT (empty, if ONBOARD at Stage 8)&#34;, cfg[&#34;w_spmt_t&#34;], cfg[&#34;spmt_park_frame&#34;], None,
+                           &#34;Included only when final_spmt_mode=ONBOARD.&#34;))
+    r0 += 1
+    row_write(r0, make_row(&#34;PPU (if separate onboard)&#34;, cfg[&#34;w_ppu_t&#34;], cfg[&#34;ppu_park_frame&#34;], None,
+                           &#34;Included only when ppu_mode=SEPARATE_ONBOARD. Verify double-count vs assembly_total_t.&#34;))
+    r0 += 1
+    row_write(r0, make_row(&#34;Dunnage / Load Spreading&#34;, cfg[&#34;dunnage_t&#34;], cfg[&#34;dunnage_frame&#34;], None,
+                           &#34;If used, ensure weight/position are measured or agreed.&#34;))
+    r0 += 1
+
+    # Placeholder row
+    row_write(r0, {&#34;Item&#34;: &#34;Other / Consumables (optional)&#34;, &#34;Remarks/Source&#34;: &#34;&#34;})</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_header"><code class="name flex">
+<span>def <span class="ident">write_header</span></span>(<span>ws, row: int, col: int, headers: List[str]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_header(ws, row: int, col: int, headers: List[str]) -&gt; None:
+    for j, h in enumerate(headers):
+        c = ws.cell(row=row, column=col + j, value=h)
+        c.fill = HEADER_FILL
+        c.font = HEADER_FONT
+        c.alignment = CENTER
+        c.border = BORDER</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_config"><code class="name flex">
+<span>def <span class="ident">write_stage_config</span></span>(<span>ws, ssot: VesselSSOT, cfg: Dict[str, Any], warnings: List[str]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_stage_config(ws, ssot: VesselSSOT, cfg: Dict[str, Any], warnings: List[str]) -&gt; None:
+    clear_sheet(ws)
+    ws[&#34;A1&#34;] = &#34;Stage_Config (AGI SPMT Shuttle — SSOT Locked)&#34;
+    ws[&#34;A1&#34;].font = TITLE_FONT
+    ws.merge_cells(&#34;A1:D1&#34;)
+
+    ws[&#34;A2&#34;] = &#34;SSOT: Fr(m)=station from AP,  x_from_midship = midship_from_ap - Fr&#34;
+    ws.merge_cells(&#34;A2:D2&#34;)
+
+    # Key/Value table
+    headers = [&#34;Key&#34;, &#34;Value&#34;, &#34;Unit/Type&#34;, &#34;Comment&#34;]
+    write_header(ws, 4, 1, headers)
+    row = 5
+
+    def kv(k: str, v: Any, unit: str = &#34;&#34;, comment: str = &#34;&#34;):
+        nonlocal row
+        ws.cell(row=row, column=1, value=k)
+        ws.cell(row=row, column=2, value=str(v))
+        ws.cell(row=row, column=3, value=unit)
+        ws.cell(row=row, column=4, value=comment)
+        for c in range(1, 5):
+            ws.cell(row=row, column=c).border = BORDER
+            ws.cell(row=row, column=c).alignment = WRAP
+        row += 1
+
+    for k, v in ssot.explain().items():
+        kv(f&#34;ssot.{k}&#34;, v, &#34;&#34;, &#34;&#34;)
+
+    kv(&#34;site&#34;, cfg.get(&#34;site&#34;), &#34;&#34;, &#34;AGI expected&#34;)
+    for k in [
+        &#34;w_tr_t&#34;,&#34;w_spmt_t&#34;,&#34;w_beams_t&#34;,&#34;w_ppu_t&#34;,&#34;assembly_total_t&#34;,&#34;dunnage_t&#34;,&#34;preballast_t&#34;,
+        &#34;tr1_final_frame&#34;,&#34;tr2_final_frame&#34;,&#34;ramp_frame&#34;,&#34;ramp_start_frame&#34;,&#34;ramp_mid_frame&#34;,
+        &#34;spmt_park_frame&#34;,&#34;ppu_park_frame&#34;,&#34;dunnage_frame&#34;,&#34;preballast_pos&#34;,
+        &#34;final_spmt_mode&#34;,&#34;beams_mode&#34;,&#34;ppu_mode&#34;,&#34;ppu_included_in_assembly&#34;,
+        &#34;include_preballast_in_stage0&#34;,&#34;include_preballast_in_stage5&#34;,
+    ]:
+        kv(k, cfg.get(k), &#34;&#34;, &#34;&#34;)
+
+    # Warnings
+    row += 1
+    ws.cell(row=row, column=1, value=&#34;Warnings / Notes&#34;).font = BOLD
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=4)
+    row += 1
+    if not warnings:
+        warnings = [&#34;(none)&#34;]
+    for w in warnings:
+        ws.cell(row=row, column=1, value=w).alignment = WRAP
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=4)
+        row += 1
+
+    set_col_widths(ws, [26, 22, 14, 50], start_col=1)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_loads"><code class="name flex">
+<span>def <span class="ident">write_stage_loads</span></span>(<span>ws,<br>stages: List[<a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary">StageSummary</a>]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_stage_loads(ws, stages: List[StageSummary]) -&gt; None:
+    clear_sheet(ws)
+    ws[&#34;A1&#34;] = &#34;Stage_Loads (itemized)&#34;
+    ws[&#34;A1&#34;].font = TITLE_FONT
+    ws.merge_cells(&#34;A1:F1&#34;)
+
+    headers = [&#34;Stage&#34;, &#34;Stage_Name&#34;, &#34;Item&#34;, &#34;Weight_t&#34;, &#34;Fr_m_from_AP&#34;, &#34;x_m_from_Midship&#34;]
+    write_header(ws, 3, 1, headers)
+    set_col_widths(ws, [8, 42, 40, 12, 14, 16], start_col=1)
+
+    r0 = 4
+    for s in stages:
+        for it in s.items:
+            ws.cell(row=r0, column=1, value=s.stage).border = BORDER
+            ws.cell(row=r0, column=2, value=s.stage_name).border = BORDER
+            ws.cell(row=r0, column=3, value=it.item).border = BORDER
+            ws.cell(row=r0, column=4, value=r(it.weight_t, 3)).border = BORDER
+            ws.cell(row=r0, column=5, value=r(it.fr_m_from_ap, 3)).border = BORDER
+            ws.cell(row=r0, column=6, value=r(it.x_m_from_midship, 3)).border = BORDER
+            for c in range(1, 7):
+                ws.cell(row=r0, column=c).alignment = WRAP if c in (2,3) else RIGHT
+            r0 += 1</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_summary"><code class="name flex">
+<span>def <span class="ident">write_stage_summary</span></span>(<span>ws,<br>stages: List[<a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary">StageSummary</a>]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_stage_summary(ws, stages: List[StageSummary]) -&gt; None:
+    clear_sheet(ws)
+    ws[&#34;A1&#34;] = &#34;Stage_Summary&#34;
+    ws[&#34;A1&#34;].font = TITLE_FONT
+    ws.merge_cells(&#34;A1:F1&#34;)
+
+    headers = [&#34;Stage&#34;, &#34;Stage_Name&#34;, &#34;Total_onDeck_t&#34;, &#34;LCG_x_from_Midship_m&#34;, &#34;LCG_Fr_from_AP_m&#34;, &#34;Note&#34;]
+    write_header(ws, 3, 1, headers)
+    set_col_widths(ws, [8, 42, 14, 18, 16, 44], start_col=1)
+
+    r0 = 4
+    for s in stages:
+        ws.cell(row=r0, column=1, value=s.stage).border = BORDER
+        ws.cell(row=r0, column=2, value=s.stage_name).border = BORDER
+        ws.cell(row=r0, column=3, value=r(s.total_ondeck_t, 2)).border = BORDER
+        ws.cell(row=r0, column=4, value=r(s.lcg_x_m, 3)).border = BORDER
+        ws.cell(row=r0, column=5, value=r(s.lcg_fr_m, 3)).border = BORDER
+        ws.cell(row=r0, column=6, value=s.note).border = BORDER
+        for c in range(1, 7):
+            ws.cell(row=r0, column=c).alignment = WRAP if c in (2,6) else RIGHT
+        r0 += 1</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem"><code class="flex name class">
+<span>class <span class="ident">StageItem</span></span>
+<span>(</span><span>item: str, weight_t: float, fr_m_from_ap: float, x_m_from_midship: float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class StageItem:
+    item: str
+    weight_t: float
+    fr_m_from_ap: float
+    x_m_from_midship: float</code></pre>
+</details>
+<div class="desc"><p>StageItem(item: 'str', weight_t: 'float', fr_m_from_ap: 'float', x_m_from_midship: 'float')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.fr_m_from_ap"><code class="name">var <span class="ident">fr_m_from_ap</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.item"><code class="name">var <span class="ident">item</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.weight_t"><code class="name">var <span class="ident">weight_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.x_m_from_midship"><code class="name">var <span class="ident">x_m_from_midship</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary"><code class="flex name class">
+<span>class <span class="ident">StageSummary</span></span>
+<span>(</span><span>stage: int,<br>stage_name: str,<br>note: str,<br>total_ondeck_t: float,<br>lcg_x_m: float,<br>lcg_fr_m: float,<br>items: List[<a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem">StageItem</a>])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class StageSummary:
+    stage: int
+    stage_name: str
+    note: str
+    total_ondeck_t: float
+    lcg_x_m: float
+    lcg_fr_m: float
+    items: List[StageItem]</code></pre>
+</details>
+<div class="desc"><p>StageSummary(stage: 'int', stage_name: 'str', note: 'str', total_ondeck_t: 'float', lcg_x_m: 'float', lcg_fr_m: 'float', items: 'List[StageItem]')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.items"><code class="name">var <span class="ident">items</span> : List[01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.lcg_fr_m"><code class="name">var <span class="ident">lcg_fr_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.lcg_x_m"><code class="name">var <span class="ident">lcg_x_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.note"><code class="name">var <span class="ident">note</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.stage"><code class="name">var <span class="ident">stage</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.stage_name"><code class="name">var <span class="ident">stage_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.total_ondeck_t"><code class="name">var <span class="ident">total_ondeck_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.spmt v1" href="index.html">01_EXECUTION_FILES.spmt v1</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.build_stage_0_to_8" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.build_stage_0_to_8">build_stage_0_to_8</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.build_workbook" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.build_workbook">build_workbook</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.clear_sheet" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.clear_sheet">clear_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.ensure_sheet" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.ensure_sheet">ensure_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.export_csv" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.export_csv">export_csv</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.log_append" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.log_append">log_append</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.main" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.main">main</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.normalize_config" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.normalize_config">normalize_config</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.r" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.r">r</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.set_col_widths" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.set_col_widths">set_col_widths</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.style_table" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.style_table">style_table</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.validate_positions" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.validate_positions">validate_positions</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_bryan_sheets" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_bryan_sheets">write_bryan_sheets</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_cargo_inputs" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_cargo_inputs">write_cargo_inputs</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_header" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_header">write_header</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_config" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_config">write_stage_config</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_loads" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_loads">write_stage_loads</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_summary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.write_stage_summary">write_stage_summary</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem">StageItem</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.fr_m_from_ap" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.fr_m_from_ap">fr_m_from_ap</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.item" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.item">item</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.weight_t" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.weight_t">weight_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.x_m_from_midship" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageItem.x_m_from_midship">x_m_from_midship</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary">StageSummary</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.items" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.items">items</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.lcg_fr_m" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.lcg_fr_m">lcg_fr_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.lcg_x_m" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.lcg_x_m">lcg_x_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.note" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.note">note</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.stage" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.stage">stage</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.stage_name" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.stage_name">stage_name</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.total_ondeck_t" href="#01_EXECUTION_FILES.spmt v1.agi_spmt_unified.StageSummary.total_ondeck_t">total_ondeck_t</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

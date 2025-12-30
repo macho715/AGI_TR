@@ -164,6 +164,13 @@ Sheet order (per analysis doc)
 - `apply_row_style()`: No description
 - `add_named_range()`: refers_to example: "'06_Stage_Plan'!$A$2:$A$200"
 
+### create_stage_excel_report.py
+스테이지별 상세 결과 Excel 테이블 생성
+Excel Table Style로 정리된 보고서 생성
+
+**Functions:**
+- `create_stage_summary_excel()`: 스테이지별 상세 결과를 Excel 테이블 형식으로 생성
+
 ### populate_template.py
 populate_template.py
 
@@ -191,6 +198,41 @@ Notes
 - `pick_column()`: Find best matching column from df given candidate names.
 - `safe_float()`: No description
 - `_norm_header()`: No description
+
+### spmt v1/agi_spmt_unified.py
+AGI SPMT Shuttle — Integrated Builder (SSOT-locked)
+
+What this tool does (AGI scope)
+1) Enforces a single coordinate convention (SSOT):
+   - Input "Frame" values are **Fr(m) = station from AP in meters** (coord_mode=FR_M)
+   - x_from_midship(m) = midship_from_ap_m - Fr(m)
+2) Generates an Excel workbook with:
+   - Stage_Config
+   - Cargo_SPMT_Inputs (auto-filled, including CoG_x_m = x_from_midship)
+   - Stage_Loads (itemized, per stage)
+   - Stage_Summary (per stage)
+   - Stage_Results + Stage-wise Cargo on Deck (Bryan-format summary)
+   - LOG (warnings / assumptions / audit notes)
+3) Exports CSVs (stage_loads.csv, stage_summary.csv, stage_results.csv)
+
+Notes
+- This script intentionally does NOT use "structural frame spacing" for coordinate conversion.
+- If your input values are truly "frame indexes", DO NOT use this tool without a verified
+  frame-index mapping; use a dedicated conversion table instead.
+
+CLI Example
+  python agi_spmt_unified.py --config spmt_shuttle_config_AGI.json --out_xlsx AGI_SPMT_Shuttle.xlsx --out_dir out/
+
+**Classes:**
+- `StageItem`: No description
+- `StageSummary`: No description
+
+**Functions:**
+- `_as_float()`: No description
+- `r()`: No description
+- `ensure_sheet()`: No description
+- `clear_sheet()`: No description
+- `set_col_widths()`: No description
 
 ### spmt v1/agi_ssot.py
 AGI SSOT (Single Source of Truth) coordinate utilities for LCT cargo / SPMT scripts.

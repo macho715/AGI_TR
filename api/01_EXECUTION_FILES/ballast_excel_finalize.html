@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.ballast_excel_finalize API documentation</title>
+<meta name="description" content="Ballast Pipeline - Excel Formula Preservation (COM Post-Processing) …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.ballast_excel_finalize</code></h1>
+</header>
+<section id="section-intro">
+<p>Ballast Pipeline - Excel Formula Preservation (COM Post-Processing)</p>
+<h2 id="purpose">Purpose</h2>
+<p>Preserve formula dependency integrity after openpyxl writes by using Excel COM.
+- CalculateFullRebuild (dependency graph rebuild)
+- RefreshAll (external queries/data)
+- Calc_Log sheet append</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Windows OS + Excel installed</li>
+<li>pip install pywin32</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>python ballast_excel_finalize.py &ndash;auto
+python ballast_excel_finalize.py "file.xlsx"
+python ballast_excel_finalize.py &ndash;batch "pattern/*.xlsx"</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.ballast_excel_finalize.finalize_excel_com"><code class="name flex">
+<span>def <span class="ident">finalize_excel_com</span></span>(<span>excel_path: Path, verbose: bool = True) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def finalize_excel_com(excel_path: Path, verbose: bool = True) -&gt; bool:
+    &#34;&#34;&#34;
+    Excel COM post-processing for formula preservation.
+
+    Process:
+        1. Excel COM open
+        2. Calculation = Automatic
+        3. RefreshAll
+        4. CalculateFullRebuild
+        5. QueryTables and PivotCaches refresh
+        6. Calc_Log write
+        7. Save
+    &#34;&#34;&#34;
+    try:
+        import win32com.client as win32
+    except ImportError:
+        print(&#34;[ERROR] pywin32 not installed&#34;)
+        print(&#34;[FIX] Run: pip install pywin32&#34;)
+        return False
+
+    if not excel_path.exists():
+        print(f&#34;[ERROR] File not found: {excel_path}&#34;)
+        return False
+
+    start_time = time.time()
+
+    if verbose:
+        print(&#34;\n&#34; + &#34;=&#34; * 80)
+        print(f&#34;[FORMULA FINALIZE] {excel_path.name}&#34;)
+        print(&#34;=&#34; * 80)
+        print(f&#34;[INFO] Size: {excel_path.stat().st_size / 1024:.2f} KB&#34;)
+        print(f&#34;[INFO] Modified: {datetime.fromtimestamp(excel_path.stat().st_mtime)}&#34;)
+
+    xl = None
+    wb = None
+
+    try:
+        if verbose:
+            print(&#34;[STEP 1/7] Initializing Excel COM...&#34;)
+
+        xl = win32.DispatchEx(&#34;Excel.Application&#34;)
+        xl.Visible = False
+        xl.DisplayAlerts = False
+        xl.ScreenUpdating = False
+
+        if verbose:
+            print(&#34;[STEP 2/7] Opening workbook...&#34;)
+
+        wb = xl.Workbooks.Open(str(excel_path.absolute()))
+
+        if verbose:
+            print(&#34;[STEP 3/7] Setting Calculation=Automatic...&#34;)
+
+        xl.Calculation = -4105  # xlCalculationAutomatic
+
+        if verbose:
+            print(&#34;[STEP 4/7] RefreshAll()...&#34;)
+
+        wb.RefreshAll()
+
+        max_wait = 30
+        wait_count = 0
+        while xl.CalculationState != 0:  # xlDone
+            time.sleep(0.2)
+            wait_count += 1
+            if wait_count &gt; max_wait * 5:
+                if verbose:
+                    print(&#34;[WARN] RefreshAll timeout (30s)&#34;)
+                break
+
+        if verbose:
+            print(&#34;[STEP 5/7] CalculateFullRebuild()...&#34;)
+
+        xl.CalculateFullRebuild()
+
+        wait_count = 0
+        while xl.CalculationState != 0:
+            time.sleep(0.2)
+            wait_count += 1
+            if wait_count &gt; max_wait * 5:
+                if verbose:
+                    print(&#34;[WARN] FullRebuild timeout (30s)&#34;)
+                break
+
+        if verbose:
+            print(&#34;[STEP 6/7] Checking QueryTables &amp; PivotCaches...&#34;)
+
+        query_count = 0
+        for ws in wb.Worksheets:
+            for qt in ws.QueryTables:
+                query_count += 1
+                wait_count = 0
+                while qt.Refreshing:
+                    time.sleep(0.2)
+                    wait_count += 1
+                    if wait_count &gt; max_wait * 5:
+                        break
+
+        pivot_count = 0
+        try:
+            for pc in wb.PivotCaches():
+                pc.Refresh()
+                pivot_count += 1
+        except Exception:
+            pass
+
+        if verbose:
+            if query_count &gt; 0:
+                print(f&#34;[INFO] Processed {query_count} QueryTables&#34;)
+            if pivot_count &gt; 0:
+                print(f&#34;[INFO] Refreshed {pivot_count} PivotCaches&#34;)
+
+        if verbose:
+            print(&#34;[STEP 7/7] Recording build log (Calc_Log sheet)...&#34;)
+
+        try:
+            log_sheet = None
+            for ws in wb.Worksheets:
+                if ws.Name == &#34;Calc_Log&#34;:
+                    log_sheet = ws
+                    break
+
+            if log_sheet is None:
+                log_sheet = wb.Worksheets.Add()
+                log_sheet.Name = &#34;Calc_Log&#34;
+                log_sheet.Range(&#34;A1&#34;).Value = &#34;Parameter&#34;
+                log_sheet.Range(&#34;B1&#34;).Value = &#34;Value&#34;
+                log_sheet.Range(&#34;C1&#34;).Value = &#34;Timestamp&#34;
+
+            last_row = log_sheet.UsedRange.Rows.Count + 1
+
+            logs = [
+                (&#34;FullRebuild_Completed&#34;, &#34;SUCCESS&#34;),
+                (&#34;Engine&#34;, &#34;Python+COM&#34;),
+                (&#34;ProcessingTime_sec&#34;, round(time.time() - start_time, 2)),
+                (&#34;QueryTables_Count&#34;, query_count),
+                (&#34;PivotCaches_Count&#34;, pivot_count),
+            ]
+
+            for param, value in logs:
+                log_sheet.Cells(last_row, 1).Value = param
+                log_sheet.Cells(last_row, 2).Value = value
+                log_sheet.Cells(last_row, 3).Value = datetime.now().strftime(
+                    &#34;%Y-%m-%d %H:%M:%S&#34;
+                )
+                last_row += 1
+        except Exception as exc:
+            if verbose:
+                print(f&#34;[WARN] Calc_Log update failed: {exc}&#34;)
+
+        if verbose:
+            print(&#34;[SAVING] Writing to disk...&#34;)
+
+        wb.Save()
+
+        elapsed = time.time() - start_time
+
+        if verbose:
+            print(&#34;\n&#34; + &#34;=&#34; * 80)
+            print(&#34;SUCCESS - Formula finalization completed.&#34;)
+            print(&#34;=&#34; * 80)
+            print(f&#34;[RESULT] Processing time: {elapsed:.2f} sec&#34;)
+            print(f&#34;[RESULT] File: {excel_path.name}&#34;)
+            print(f&#34;[RESULT] Timestamp: {datetime.now().strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)}&#34;)
+            print(&#34;=&#34; * 80 + &#34;\n&#34;)
+
+        return True
+    except Exception as exc:
+        print(f&#34;\n[ERROR] COM processing failed: {exc}&#34;)
+        import traceback
+
+        traceback.print_exc()
+        return False
+    finally:
+        if wb:
+            wb.Close(SaveChanges=False)
+        if xl:
+            xl.Quit()</code></pre>
+</details>
+<div class="desc"><p>Excel COM post-processing for formula preservation.</p>
+<h2 id="process">Process</h2>
+<ol>
+<li>Excel COM open</li>
+<li>Calculation = Automatic</li>
+<li>RefreshAll</li>
+<li>CalculateFullRebuild</li>
+<li>QueryTables and PivotCaches refresh</li>
+<li>Calc_Log write</li>
+<li>Save</li>
+</ol></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_excel_finalize.find_latest_pipeline_output"><code class="name flex">
+<span>def <span class="ident">find_latest_pipeline_output</span></span>(<span>) ‑> pathlib.Path</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_latest_pipeline_output() -&gt; Path:
+    &#34;&#34;&#34;Detect the most recent pipeline output Excel file.&#34;&#34;&#34;
+    base_dir = Path(&#34;.&#34;)
+    pipeline_dirs = sorted(base_dir.glob(&#34;pipeline_out_*&#34;), reverse=True)
+
+    if not pipeline_dirs:
+        raise FileNotFoundError(&#34;No pipeline_out_* directory found&#34;)
+
+    latest_dir = pipeline_dirs[0]
+    excel_files = list(latest_dir.glob(&#34;PIPELINE_CONSOLIDATED_*.xlsx&#34;))
+
+    if not excel_files:
+        raise FileNotFoundError(f&#34;No PIPELINE_CONSOLIDATED_*.xlsx in {latest_dir}&#34;)
+
+    return excel_files[0]</code></pre>
+</details>
+<div class="desc"><p>Detect the most recent pipeline output Excel file.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.ballast_excel_finalize.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main() -&gt; None:
+    &#34;&#34;&#34;CLI entry point.&#34;&#34;&#34;
+    if len(sys.argv) &lt; 2:
+        print(&#34;Ballast Pipeline - Excel Formula Finalization&#34;)
+        print()
+        print(&#34;Usage:&#34;)
+        print(&#34;  python ballast_excel_finalize.py --auto&#34;)
+        print(&#34;  python ballast_excel_finalize.py &lt;excel_file&gt;&#34;)
+        print(&#34;  python ballast_excel_finalize.py --batch &lt;pattern&gt;&#34;)
+        print()
+        print(&#34;Examples:&#34;)
+        print(&#34;  python ballast_excel_finalize.py --auto&#34;)
+        print(&#39;  python ballast_excel_finalize.py &#34;output.xlsx&#34;&#39;)
+        print(
+            &#39;  python ballast_excel_finalize.py --batch &#34;pipeline_out_*/PIPELINE_*.xlsx&#34;&#39;
+        )
+        sys.exit(1)
+
+    arg = sys.argv[1]
+
+    if arg == &#34;--auto&#34;:
+        try:
+            excel_path = find_latest_pipeline_output()
+            print(f&#34;[AUTO] Detected: {excel_path}&#34;)
+            success = finalize_excel_com(excel_path)
+            sys.exit(0 if success else 1)
+        except FileNotFoundError as exc:
+            print(f&#34;[ERROR] {exc}&#34;)
+            sys.exit(1)
+    elif arg == &#34;--batch&#34;:
+        if len(sys.argv) &lt; 3:
+            print(&#34;[ERROR] --batch requires pattern argument&#34;)
+            sys.exit(1)
+
+        pattern = sys.argv[2]
+        files = glob.glob(pattern, recursive=True)
+
+        if not files:
+            print(f&#34;[ERROR] No files match: {pattern}&#34;)
+            sys.exit(1)
+
+        print(f&#34;[BATCH] Found {len(files)} files\n&#34;)
+
+        success_count = 0
+        for file_path in files:
+            if finalize_excel_com(Path(file_path)):
+                success_count += 1
+
+        print(f&#34;\n[BATCH] {success_count}/{len(files)} files processed successfully&#34;)
+        sys.exit(0 if success_count == len(files) else 1)
+    else:
+        excel_path = Path(arg)
+        success = finalize_excel_com(excel_path)
+        sys.exit(0 if success else 1)</code></pre>
+</details>
+<div class="desc"><p>CLI entry point.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES" href="index.html">01_EXECUTION_FILES</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.ballast_excel_finalize.finalize_excel_com" href="#01_EXECUTION_FILES.ballast_excel_finalize.finalize_excel_com">finalize_excel_com</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_excel_finalize.find_latest_pipeline_output" href="#01_EXECUTION_FILES.ballast_excel_finalize.find_latest_pipeline_output">find_latest_pipeline_output</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.ballast_excel_finalize.main" href="#01_EXECUTION_FILES.ballast_excel_finalize.main">main</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

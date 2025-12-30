@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched API documentation</title>
+<meta name="description" content="lct_stage_spmt_shuttle.py (AGI SSOT patched) …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched</code></h1>
+</header>
+<section id="section-intro">
+<p>lct_stage_spmt_shuttle.py (AGI SSOT patched)</p>
+<p>Key change
+- Default coordinate mode is FR_M (station from AP in meters).
+- The legacy "frame index * 0.60 m + AP offset" conversion is preserved only if you
+explicitly set coord_mode="FRAME_INDEX" in your config.</p>
+<p>Recommendation
+- For AGI pipeline consistency, keep coord_mode="FR_M" and provide all frames as meters from AP.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.build_stages"><code class="name flex">
+<span>def <span class="ident">build_stages</span></span>(<span>cfg: <a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig">StageConfig</a>) ‑> List[Tuple[str, List[Tuple[str, float, float]]]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_stages(cfg: StageConfig) -&gt; List[Tuple[str, List[Tuple[str, float, float]]]]:
+    &#34;&#34;&#34;
+    Returns list of (stage_name, [(item_name, weight_t, fr_m_from_ap), ...]).
+    &#34;&#34;&#34;
+    vc = build_vessel_coord(cfg)
+
+    # Helpers
+    def fr(v: float) -&gt; float:
+        return vc.frame_to_station_m(v)
+
+    def base_tr1_fixed() -&gt; List[Tuple[str, float, float]]:
+        items: List[Tuple[str, float, float]] = [(&#34;TR1 (fixed on stools)&#34;, cfg.w_tr_t, fr(cfg.tr1_final_frame))]
+        if cfg.beams_mode == &#34;ATTACHED&#34;:
+            items.append((&#34;Beams (TR1)&#34;, cfg.w_beams_t, fr(cfg.tr1_final_frame)))
+        if cfg.dunnage_t &gt; 0:
+            items.append((&#34;Dunnage&#34;, cfg.dunnage_t, fr(cfg.dunnage_frame)))
+        return items
+
+    stages: List[Tuple[str, List[Tuple[str, float, float]]]] = []
+
+    stages.append((&#34;S1 25% TR1 on ramp start&#34;, [
+        (&#34;TR1+SPMT+Beams (25%)&#34;, cfg.assembly_total_t * 0.25, fr(cfg.ramp_start_frame)),
+        *([] if cfg.dunnage_t &lt;= 0 else [(&#34;Dunnage&#34;, cfg.dunnage_t, fr(cfg.dunnage_frame))]),
+    ]))
+
+    stages.append((&#34;S2 50% TR1 on ramp mid (HOLD)&#34;, [
+        (&#34;TR1+SPMT+Beams (50%)&#34;, cfg.assembly_total_t * 0.50, fr(cfg.ramp_mid_frame)),
+        *([] if cfg.dunnage_t &lt;= 0 else [(&#34;Dunnage&#34;, cfg.dunnage_t, fr(cfg.dunnage_frame))]),
+    ]))
+
+    stages.append((&#34;S3 100% TR1 at final&#34;, [
+        (&#34;TR1+SPMT+Beams (100%)&#34;, cfg.assembly_total_t, fr(cfg.tr1_final_frame)),
+        *([] if cfg.dunnage_t &lt;= 0 else [(&#34;Dunnage&#34;, cfg.dunnage_t, fr(cfg.dunnage_frame))]),
+    ]))
+
+    stages.append((&#34;S4 Pre-ballast for TR2 (SPMT off deck)&#34;, base_tr1_fixed()))
+
+    stages.append((&#34;S5 50% TR2 on ramp mid (HOLD)&#34;, [
+        *base_tr1_fixed(),
+        (&#34;TR2+SPMT+Beams (50%)&#34;, cfg.assembly_total_t * 0.50, fr(cfg.ramp_mid_frame)),
+    ]))
+
+    final_items = base_tr1_fixed() + [(&#34;TR2 (fixed on stools)&#34;, cfg.w_tr_t, fr(cfg.tr2_final_frame))]
+    if cfg.beams_mode == &#34;ATTACHED&#34;:
+        final_items.append((&#34;Beams (TR2)&#34;, cfg.w_beams_t, fr(cfg.tr2_final_frame)))
+
+    if cfg.final_spmt_mode == &#34;ONBOARD&#34;:
+        final_items.append((&#34;SPMT (empty, parked)&#34;, cfg.w_spmt_t, fr(cfg.spmt_park_frame)))
+        if cfg.ppu_mode == &#34;SEPARATE_ONBOARD&#34;:
+            final_items.append((&#34;PPU (separate onboard)&#34;, cfg.w_ppu_t, fr(cfg.spmt_park_frame)))
+
+    stages.append((&#34;S6 Transit (final)&#34;, final_items))
+
+    return stages</code></pre>
+</details>
+<div class="desc"><p>Returns list of (stage_name, [(item_name, weight_t, fr_m_from_ap), &hellip;]).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.build_vessel_coord"><code class="name flex">
+<span>def <span class="ident">build_vessel_coord</span></span>(<span>cfg: <a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig">StageConfig</a>) ‑> 01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_vessel_coord(cfg: StageConfig) -&gt; VesselCoord:
+    ssot = VesselSSOT(
+        lpp_m=cfg.lpp_m,
+        midship_from_ap_m=cfg.midship_from_ap_m,
+        coord_mode=&#34;FR_M&#34; if cfg.coord_mode == &#34;FR_M&#34; else &#34;FRAME_INDEX&#34;,
+        frame_spacing_m=cfg.frame_spacing_m,
+        ap_offset_m=cfg.ap_offset_m,
+        fr_range_m=(0.0, cfg.lpp_m),
+    )
+    return VesselCoord(ssot=ssot)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.load_config"><code class="name flex">
+<span>def <span class="ident">load_config</span></span>(<span>path: str) ‑> 01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_config(path: str) -&gt; StageConfig:
+    data = json.loads(Path(path).read_text(encoding=&#34;utf-8&#34;))
+
+    ss = data.get(&#34;ssot&#34;, {})
+    pos = data.get(&#34;positions&#34;, {})
+    w = data.get(&#34;weights&#34;, {})
+    m = data.get(&#34;modes&#34;, {})
+
+    return StageConfig(
+        tr1_final_frame=float(pos.get(&#34;tr1_final_frame&#34;, 42.0)),
+        tr2_final_frame=float(pos.get(&#34;tr2_final_frame&#34;, 40.0)),
+        ramp_start_frame=float(pos.get(&#34;ramp_start_frame&#34;, pos.get(&#34;ramp_frame&#34;, 17.95))),
+        ramp_mid_frame=float(pos.get(&#34;ramp_mid_frame&#34;, pos.get(&#34;ramp_frame&#34;, 17.95))),
+        spmt_park_frame=float(pos.get(&#34;spmt_park_frame&#34;, 10.0)),
+        dunnage_frame=float(pos.get(&#34;dunnage_frame&#34;, 31.0)),
+
+        w_tr_t=float(w.get(&#34;w_tr_t&#34;, 217.0)),
+        w_spmt_t=float(w.get(&#34;w_spmt_t&#34;, 54.2)),
+        w_beams_t=float(w.get(&#34;w_beams_t&#34;, 11.6)),
+        w_ppu_t=float(w.get(&#34;w_ppu_t&#34;, 7.2)),
+        assembly_total_t=float(w.get(&#34;assembly_total_t&#34;, 282.8)),
+        dunnage_t=float(w.get(&#34;dunnage_t&#34;, 0.0)),
+
+        final_spmt_mode=str(m.get(&#34;final_spmt_mode&#34;, &#34;OFFBOARD&#34;)).upper(),
+        beams_mode=str(m.get(&#34;beams_mode&#34;, &#34;REMOVED&#34;)).upper(),
+        ppu_mode=str(m.get(&#34;ppu_mode&#34;, &#34;INCLUDED_IN_SPMT&#34;)).upper(),
+        ppu_included_in_assembly=bool(m.get(&#34;ppu_included_in_assembly&#34;, True)),
+
+        coord_mode=str(ss.get(&#34;coord_mode&#34;, &#34;FR_M&#34;)).upper(),  # default FR_M
+        frame_spacing_m=float(ss.get(&#34;frame_spacing_m&#34;, 1.0)),
+        ap_offset_m=float(ss.get(&#34;ap_offset_m&#34;, 0.0)),
+        midship_from_ap_m=float(ss.get(&#34;midship_from_ap_m&#34;, 30.151)),
+        lpp_m=float(ss.get(&#34;lpp_m&#34;, 60.302)),
+    )</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument(&#34;--config&#34;, required=True)
+    ap.add_argument(&#34;--out_xlsx&#34;, required=True)
+    args = ap.parse_args()
+
+    cfg = load_config(args.config)
+    vc = build_vessel_coord(cfg)
+    stages = build_stages(cfg)
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = &#34;Stage_Loads&#34;
+
+    headers = [&#34;Stage&#34;, &#34;Item&#34;, &#34;Weight_t&#34;, &#34;Fr_m_from_AP&#34;, &#34;x_m_from_Midship&#34;]
+    ws.append(headers)
+    for cell in ws[1]:
+        cell.font = Font(bold=True)
+        cell.fill = PatternFill(&#34;solid&#34;, fgColor=&#34;1F4E79&#34;)
+        cell.alignment = Alignment(horizontal=&#34;center&#34;)
+
+    for stage_name, items in stages:
+        for name, wt, fr_m in items:
+            x = vc.station_to_x_from_midship(fr_m)
+            ws.append([stage_name, name, round(wt, 3), round(fr_m, 3), round(x, 3)])
+
+    for i, w in enumerate([28, 38, 12, 14, 16], start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+
+    wb.save(args.out_xlsx)
+    print(f&#34;[OK] Wrote: {args.out_xlsx}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig"><code class="flex name class">
+<span>class <span class="ident">StageConfig</span></span>
+<span>(</span><span>tr1_final_frame: float,<br>tr2_final_frame: float,<br>ramp_start_frame: float,<br>ramp_mid_frame: float,<br>spmt_park_frame: float,<br>w_tr_t: float = 217.0,<br>w_spmt_t: float = 54.2,<br>w_beams_t: float = 11.6,<br>w_ppu_t: float = 7.2,<br>assembly_total_t: float = 282.8,<br>dunnage_t: float = 0.0,<br>dunnage_frame: float = 31.0,<br>final_spmt_mode: str = 'OFFBOARD',<br>beams_mode: str = 'REMOVED',<br>ppu_mode: str = 'INCLUDED_IN_SPMT',<br>ppu_included_in_assembly: bool = True,<br>coord_mode: CoordMode = 'FR_M',<br>frame_spacing_m: float = 1.0,<br>ap_offset_m: float = 0.0,<br>midship_from_ap_m: float = 30.151,<br>lpp_m: float = 60.302)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class StageConfig:
+    tr1_final_frame: float
+    tr2_final_frame: float
+    ramp_start_frame: float
+    ramp_mid_frame: float
+    spmt_park_frame: float
+
+    w_tr_t: float = 217.0
+    w_spmt_t: float = 54.2
+    w_beams_t: float = 11.6
+    w_ppu_t: float = 7.2
+    assembly_total_t: float = 282.8
+    dunnage_t: float = 0.0
+    dunnage_frame: float = 31.0
+
+    final_spmt_mode: str = &#34;OFFBOARD&#34;  # ONBOARD / OFFBOARD
+    beams_mode: str = &#34;REMOVED&#34;        # ATTACHED / REMOVED
+    ppu_mode: str = &#34;INCLUDED_IN_SPMT&#34; # INCLUDED_IN_SPMT / SEPARATE_ONBOARD / OFFBOARD
+    ppu_included_in_assembly: bool = True
+
+    # SSOT block (optional; defaults to AGI SSOT)
+    coord_mode: CoordMode = &#34;FR_M&#34;
+    frame_spacing_m: float = 1.0
+    ap_offset_m: float = 0.0
+    midship_from_ap_m: float = 30.151
+    lpp_m: float = 60.302</code></pre>
+</details>
+<div class="desc"><p>StageConfig(tr1_final_frame: 'float', tr2_final_frame: 'float', ramp_start_frame: 'float', ramp_mid_frame: 'float', spmt_park_frame: 'float', w_tr_t: 'float' = 217.0, w_spmt_t: 'float' = 54.2, w_beams_t: 'float' = 11.6, w_ppu_t: 'float' = 7.2, assembly_total_t: 'float' = 282.8, dunnage_t: 'float' = 0.0, dunnage_frame: 'float' = 31.0, final_spmt_mode: 'str' = 'OFFBOARD', beams_mode: 'str' = 'REMOVED', ppu_mode: 'str' = 'INCLUDED_IN_SPMT', ppu_included_in_assembly: 'bool' = True, coord_mode: 'CoordMode' = 'FR_M', frame_spacing_m: 'float' = 1.0, ap_offset_m: 'float' = 0.0, midship_from_ap_m: 'float' = 30.151, lpp_m: 'float' = 60.302)</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ap_offset_m"><code class="name">var <span class="ident">ap_offset_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.assembly_total_t"><code class="name">var <span class="ident">assembly_total_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.beams_mode"><code class="name">var <span class="ident">beams_mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.coord_mode"><code class="name">var <span class="ident">coord_mode</span> : Literal['FR_M', 'FRAME_INDEX']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.dunnage_frame"><code class="name">var <span class="ident">dunnage_frame</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.dunnage_t"><code class="name">var <span class="ident">dunnage_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.final_spmt_mode"><code class="name">var <span class="ident">final_spmt_mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.frame_spacing_m"><code class="name">var <span class="ident">frame_spacing_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.lpp_m"><code class="name">var <span class="ident">lpp_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.midship_from_ap_m"><code class="name">var <span class="ident">midship_from_ap_m</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ppu_included_in_assembly"><code class="name">var <span class="ident">ppu_included_in_assembly</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ppu_mode"><code class="name">var <span class="ident">ppu_mode</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ramp_mid_frame"><code class="name">var <span class="ident">ramp_mid_frame</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ramp_start_frame"><code class="name">var <span class="ident">ramp_start_frame</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.spmt_park_frame"><code class="name">var <span class="ident">spmt_park_frame</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.tr1_final_frame"><code class="name">var <span class="ident">tr1_final_frame</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.tr2_final_frame"><code class="name">var <span class="ident">tr2_final_frame</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_beams_t"><code class="name">var <span class="ident">w_beams_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_ppu_t"><code class="name">var <span class="ident">w_ppu_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_spmt_t"><code class="name">var <span class="ident">w_spmt_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_tr_t"><code class="name">var <span class="ident">w_tr_t</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord"><code class="flex name class">
+<span>class <span class="ident">VesselCoord</span></span>
+<span>(</span><span>ssot: VesselSSOT = VesselSSOT(lpp_m=60.302, midship_from_ap_m=30.151, coord_mode='FR_M', frame_spacing_m=1.0, ap_offset_m=0.0, fr_range_m=(0.0, 60.302)))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class VesselCoord:
+    &#34;&#34;&#34;Wrapper around the shared AGI SSOT coordinate converter.&#34;&#34;&#34;
+    ssot: VesselSSOT = build_agi_default_ssot()
+
+    def frame_to_station_m(self, frame_value: float) -&gt; float:
+        fr = self.ssot.to_fr_m_from_ap(frame_value)
+        if fr is None:
+            raise ValueError(&#34;frame_value is None/invalid&#34;)
+        return round(fr, 3)
+
+    def station_to_x_from_midship(self, fr_m_from_ap: float) -&gt; float:
+        return round(self.ssot.x_from_midship_m(fr_m_from_ap), 3)</code></pre>
+</details>
+<div class="desc"><p>Wrapper around the shared AGI SSOT coordinate converter.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.ssot"><code class="name">var <span class="ident">ssot</span> : agi_ssot.VesselSSOT</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.frame_to_station_m"><code class="name flex">
+<span>def <span class="ident">frame_to_station_m</span></span>(<span>self, frame_value: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def frame_to_station_m(self, frame_value: float) -&gt; float:
+    fr = self.ssot.to_fr_m_from_ap(frame_value)
+    if fr is None:
+        raise ValueError(&#34;frame_value is None/invalid&#34;)
+    return round(fr, 3)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.station_to_x_from_midship"><code class="name flex">
+<span>def <span class="ident">station_to_x_from_midship</span></span>(<span>self, fr_m_from_ap: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def station_to_x_from_midship(self, fr_m_from_ap: float) -&gt; float:
+    return round(self.ssot.x_from_midship_m(fr_m_from_ap), 3)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES.spmt v1" href="index.html">01_EXECUTION_FILES.spmt v1</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.build_stages" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.build_stages">build_stages</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.build_vessel_coord" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.build_vessel_coord">build_vessel_coord</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.load_config" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.load_config">load_config</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.main" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.main">main</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig">StageConfig</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ap_offset_m" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ap_offset_m">ap_offset_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.assembly_total_t" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.assembly_total_t">assembly_total_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.beams_mode" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.beams_mode">beams_mode</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.coord_mode" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.coord_mode">coord_mode</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.dunnage_frame" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.dunnage_frame">dunnage_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.dunnage_t" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.dunnage_t">dunnage_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.final_spmt_mode" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.final_spmt_mode">final_spmt_mode</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.frame_spacing_m" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.frame_spacing_m">frame_spacing_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.lpp_m" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.lpp_m">lpp_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.midship_from_ap_m" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.midship_from_ap_m">midship_from_ap_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ppu_included_in_assembly" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ppu_included_in_assembly">ppu_included_in_assembly</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ppu_mode" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ppu_mode">ppu_mode</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ramp_mid_frame" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ramp_mid_frame">ramp_mid_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ramp_start_frame" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.ramp_start_frame">ramp_start_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.spmt_park_frame" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.spmt_park_frame">spmt_park_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.tr1_final_frame" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.tr1_final_frame">tr1_final_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.tr2_final_frame" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.tr2_final_frame">tr2_final_frame</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_beams_t" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_beams_t">w_beams_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_ppu_t" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_ppu_t">w_ppu_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_spmt_t" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_spmt_t">w_spmt_t</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_tr_t" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.StageConfig.w_tr_t">w_tr_t</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord">VesselCoord</a></code></h4>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.frame_to_station_m" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.frame_to_station_m">frame_to_station_m</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.ssot" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.ssot">ssot</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.station_to_x_from_midship" href="#01_EXECUTION_FILES.spmt v1.lct_stage_spmt_shuttle_AGI_SSOT_patched.VesselCoord.station_to_x_from_midship">station_to_x_from_midship</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

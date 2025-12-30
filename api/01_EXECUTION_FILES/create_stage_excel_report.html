@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.create_stage_excel_report API documentation</title>
+<meta name="description" content="스테이지별 상세 결과 Excel 테이블 생성
+Excel Table Style로 정리된 보고서 생성">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.create_stage_excel_report</code></h1>
+</header>
+<section id="section-intro">
+<p>스테이지별 상세 결과 Excel 테이블 생성
+Excel Table Style로 정리된 보고서 생성</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.create_stage_excel_report.create_stage_summary_excel"><code class="name flex">
+<span>def <span class="ident">create_stage_summary_excel</span></span>(<span>final_output_dir: pathlib.Path, output_file: pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_stage_summary_excel(final_output_dir: Path, output_file: Path):
+    &#34;&#34;&#34;스테이지별 상세 결과를 Excel 테이블 형식으로 생성&#34;&#34;&#34;
+
+    wb = Workbook()
+
+    # 기본 시트 제거
+    if &#39;Sheet&#39; in wb.sheetnames:
+        wb.remove(wb[&#39;Sheet&#39;])
+
+    # 데이터 로드
+    qa_csv = final_output_dir / &#34;pipeline_stage_QA.csv&#34;
+    summary_csv = final_output_dir / &#34;solver_ballast_summary.csv&#34;
+    plan_csv = final_output_dir / &#34;solver_ballast_stage_plan.csv&#34;
+    exec_csv = final_output_dir / &#34;BALLAST_EXEC.csv&#34;
+
+    if not qa_csv.exists():
+        print(f&#34;[ERROR] {qa_csv} 파일을 찾을 수 없습니다.&#34;)
+        return None
+
+    df_qa = pd.read_csv(qa_csv, encoding=&#39;utf-8-sig&#39;)
+    df_summary = pd.read_csv(summary_csv, encoding=&#39;utf-8-sig&#39;) if summary_csv.exists() else pd.DataFrame()
+    df_plan = pd.read_csv(plan_csv, encoding=&#39;utf-8-sig&#39;) if plan_csv.exists() else pd.DataFrame()
+    df_exec = pd.read_csv(exec_csv, encoding=&#39;utf-8-sig&#39;) if exec_csv.exists() else pd.DataFrame()
+
+    # ============================================================
+    # 시트 1: 요약 (Summary)
+    # ============================================================
+    ws_summary = wb.create_sheet(&#34;01_요약&#34;, 0)
+
+    # 헤더 스타일
+    header_fill = PatternFill(start_color=&#34;366092&#34;, end_color=&#34;366092&#34;, fill_type=&#34;solid&#34;)
+    header_font = Font(bold=True, color=&#34;FFFFFF&#34;, size=11)
+    border = Border(
+        left=Side(style=&#39;thin&#39;),
+        right=Side(style=&#39;thin&#39;),
+        top=Side(style=&#39;thin&#39;),
+        bottom=Side(style=&#39;thin&#39;)
+    )
+
+    # 제목
+    ws_summary[&#39;A1&#39;] = &#34;스테이지별 상세 결과 요약&#34;
+    ws_summary[&#39;A1&#39;].font = Font(bold=True, size=14)
+    ws_summary.merge_cells(&#39;A1:H1&#39;)
+
+    # 요약 테이블
+    summary_data = []
+    for idx, row in df_qa.iterrows():
+        stage = row[&#39;Stage&#39;]
+        fwd = row.get(&#39;Draft_FWD_m&#39;, row.get(&#39;Current_FWD_m&#39;, &#39;&#39;))
+        aft = row.get(&#39;Draft_AFT_m&#39;, row.get(&#39;Current_AFT_m&#39;, &#39;&#39;))
+        trim = row.get(&#39;Trim_cm&#39;, &#39;&#39;)
+        gate_a = &#39;PASS&#39; if row.get(&#39;GateA_AFT_MIN_2p70_PASS&#39;, False) else &#39;FAIL&#39;
+        gate_b = row.get(&#39;GateB_FWD_MAX_2p70_CD_PASS&#39;, &#39;N/A&#39;)
+        if isinstance(gate_b, bool):
+            gate_b = &#39;PASS&#39; if gate_b else &#39;FAIL&#39;
+        elif pd.isna(gate_b):
+            gate_b = &#39;N/A&#39;
+        ukc = row.get(&#39;UKC_min_actual_m&#39;, row.get(&#39;UKC_min_m&#39;, &#39;&#39;))
+
+        summary_data.append({
+            &#39;Stage&#39;: stage,
+            &#39;FWD Draft (m)&#39;: fwd,
+            &#39;AFT Draft (m)&#39;: aft,
+            &#39;Trim (cm)&#39;: trim,
+            &#39;Gate-A (AFT≥2.70m)&#39;: gate_a,
+            &#39;Gate-B (FWD≤2.70m)&#39;: gate_b,
+            &#39;UKC Min (m)&#39;: ukc,
+            &#39;Critical&#39;: &#39;Yes&#39; if &#39;Critical&#39; in str(stage) or &#39;PreBallast&#39; in str(stage) else &#39;No&#39;
+        })
+
+    df_summary_table = pd.DataFrame(summary_data)
+
+    # 테이블 작성
+    headers = list(df_summary_table.columns)
+    for col_idx, header in enumerate(headers, 1):
+        cell = ws_summary.cell(row=3, column=col_idx)
+        cell.value = header
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+        cell.border = border
+
+    for row_idx, (_, row) in enumerate(df_summary_table.iterrows(), 4):
+        for col_idx, value in enumerate(row, 1):
+            cell = ws_summary.cell(row=row_idx, column=col_idx)
+            cell.value = value
+            cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+            cell.border = border
+
+            # Gate-A FAIL 강조
+            if col_idx == 5 and value == &#39;FAIL&#39;:
+                cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+            # Gate-B FAIL 강조
+            elif col_idx == 6 and value == &#39;FAIL&#39;:
+                cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+            # Critical Stage 강조
+            elif col_idx == 8 and value == &#39;Yes&#39;:
+                cell.fill = PatternFill(start_color=&#34;FFF2CC&#34;, end_color=&#34;FFF2CC&#34;, fill_type=&#34;solid&#34;)
+
+    # 컬럼 너비 조정
+    ws_summary.column_dimensions[&#39;A&#39;].width = 25
+    for col in range(2, 9):
+        ws_summary.column_dimensions[get_column_letter(col)].width = 15
+
+    # ============================================================
+    # 시트 2: 스테이지별 상세 (Stage Details)
+    # ============================================================
+    ws_details = wb.create_sheet(&#34;02_스테이지별_상세&#34;)
+
+    # 주요 컬럼 선택
+    detail_cols = [
+        &#39;Stage&#39;, &#39;Draft_FWD_m&#39;, &#39;Draft_AFT_m&#39;, &#39;Trim_cm&#39;, &#39;Tmean_m&#39;,
+        &#39;Input_Disp_t&#39;, &#39;Freeboard_FWD_m&#39;, &#39;Freeboard_AFT_m&#39;, &#39;Freeboard_Min_m&#39;,
+        &#39;UKC_fwd_m&#39;, &#39;UKC_aft_m&#39;, &#39;UKC_min_actual_m&#39;,
+        &#39;Forecast_tide_m&#39;, &#39;Tide_required_m&#39;, &#39;Tide_margin_m&#39;,
+        &#39;GateA_AFT_MIN_2p70_PASS&#39;, &#39;GateA_AFT_MIN_2p70_Margin_m&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_applicable&#39;, &#39;GateB_FWD_MAX_2p70_CD_PASS&#39;, &#39;GateB_FWD_MAX_2p70_CD_Margin_m&#39;
+    ]
+
+    available_cols = [col for col in detail_cols if col in df_qa.columns]
+    df_details = df_qa[available_cols].copy()
+
+    # 컬럼명 한글화
+    col_mapping = {
+        &#39;Stage&#39;: &#39;Stage&#39;,
+        &#39;Draft_FWD_m&#39;: &#39;FWD Draft (m)&#39;,
+        &#39;Draft_AFT_m&#39;: &#39;AFT Draft (m)&#39;,
+        &#39;Trim_cm&#39;: &#39;Trim (cm)&#39;,
+        &#39;Tmean_m&#39;: &#39;Mean Draft (m)&#39;,
+        &#39;Input_Disp_t&#39;: &#39;Displacement (t)&#39;,
+        &#39;Freeboard_FWD_m&#39;: &#39;Freeboard FWD (m)&#39;,
+        &#39;Freeboard_AFT_m&#39;: &#39;Freeboard AFT (m)&#39;,
+        &#39;Freeboard_Min_m&#39;: &#39;Freeboard Min (m)&#39;,
+        &#39;UKC_fwd_m&#39;: &#39;UKC FWD (m)&#39;,
+        &#39;UKC_aft_m&#39;: &#39;UKC AFT (m)&#39;,
+        &#39;UKC_min_actual_m&#39;: &#39;UKC Min (m)&#39;,
+        &#39;Forecast_tide_m&#39;: &#39;Forecast Tide (m)&#39;,
+        &#39;Tide_required_m&#39;: &#39;Tide Required (m)&#39;,
+        &#39;Tide_margin_m&#39;: &#39;Tide Margin (m)&#39;,
+        &#39;GateA_AFT_MIN_2p70_PASS&#39;: &#39;Gate-A PASS&#39;,
+        &#39;GateA_AFT_MIN_2p70_Margin_m&#39;: &#39;Gate-A Margin (m)&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_applicable&#39;: &#39;Gate-B Applicable&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_PASS&#39;: &#39;Gate-B PASS&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_Margin_m&#39;: &#39;Gate-B Margin (m)&#39;
+    }
+
+    df_details.rename(columns=col_mapping, inplace=True)
+
+    # 테이블 작성
+    headers = list(df_details.columns)
+    for col_idx, header in enumerate(headers, 1):
+        cell = ws_details.cell(row=1, column=col_idx)
+        cell.value = header
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;, wrap_text=True)
+        cell.border = border
+
+    for row_idx, (_, row) in enumerate(df_details.iterrows(), 2):
+        for col_idx, value in enumerate(row, 1):
+            cell = ws_details.cell(row=row_idx, column=col_idx)
+            if pd.notna(value):
+                cell.value = value
+            cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+            cell.border = border
+
+            # Gate-A FAIL 강조
+            if &#39;Gate-A PASS&#39; in headers and col_idx == headers.index(&#39;Gate-A PASS&#39;) + 1:
+                if value == False:
+                    cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+            # Gate-B FAIL 강조
+            elif &#39;Gate-B PASS&#39; in headers and col_idx == headers.index(&#39;Gate-B PASS&#39;) + 1:
+                if value == False:
+                    cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+
+    # 컬럼 너비 조정
+    for col_idx, header in enumerate(headers, 1):
+        col_letter = get_column_letter(col_idx)
+        if &#39;Stage&#39; in header:
+            ws_details.column_dimensions[col_letter].width = 25
+        else:
+            ws_details.column_dimensions[col_letter].width = 15
+
+    # ============================================================
+    # 시트 3: Gate 검증 결과 (Gate Validation)
+    # ============================================================
+    ws_gates = wb.create_sheet(&#34;03_Gate_검증&#34;)
+
+    gate_cols = [
+        &#39;Stage&#39;,
+        &#39;Draft_FWD_m&#39;, &#39;Draft_AFT_m&#39;,
+        &#39;GateA_AFT_MIN_2p70_PASS&#39;, &#39;GateA_AFT_MIN_2p70_Margin_m&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_applicable&#39;, &#39;GateB_FWD_MAX_2p70_CD_PASS&#39;, &#39;GateB_FWD_MAX_2p70_CD_Margin_m&#39;,
+        &#39;Gate_FWD_Max&#39;, &#39;Gate_AFT_Min&#39;, &#39;Gate_Freeboard&#39;, &#39;Gate_UKC&#39;
+    ]
+
+    available_gate_cols = [col for col in gate_cols if col in df_qa.columns]
+    df_gates = df_qa[available_gate_cols].copy()
+
+    # 컬럼명 한글화
+    gate_col_mapping = {
+        &#39;Stage&#39;: &#39;Stage&#39;,
+        &#39;Draft_FWD_m&#39;: &#39;FWD Draft (m)&#39;,
+        &#39;Draft_AFT_m&#39;: &#39;AFT Draft (m)&#39;,
+        &#39;GateA_AFT_MIN_2p70_PASS&#39;: &#39;Gate-A PASS&#39;,
+        &#39;GateA_AFT_MIN_2p70_Margin_m&#39;: &#39;Gate-A Margin (m)&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_applicable&#39;: &#39;Gate-B Applicable&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_PASS&#39;: &#39;Gate-B PASS&#39;,
+        &#39;GateB_FWD_MAX_2p70_CD_Margin_m&#39;: &#39;Gate-B Margin (m)&#39;,
+        &#39;Gate_FWD_Max&#39;: &#39;Gate FWD Max&#39;,
+        &#39;Gate_AFT_Min&#39;: &#39;Gate AFT Min&#39;,
+        &#39;Gate_Freeboard&#39;: &#39;Gate Freeboard&#39;,
+        &#39;Gate_UKC&#39;: &#39;Gate UKC&#39;
+    }
+
+    df_gates.rename(columns=gate_col_mapping, inplace=True)
+
+    # 테이블 작성
+    headers = list(df_gates.columns)
+    for col_idx, header in enumerate(headers, 1):
+        cell = ws_gates.cell(row=1, column=col_idx)
+        cell.value = header
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;, wrap_text=True)
+        cell.border = border
+
+    for row_idx, (_, row) in enumerate(df_gates.iterrows(), 2):
+        for col_idx, value in enumerate(row, 1):
+            cell = ws_gates.cell(row=row_idx, column=col_idx)
+            if pd.notna(value):
+                if isinstance(value, bool):
+                    cell.value = &#39;PASS&#39; if value else &#39;FAIL&#39;
+                else:
+                    cell.value = value
+            cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+            cell.border = border
+
+            # FAIL 강조
+            if isinstance(value, str) and value == &#39;FAIL&#39;:
+                cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+            elif isinstance(value, str) and value == &#39;OK&#39;:
+                cell.fill = PatternFill(start_color=&#34;C6EFCE&#34;, end_color=&#34;C6EFCE&#34;, fill_type=&#34;solid&#34;)
+
+    # 컬럼 너비 조정
+    for col_idx, header in enumerate(headers, 1):
+        col_letter = get_column_letter(col_idx)
+        if &#39;Stage&#39; in header:
+            ws_gates.column_dimensions[col_letter].width = 25
+        else:
+            ws_gates.column_dimensions[col_letter].width = 15
+
+    # ============================================================
+    # 시트 4: Ballast 계획 (Ballast Plan)
+    # ============================================================
+    if not df_plan.empty:
+        ws_plan = wb.create_sheet(&#34;04_Ballast_계획&#34;)
+
+        # 컬럼명 한글화
+        plan_col_mapping = {
+            &#39;Stage&#39;: &#39;Stage&#39;,
+            &#39;Tank&#39;: &#39;Tank&#39;,
+            &#39;Action&#39;: &#39;Action&#39;,
+            &#39;Delta_t&#39;: &#39;Delta (t)&#39;,
+            &#39;PumpTime_h&#39;: &#39;Time (h)&#39;
+        }
+
+        df_plan_display = df_plan.copy()
+        df_plan_display.rename(columns=plan_col_mapping, inplace=True)
+
+        # 테이블 작성
+        headers = list(df_plan_display.columns)
+        for col_idx, header in enumerate(headers, 1):
+            cell = ws_plan.cell(row=1, column=col_idx)
+            cell.value = header
+            cell.fill = header_fill
+            cell.font = header_font
+            cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+            cell.border = border
+
+        for row_idx, (_, row) in enumerate(df_plan_display.iterrows(), 2):
+            for col_idx, value in enumerate(row, 1):
+                cell = ws_plan.cell(row=row_idx, column=col_idx)
+                if pd.notna(value):
+                    cell.value = value
+                cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+                cell.border = border
+
+        # 컬럼 너비 조정
+        ws_plan.column_dimensions[&#39;A&#39;].width = 25
+        ws_plan.column_dimensions[&#39;B&#39;].width = 15
+        for col in range(3, 6):
+            ws_plan.column_dimensions[get_column_letter(col)].width = 15
+
+    # ============================================================
+    # 시트 5: 실행 시퀀스 (Execution Sequence)
+    # ============================================================
+    if not df_exec.empty:
+        ws_exec = wb.create_sheet(&#34;05_실행_시퀀스&#34;)
+
+        # 주요 컬럼 선택
+        exec_cols = [
+            &#39;Stage&#39;, &#39;Step&#39;, &#39;Tank&#39;, &#39;Action&#39;, &#39;Start_t&#39;, &#39;Target_t&#39;,
+            &#39;Delta_t&#39;, &#39;Time_h&#39;, &#39;Pump_ID&#39;, &#39;PumpRate_tph&#39;, &#39;Hold_Point&#39;,
+            &#39;Draft_FWD&#39;, &#39;Draft_AFT&#39;, &#39;Trim_cm&#39;, &#39;UKC&#39;
+        ]
+
+        available_exec_cols = [col for col in exec_cols if col in df_exec.columns]
+        df_exec_display = df_exec[available_exec_cols].copy()
+
+        # 컬럼명 한글화
+        exec_col_mapping = {
+            &#39;Stage&#39;: &#39;Stage&#39;,
+            &#39;Step&#39;: &#39;Step&#39;,
+            &#39;Tank&#39;: &#39;Tank&#39;,
+            &#39;Action&#39;: &#39;Action&#39;,
+            &#39;Start_t&#39;: &#39;Start (t)&#39;,
+            &#39;Target_t&#39;: &#39;Target (t)&#39;,
+            &#39;Delta_t&#39;: &#39;Delta (t)&#39;,
+            &#39;Time_h&#39;: &#39;Time (h)&#39;,
+            &#39;Pump_ID&#39;: &#39;Pump ID&#39;,
+            &#39;PumpRate_tph&#39;: &#39;Rate (tph)&#39;,
+            &#39;Hold_Point&#39;: &#39;Hold Point&#39;,
+            &#39;Draft_FWD&#39;: &#39;Draft FWD (m)&#39;,
+            &#39;Draft_AFT&#39;: &#39;Draft AFT (m)&#39;,
+            &#39;Trim_cm&#39;: &#39;Trim (cm)&#39;,
+            &#39;UKC&#39;: &#39;UKC (m)&#39;
+        }
+
+        df_exec_display.rename(columns=exec_col_mapping, inplace=True)
+
+        # 테이블 작성
+        headers = list(df_exec_display.columns)
+        for col_idx, header in enumerate(headers, 1):
+            cell = ws_exec.cell(row=1, column=col_idx)
+            cell.value = header
+            cell.fill = header_fill
+            cell.font = header_font
+            cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;, wrap_text=True)
+            cell.border = border
+
+        for row_idx, (_, row) in enumerate(df_exec_display.iterrows(), 2):
+            for col_idx, value in enumerate(row, 1):
+                cell = ws_exec.cell(row=row_idx, column=col_idx)
+                if pd.notna(value):
+                    cell.value = value
+                cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+                cell.border = border
+
+                # Hold Point 강조
+                if &#39;Hold Point&#39; in headers and col_idx == headers.index(&#39;Hold Point&#39;) + 1:
+                    if value == &#39;Y&#39;:
+                        cell.fill = PatternFill(start_color=&#34;FFF2CC&#34;, end_color=&#34;FFF2CC&#34;, fill_type=&#34;solid&#34;)
+
+        # 컬럼 너비 조정
+        ws_exec.column_dimensions[&#39;A&#39;].width = 25
+        for col in range(2, len(headers) + 1):
+            ws_exec.column_dimensions[get_column_letter(col)].width = 12
+
+    # ============================================================
+    # 시트 6: Critical Stage 요약
+    # ============================================================
+    ws_critical = wb.create_sheet(&#34;06_Critical_요약&#34;)
+
+    critical_stages = df_qa[df_qa[&#39;Stage&#39;].str.contains(&#39;Critical|PreBallast&#39;, case=False, na=False)]
+
+    if not critical_stages.empty:
+        critical_data = []
+        for idx, row in critical_stages.iterrows():
+            stage = row[&#39;Stage&#39;]
+            fwd = row.get(&#39;Draft_FWD_m&#39;, &#39;&#39;)
+            aft = row.get(&#39;Draft_AFT_m&#39;, &#39;&#39;)
+            gate_a = &#39;PASS&#39; if row.get(&#39;GateA_AFT_MIN_2p70_PASS&#39;, False) else &#39;FAIL&#39;
+            gate_a_margin = row.get(&#39;GateA_AFT_MIN_2p70_Margin_m&#39;, &#39;&#39;)
+            gate_b = &#39;PASS&#39; if row.get(&#39;GateB_FWD_MAX_2p70_CD_PASS&#39;, False) else &#39;FAIL&#39;
+            gate_b_margin = row.get(&#39;GateB_FWD_MAX_2p70_CD_Margin_m&#39;, &#39;&#39;)
+            ukc = row.get(&#39;UKC_min_actual_m&#39;, &#39;&#39;)
+
+            # Solver 계획 정보
+            plan_rows = df_plan[df_plan[&#39;Stage&#39;] == stage] if not df_plan.empty else pd.DataFrame()
+            plan_count = len(plan_rows)
+            total_delta = plan_rows[&#39;Delta_t&#39;].sum() if not plan_rows.empty else 0
+            total_time = plan_rows[&#39;PumpTime_h&#39;].sum() if not plan_rows.empty else 0
+
+            critical_data.append({
+                &#39;Stage&#39;: stage,
+                &#39;FWD Draft (m)&#39;: fwd,
+                &#39;AFT Draft (m)&#39;: aft,
+                &#39;Gate-A&#39;: gate_a,
+                &#39;Gate-A Margin (m)&#39;: gate_a_margin,
+                &#39;Gate-B&#39;: gate_b,
+                &#39;Gate-B Margin (m)&#39;: gate_b_margin,
+                &#39;UKC Min (m)&#39;: ukc,
+                &#39;Ballast Operations&#39;: plan_count,
+                &#39;Total Delta (t)&#39;: total_delta,
+                &#39;Total Time (h)&#39;: total_time
+            })
+
+        df_critical = pd.DataFrame(critical_data)
+
+        # 테이블 작성
+        headers = list(df_critical.columns)
+        for col_idx, header in enumerate(headers, 1):
+            cell = ws_critical.cell(row=1, column=col_idx)
+            cell.value = header
+            cell.fill = header_fill
+            cell.font = header_font
+            cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;, wrap_text=True)
+            cell.border = border
+
+        for row_idx, (_, row) in enumerate(df_critical.iterrows(), 2):
+            for col_idx, value in enumerate(row, 1):
+                cell = ws_critical.cell(row=row_idx, column=col_idx)
+                if pd.notna(value):
+                    cell.value = value
+                cell.alignment = Alignment(horizontal=&#39;center&#39;, vertical=&#39;center&#39;)
+                cell.border = border
+
+                # FAIL 강조
+                if &#39;Gate-A&#39; in headers and col_idx == headers.index(&#39;Gate-A&#39;) + 1:
+                    if value == &#39;FAIL&#39;:
+                        cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+                elif &#39;Gate-B&#39; in headers and col_idx == headers.index(&#39;Gate-B&#39;) + 1:
+                    if value == &#39;FAIL&#39;:
+                        cell.fill = PatternFill(start_color=&#34;FFC7CE&#34;, end_color=&#34;FFC7CE&#34;, fill_type=&#34;solid&#34;)
+
+        # 컬럼 너비 조정
+        ws_critical.column_dimensions[&#39;A&#39;].width = 25
+        for col in range(2, len(headers) + 1):
+            ws_critical.column_dimensions[get_column_letter(col)].width = 15
+
+    # 파일 저장
+    wb.save(output_file)
+    print(f&#34;[OK] Excel 파일 생성 완료: {output_file}&#34;)
+    return output_file</code></pre>
+</details>
+<div class="desc"><p>스테이지별 상세 결과를 Excel 테이블 형식으로 생성</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES" href="index.html">01_EXECUTION_FILES</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.create_stage_excel_report.create_stage_summary_excel" href="#01_EXECUTION_FILES.create_stage_excel_report.create_stage_summary_excel">create_stage_summary_excel</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

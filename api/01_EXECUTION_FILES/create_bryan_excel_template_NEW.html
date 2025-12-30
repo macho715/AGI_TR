@@ -1,0 +1,2358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>01_EXECUTION_FILES.create_bryan_excel_template_NEW API documentation</title>
+<meta name="description" content="create_bryan_excel_template.py …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>01_EXECUTION_FILES.create_bryan_excel_template_NEW</code></h1>
+</header>
+<section id="section-intro">
+<p>create_bryan_excel_template.py</p>
+<p>Goal
+- Generate Bryan Submission Data Pack Template aligned to the analyzed report structure:
+16 sheets in fixed order (same sheet names).
+- Provide enough rows/columns so all data can be entered.
+- Use NamedRanges for cross-sheet DataValidation lists (Stage_List, Tanks_List).</p>
+<p>Sheet order (per analysis doc)
+- 00_README
+- 01_SSOT_Master
+- 02_Vessel_Hydro
+- 03_Berth_Tide
+- 04_Cargo_SPMT
+- 05_Ballast_Tanks
+- 06_Stage_Plan
+- 07_Stage_Calc
+- 08_HoldPoint_Log
+- 09_Evidence_Log
+- 10_RACI
+- 11_Assumptions_Issues
+- 12_DataDictionary
+- Pack_A_Inputs_SSOT
+- Pack_B_Calculation_Formulas
+- Pack_D_Tide_Window_RACI</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.add_named_range"><code class="name flex">
+<span>def <span class="ident">add_named_range</span></span>(<span>wb: Workbook, name: str, refers_to: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_named_range(wb: Workbook, name: str, refers_to: str) -&gt; None:
+    &#34;&#34;&#34;
+    refers_to example: &#34;&#39;06_Stage_Plan&#39;!$A$2:$A$200&#34;
+    &#34;&#34;&#34;
+    # Remove if exists
+    try:
+        if name in wb.defined_names:
+            del wb.defined_names[name]
+    except Exception:
+        try:
+            # Fallback for older openpyxl versions
+            existing = [dn for dn in wb.defined_names.definedName if dn.name == name]
+            for dn in existing:
+                wb.defined_names.definedName.remove(dn)
+        except Exception:
+            pass
+
+    # Add new named range (compatible with both old and new openpyxl)
+    try:
+        # New openpyxl API (dict-like)
+        wb.defined_names[name] = refers_to
+    except (TypeError, AttributeError):
+        # Fallback for older openpyxl versions
+        try:
+            dn = DefinedName(name=name, attr_text=refers_to)
+            if hasattr(wb.defined_names, &#34;definedName&#34;):
+                wb.defined_names.definedName.append(dn)
+            else:
+                wb.defined_names.append(dn)
+        except Exception:
+            # If all else fails, skip named range (non-critical)
+            pass</code></pre>
+</details>
+<div class="desc"><p>refers_to example: "'06_Stage_Plan'!$A$2:$A$200"</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.apply_row_style"><code class="name flex">
+<span>def <span class="ident">apply_row_style</span></span>(<span>ws,<br>row_idx: int,<br>col_from: int,<br>col_to: int,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>fill: Optional[PatternFill] = None,<br>align: Optional[Alignment] = None,<br>font: Optional[Font] = None) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def apply_row_style(
+    ws,
+    row_idx: int,
+    col_from: int,
+    col_to: int,
+    styles: Styles,
+    fill: Optional[PatternFill] = None,
+    align: Optional[Alignment] = None,
+    font: Optional[Font] = None,
+) -&gt; None:
+    for col in range(col_from, col_to + 1):
+        cell = ws.cell(row=row_idx, column=col)
+        cell.border = styles.border_thin
+        if fill is not None:
+            cell.fill = fill
+        if align is not None:
+            cell.alignment = align
+        if font is not None:
+            cell.font = font</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_assumptions_issues_sheet"><code class="name flex">
+<span>def <span class="ident">build_assumptions_issues_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>rows: int = 200) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_assumptions_issues_sheet(
+    wb: Workbook, styles: Styles, rows: int = 200
+) -&gt; None:
+    ws = wb.create_sheet(&#34;11_Assumptions_Issues&#34;)
+    make_header_row(
+        ws,
+        1,
+        [
+            &#34;ID&#34;,
+            &#34;Type&#34;,
+            &#34;Description&#34;,
+            &#34;Value&#34;,
+            &#34;Unit&#34;,
+            &#34;Impact&#34;,
+            &#34;Owner&#34;,
+            &#34;Due&#34;,
+            &#34;Status&#34;,
+            &#34;Evidence/Ref&#34;,
+        ],
+        styles,
+    )
+    ws.row_dimensions[1].height = 22.0
+
+    defaults = [
+        (
+            1,
+            &#34;Assumption&#34;,
+            &#34;Hydro points provided are accurate and sorted by displacement&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;High&#34;,
+            &#34;Marine&#34;,
+            &#34;&#34;,
+            &#34;OPEN&#34;,
+            &#34;&#34;,
+        ),
+        (
+            2,
+            &#34;Assumption&#34;,
+            &#34;DepthRef uses same datum as tide (CD)&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;High&#34;,
+            &#34;Marine&#34;,
+            &#34;&#34;,
+            &#34;OPEN&#34;,
+            &#34;&#34;,
+        ),
+        (
+            3,
+            &#34;Issue&#34;,
+            &#34;Lightship displacement/draft not confirmed&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;Med&#34;,
+            &#34;Marine&#34;,
+            &#34;&#34;,
+            &#34;OPEN&#34;,
+            &#34;&#34;,
+        ),
+        (
+            4,
+            &#34;Gap&#34;,
+            &#34;No clear explanation of draft mark positions&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;Med&#34;,
+            &#34;Marine&#34;,
+            &#34;&#34;,
+            &#34;OPEN&#34;,
+            &#34;&#34;,
+        ),
+    ]
+    for i, row in enumerate(defaults, start=2):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.fill = styles.fill_input if j in (4, 5, 8, 9, 10) else styles.fill_calc
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_left if j == 3 else styles.align_center
+
+    # Fill blanks
+    end = 1 + rows
+    for r in range(2 + len(defaults), end + 1):
+        for c in range(1, 11):
+            cell = ws.cell(r, c)
+            cell.fill = styles.fill_input if c in (4, 5, 8, 9, 10) else styles.fill_calc
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_left if c == 3 else styles.align_center
+
+    dv_type = DataValidation(
+        type=&#34;list&#34;, formula1=&#39;&#34;Assumption,Issue,Gap&#34;&#39;, allow_blank=True
+    )
+    dv_impact = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;Low,Med,High&#34;&#39;, allow_blank=True)
+    dv_status = DataValidation(
+        type=&#34;list&#34;, formula1=&#39;&#34;OPEN,CLOSED,MITIGATED&#34;&#39;, allow_blank=True
+    )
+    ws.add_data_validation(dv_type)
+    ws.add_data_validation(dv_impact)
+    ws.add_data_validation(dv_status)
+    dv_type.add(f&#34;B2:B{end}&#34;)
+    dv_impact.add(f&#34;F2:F{end}&#34;)
+    dv_status.add(f&#34;I2:I{end}&#34;)
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 8.0,
+            &#34;B&#34;: 14.0,
+            &#34;C&#34;: 55.0,
+            &#34;D&#34;: 16.0,
+            &#34;E&#34;: 10.0,
+            &#34;F&#34;: 12.0,
+            &#34;G&#34;: 14.0,
+            &#34;H&#34;: 16.0,
+            &#34;I&#34;: 14.0,
+            &#34;J&#34;: 40.0,
+        },
+    )
+    ws.freeze_panes = &#34;A2&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_ballast_tanks_sheet"><code class="name flex">
+<span>def <span class="ident">build_ballast_tanks_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>tank_rows: int = 80,<br>delta_rows: int = 120) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_ballast_tanks_sheet(
+    wb: Workbook, styles: Styles, tank_rows: int = 80, delta_rows: int = 120
+) -&gt; None:
+    ws = wb.create_sheet(&#34;05_Ballast_Tanks&#34;)
+
+    ws.merge_cells(&#34;A1:K1&#34;)
+    ws[&#34;A1&#34;] = &#34;Ballast Tank Catalog (input)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws.row_dimensions[1].height = 20.0
+
+    ws.merge_cells(&#34;A2:K2&#34;)
+    ws[&#34;A2&#34;] = (
+        &#34;List all relevant tanks and initial ROB. Use same tank names as in ballast solver.&#34;
+    )
+    ws[&#34;A2&#34;].fill = styles.fill_note
+
+    # Constants (L/M)
+    ws[&#34;L1&#34;] = &#34;VENT_COEFF (t/h/mm)&#34;
+    ws[&#34;M1&#34;] = 0.86
+    ws[&#34;L2&#34;] = &#34;PUMP_RATE (t/h) default&#34;
+    ws[&#34;M2&#34;] = 10.0
+    ws[&#34;L1&#34;].font = Font(bold=True)
+    ws[&#34;L2&#34;].font = Font(bold=True)
+    ws[&#34;M1&#34;].number_format = &#34;0.00&#34;
+    ws[&#34;M2&#34;].number_format = &#34;0.00&#34;
+    ws[&#34;M1&#34;].fill = styles.fill_input
+    ws[&#34;M2&#34;].fill = styles.fill_input
+
+    headers = [
+        &#34;Tank&#34;,
+        &#34;Side&#34;,
+        &#34;Family&#34;,
+        &#34;Capacity_t&#34;,
+        &#34;Initial_ROB_t&#34;,
+        &#34;Max_allow_t&#34;,
+        &#34;x_m&#34;,
+        &#34;Frame&#34;,
+        &#34;PumpGroup&#34;,
+        &#34;Vent_dia_mm&#34;,
+        &#34;Remarks/Source&#34;,
+    ]
+    make_header_row(ws, 3, headers, styles)
+    ws.row_dimensions[3].height = 22.0
+
+    # Tank catalog rows
+    cat_first = 4
+    cat_last = cat_first + tank_rows - 1
+
+    for r in range(cat_first, cat_last + 1):
+        for c in range(1, 12):
+            cell = ws.cell(r, c)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_center if c != 11 else styles.align_left
+            # Input columns
+            if c in (1, 2, 4, 5, 6, 10, 11):
+                cell.fill = styles.fill_input
+            else:
+                cell.fill = styles.fill_calc
+
+    # Named range for tank list (used in delta section &amp; elsewhere)
+    add_named_range(
+        wb, &#34;Tanks_List&#34;, f&#34;&#39;05_Ballast_Tanks&#39;!$A${cat_first}:$A${cat_last}&#34;
+    )
+
+    # Stage-wise delta section
+    sec_title_row = cat_last + 2
+    sec_note_row = sec_title_row + 1
+    header_row = sec_title_row + 2
+    data_first = header_row + 1
+    data_last = data_first + delta_rows - 1
+
+    ws.merge_cells(f&#34;A{sec_title_row}:K{sec_title_row}&#34;)
+    ws[f&#34;A{sec_title_row}&#34;] = &#34;Stage-wise Tank Deltas (input per stage)&#34;
+    ws[f&#34;A{sec_title_row}&#34;].fill = styles.fill_title
+    ws[f&#34;A{sec_title_row}&#34;].font = styles.font_title
+    ws.row_dimensions[sec_title_row].height = 20.0
+
+    ws.merge_cells(f&#34;A{sec_note_row}:K{sec_note_row}&#34;)
+    ws[f&#34;A{sec_note_row}&#34;] = (
+        &#34;Fill delta (t) for each tank per stage. + = fill, - = discharge.&#34;
+    )
+    ws[f&#34;A{sec_note_row}&#34;].fill = styles.fill_note
+
+    stage_cols = [
+        &#34;Tank&#34;,
+        &#34;Stage 1&#34;,
+        &#34;Stage 2&#34;,
+        &#34;Stage 3&#34;,
+        &#34;Stage 4&#34;,
+        &#34;Stage 5&#34;,
+        &#34;Stage 5_PreBallast&#34;,
+        &#34;Stage 6A_Critical (Opt C)&#34;,
+        &#34;Stage 6C&#34;,
+        &#34;Stage 7&#34;,
+        &#34;Remarks&#34;,
+    ]
+    make_header_row(ws, header_row, stage_cols, styles)
+    ws.row_dimensions[header_row].height = 22.0
+
+    dv_tank = DataValidation(type=&#34;list&#34;, formula1=&#34;=Tanks_List&#34;, allow_blank=True)
+    ws.add_data_validation(dv_tank)
+    dv_tank.add(f&#34;A{data_first}:A{data_last}&#34;)
+
+    for r in range(data_first, data_last + 1):
+        for c in range(1, 12):
+            cell = ws.cell(r, c)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_center if c != 11 else styles.align_left
+            cell.fill = styles.fill_input if c &lt;= 11 else styles.fill_calc
+            if 2 &lt;= c &lt;= 10:
+                cell.number_format = &#34;0.00&#34;
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 18.0,
+            &#34;B&#34;: 10.0,
+            &#34;C&#34;: 10.0,
+            &#34;D&#34;: 10.0,
+            &#34;E&#34;: 10.0,
+            &#34;F&#34;: 10.0,
+            &#34;G&#34;: 16.0,
+            &#34;H&#34;: 20.0,
+            &#34;I&#34;: 12.0,
+            &#34;J&#34;: 12.0,
+            &#34;K&#34;: 30.0,
+            &#34;L&#34;: 20.0,
+            &#34;M&#34;: 14.0,
+        },
+    )
+    ws.freeze_panes = &#34;A4&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_berth_tide_sheet"><code class="name flex">
+<span>def <span class="ident">build_berth_tide_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>tide_rows: int = 120) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_berth_tide_sheet(wb: Workbook, styles: Styles, tide_rows: int = 120) -&gt; None:
+    ws = wb.create_sheet(&#34;03_Berth_Tide&#34;)
+
+    ws.merge_cells(&#34;A1:E1&#34;)
+    ws[&#34;A1&#34;] = &#34;Berth / Depth Reference (input)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws.row_dimensions[1].height = 20.0
+
+    ws.merge_cells(&#34;A2:E2&#34;)
+    ws[&#34;A2&#34;] = &#34;DepthRef must use same datum as tide (e.g., CD).&#34;
+    ws[&#34;A2&#34;].fill = styles.fill_note
+
+    make_header_row(ws, 3, [&#34;Field&#34;, &#34;Value&#34;, &#34;Unit&#34;, &#34;Notes&#34;, &#34;Source&#34;], styles)
+    ws.row_dimensions[3].height = 22.0
+
+    berth_data = [
+        (&#34;Site/Location&#34;, &#34;&#34;, &#34;&#34;, &#34;Berth/jetty identification&#34;, &#34;&#34;),
+        (&#34;DepthRef&#34;, &#34;5.50&#34;, &#34;m&#34;, &#34;Use latest sounding if available&#34;, &#34;&#34;),
+        (&#34;Datum&#34;, &#34;CD&#34;, &#34;&#34;, &#34;e.g., CD&#34;, &#34;&#34;),
+        (&#34;UKC min&#34;, &#34;0.50&#34;, &#34;m&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Squat&#34;, &#34;0.00&#34;, &#34;m&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Safety Allowance&#34;, &#34;0.00&#34;, &#34;m&#34;, &#34;&#34;, &#34;&#34;),
+    ]
+    for i, (field, value, unit, notes, source) in enumerate(berth_data, start=4):
+        ws.cell(i, 1, field).fill = styles.fill_section
+        ws.cell(i, 1).font = Font(bold=True)
+        ws.cell(i, 2, value).fill = styles.fill_input
+        ws.cell(i, 3, unit).fill = styles.fill_calc
+        ws.cell(i, 4, notes).fill = styles.fill_calc
+        ws.cell(i, 5, source).fill = styles.fill_calc
+        for c in range(1, 6):
+            ws.cell(i, c).border = styles.border_thin
+            ws.cell(i, c).alignment = (
+                styles.align_left if c in (1, 4, 5) else styles.align_center
+            )
+
+    # Tide forecast section
+    ws.merge_cells(&#34;A11:E11&#34;)
+    ws[&#34;A11&#34;] = &#34;Tide Forecast (input)&#34;
+    ws[&#34;A11&#34;].fill = styles.fill_title
+    ws[&#34;A11&#34;].font = styles.font_title
+    ws.row_dimensions[11].height = 20.0
+
+    ws.merge_cells(&#34;A12:E12&#34;)
+    ws[&#34;A12&#34;] = &#34;Fill official tide forecast (same datum).&#34;
+    ws[&#34;A12&#34;].fill = styles.fill_note
+
+    make_header_row(
+        ws, 13, [&#34;DateTime&#34;, &#34;Tide_m&#34;, &#34;Source&#34;, &#34;Verified (Y/N)&#34;, &#34;Remarks&#34;], styles
+    )
+    ws.row_dimensions[13].height = 22.0
+
+    first = 14
+    last = first + tide_rows - 1
+    dv_verified = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;Y,N&#34;&#39;, allow_blank=True)
+    ws.add_data_validation(dv_verified)
+    dv_verified.add(f&#34;D{first}:D{last}&#34;)
+
+    for r in range(first, last + 1):
+        # DateTime
+        ws.cell(r, 1).fill = styles.fill_input
+        ws.cell(r, 1).number_format = &#34;yyyy-mm-dd hh:mm&#34;
+        # Tide
+        ws.cell(r, 2).fill = styles.fill_input
+        ws.cell(r, 2).number_format = &#34;0.00&#34;
+        # Source
+        ws.cell(r, 3).fill = styles.fill_input
+        # Verified
+        ws.cell(r, 4).fill = styles.fill_input
+        # Remarks
+        ws.cell(r, 5).fill = styles.fill_input
+
+        for c in range(1, 6):
+            ws.cell(r, c).border = styles.border_thin
+            ws.cell(r, c).alignment = (
+                styles.align_center if c in (1, 2, 4) else styles.align_left
+            )
+
+    safe_add_table(ws, &#34;TideForecast&#34;, f&#34;A13:E{last}&#34;)
+    set_col_widths(ws, {&#34;A&#34;: 20.0, &#34;B&#34;: 12.0, &#34;C&#34;: 18.0, &#34;D&#34;: 16.0, &#34;E&#34;: 45.0})
+    ws.freeze_panes = &#34;A14&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_cargo_spmt_sheet"><code class="name flex">
+<span>def <span class="ident">build_cargo_spmt_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_cargo_spmt_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;04_Cargo_SPMT&#34;)
+    ws.protection.sheet = False
+    ws.protection.enable = False
+    for row in ws.iter_rows(min_row=1, max_row=100, min_col=1, max_col=10):
+        for cell in row:
+            cell.protection = Protection(locked=False)
+
+    ws.merge_cells(&#34;A1:J1&#34;)
+    ws[&#34;A1&#34;] = &#34;Cargo / SPMT Inputs (TR1/TR2 + SPMT)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws[&#34;A1&#34;].protection = Protection(locked=True)
+    ws.row_dimensions[1].height = 20.0
+
+    ws.merge_cells(&#34;A2:J2&#34;)
+    ws[&#34;A2&#34;] = &#34;Fill cargo weights and CoG. Provide stage position if variable.&#34;
+    ws[&#34;A2&#34;].fill = styles.fill_note
+    ws[&#34;A2&#34;].protection = Protection(locked=True)
+
+    headers = [
+        &#34;Item&#34;,
+        &#34;Weight_t&#34;,
+        &#34;CoG_x_m&#34;,
+        &#34;CoG_y_m&#34;,
+        &#34;CoG_z_m&#34;,
+        &#34;Final_Frame&#34;,
+        &#34;Ramp_Frame&#34;,
+        &#34;L_m&#34;,
+        &#34;W_m&#34;,
+        &#34;Remarks/Source&#34;,
+    ]
+    make_header_row(ws, 3, headers, styles)
+    ws.row_dimensions[3].height = 22.0
+    for col in range(1, 11):
+        ws.cell(3, col).protection = Protection(locked=True)
+
+    items = [
+        (&#34;TR1 + SPMT&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;42&#34;, &#34;17.95&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;TR2 + SPMT&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;40&#34;, &#34;17.95&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;SPMT Self-weight (if separated)&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Other / Dunnage / Lumber&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;),
+    ]
+    input_cols = {2, 3, 4, 5, 8, 9, 10}
+    for i, row in enumerate(items, start=4):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_center if j &lt; 10 else styles.align_left
+            is_input = j in input_cols
+            cell.fill = styles.fill_input if is_input else styles.fill_calc
+            if not is_input:
+                cell.protection = Protection(locked=True)
+
+    # Total (simple)
+    ws.cell(9, 1, &#34;Total cargo on LCT (TR1+TR2, excluding SPMT if separated)&#34;).fill = (
+        styles.fill_section
+    )
+    ws.cell(9, 1).font = Font(bold=True)
+    ws.cell(9, 1).protection = Protection(locked=True)
+    ws.cell(9, 2, &#39;=IFERROR(SUM(B4:B5),&#34;&#34;)&#39;).fill = styles.fill_calc
+    ws.cell(9, 2).border = styles.border_thin
+    ws.cell(9, 2).number_format = &#34;0.00&#34;
+    ws.cell(9, 2).protection = Protection(locked=True)
+    ws.cell(9, 3, &#34;t&#34;).fill = styles.fill_calc
+    ws.cell(9, 3).border = styles.border_thin
+    ws.cell(9, 3).protection = Protection(locked=True)
+    for col in range(4, 11):
+        ws.cell(9, col).protection = Protection(locked=True)
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 22.0,
+            &#34;B&#34;: 12.0,
+            &#34;C&#34;: 12.0,
+            &#34;D&#34;: 12.0,
+            &#34;E&#34;: 12.0,
+            &#34;F&#34;: 12.0,
+            &#34;G&#34;: 12.0,
+            &#34;H&#34;: 10.0,
+            &#34;I&#34;: 10.0,
+            &#34;J&#34;: 45.0,
+        },
+    )
+    ws.freeze_panes = &#34;A4&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_data_dictionary_sheet"><code class="name flex">
+<span>def <span class="ident">build_data_dictionary_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_data_dictionary_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;12_DataDictionary&#34;)
+    make_header_row(
+        ws, 1, [&#34;Sheet&#34;, &#34;Field&#34;, &#34;Unit&#34;, &#34;Type&#34;, &#34;Definition / Rule&#34;], styles
+    )
+    ws.row_dimensions[1].height = 22.0
+
+    dict_items = [
+        (
+            &#34;01_SSOT_Master&#34;,
+            &#34;GATE_AFT_MIN_M&#34;,
+            &#34;m&#34;,
+            &#34;Input&#34;,
+            &#34;Minimum aft draft allowed (AFT &gt;=).&#34;,
+        ),
+        (
+            &#34;01_SSOT_Master&#34;,
+            &#34;GATE_FWD_MAX_M&#34;,
+            &#34;m&#34;,
+            &#34;Input&#34;,
+            &#34;Maximum forward draft allowed (FWD &lt;=).&#34;,
+        ),
+        (
+            &#34;01_SSOT_Master&#34;,
+            &#34;TRIM_LIMIT_CM&#34;,
+            &#34;cm&#34;,
+            &#34;Input&#34;,
+            &#34;Absolute trim limit. Trim = (Daft - Dfwd)*100.&#34;,
+        ),
+        (
+            &#34;03_Berth_Tide&#34;,
+            &#34;Tide_m&#34;,
+            &#34;m&#34;,
+            &#34;Input&#34;,
+            &#34;Tide height above datum (e.g., CD).&#34;,
+        ),
+        (
+            &#34;04_Cargo_SPMT&#34;,
+            &#34;Weight_t&#34;,
+            &#34;t&#34;,
+            &#34;Input&#34;,
+            &#34;Cargo weight including SPMT if not separated.&#34;,
+        ),
+        (
+            &#34;05_Ballast_Tanks&#34;,
+            &#34;Delta_t&#34;,
+            &#34;t&#34;,
+            &#34;Input&#34;,
+            &#34;Per stage tank delta: + ballast, - discharge.&#34;,
+        ),
+        (&#34;07_Stage_Calc&#34;, &#34;Trim_cm&#34;, &#34;cm&#34;, &#34;Calc&#34;, &#34;Trim = (Daft - Dfwd)*100.&#34;),
+        (
+            &#34;07_Stage_Calc&#34;,
+            &#34;Tide_required_m&#34;,
+            &#34;m&#34;,
+            &#34;Calc&#34;,
+            &#34;Required tide so UKC &gt;= UKC_MIN.&#34;,
+        ),
+        (
+            &#34;08_HoldPoint_Log&#34;,
+            &#34;Action&#34;,
+            &#34;-&#34;,
+            &#34;Calc&#34;,
+            &#34;GO/RECALC/STOP based on thresholds.&#34;,
+        ),
+    ]
+
+    for i, row in enumerate(dict_items, start=2):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.fill = styles.fill_calc
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_left if j in (2, 5) else styles.align_center
+
+    set_col_widths(ws, {&#34;A&#34;: 18.0, &#34;B&#34;: 22.0, &#34;C&#34;: 12.0, &#34;D&#34;: 14.0, &#34;E&#34;: 60.0})
+    ws.freeze_panes = &#34;A2&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_evidence_log_sheet"><code class="name flex">
+<span>def <span class="ident">build_evidence_log_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>rows: int = 200) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_evidence_log_sheet(wb: Workbook, styles: Styles, rows: int = 200) -&gt; None:
+    ws = wb.create_sheet(&#34;09_Evidence_Log&#34;)
+
+    headers = [
+        &#34;Site&#34;,
+        &#34;Category&#34;,
+        &#34;Document / Evidence Item&#34;,
+        &#34;Req&#34;,
+        &#34;Status&#34;,
+        &#34;Due/Submitted&#34;,
+        &#34;Portal&#34;,
+        &#34;Ref No.&#34;,
+        &#34;File/Link&#34;,
+        &#34;Remarks&#34;,
+    ]
+    make_header_row(ws, 1, headers, styles)
+    ws.row_dimensions[1].height = 22.0
+
+    evidence_items = [
+        (
+            &#34;COMMON&#34;,
+            &#34;Booking&#34;,
+            &#34;Booking Confirmation&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;ATLP/MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;COMMON&#34;,
+            &#34;Insurance&#34;,
+            &#34;Insurance Certificate&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;ATLP/MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;COMMON&#34;,
+            &#34;Manifest&#34;,
+            &#34;Cargo Manifest&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;ATLP/MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;COMMON&#34;,
+            &#34;Contacts&#34;,
+            &#34;Emergency Contact List&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;ATLP/MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;AGI&#34;,
+            &#34;Ramp&#34;,
+            &#34;Ramp Angle Calculation&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;AGI&#34;,
+            &#34;Berth&#34;,
+            &#34;Berth Load Chart / Depth Confirmation&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;COMMON&#34;,
+            &#34;Evidence&#34;,
+            &#34;Hold Point Draft Photo (FWD/AFT)&#34;,
+            &#34;Y&#34;,
+            &#34;PENDING&#34;,
+            &#34;&#34;,
+            &#34;ATLP/MTG&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+        ),
+    ]
+
+    # Write defaults
+    r0 = 2
+    for i, row in enumerate(evidence_items, start=r0):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.border = styles.border_thin
+            cell.alignment = (
+                styles.align_left if j in (3, 9, 10) else styles.align_center
+            )
+            cell.fill = styles.fill_input if j in (5, 6, 8, 9, 10) else styles.fill_calc
+
+    # Fill remaining blank rows
+    end = r0 + rows - 1
+    for r in range(r0 + len(evidence_items), end + 1):
+        for c in range(1, 11):
+            cell = ws.cell(r, c)
+            cell.border = styles.border_thin
+            cell.alignment = (
+                styles.align_left if c in (3, 9, 10) else styles.align_center
+            )
+            cell.fill = styles.fill_input if c in (5, 6, 8, 9, 10) else styles.fill_calc
+
+    # Data validation
+    dv_site = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;COMMON,AGI&#34;&#39;, allow_blank=True)
+    dv_status = DataValidation(
+        type=&#34;list&#34;, formula1=&#39;&#34;PENDING,SUBMITTED,APPROVED,REJECTED&#34;&#39;, allow_blank=True
+    )
+    ws.add_data_validation(dv_site)
+    ws.add_data_validation(dv_status)
+    dv_site.add(f&#34;A2:A{end}&#34;)
+    dv_status.add(f&#34;E2:E{end}&#34;)
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 10.0,
+            &#34;B&#34;: 14.0,
+            &#34;C&#34;: 38.0,
+            &#34;D&#34;: 8.0,
+            &#34;E&#34;: 14.0,
+            &#34;F&#34;: 16.0,
+            &#34;G&#34;: 12.0,
+            &#34;H&#34;: 16.0,
+            &#34;I&#34;: 40.0,
+            &#34;J&#34;: 40.0,
+        },
+    )
+    ws.freeze_panes = &#34;A2&#34;
+    safe_add_table(ws, &#34;EvidenceLog&#34;, f&#34;A1:J{end}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_holdpoint_log_sheet"><code class="name flex">
+<span>def <span class="ident">build_holdpoint_log_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>n_rows: int = 200) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_holdpoint_log_sheet(wb: Workbook, styles: Styles, n_rows: int = 200) -&gt; None:
+    ws = wb.create_sheet(&#34;08_HoldPoint_Log&#34;)
+
+    ws.merge_cells(&#34;A1:L1&#34;)
+    ws[&#34;A1&#34;] = &#34;Hold Point Measurement Log (Measured vs Predicted)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws.row_dimensions[1].height = 22.0
+
+    # Thresholds (B2/B3 used in formulas)
+    ws[&#34;A2&#34;] = &#34;HP_GO_CM&#34;
+    ws[&#34;B2&#34;] = 2
+    ws[&#34;C2&#34;] = &#34;cm&#34;
+    ws[&#34;D2&#34;] = &#34;GO if max(|Δ|) &lt;= this&#34;
+
+    ws[&#34;A3&#34;] = &#34;HP_RECALC_CM&#34;
+    ws[&#34;B3&#34;] = 4
+    ws[&#34;C3&#34;] = &#34;cm&#34;
+    ws[&#34;D3&#34;] = &#34;RECALC if &lt;= this else STOP&#34;
+
+    for r in (2, 3):
+        for c in range(1, 5):
+            ws.cell(r, c).border = styles.border_thin
+            ws.cell(r, c).alignment = (
+                styles.align_left if c in (1, 4) else styles.align_center
+            )
+            ws.cell(r, c).fill = styles.fill_calc if c != 2 else styles.fill_input
+
+    headers = [
+        &#34;Time&#34;,
+        &#34;Stage_ID&#34;,
+        &#34;Meas_FWD_m&#34;,
+        &#34;Meas_AFT_m&#34;,
+        &#34;Meas_Trim_cm&#34;,
+        &#34;Pred_FWD_m&#34;,
+        &#34;Pred_AFT_m&#34;,
+        &#34;ΔFWD_cm&#34;,
+        &#34;ΔAFT_cm&#34;,
+        &#34;ΔTrim_cm&#34;,
+        &#34;Action&#34;,
+        &#34;Comments&#34;,
+    ]
+    make_header_row(ws, 5, headers, styles)
+    ws.row_dimensions[5].height = 24.0
+
+    first = 6
+    last = first + n_rows - 1
+
+    # Stage list validation
+    dv_stage = DataValidation(type=&#34;list&#34;, formula1=&#34;=Stage_List&#34;, allow_blank=True)
+    ws.add_data_validation(dv_stage)
+    dv_stage.add(f&#34;B{first}:B{last}&#34;)
+
+    for i in range(first, last + 1):
+        # Predicted values auto lookup from 07_Stage_Calc
+        ws.cell(i, 6).value = (
+            f&#39;=IF($B{i}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;07_Stage_Calc\&#39;!$K:$K,MATCH($B{i},\&#39;07_Stage_Calc\&#39;!$A:$A,0)),&#34;&#34;))&#39;
+        )
+        ws.cell(i, 7).value = (
+            f&#39;=IF($B{i}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;07_Stage_Calc\&#39;!$L:$L,MATCH($B{i},\&#39;07_Stage_Calc\&#39;!$A:$A,0)),&#34;&#34;))&#39;
+        )
+
+        # Meas_Trim_cm
+        ws.cell(i, 5).value = f&#39;=IF(OR(C{i}=&#34;&#34;,D{i}=&#34;&#34;),&#34;&#34;,(D{i}-C{i})*100)&#39;
+        # ΔFWD_cm
+        ws.cell(i, 8).value = f&#39;=IF(OR(C{i}=&#34;&#34;,F{i}=&#34;&#34;),&#34;&#34;,(C{i}-F{i})*100)&#39;
+        # ΔAFT_cm
+        ws.cell(i, 9).value = f&#39;=IF(OR(D{i}=&#34;&#34;,G{i}=&#34;&#34;),&#34;&#34;,(D{i}-G{i})*100)&#39;
+        # ΔTrim_cm
+        ws.cell(i, 10).value = (
+            f&#39;=IF(OR(E{i}=&#34;&#34;,F{i}=&#34;&#34;,G{i}=&#34;&#34;),&#34;&#34;,E{i}-(G{i}-F{i})*100)&#39;
+        )
+        # Action
+        ws.cell(i, 11).value = (
+            f&#39;=IF(OR(H{i}=&#34;&#34;,I{i}=&#34;&#34;,J{i}=&#34;&#34;),&#34;&#34;,&#39;
+            f&#39;IF(MAX(ABS(H{i}),ABS(I{i}),ABS(J{i}))&lt;=$B$2,&#34;GO&#34;,&#39;
+            f&#39;IF(MAX(ABS(H{i}),ABS(I{i}),ABS(J{i}))&lt;=$B$3,&#34;RECALC&#34;,&#34;STOP&#34;)))&#39;
+        )
+
+        # Input vs calc styling
+        input_cols = (1, 2, 3, 4, 12)  # Time, Stage_ID, Meas, Comments
+        calc_cols = (5, 6, 7, 8, 9, 10, 11)
+
+        for c in input_cols:
+            ws.cell(i, c).fill = styles.fill_input
+        for c in calc_cols:
+            ws.cell(i, c).fill = styles.fill_calc
+
+        for c in range(1, 13):
+            ws.cell(i, c).border = styles.border_thin
+            ws.cell(i, c).alignment = (
+                styles.align_center if c != 12 else styles.align_left
+            )
+
+        ws.cell(i, 1).number_format = &#34;yyyy-mm-dd hh:mm&#34;
+        for c in (3, 4, 6, 7):
+            ws.cell(i, c).number_format = &#34;0.00&#34;
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 18.0,
+            &#34;B&#34;: 22.0,
+            &#34;C&#34;: 14.0,
+            &#34;D&#34;: 14.0,
+            &#34;E&#34;: 14.0,
+            &#34;F&#34;: 14.0,
+            &#34;G&#34;: 14.0,
+            &#34;H&#34;: 14.0,
+            &#34;I&#34;: 14.0,
+            &#34;J&#34;: 14.0,
+            &#34;K&#34;: 12.0,
+            &#34;L&#34;: 45.0,
+        },
+    )
+    ws.freeze_panes = &#34;A6&#34;
+    safe_add_table(ws, &#34;HoldPointLog&#34;, f&#34;A5:L{last}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_a_inputs_ssot_sheet"><code class="name flex">
+<span>def <span class="ident">build_pack_a_inputs_ssot_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_pack_a_inputs_ssot_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;Pack_A_Inputs_SSOT&#34;)
+
+    ws.merge_cells(&#34;A1:E1&#34;)
+    ws[&#34;A1&#34;] = &#34;Pack A: Inputs &amp; Assumptions (SSOT)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws[&#34;A1&#34;].alignment = styles.align_left
+
+    # Section 1
+    ws.merge_cells(&#34;A3:E3&#34;)
+    ws[&#34;A3&#34;] = &#34;1. Vessel / Show-stopper inputs&#34;
+    ws[&#34;A3&#34;].fill = styles.fill_section
+    ws[&#34;A3&#34;].font = Font(bold=True)
+
+    make_header_row(
+        ws, 4, [&#34;Parameter&#34;, &#34;Value&#34;, &#34;Unit&#34;, &#34;Source/Reference&#34;, &#34;Note&#34;], styles
+    )
+
+    vessel_params = [
+        (&#34;LBP (Length Between Perpendiculars)&#34;, &#34;&#34;, &#34;m&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Beam&#34;, &#34;&#34;, &#34;m&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Depth (D, molded)&#34;, &#34;3.65&#34;, &#34;m&#34;, &#34;Vessel spec&#34;, &#34;&#34;),
+        (&#34;Lightship Displacement&#34;, &#34;2800&#34;, &#34;t&#34;, &#34;Vessel spec&#34;, &#34;&#34;),
+        (&#34;Gate AFT MIN&#34;, &#34;2.70&#34;, &#34;m&#34;, &#34;Ops&#34;, &#34;&#34;),
+        (&#34;Gate FWD MAX&#34;, &#34;2.70&#34;, &#34;m&#34;, &#34;Ops&#34;, &#34;&#34;),
+        (&#34;Trim ABS limit&#34;, &#34;240&#34;, &#34;cm&#34;, &#34;Ops&#34;, &#34;&#34;),
+        (&#34;UKC min&#34;, &#34;0.50&#34;, &#34;m&#34;, &#34;Port&#34;, &#34;&#34;),
+        (&#34;DepthRef&#34;, &#34;5.50&#34;, &#34;m&#34;, &#34;Port&#34;, &#34;&#34;),
+    ]
+    for i, row in enumerate(vessel_params, start=5):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.border = styles.border_thin
+            cell.fill = (
+                styles.fill_input
+                if j == 2
+                else (styles.fill_section if j == 1 else styles.fill_calc)
+            )
+            cell.alignment = (
+                styles.align_left if j in (1, 4, 5) else styles.align_center
+            )
+        ws.cell(i, 1).font = Font(bold=True)
+
+    # Keep it simple but leave room
+    set_col_widths(ws, {&#34;A&#34;: 35.0, &#34;B&#34;: 18.0, &#34;C&#34;: 12.0, &#34;D&#34;: 25.0, &#34;E&#34;: 35.0})
+    ws.freeze_panes = &#34;A5&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_b_calculation_formulas_sheet"><code class="name flex">
+<span>def <span class="ident">build_pack_b_calculation_formulas_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_pack_b_calculation_formulas_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;Pack_B_Calculation_Formulas&#34;)
+
+    ws.merge_cells(&#34;A1:D1&#34;)
+    ws[&#34;A1&#34;] = &#34;Pack B: Calculation Sheet (Formula + Sign Convention)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws[&#34;A1&#34;].alignment = styles.align_left
+
+    # (1) Draft/Trim
+    ws.merge_cells(&#34;A3:D3&#34;)
+    ws[&#34;A3&#34;] = &#34;(1) Draft / Trim (Hydro 기반)&#34;
+    ws[&#34;A3&#34;].fill = styles.fill_section
+    ws[&#34;A3&#34;].font = Font(bold=True)
+
+    make_header_row(
+        ws,
+        4,
+        [&#34;Parameter/Formula&#34;, &#34;Formula/Definition&#34;, &#34;Unit/Note&#34;, &#34;Reference&#34;],
+        styles,
+    )
+    formulas = [
+        (&#34;Tmean (m)&#34;, &#34;T_mean = (D_fwd + D_aft) / 2&#34;, &#34;&#34;, &#34;&#34;),
+        (
+            &#34;Delta Tmean (m)&#34;,
+            &#34;Delta T_mean = Sum(Delta W) / (TPC * 100)&#34;,
+            &#34;TPC: t/cm&#34;,
+            &#34;&#34;,
+        ),
+        (
+            &#34;Delta Trim (m)&#34;,
+            &#34;Delta Trim = Sum(Delta W*(x-LCF)) / MTC&#34;,
+            &#34;MTC: t·m/cm&#34;,
+            &#34;&#34;,
+        ),
+        (&#34;Trim (cm)&#34;, &#34;Trim_cm = (D_aft - D_fwd) * 100&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Sign: Trim&#34;, &#34;+ = Aft deeper / - = Bow down&#34;, &#34;&#34;, &#34;&#34;),
+        (&#34;Sign: x&#34;, &#34;+Aft / -Fwd (midship ref)&#34;, &#34;&#34;, &#34;&#34;),
+    ]
+    for i, row in enumerate(formulas, start=5):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_left
+            cell.fill = styles.fill_calc
+        ws.cell(i, 1).fill = styles.fill_section
+        ws.cell(i, 1).font = Font(bold=True)
+
+    # (2) UKC / Tide Required
+    start2 = 13
+    ws.merge_cells(f&#34;A{start2}:D{start2}&#34;)
+    ws[f&#34;A{start2}&#34;] = &#34;(2) UKC / Tide Required&#34;
+    ws[f&#34;A{start2}&#34;].fill = styles.fill_section
+    ws[f&#34;A{start2}&#34;].font = Font(bold=True)
+
+    make_header_row(
+        ws, start2 + 1, [&#34;Item&#34;, &#34;Definition&#34;, &#34;Unit/Note&#34;, &#34;Reference&#34;], styles
+    )
+    rows2 = [
+        (&#34;Depth_available&#34;, &#34;DepthRef + Forecast_Tide&#34;, &#34;m&#34;, &#34;03_Berth_Tide&#34;),
+        (&#34;UKC&#34;, &#34;Depth_available - (Draft + Squat + Safety)&#34;, &#34;m&#34;, &#34;&#34;),
+        (
+            &#34;Tide_required&#34;,
+            &#34;max(0, (Draft_max + Squat + Safety + UKC_min) - DepthRef)&#34;,
+            &#34;m&#34;,
+            &#34;&#34;,
+        ),
+    ]
+    for i, row in enumerate(rows2, start=start2 + 2):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_left
+            cell.fill = styles.fill_calc
+        ws.cell(i, 1).fill = styles.fill_section
+        ws.cell(i, 1).font = Font(bold=True)
+
+    set_col_widths(ws, {&#34;A&#34;: 30.0, &#34;B&#34;: 60.0, &#34;C&#34;: 22.0, &#34;D&#34;: 22.0})
+    ws.freeze_panes = &#34;A5&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_d_tide_window_raci_sheet"><code class="name flex">
+<span>def <span class="ident">build_pack_d_tide_window_raci_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_pack_d_tide_window_raci_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;Pack_D_Tide_Window_RACI&#34;)
+
+    ws.merge_cells(&#34;A1:F1&#34;)
+    ws[&#34;A1&#34;] = &#34;Pack D: Tide Window &amp; RACI&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws[&#34;A1&#34;].alignment = styles.align_left
+
+    ws.merge_cells(&#34;A3:F3&#34;)
+    ws[&#34;A3&#34;] = &#34;Stage-wise Tide Window&#34;
+    ws[&#34;A3&#34;].fill = styles.fill_section
+    ws[&#34;A3&#34;].font = Font(bold=True)
+
+    make_header_row(
+        ws,
+        4,
+        [
+            &#34;Stage&#34;,
+            &#34;Required WL (m)&#34;,
+            &#34;Forecast Tide (m)&#34;,
+            &#34;Margin (m)&#34;,
+            &#34;Window Time&#34;,
+            &#34;Source&#34;,
+        ],
+        styles,
+    )
+
+    stages = [
+        &#34;Stage 1&#34;,
+        &#34;Stage 2&#34;,
+        &#34;Stage 3&#34;,
+        &#34;Stage 4&#34;,
+        &#34;Stage 5&#34;,
+        &#34;Stage 5_PreBallast&#34;,
+        &#34;Stage 6A_Critical (Opt C)&#34;,
+        &#34;Stage 6C&#34;,
+        &#34;Stage 7&#34;,
+    ]
+    for i, stage in enumerate(stages, start=5):
+        ws.cell(i, 1, stage).fill = styles.fill_calc
+        ws.cell(i, 1).border = styles.border_thin
+        ws.cell(i, 1).alignment = styles.align_left
+        # link required/forecast to Stage_Calc if desired (leave as input but add margin formula)
+        ws.cell(i, 2).fill = styles.fill_input
+        ws.cell(i, 3).fill = styles.fill_input
+        ws.cell(i, 4).value = f&#39;=IF(OR(B{i}=&#34;&#34;,C{i}=&#34;&#34;),&#34;&#34;,C{i}-B{i})&#39;
+        ws.cell(i, 4).fill = styles.fill_calc
+        ws.cell(i, 5).fill = styles.fill_input
+        ws.cell(i, 6).fill = styles.fill_input
+
+        for c in range(2, 7):
+            ws.cell(i, c).border = styles.border_thin
+            ws.cell(i, c).alignment = (
+                styles.align_center if c != 6 else styles.align_left
+            )
+
+    # RACI section (simple placeholder)
+    ws.merge_cells(&#34;A16:F16&#34;)
+    ws[&#34;A16&#34;] = &#34;RACI Matrix (optional)&#34;
+    ws[&#34;A16&#34;].fill = styles.fill_section
+    ws[&#34;A16&#34;].font = Font(bold=True)
+
+    set_col_widths(
+        ws, {&#34;A&#34;: 26.0, &#34;B&#34;: 18.0, &#34;C&#34;: 18.0, &#34;D&#34;: 14.0, &#34;E&#34;: 18.0, &#34;F&#34;: 22.0}
+    )
+    ws.freeze_panes = &#34;A5&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_raci_sheet"><code class="name flex">
+<span>def <span class="ident">build_raci_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_raci_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    &#34;&#34;&#34;
+    10_RACI sheet per analysis doc.:contentReference[oaicite:2]{index=2}
+    &#34;&#34;&#34;
+    ws = wb.create_sheet(&#34;10_RACI&#34;)
+    headers = [
+        &#34;Activity / Deliverable&#34;,
+        &#34;SCT Logistics&#34;,
+        &#34;DSV/3PL&#34;,
+        &#34;Vessel Master&#34;,
+        &#34;Chief Officer/Ballast&#34;,
+        &#34;Port Authority&#34;,
+        &#34;HSE&#34;,
+        &#34;Notes&#34;,
+    ]
+    make_header_row(ws, 1, headers, styles)
+    ws.row_dimensions[1].height = 22.0
+
+    raci_items = [
+        (
+            &#34;Hydrostatic data pack + sign convention&#34;,
+            &#34;A&#34;,
+            &#34;C&#34;,
+            &#34;R&#34;,
+            &#34;R&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;Provide Hydro table and calculation method&#34;,
+        ),
+        (
+            &#34;Stage-wise plan + timeline&#34;,
+            &#34;A&#34;,
+            &#34;C&#34;,
+            &#34;C&#34;,
+            &#34;R&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;Include load transfer %, ballast sequence&#34;,
+        ),
+        (
+            &#34;Ballast tank list + initial ROB&#34;,
+            &#34;C&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;R&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;Include pump/vent constraints&#34;,
+        ),
+        (
+            &#34;Tide forecast + depth confirmation&#34;,
+            &#34;C&#34;,
+            &#34;I&#34;,
+            &#34;R&#34;,
+            &#34;R&#34;,
+            &#34;A&#34;,
+            &#34;I&#34;,
+            &#34;Use official source; align datum&#34;,
+        ),
+        (
+            &#34;HoldPoint measurement &amp; decision&#34;,
+            &#34;C&#34;,
+            &#34;I&#34;,
+            &#34;R&#34;,
+            &#34;R&#34;,
+            &#34;I&#34;,
+            &#34;A&#34;,
+            &#34;Record drafts/trim; decide GO/RECALC/STOP&#34;,
+        ),
+        (
+            &#34;ATLP/MTG submissions&#34;,
+            &#34;R&#34;,
+            &#34;C&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;A&#34;,
+            &#34;C&#34;,
+            &#34;Site-specific lead times&#34;,
+        ),
+        (
+            &#34;Photo/video evidence collection&#34;,
+            &#34;A&#34;,
+            &#34;C&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;I&#34;,
+            &#34;R&#34;,
+            &#34;Tag by stage/time/GPS&#34;,
+        ),
+        (
+            &#34;Final report &amp; archive&#34;,
+            &#34;A&#34;,
+            &#34;C&#34;,
+            &#34;C&#34;,
+            &#34;R&#34;,
+            &#34;I&#34;,
+            &#34;C&#34;,
+            &#34;7-day submission requirement&#34;,
+        ),
+    ]
+
+    for i, row in enumerate(raci_items, start=2):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.fill = styles.fill_calc
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_left if j in (1, 8) else styles.align_center
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 38.0,
+            &#34;B&#34;: 14.0,
+            &#34;C&#34;: 14.0,
+            &#34;D&#34;: 14.0,
+            &#34;E&#34;: 18.0,
+            &#34;F&#34;: 14.0,
+            &#34;G&#34;: 10.0,
+            &#34;H&#34;: 40.0,
+        },
+    )
+    ws.freeze_panes = &#34;A2&#34;</code></pre>
+</details>
+<div class="desc"><p>10_RACI sheet per analysis doc.:contentReference[oaicite:2]{index=2}</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_readme_sheet"><code class="name flex">
+<span>def <span class="ident">build_readme_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_readme_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;00_README&#34;)
+    ws[&#34;A1&#34;] = &#34;Workbook&#34;
+    ws[&#34;B1&#34;] = &#34;Bryan Submission Data Pack (Template)&#34;
+    ws[&#34;A2&#34;] = &#34;Version&#34;
+    ws[&#34;B2&#34;] = &#34;v1.0&#34;
+    ws[&#34;A3&#34;] = &#34;Created&#34;
+    ws[&#34;B3&#34;] = datetime.now().strftime(&#34;%Y-%m-%d %H:%M&#34;)
+    ws[&#34;A4&#34;] = &#34;Purpose&#34;
+    ws[&#34;B4&#34;] = (
+        &#34;Provide a single SSOT-style input/calculation template for ballast operations submission.&#34;
+    )
+    ws[&#34;A6&#34;] = &#34;How to use&#34;
+    ws[&#34;B6&#34;] = (
+        &#34;1) Fill blue cells only. 2) Keep SSOT_Master as single source. 3) Stage_Calc uses these inputs.&#34;
+    )
+    ws[&#34;A8&#34;] = &#34;Key Sheets&#34;
+    ws[&#34;B8&#34;] = &#34;01_SSOT_Master, 07_Stage_Calc, 08_HoldPoint_Log, 09_Evidence_Log&#34;
+    ws[&#34;A10&#34;] = &#34;Notes&#34;
+    ws[&#34;B10&#34;] = &#34;Designed for AGI site operations.&#34;
+
+    for r in [1, 2, 3, 4, 6, 8, 10]:
+        ws[f&#34;A{r}&#34;].fill = styles.fill_section
+        ws[f&#34;A{r}&#34;].font = Font(bold=True)
+        ws[f&#34;A{r}&#34;].alignment = styles.align_left
+        ws[f&#34;A{r}&#34;].border = styles.border_thin
+
+        ws[f&#34;B{r}&#34;].border = styles.border_thin
+        ws[f&#34;B{r}&#34;].alignment = styles.align_left
+
+    ws[&#34;B1&#34;].fill = styles.fill_title
+    ws[&#34;B1&#34;].font = styles.font_title
+    ws[&#34;B1&#34;].alignment = styles.align_left
+
+    set_col_widths(ws, {&#34;A&#34;: 22.0, &#34;B&#34;: 115.0})</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_ssot_master_sheet"><code class="name flex">
+<span>def <span class="ident">build_ssot_master_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_ssot_master_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    ws = wb.create_sheet(&#34;01_SSOT_Master&#34;)
+    make_header_row(
+        ws,
+        1,
+        [&#34;Control / Input&#34;, &#34;Value&#34;, &#34;Unit&#34;, &#34;Notes&#34;, &#34;Owner&#34;, &#34;Source/Ref&#34;],
+        styles,
+    )
+    ws.row_dimensions[1].height = 22.0
+
+    ssot_rows = [
+        (
+            &#34;SITE&#34;,
+            &#34;AGI&#34;,
+            &#34;&#34;,
+            &#34;AGI site operations&#34;,
+            &#34;Logistics&#34;,
+            &#34;&#34;,
+        ),
+        (&#34;Project / Shipment ID&#34;, &#34;&#34;, &#34;&#34;, &#34;Internal reference&#34;, &#34;Logistics&#34;, &#34;&#34;),
+        (&#34;Vessel / LCT Name&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (
+            &#34;Datum for Tide&#34;,
+            &#34;CD&#34;,
+            &#34;&#34;,
+            &#34;Chart Datum unless specified otherwise&#34;,
+            &#34;Marine&#34;,
+            &#34;Port tide table&#34;,
+        ),
+        (&#34;Timezone&#34;, &#34;GST&#34;, &#34;&#34;, &#34;Local timezone for logs&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (&#34;LBP&#34;, &#34;60.30&#34;, &#34;m&#34;, &#34;Length between perpendiculars&#34;, &#34;Marine&#34;, &#34;Vessel spec&#34;),
+        (&#34;Beam&#34;, &#34;24.00&#34;, &#34;m&#34;, &#34;&#34;, &#34;Marine&#34;, &#34;Vessel spec&#34;),
+        (
+            &#34;Molded Depth (D)&#34;,
+            &#34;3.65&#34;,
+            &#34;m&#34;,
+            &#34;Used for freeboard estimate&#34;,
+            &#34;Marine&#34;,
+            &#34;Vessel spec&#34;,
+        ),
+        (
+            &#34;Lightship Displacement&#34;,
+            &#34;2800&#34;,
+            &#34;t&#34;,
+            &#34;Baseline displacement (confirm)&#34;,
+            &#34;Marine&#34;,
+            &#34;&#34;,
+        ),
+        (&#34;Baseline Tmean&#34;, &#34;2.00&#34;, &#34;m&#34;, &#34;Baseline mean draft (confirm)&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (&#34;Gate-A: AFT Draft MIN&#34;, &#34;2.70&#34;, &#34;m&#34;, &#34;AFT &gt;= this&#34;, &#34;Marine&#34;, &#34;Ops&#34;),
+        (
+            &#34;Gate-B: FWD Draft MAX&#34;,
+            &#34;2.70&#34;,
+            &#34;m&#34;,
+            &#34;FWD &lt;= this (critical stages)&#34;,
+            &#34;Marine&#34;,
+            &#34;Ops&#34;,
+        ),
+        (&#34;Gate-C: TRIM ABS MAX&#34;, &#34;240&#34;, &#34;cm&#34;, &#34;ABS(Trim_cm) &lt;= this&#34;, &#34;Marine&#34;, &#34;Ops&#34;),
+        (&#34;UKC min&#34;, &#34;0.50&#34;, &#34;m&#34;, &#34;Under keel clearance minimum&#34;, &#34;Marine&#34;, &#34;Port&#34;),
+        (
+            &#34;DepthRef (charted/berth)&#34;,
+            &#34;5.50&#34;,
+            &#34;m&#34;,
+            &#34;Depth reference (same datum as tide)&#34;,
+            &#34;Marine&#34;,
+            &#34;Port&#34;,
+        ),
+        (&#34;Squat&#34;, &#34;0.00&#34;, &#34;m&#34;, &#34;Allowance&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (&#34;Safety Allowance&#34;, &#34;0.00&#34;, &#34;m&#34;, &#34;Allowance&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (&#34;Pump rate (ship)&#34;, &#34;10.0&#34;, &#34;t/h&#34;, &#34;Default ship pump rate&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (
+            &#34;Vent flow coeff&#34;,
+            &#34;0.86&#34;,
+            &#34;t/h/mm&#34;,
+            &#34;Vent-limited effective rate&#34;,
+            &#34;Marine&#34;,
+            &#34;&#34;,
+        ),
+        (&#34;Ramp length&#34;, &#34;8.30&#34;, &#34;m&#34;, &#34;Ramp geometry&#34;, &#34;Marine&#34;, &#34;&#34;),
+        (&#34;Linkspan height&#34;, &#34;2.00&#34;, &#34;m&#34;, &#34;Reference height&#34;, &#34;Marine&#34;, &#34;&#34;),
+    ]
+
+    for r, row in enumerate(ssot_rows, start=2):
+        for c, v in enumerate(row, start=1):
+            ws.cell(r, c, v)
+
+        # styles
+        ws.cell(r, 1).fill = styles.fill_section
+        ws.cell(r, 1).font = Font(bold=True)
+        ws.cell(r, 1).alignment = styles.align_left
+
+        ws.cell(r, 2).fill = styles.fill_input
+        ws.cell(r, 2).alignment = styles.align_left
+
+        for c in range(3, 7):
+            ws.cell(r, c).fill = styles.fill_calc
+            ws.cell(r, c).alignment = styles.align_left
+
+        for c in range(1, 7):
+            ws.cell(r, c).border = styles.border_thin
+
+    # DataValidation for SITE
+    dv_site = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;AGI&#34;&#39;, allow_blank=False)
+    ws.add_data_validation(dv_site)
+    dv_site.add(&#34;B2&#34;)
+
+    set_col_widths(
+        ws, {&#34;A&#34;: 32.0, &#34;B&#34;: 22.0, &#34;C&#34;: 10.0, &#34;D&#34;: 55.0, &#34;E&#34;: 16.0, &#34;F&#34;: 18.0}
+    )
+    ws.freeze_panes = &#34;A2&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_stage_calc_sheet"><code class="name flex">
+<span>def <span class="ident">build_stage_calc_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>stage_rows: int = 200) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_stage_calc_sheet(wb: Workbook, styles: Styles, stage_rows: int = 200) -&gt; None:
+    &#34;&#34;&#34;
+    07_Stage_Calc: submission table.
+    - Columns A..AG (33 cols)
+    - Row 1 title
+    - Row 2..10 parameters
+    - Row 19 title, Row 20 header, Row 21.. stage rows
+    &#34;&#34;&#34;
+    ws = wb.create_sheet(&#34;07_Stage_Calc&#34;)
+
+    ws.merge_cells(&#34;A1:AG1&#34;)
+    ws[&#34;A1&#34;] = &#34;Stage-wise Draft / Trim / Tide / Ramp Gates (submission table)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws[&#34;A1&#34;].alignment = styles.align_left
+    ws.row_dimensions[1].height = 22.0
+
+    # Parameter mini-table (A2:D10)
+    ws[&#34;A2&#34;] = &#34;Parameter&#34;
+    ws[&#34;B2&#34;] = &#34;Value&#34;
+    ws[&#34;C2&#34;] = &#34;Unit&#34;
+    ws[&#34;D2&#34;] = &#34;Notes&#34;
+    for c in (&#34;A2&#34;, &#34;B2&#34;, &#34;C2&#34;, &#34;D2&#34;):
+        ws[c].fill = styles.fill_section
+        ws[c].font = Font(bold=True)
+        ws[c].border = styles.border_thin
+        ws[c].alignment = styles.align_center
+
+    params = [
+        (&#34;TOTAL_CARGO_T&#34;, 500, &#34;t&#34;, &#34;TR1+TR2 total (edit)&#34;),
+        (&#34;GATE_AFT_MIN&#34;, 2.70, &#34;m&#34;, &#34;AFT draft must be &gt;= this&#34;),
+        (&#34;GATE_FWD_MAX&#34;, 2.70, &#34;m&#34;, &#34;FWD draft must be &lt;= this (critical stages)&#34;),
+        (&#34;TRIM_LIMIT_CM&#34;, 240, &#34;cm&#34;, &#34;ABS(trim_cm) &lt;= this&#34;),
+        (&#34;DEPTHREF_M&#34;, 5.50, &#34;m&#34;, &#34;Berth depth reference (same datum as tide)&#34;),
+        (&#34;UKC_MIN_M&#34;, 0.50, &#34;m&#34;, &#34;Under keel clearance minimum&#34;),
+        (&#34;SQUAT_M&#34;, 0.00, &#34;m&#34;, &#34;Allowance&#34;),
+        (&#34;SAFETY_M&#34;, 0.00, &#34;m&#34;, &#34;Allowance&#34;),
+    ]
+    for i, (p, v, u, note) in enumerate(params, start=3):
+        ws.cell(i, 1, p).fill = styles.fill_section
+        ws.cell(i, 1).font = Font(bold=True)
+        ws.cell(i, 2, v).fill = styles.fill_input
+        ws.cell(i, 3, u).fill = styles.fill_calc
+        ws.cell(i, 4, note).fill = styles.fill_calc
+        for c in range(1, 5):
+            ws.cell(i, c).border = styles.border_thin
+            ws.cell(i, c).alignment = (
+                styles.align_left if c in (1, 4) else styles.align_center
+            )
+
+    # Stage Table Title
+    ws.merge_cells(&#34;A19:AG19&#34;)
+    ws[&#34;A19&#34;] = &#34;Stage-wise Calculation Table&#34;
+    ws[&#34;A19&#34;].fill = styles.fill_title
+    ws[&#34;A19&#34;].font = styles.font_title
+    ws[&#34;A19&#34;].alignment = styles.align_left
+    ws.row_dimensions[19].height = 20.0
+
+    # Stage Table Header Row (Row 20)
+    headers = [
+        &#34;Stage_ID&#34;,
+        &#34;HoldPoint&#34;,
+        &#34;GateB_Critical&#34;,
+        &#34;Stage_Remark&#34;,
+        &#34;Progress_%&#34;,
+        &#34;x_stage_m&#34;,
+        &#34;W_stage_t&#34;,
+        &#34;Displacement_t&#34;,
+        &#34;Tmean_m&#34;,
+        &#34;Trim_cm&#34;,
+        &#34;Draft_FWD_m&#34;,
+        &#34;Draft_AFT_m&#34;,
+        &#34;Freeboard_min_m&#34;,
+        &#34;Tide_required_m&#34;,
+        &#34;Forecast_tide_m&#34;,
+        &#34;Tide_margin_m&#34;,
+        &#34;UKC_min_m&#34;,
+        &#34;UKC_fwd_m&#34;,
+        &#34;UKC_aft_m&#34;,
+        &#34;Ramp_angle_deg&#34;,
+        &#34;GM_m&#34;,
+        &#34;Gate_FWD&#34;,
+        &#34;Gate_AFT&#34;,
+        &#34;Gate_TRIM&#34;,
+        &#34;Gate_UKC&#34;,
+        &#34;Gate_RAMP&#34;,
+        &#34;HoldPoint_Band&#34;,
+        &#34;Go/No-Go&#34;,
+        &#34;Ballast_Action&#34;,
+        &#34;Ballast_Time_h&#34;,
+        &#34;Ballast_Net_t&#34;,
+        &#34;Ballast_Alloc&#34;,
+        &#34;Notes&#34;,
+    ]
+    make_header_row(ws, 20, headers, styles)
+    ws.row_dimensions[20].height = 26.0
+
+    # Data validation for Stage_ID list
+    dv_stage = DataValidation(type=&#34;list&#34;, formula1=&#34;=Stage_List&#34;, allow_blank=True)
+    ws.add_data_validation(dv_stage)
+    dv_stage.add(&#34;A21:A200&#34;)
+
+    dv_hold = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;Y,-&#34;&#39;, allow_blank=True)
+    dv_yesno = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;Y,N&#34;&#39;, allow_blank=True)
+    ws.add_data_validation(dv_hold)
+    ws.add_data_validation(dv_yesno)
+    dv_hold.add(&#34;B21:B200&#34;)  # HoldPoint
+    dv_yesno.add(&#34;C21:C200&#34;)  # GateB_Critical
+
+    dv_band = DataValidation(
+        type=&#34;list&#34;, formula1=&#39;&#34;GO,RECALC,STOP,-&#34;&#39;, allow_blank=True
+    )
+    ws.add_data_validation(dv_band)
+    dv_band.add(&#34;AA21:AA200&#34;)
+
+    # Pre-fill first 9 stage rows from Stage_Plan (row 21..29)
+    stage_ids = [
+        &#34;Stage 1&#34;,
+        &#34;Stage 2&#34;,
+        &#34;Stage 3&#34;,
+        &#34;Stage 4&#34;,
+        &#34;Stage 5&#34;,
+        &#34;Stage 5_PreBallast&#34;,
+        &#34;Stage 6A_Critical (Opt C)&#34;,
+        &#34;Stage 6C&#34;,
+        &#34;Stage 7&#34;,
+    ]
+
+    def _set_formula(r: int, col: int, formula: str) -&gt; None:
+        cell = ws.cell(r, col)
+        cell.value = formula
+
+    # Column indices (A=1 ... AG=33)
+    COL_STAGE = 1
+    COL_HOLD = 2
+    COL_CRIT = 3
+    COL_REMARK = 4
+    COL_PROG = 5
+    COL_X = 6
+    COL_W = 7
+    COL_DISP = 8
+    COL_TMEAN = 9
+    COL_TRIM = 10
+    COL_DFWD = 11
+    COL_DAFT = 12
+    COL_FBMIN = 13
+    COL_TIDE_REQ = 14
+    COL_TIDE_FC = 15
+    COL_TIDE_MARG = 16
+    COL_UKC_MIN = 17
+    COL_UKC_FWD = 18
+    COL_UKC_AFT = 19
+    COL_RAMP = 20
+    COL_GM = 21
+    COL_GATE_FWD = 22
+    COL_GATE_AFT = 23
+    COL_GATE_TRIM = 24
+    COL_GATE_UKC = 25
+    COL_GATE_RAMP = 26
+    COL_HP_BAND = 27
+    COL_GONOGO = 28
+    COL_BALLAST_ACT = 29
+    COL_BALLAST_T = 30
+    COL_BALLAST_NET = 31
+    COL_BALLAST_ALLOC = 32
+    COL_NOTES = 33
+
+    # Parameter cells for formulas
+    # Row mapping in param table:
+    # B4 = GATE_AFT_MIN, B5 = GATE_FWD_MAX, B6 = TRIM_LIMIT_CM, B7 = DEPTHREF_M, B8=UKC_MIN, B9=SQUAT, B10=SAFETY
+    GATE_AFT_MIN = &#34;$B$4&#34;
+    GATE_FWD_MAX = &#34;$B$5&#34;
+    TRIM_LIMIT = &#34;$B$6&#34;
+    DEPTHREF = &#34;$B$7&#34;
+    UKC_MIN = &#34;$B$8&#34;
+    SQUAT = &#34;$B$9&#34;
+    SAFETY = &#34;$B$10&#34;
+
+    for idx, sid in enumerate(stage_ids, start=0):
+        r = 21 + idx
+        ws.cell(r, COL_STAGE, sid).fill = styles.fill_input
+        ws.cell(r, COL_STAGE).border = styles.border_thin
+        ws.cell(r, COL_STAGE).alignment = styles.align_left
+
+        # Pull HoldPoint / Critical / Remark / Progress from Stage_Plan (INDEX/MATCH)
+        _set_formula(
+            r,
+            COL_HOLD,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$E:$E,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_CRIT,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$F:$F,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_REMARK,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$H:$H,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_PROG,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IFERROR(INDEX(\&#39;06_Stage_Plan\&#39;!$B:$B,MATCH($A{r},\&#39;06_Stage_Plan\&#39;!$A:$A,0)),&#34;&#34;))&#39;,
+        )
+
+        # Trim (cm) from Drafts
+        _set_formula(r, COL_TRIM, f&#39;=IF(OR($K{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,($L{r}-$K{r})*100)&#39;)
+        # Freeboard_min (m) using SSOT molded depth (search SSOT row &#34;Molded Depth (D)&#34;)
+        _set_formula(
+            r,
+            COL_FBMIN,
+            f&#39;=IF(OR($K{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,MIN(&#39;
+            f&#34;INDEX(&#39;01_SSOT_Master&#39;!$B:$B,MATCH(\&#34;Molded Depth (D)\&#34;,&#39;01_SSOT_Master&#39;!$A:$A,0))-$K{r},&#34;
+            f&#34;INDEX(&#39;01_SSOT_Master&#39;!$B:$B,MATCH(\&#34;Molded Depth (D)\&#34;,&#39;01_SSOT_Master&#39;!$A:$A,0))-$L{r}))&#34;,
+        )
+
+        # UKC min
+        _set_formula(r, COL_UKC_MIN, f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,{UKC_MIN})&#39;)
+
+        # Tide required
+        _set_formula(
+            r,
+            COL_TIDE_REQ,
+            f&#39;=IF(OR($K{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,MAX(0,(MAX($K{r},$L{r})+{SQUAT}+{SAFETY}+{UKC_MIN})-{DEPTHREF}))&#39;,
+        )
+        # Tide margin
+        _set_formula(r, COL_TIDE_MARG, f&#39;=IF(OR($O{r}=&#34;&#34;,$N{r}=&#34;&#34;),&#34;&#34;,$O{r}-$N{r})&#39;)
+
+        # UKC forward/aft
+        _set_formula(
+            r,
+            COL_UKC_FWD,
+            f&#39;=IF(OR($O{r}=&#34;&#34;,$K{r}=&#34;&#34;),&#34;&#34;,({DEPTHREF}+$O{r})-($K{r}+{SQUAT}+{SAFETY}))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_UKC_AFT,
+            f&#39;=IF(OR($O{r}=&#34;&#34;,$L{r}=&#34;&#34;),&#34;&#34;,({DEPTHREF}+$O{r})-($L{r}+{SQUAT}+{SAFETY}))&#39;,
+        )
+
+        # Gate checks
+        _set_formula(
+            r,
+            COL_GATE_FWD,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($C{r}&lt;&gt;&#34;Y&#34;,&#34;N/A&#34;,IF($K{r}&lt;={GATE_FWD_MAX},&#34;PASS&#34;,&#34;LIMIT&#34;)))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_GATE_AFT,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($L{r}&gt;={GATE_AFT_MIN},&#34;PASS&#34;,&#34;LIMIT&#34;))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_GATE_TRIM,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF(ABS($J{r})&lt;={TRIM_LIMIT},&#34;PASS&#34;,&#34;LIMIT&#34;))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_GATE_UKC,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF(MIN($R{r},$S{r})&gt;={UKC_MIN},&#34;PASS&#34;,&#34;LIMIT&#34;))&#39;,
+        )
+        # Gate_RAMP left as VERIFY if ramp angle blank
+        _set_formula(
+            r,
+            COL_GATE_RAMP,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($T{r}=&#34;&#34;,&#34;VERIFY&#34;,IF($T{r}&lt;=6,&#34;PASS&#34;,&#34;LIMIT&#34;)))&#39;,
+        )
+        # Holdpoint band / Go-NoGo (simple)
+        _set_formula(
+            r,
+            COL_HP_BAND,
+            f&#39;=IF($B{r}&lt;&gt;&#34;Y&#34;,&#34;-&#34;,IF(OR($V{r}=&#34;LIMIT&#34;,$W{r}=&#34;LIMIT&#34;,$X{r}=&#34;LIMIT&#34;,$Y{r}=&#34;LIMIT&#34;),&#34;STOP&#34;,&#34;GO&#34;))&#39;,
+        )
+        _set_formula(
+            r,
+            COL_GONOGO,
+            f&#39;=IF($A{r}=&#34;&#34;,&#34;&#34;,IF($AA{r}=&#34;STOP&#34;,&#34;ABORT&#34;,IF($AA{r}=&#34;RECALC&#34;,&#34;NO-GO&#34;,&#34;GO&#34;)))&#39;,
+        )
+
+    # Fill styles for stage calc area (rows 21..200)
+    for r in range(21, 21 + stage_rows):
+        for c in range(1, 34):
+            cell = ws.cell(r, c)
+            cell.border = styles.border_thin
+            # input columns (blue)
+            if c in (1, 6, 7, 11, 12, 15, 20, 21, 29, 30, 31, 32, 33):
+                cell.fill = styles.fill_input
+            else:
+                cell.fill = styles.fill_calc
+            cell.alignment = (
+                styles.align_center if c not in (4, 33) else styles.align_left
+            )
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 22.0,
+            &#34;B&#34;: 10.0,
+            &#34;C&#34;: 14.0,
+            &#34;D&#34;: 40.0,
+            &#34;E&#34;: 12.0,
+            &#34;F&#34;: 12.0,
+            &#34;G&#34;: 12.0,
+            &#34;H&#34;: 14.0,
+            &#34;I&#34;: 12.0,
+            &#34;J&#34;: 12.0,
+            &#34;K&#34;: 12.0,
+            &#34;L&#34;: 12.0,
+            &#34;M&#34;: 14.0,
+            &#34;N&#34;: 14.0,
+            &#34;O&#34;: 14.0,
+            &#34;P&#34;: 14.0,
+            &#34;Q&#34;: 12.0,
+            &#34;R&#34;: 12.0,
+            &#34;S&#34;: 12.0,
+            &#34;T&#34;: 12.0,
+            &#34;U&#34;: 10.0,
+            &#34;V&#34;: 12.0,
+            &#34;W&#34;: 12.0,
+            &#34;X&#34;: 12.0,
+            &#34;Y&#34;: 12.0,
+            &#34;Z&#34;: 12.0,
+            &#34;AA&#34;: 14.0,
+            &#34;AB&#34;: 12.0,
+            &#34;AC&#34;: 18.0,
+            &#34;AD&#34;: 14.0,
+            &#34;AE&#34;: 14.0,
+            &#34;AF&#34;: 28.0,
+            &#34;AG&#34;: 40.0,
+        },
+    )
+    ws.freeze_panes = &#34;A21&#34;
+    safe_add_table(ws, &#34;StageCalc&#34;, &#34;A20:AG200&#34;)</code></pre>
+</details>
+<div class="desc"><p>07_Stage_Calc: submission table.
+- Columns A..AG (33 cols)
+- Row 1 title
+- Row 2..10 parameters
+- Row 19 title, Row 20 header, Row 21.. stage rows</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_stage_plan_sheet"><code class="name flex">
+<span>def <span class="ident">build_stage_plan_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_stage_plan_sheet(wb: Workbook, styles: Styles) -&gt; None:
+    &#34;&#34;&#34;
+    06_Stage_Plan: stage list (from analysis doc).
+    &#34;&#34;&#34;
+    ws = wb.create_sheet(&#34;06_Stage_Plan&#34;)
+
+    headers = [
+        &#34;Stage_ID&#34;,
+        &#34;Progress_%&#34;,
+        &#34;Planned_Start&#34;,
+        &#34;Planned_End&#34;,
+        &#34;HoldPoint&#34;,
+        &#34;GateB_Critical(Y/N)&#34;,
+        &#34;Stage_Status&#34;,
+        &#34;Remarks&#34;,
+    ]
+    make_header_row(ws, 1, headers, styles)
+    ws.row_dimensions[1].height = 22.0
+
+    # Stage IDs per analysis doc:contentReference[oaicite:1]{index=1}
+    stages = [
+        (&#34;Stage 1&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;-&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;Arrival (lightship)&#34;),
+        (&#34;Stage 2&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;Y&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;TR1 ramp start&#34;),
+        (&#34;Stage 3&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;-&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;TR1 mid-ramp&#34;),
+        (&#34;Stage 4&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;-&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;TR1 on deck&#34;),
+        (&#34;Stage 5&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;-&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;TR1 final position&#34;),
+        (
+            &#34;Stage 5_PreBallast&#34;,
+            &#34;N/A&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;-&#34;,
+            &#34;Y&#34;,
+            &#34;PLANNED&#34;,
+            &#34;Water supply complete (TR1 stowed)&#34;,
+        ),
+        (
+            &#34;Stage 6A_Critical (Opt C)&#34;,
+            &#34;N/A&#34;,
+            &#34;&#34;,
+            &#34;&#34;,
+            &#34;-&#34;,
+            &#34;Y&#34;,
+            &#34;PLANNED&#34;,
+            &#34;TR2 ramp entry&#34;,
+        ),
+        (&#34;Stage 6C&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;-&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;Final stowage&#34;),
+        (&#34;Stage 7&#34;, &#34;N/A&#34;, &#34;&#34;, &#34;&#34;, &#34;-&#34;, &#34;N&#34;, &#34;PLANNED&#34;, &#34;Departure (cargo off)&#34;),
+    ]
+
+    for i, row in enumerate(stages, start=2):
+        for j, v in enumerate(row, start=1):
+            cell = ws.cell(i, j, v)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_center if j != 8 else styles.align_left
+            # allow editing for planned start/end/remarks
+            if j in (3, 4, 8):
+                cell.fill = styles.fill_input
+            else:
+                cell.fill = styles.fill_calc
+
+    # Enough empty rows for extension
+    for r in range(2 + len(stages), 202):
+        for c in range(1, 9):
+            cell = ws.cell(r, c)
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_center if c != 8 else styles.align_left
+            cell.fill = styles.fill_input if c in (3, 4, 8) else styles.fill_calc
+
+    # Named range for Stage list (for DataValidation in other sheets)
+    add_named_range(wb, &#34;Stage_List&#34;, &#34;&#39;06_Stage_Plan&#39;!$A$2:$A$200&#34;)
+
+    dv_status = DataValidation(
+        type=&#34;list&#34;,
+        formula1=&#39;&#34;PLANNED,IN-PROGRESS,COMPLETED,ABORTED&#34;&#39;,
+        allow_blank=True,
+    )
+    dv_critical = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;Y,N&#34;&#39;, allow_blank=True)
+    dv_hold = DataValidation(type=&#34;list&#34;, formula1=&#39;&#34;Y,-&#34;&#39;, allow_blank=True)
+
+    ws.add_data_validation(dv_status)
+    ws.add_data_validation(dv_critical)
+    ws.add_data_validation(dv_hold)
+
+    dv_status.add(&#34;G2:G200&#34;)
+    dv_critical.add(&#34;F2:F200&#34;)
+    dv_hold.add(&#34;E2:E200&#34;)
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 22.0,
+            &#34;B&#34;: 12.0,
+            &#34;C&#34;: 18.0,
+            &#34;D&#34;: 18.0,
+            &#34;E&#34;: 10.0,
+            &#34;F&#34;: 18.0,
+            &#34;G&#34;: 14.0,
+            &#34;H&#34;: 40.0,
+        },
+    )
+    ws.freeze_panes = &#34;A2&#34;
+
+    # Optional table
+    safe_add_table(ws, &#34;StagePlan&#34;, &#34;A1:H200&#34;)</code></pre>
+</details>
+<div class="desc"><p>06_Stage_Plan: stage list (from analysis doc).</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_styles"><code class="name flex">
+<span>def <span class="ident">build_styles</span></span>(<span>) ‑> 01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_styles() -&gt; Styles:
+    thin = Side(style=&#34;thin&#34;, color=&#34;C0C0C0&#34;)
+    border = Border(left=thin, right=thin, top=thin, bottom=thin)
+
+    return Styles(
+        font_title=Font(name=&#34;Calibri&#34;, size=14, bold=True, color=&#34;FFFFFF&#34;),
+        font_header=Font(name=&#34;Calibri&#34;, size=11, bold=True, color=&#34;FFFFFF&#34;),
+        font_normal=Font(name=&#34;Calibri&#34;, size=11, bold=False, color=&#34;000000&#34;),
+        fill_title=PatternFill(&#34;solid&#34;, fgColor=&#34;1F4E78&#34;),
+        fill_section=PatternFill(&#34;solid&#34;, fgColor=&#34;D9D9D9&#34;),
+        fill_input=PatternFill(
+            &#34;solid&#34;, fgColor=&#34;D9E1F2&#34;
+        ),  # light blue: &#34;Fill blue cells only&#34;
+        fill_calc=PatternFill(&#34;solid&#34;, fgColor=&#34;F2F2F2&#34;),
+        fill_note=PatternFill(&#34;solid&#34;, fgColor=&#34;FFF2CC&#34;),  # light yellow note
+        border_thin=border,
+        align_center=Alignment(horizontal=&#34;center&#34;, vertical=&#34;center&#34;, wrap_text=True),
+        align_left=Alignment(horizontal=&#34;left&#34;, vertical=&#34;center&#34;, wrap_text=True),
+    )</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_vessel_hydro_sheet"><code class="name flex">
+<span>def <span class="ident">build_vessel_hydro_sheet</span></span>(<span>wb: Workbook,<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>n_rows: int = 60) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_vessel_hydro_sheet(wb: Workbook, styles: Styles, n_rows: int = 60) -&gt; None:
+    ws = wb.create_sheet(&#34;02_Vessel_Hydro&#34;)
+
+    ws.merge_cells(&#34;A1:H1&#34;)
+    ws[&#34;A1&#34;] = &#34;Hydro Table (input)&#34;
+    ws[&#34;A1&#34;].fill = styles.fill_title
+    ws[&#34;A1&#34;].font = styles.font_title
+    ws[&#34;A1&#34;].alignment = styles.align_center
+    ws.row_dimensions[1].height = 20.0
+
+    ws.merge_cells(&#34;A2:H2&#34;)
+    ws[&#34;A2&#34;] = (
+        &#34;Fill hydrostatic points sorted by Displacement ascending. Minimum 2 points required.&#34;
+    )
+    ws[&#34;A2&#34;].fill = styles.fill_note
+    ws[&#34;A2&#34;].alignment = styles.align_left
+
+    headers = [
+        &#34;#&#34;,
+        &#34;Disp_t&#34;,
+        &#34;Tmean_m&#34;,
+        &#34;TPC_t/cm&#34;,
+        &#34;MTC_t·m/cm&#34;,
+        &#34;LCF_m&#34;,
+        &#34;GM_m&#34;,
+        &#34;Source/Remark&#34;,
+    ]
+    make_header_row(ws, 3, headers, styles)
+    ws.row_dimensions[3].height = 22.0
+
+    start = 4
+    end = start + n_rows - 1
+    for i in range(start, end + 1):
+        ws.cell(i, 1, i - (start - 1)).fill = styles.fill_calc
+        ws.cell(i, 1).alignment = styles.align_center
+        ws.cell(i, 1).border = styles.border_thin
+        for c in range(2, 9):
+            cell = ws.cell(i, c)
+            cell.fill = styles.fill_input
+            cell.border = styles.border_thin
+            cell.alignment = styles.align_center
+
+    # Excel table (optional)
+    safe_add_table(ws, &#34;HydroTable&#34;, f&#34;A3:H{end}&#34;)
+
+    set_col_widths(
+        ws,
+        {
+            &#34;A&#34;: 6.0,
+            &#34;B&#34;: 12.0,
+            &#34;C&#34;: 12.0,
+            &#34;D&#34;: 14.0,
+            &#34;E&#34;: 16.0,
+            &#34;F&#34;: 10.0,
+            &#34;G&#34;: 10.0,
+            &#34;H&#34;: 55.0,
+        },
+    )
+    ws.freeze_panes = &#34;A4&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.generate"><code class="name flex">
+<span>def <span class="ident">generate</span></span>(<span>output_xlsx: Path) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate(output_xlsx: Path) -&gt; None:
+    styles = build_styles()
+    wb = Workbook()
+    # remove default sheet
+    wb.remove(wb.active)
+
+    # Sheet order per analysis doc:contentReference[oaicite:3]{index=3}
+    build_readme_sheet(wb, styles)
+    build_ssot_master_sheet(wb, styles)
+    build_vessel_hydro_sheet(wb, styles)
+    build_berth_tide_sheet(wb, styles)
+    build_cargo_spmt_sheet(wb, styles)
+    build_ballast_tanks_sheet(wb, styles)
+    build_stage_plan_sheet(wb, styles)
+    build_stage_calc_sheet(wb, styles)
+    build_holdpoint_log_sheet(wb, styles)
+    build_evidence_log_sheet(wb, styles)
+    build_raci_sheet(wb, styles)
+    build_assumptions_issues_sheet(wb, styles)
+    build_data_dictionary_sheet(wb, styles)
+    build_pack_a_inputs_ssot_sheet(wb, styles)
+    build_pack_b_calculation_formulas_sheet(wb, styles)
+    build_pack_d_tide_window_raci_sheet(wb, styles)
+
+    # Calculation mode (Excel will recalc on open)
+    try:
+        wb.calculation.calcMode = &#34;auto&#34;
+        wb.calculation.fullCalcOnLoad = True
+        wb.calculation.calcOnSave = True
+    except Exception:
+        pass
+
+    output_xlsx.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(output_xlsx)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main() -&gt; None:
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        &#34;--out&#34;,
+        default=&#34;Bryan_Submission_Data_Pack_Template_GENERATED.xlsx&#34;,
+        help=&#34;Output xlsx path&#34;,
+    )
+    args = ap.parse_args()
+
+    out_path = Path(args.out).resolve()
+    generate(out_path)
+    print(f&#34;[OK] Template generated: {out_path}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.make_header_row"><code class="name flex">
+<span>def <span class="ident">make_header_row</span></span>(<span>ws,<br>row_idx: int,<br>headers: Sequence[str],<br>styles: <a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a>,<br>start_col: int = 1) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_header_row(
+    ws, row_idx: int, headers: Sequence[str], styles: Styles, start_col: int = 1
+) -&gt; None:
+    for i, h in enumerate(headers, start=start_col):
+        c = ws.cell(row=row_idx, column=i, value=h)
+        c.font = styles.font_header
+        c.fill = styles.fill_title
+        c.alignment = styles.align_center
+        c.border = styles.border_thin</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.safe_add_table"><code class="name flex">
+<span>def <span class="ident">safe_add_table</span></span>(<span>ws, table_name: str, ref: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def safe_add_table(ws, table_name: str, ref: str) -&gt; None:
+    &#34;&#34;&#34;
+    Adds an Excel table with a standard style. If table creation fails, just skip.
+    &#34;&#34;&#34;
+    try:
+        tab = Table(displayName=table_name, ref=ref)
+        tab.tableStyleInfo = TableStyleInfo(
+            name=&#34;TableStyleMedium9&#34;,
+            showFirstColumn=False,
+            showLastColumn=False,
+            showRowStripes=True,
+            showColumnStripes=False,
+        )
+        ws.add_table(tab)
+    except Exception:
+        # Table creation is optional
+        pass</code></pre>
+</details>
+<div class="desc"><p>Adds an Excel table with a standard style. If table creation fails, just skip.</p></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.set_col_widths"><code class="name flex">
+<span>def <span class="ident">set_col_widths</span></span>(<span>ws, widths: Dict[str, float]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_col_widths(ws, widths: Dict[str, float]) -&gt; None:
+    for col, w in widths.items():
+        ws.column_dimensions[col].width = float(w)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles"><code class="flex name class">
+<span>class <span class="ident">Styles</span></span>
+<span>(</span><span>font_title: Font,<br>font_header: Font,<br>font_normal: Font,<br>fill_title: PatternFill,<br>fill_section: PatternFill,<br>fill_input: PatternFill,<br>fill_calc: PatternFill,<br>fill_note: PatternFill,<br>border_thin: Border,<br>align_center: Alignment,<br>align_left: Alignment)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(frozen=True)
+class Styles:
+    font_title: Font
+    font_header: Font
+    font_normal: Font
+
+    fill_title: PatternFill
+    fill_section: PatternFill
+    fill_input: PatternFill
+    fill_calc: PatternFill
+    fill_note: PatternFill
+
+    border_thin: Border
+
+    align_center: Alignment
+    align_left: Alignment</code></pre>
+</details>
+<div class="desc"><p>Styles(font_title: 'Font', font_header: 'Font', font_normal: 'Font', fill_title: 'PatternFill', fill_section: 'PatternFill', fill_input: 'PatternFill', fill_calc: 'PatternFill', fill_note: 'PatternFill', border_thin: 'Border', align_center: 'Alignment', align_left: 'Alignment')</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.align_center"><code class="name">var <span class="ident">align_center</span> : openpyxl.styles.alignment.Alignment</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.align_left"><code class="name">var <span class="ident">align_left</span> : openpyxl.styles.alignment.Alignment</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.border_thin"><code class="name">var <span class="ident">border_thin</span> : openpyxl.styles.borders.Border</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_calc"><code class="name">var <span class="ident">fill_calc</span> : openpyxl.styles.fills.PatternFill</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_input"><code class="name">var <span class="ident">fill_input</span> : openpyxl.styles.fills.PatternFill</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_note"><code class="name">var <span class="ident">fill_note</span> : openpyxl.styles.fills.PatternFill</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_section"><code class="name">var <span class="ident">fill_section</span> : openpyxl.styles.fills.PatternFill</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_title"><code class="name">var <span class="ident">fill_title</span> : openpyxl.styles.fills.PatternFill</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_header"><code class="name">var <span class="ident">font_header</span> : openpyxl.styles.fonts.Font</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_normal"><code class="name">var <span class="ident">font_normal</span> : openpyxl.styles.fonts.Font</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_title"><code class="name">var <span class="ident">font_title</span> : openpyxl.styles.fonts.Font</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="01_EXECUTION_FILES" href="index.html">01_EXECUTION_FILES</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.add_named_range" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.add_named_range">add_named_range</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.apply_row_style" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.apply_row_style">apply_row_style</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_assumptions_issues_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_assumptions_issues_sheet">build_assumptions_issues_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_ballast_tanks_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_ballast_tanks_sheet">build_ballast_tanks_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_berth_tide_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_berth_tide_sheet">build_berth_tide_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_cargo_spmt_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_cargo_spmt_sheet">build_cargo_spmt_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_data_dictionary_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_data_dictionary_sheet">build_data_dictionary_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_evidence_log_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_evidence_log_sheet">build_evidence_log_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_holdpoint_log_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_holdpoint_log_sheet">build_holdpoint_log_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_a_inputs_ssot_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_a_inputs_ssot_sheet">build_pack_a_inputs_ssot_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_b_calculation_formulas_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_b_calculation_formulas_sheet">build_pack_b_calculation_formulas_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_d_tide_window_raci_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_pack_d_tide_window_raci_sheet">build_pack_d_tide_window_raci_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_raci_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_raci_sheet">build_raci_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_readme_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_readme_sheet">build_readme_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_ssot_master_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_ssot_master_sheet">build_ssot_master_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_stage_calc_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_stage_calc_sheet">build_stage_calc_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_stage_plan_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_stage_plan_sheet">build_stage_plan_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_styles">build_styles</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_vessel_hydro_sheet" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.build_vessel_hydro_sheet">build_vessel_hydro_sheet</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.generate" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.generate">generate</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.main" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.main">main</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.make_header_row" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.make_header_row">make_header_row</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.safe_add_table" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.safe_add_table">safe_add_table</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.set_col_widths" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.set_col_widths">set_col_widths</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles">Styles</a></code></h4>
+<ul class="two-column">
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.align_center" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.align_center">align_center</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.align_left" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.align_left">align_left</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.border_thin" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.border_thin">border_thin</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_calc" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_calc">fill_calc</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_input" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_input">fill_input</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_note" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_note">fill_note</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_section" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_section">fill_section</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_title" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.fill_title">fill_title</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_header" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_header">font_header</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_normal" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_normal">font_normal</a></code></li>
+<li><code><a title="01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_title" href="#01_EXECUTION_FILES.create_bryan_excel_template_NEW.Styles.font_title">font_title</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
