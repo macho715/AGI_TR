@@ -1,133 +1,194 @@
 # AGI_TR - Ballast Management Pipeline
 
-AGI RORO TR (Transport) 프로젝트를 위한 통합 Ballast Management 파이프라인 시스템입니다.
+Integrated Ballast Management Pipeline System for AGI RORO TR (Transport) Project.
 
-## 📋 프로젝트 개요
+## 📋 Project Overview
 
-이 프로젝트는 선박의 **Ballast Management** 작업을 자동화하고 최적화하기 위한 통합 파이프라인입니다. SSOT (Single Source of Truth) 원칙을 기반으로 Gate 정의, Tank catalog, Site profile을 통합 관리하며, Linear Programming 기반의 최적화를 통해 Ballast 계획을 자동 생성합니다.
+This project is an integrated pipeline for automating and optimizing **Ballast Management** operations for vessels. Based on the SSOT (Single Source of Truth) principle, it manages Gate definitions, Tank catalogs, and Site profiles in a unified manner, and automatically generates Ballast plans through Linear Programming-based optimization.
 
-## ✨ 주요 기능
+## ✨ Key Features
 
-- **SSOT (Single Source of Truth)**: Gate 정의, Tank catalog, Site profile의 단일 소스 통합
-- **Definition Split**: 조위 예보(Forecast Tide)와 요구 수면고(Required WL)의 명확한 분리
-- **Gate Unified System**: FWD 최대값과 AFT 최소값을 동시에 강제하는 게이트 시스템
-- **Linear Programming 최적화**: LP Solver 기반 Ballast 계획 최적화
-- **자동화 워크플로우**: 6개의 독립 단계를 순차적으로 실행
-- **운영 준비**: Ballast sequence, Hold point, Valve lineup 자동 생성
-- **Tide Integration**: 조위 기반 UKC 계산 및 검증
-- **SPMT Integration**: SPMT cargo 자동 import 및 통합
+- **SSOT (Single Source of Truth)**: Unified management of Gate definitions, Tank catalogs, and Site profiles
+- **Definition Split**: Clear separation between forecast tide (Forecast Tide) and required water level (Required WL)
+- **Gate Unified System**: Gate system that simultaneously enforces FWD maximum and AFT minimum values
+- **Linear Programming Optimization**: LP Solver-based Ballast plan optimization
+- **Automated Workflow**: Sequential execution of 6 independent steps
+- **Operational Ready**: Automatic generation of Ballast sequence, Hold point, and Valve lineup
+- **Tide Integration**: Tide-based UKC calculation and validation
+- **SPMT Integration**: Automatic SPMT cargo import and integration
+- **I/O Optimization**: Polars lazy scan, Parquet cache, Manifest logging
+- **CI/CD Integration**: GitHub Actions workflows for quality assurance and automated testing
 
-## 📁 디렉토리 구조
+## 📁 Directory Structure
 
 ```
 AGI_TR/
-├── 01_EXECUTION_FILES/      # 실행 파일 및 스크립트
+├── 01_EXECUTION_FILES/      # Execution files and scripts
 │   ├── agi_tr_patched_v6_6_defsplit_v1.py
 │   ├── ballast_sequence_generator.py
-│   ├── bplus_inputs/        # B+ 입력 데이터
-│   ├── ssot/                # SSOT 모듈
-│   ├── tide/                # Tide 계산 모듈
-│   └── spmt v1/             # SPMT 통합 모듈
-├── 02_RAW_DATA/             # 원시 데이터
-│   ├── profiles/            # Site profile JSON
-│   ├── sensors/             # 센서 데이터
-│   └── additional_inputs/   # 추가 입력 파일
-└── 03_DOCUMENTATION/        # 문서
-    └── 00_CORE_ARCHITECTURE/ # 핵심 아키텍처 문서
+│   ├── bplus_inputs/        # B+ input data
+│   ├── ssot/                # SSOT modules
+│   ├── tide/                # Tide calculation modules
+│   └── spmt v1/             # SPMT integration modules
+├── 02_RAW_DATA/             # Raw data
+│   ├── profiles/            # Site profile JSON files
+│   ├── sensors/             # Sensor data
+│   └── additional_inputs/   # Additional input files
+├── 03_DOCUMENTATION/        # Documentation
+│   └── 00_CORE_ARCHITECTURE/ # Core architecture documentation
+├── tests/                   # Test suite
+│   ├── test_ssot.py
+│   └── conftest.py
+└── .github/                  # GitHub Actions workflows
+    └── workflows/           # CI/CD workflows
 ```
 
-## 🚀 설치 방법
+## 🚀 Installation
 
-### 필수 요구사항
+### Prerequisites
 
-- Python 3.8 이상
+- Python 3.9 or higher
 - Git
 
-### 의존성 설치
+### Dependency Installation
 
 ```bash
 cd 01_EXECUTION_FILES
 pip install -r requirements.txt
 ```
 
-주요 의존성:
+Key dependencies:
 - `pandas>=1.5.0`
 - `numpy>=1.23.0`
 - `openpyxl>=3.0.0`
 - `scipy>=1.9.0`
-- `polars>=0.19.0` (고성능 I/O)
-- `pydantic>=2.0.0` (데이터 검증)
+- `polars>=0.19.0` (High-performance I/O)
+- `pydantic>=2.0.0` (Data validation)
 
-## 📖 사용 방법
+## 📖 Usage
 
-### 기본 실행
+### Basic Execution
 
 ```bash
 cd 01_EXECUTION_FILES
 python agi_tr_patched_v6_6_defsplit_v1.py
 ```
 
-### 주요 스크립트
+### Main Scripts
 
-- **메인 파이프라인**: `agi_tr_patched_v6_6_defsplit_v1.py`
-- **Ballast Sequence 생성**: `ballast_sequence_generator.py`
-- **Excel 템플릿 생성**: `create_bryan_excel_template_NEW.py`
-- **Valve Lineup 생성**: `valve_lineup_generator.py`
+- **Main Pipeline**: `agi_tr_patched_v6_6_defsplit_v1.py`
+- **Ballast Sequence Generator**: `ballast_sequence_generator.py`
+- **Excel Template Generator**: `create_bryan_excel_template_NEW.py`
+- **Valve Lineup Generator**: `valve_lineup_generator.py`
 
-## 📚 문서
+### Integrated Pipeline Execution
 
-상세한 문서는 `03_DOCUMENTATION/00_CORE_ARCHITECTURE/` 디렉토리에서 확인할 수 있습니다.
+```bash
+cd 01_EXECUTION_FILES/tide
+python integrated_pipeline_defsplit_v2_gate270_split_v3_auditpatched_autodetect_TIDE_v1.py \
+    --base_dir .. \
+    --inputs_dir ../bplus_inputs \
+    --out_dir ../outputs \
+    --from_step 1 \
+    --to_step 5
+```
 
-### 권장 읽기 순서
+## 📚 Documentation
 
-1. **시작**: `00_System_Architecture_Complete.md`
-2. **데이터 흐름 이해**: `02_Data_Flow_SSOT.md`, `03_Pipeline_Execution_Flow.md`
-3. **Solver 이해**: `04_LP_Solver_Logic.md`, `05_Definition_Split_Gates.md`
-4. **사용 가이드**: `08_Bushra_System_User_Guide.md`
+Detailed documentation is available in the `03_DOCUMENTATION/00_CORE_ARCHITECTURE/` directory.
 
-## 🔄 최신 버전 정보
+### Recommended Reading Order
+
+1. **Getting Started**: `README.md` (this file)
+2. **System Architecture**: `00_System_Architecture_Complete.md`
+3. **Data Flow**: `02_Data_Flow_SSOT.md`, `03_Pipeline_Execution_Flow.md`
+4. **Solver Logic**: `04_LP_Solver_Logic.md`, `05_Definition_Split_Gates.md`
+5. **User Guide**: `08_Bushra_System_User_Guide.md`
+
+## 🔄 Latest Version Information
+
+### v3.9 (2025-12-29)
+- Added input data source and search order documentation
+- Detailed pipeline step-by-step input file mapping
+- Tide Integration priority specification
+
+### v3.8 (2025-12-29)
+- Added complete pipeline execution file list (21 files, categorized)
+- Expanded component interface map (Step 0, Step 5, post-processing, utilities)
+- Execution method classification (subprocess, import modules, dynamic import)
+- Activation conditions and dependency relationships specified
 
 ### v3.7 (2025-12-29)
-- Forecast_Tide_m 우선순위 변경 (일관성 문제 해결)
-- CLI `--forecast_tide` 값 최우선 적용
+- Forecast_Tide_m priority change: CLI `--forecast_tide` value takes highest priority
+- Complete alignment of `Forecast_Tide_m` between `stage_table_unified.csv` and `solver_ballast_summary.csv`
 
 ### v3.6 (2025-12-28)
-- Option 2 구현 완료 (BALLAST_SEQUENCE 옵션/실행 분리)
-- Start_t/Target_t carry-forward 구현
-- Stage 6B 분리 처리
+- Option 2 implementation: BALLAST_SEQUENCE option/execution separation
+- Start_t/Target_t carry-forward implementation
+- Stage 6B separation handling
 
 ### v3.5 (2025-12-28)
-- I/O 최적화 (PR-01~05)
+- I/O Optimization (PR-01~05)
 - Polars lazy scan, Parquet sidecar cache
-- Manifest 로깅 통합
+- Manifest logging integration
 
 ### v3.4 (2025-12-27)
 - Tide Integration (AGI-only)
 - SPMT Integration
-- Step 5 추가 (SPMT Integrated Excel, Bryan Template)
+- Step 5 added (SPMT Integrated Excel, Bryan Template)
 
-## 🛠️ 개발
+## 🛠️ Development
 
-### 프로젝트 구조
+### Project Structure
 
-- **SSOT 모듈**: `01_EXECUTION_FILES/ssot/`
-  - `gates_loader.py`: Gate 정의 로더
-  - `draft_calc.py`: Draft 계산
-  - `validators.py`: 데이터 검증
+- **SSOT Module**: `01_EXECUTION_FILES/ssot/`
+  - `gates_loader.py`: Gate definition loader
+  - `draft_calc.py`: Draft calculation
+  - `validators.py`: Data validation
 
-- **Tide 모듈**: `01_EXECUTION_FILES/tide/`
-  - `tide_ukc_engine.py`: UKC 계산 엔진
-  - `tide_constants.py`: Tide 상수
+- **Tide Module**: `01_EXECUTION_FILES/tide/`
+  - `tide_ukc_engine.py`: UKC calculation engine
+  - `tide_constants.py`: Tide constants
 
-## 📝 라이선스
+### Testing
 
-이 프로젝트는 AGI 전용 프로젝트입니다.
+```bash
+# Run all tests
+pytest tests/ -v
 
-## 👥 기여
+# Run with coverage
+pytest tests/ --cov=01_EXECUTION_FILES --cov-report=html
+```
 
-프로젝트 개선을 위한 제안이나 버그 리포트는 Issues를 통해 제출해주세요.
+## 🔧 CI/CD
 
-## 📞 문의
+This project includes comprehensive GitHub Actions workflows:
 
-프로젝트 관련 문의사항이 있으시면 저장소의 Issues를 통해 연락해주세요.
+1. **Python Quality Checks**: Code quality validation (ruff, black, isort, mypy, pytest)
+2. **Data Pipeline Validation**: Data integrity verification
+3. **Excel File Validation**: Excel file integrity checks
+4. **Security Scan**: Automated security scanning
+5. **Automated Release**: Version management and release automation
+6. **Dependency Updates**: Automated dependency update PRs
+7. **Performance Benchmark**: Performance regression detection
+8. **Documentation Generation**: Automated API documentation
 
+See `.github/workflows/` for workflow details.
+
+## 📝 License
+
+This project is proprietary to AGI.
+
+## 👥 Contributing
+
+For project improvements or bug reports, please submit via Issues.
+
+## 📞 Contact
+
+For project-related inquiries, please contact through the repository's Issues.
+
+---
+
+**Version**: v3.9  
+**Last Updated**: 2025-12-30  
+**Status**: Production Ready
